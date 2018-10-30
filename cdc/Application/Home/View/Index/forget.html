@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://jghchina.com/PCmaster/LR/forgetpsw -->
+<html><head id="head"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>忘记密码</title>
+<link href="__PUBLIC__/css/wangjimima.css" type="text/css" rel="stylesheet" media="screen"> 
+<link rel="shortcut icon" href="__PUBLIC__/images/bitbug_favicon.ico" type="image/x-icon">
+</head>
+<body class="LTR Safari Chrome Safari50 Chrome50 ZHCN PCDevice ContentBody">
+    <form method="post" action="__URL__/forgetPass" id="form" onSubmit="return confirm();" >
+<script src="__PUBLIC__/js/jquery-1.8.2.min.js"></script>
+<script src="__PUBLIC__/js/forget.js"></script>
+<input type="hidden" name="lng" id="lng" value="zh-CN">
+<div class="mainBlock">
+    <input id="yzmyz" type="hidden">	
+<div class="all">    
+  <div class="w" id="logo">
+   <a href="__URL__/index"><img src="__PUBLIC__/images/chengcuicheng.png" alt="" height="74"></a>
+   <span style="float:right;margin:30px 25px 0 0;"><a href="__URL__/login" class="flk13">登录</a></span>
+  </div>
+</div>
+    <div class="w" id="regist">    
+        <div class="mc">     
+                <div class="form">
+                    <!--<div class="item" id="select-username">-->
+                        <!--<span class="label label1">用户账号</span>-->
+                        <!--<div class="fl item-ifo">-->
+<!--                            <div class="o-intelligent-regName">
+                                <input type="text" id="username" name="username" maxlength="20" class="text" placeholder="请输入您的用户名">
+                                <label id="regName_succeed" class="blank"></label>
+                                <label id="regName_error"></label>
+                            </div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <div id="" class="item">
+                            <span class="label label1">手机号码</span>
+                            <div class="fl item-ifo">
+                                <input type="text" class="text text-1" id="code" maxlength="11" placeholder="请输入您的手机号码"  name="phone">
+                                <label class="blank invisible"></label>
+                                <input class="btn" type="button" id="getcode" value="获取短信验证码" style="cursor: pointer">
+                                <span class="clr"></span>
+                                <div class="msg-text" id=""></div>
+                                <label id="" class="blank" style="display: none;"></label>
+                                <label id="" class="blank invisible"></label>
+                            </div>
+                            <span class="clr"></span>
+                        </div>  
+                    <div class="item" id="select-regName">
+                        <span class="label label1">短信验证码</span>
+                        <div class="fl item-ifo">
+                            <div class="o-intelligent-regName">
+                                <input type="text" id="regName" maxlength="4" class="text"  placeholder="请输入短信验证码">
+                                <label id="regName_succeed" class="blank"></label>
+                                <label id="regName_error"></label>
+                            </div>
+                        </div>
+                    </div>
+                       <div class="item">
+                            <span class="label label1">新密码</span>
+                            <div class="fl item-ifo">
+                                <input type="password" id="password" name="password" maxlength="32" class="text" placeholder="请设置您新的登录密码">
+                                <label id="pwdRepeat_succeed" class="blank"></label>
+                                <label id="pwdRepeat_error"></label>
+                            </div>
+                        </div>
+                      
+                        <div class="item">
+                            <span class="label label1">确认新密码</span>
+                            <div class="fl item-ifo">
+                                <input type="password" id="passwordRepeat" name="password1" maxlength="32" class="text" placeholder="请再次输入您新的登录密码">
+                                <label id="pwdRepeat_succeed" class="blank"></label>
+                                <label id="pwdRepeat_error"></label>
+                            </div>
+                        </div>
+                    <div class="item">
+                        <input type="submit" class="btn-img btn-regist1" id="registsubmit" value="忘记密码" tabindex="8" style="cursor: pointer">
+                    </div>
+                </div>
+          <div class="forgerpas" style="width:300px;">
+            <img src="__PUBLIC__/images/forgetpas.png">
+            <a href="__URL__/index"><div class="website website1"><img src="__PUBLIC__/images/gw.png">诚兑城官网</div></a>
+            <a href=""><div class="website"><img src="__PUBLIC__/images/sc.png">诚兑城商城</div></a>
+          </div>
+
+    </div>
+        
+<script>window.parent.scrollTo(0, 0);</script>
+<script>
+    function confirm(){
+        var result=false;
+        if($("#code").val()==""){
+            alert("手机为必填项!"); 
+            return false;
+        }else if(isNaN($("#code").val())){
+            alert("手机号码只能为数字!");
+            return false;
+        }else if($("#code").val().length<11){
+            alert("请输入正确的11位手机号码!");
+            return false;
+        }else{
+            var username = $("#code").val();
+            $.ajax({
+                async:false,
+                type:"post",
+                url:"__URL__/userNameAjax",
+                dataType: "text",
+                data:{user:username},
+                success:
+                function(data){
+                    if(data!=1){
+                        alert("手机号码不存在!请重新输入!");
+                        result=false;
+                    }else{
+                        result=true;
+                    }
+                }
+            })
+        }
+        if($("#regName").val()==""){
+            alert("验证码为必填项!");
+            return false;
+        }else if(isNaN($("#regName").val())){
+            alert("验证码只能为数字!");
+            return false;
+        }else if($("#regName").val()!=$("#yzmyz").val()){
+            alert("验证码不正确或已过期!请重新输入!");
+            return false;
+        }
+        if($("#password").val()==""){
+            alert("登录密码为必填项!"); 
+            return false;
+        }else if($("#password").val().length<6){
+            alert("请输入6-32位的登录密码!"); 
+            return false;
+        }else if(!/^([a-z]|[A-Z]|[0-9])*$/.test($("#password").val())){
+            alert("登录密码不能包含特殊符号!"); 
+            return false;
+        }else if($("#password").val()!=""){
+            if($("#password").val()==$("#fc_TwoPassword").val()){
+                alert("登录密码不能与安全密码相同!"); 
+                return false;
+            }
+        }else if($("#fc_TwoPassword").val()!=""){
+            if($("#fc_TwoPassword").val()==$("#password").val()){
+                alert("登录密码不能与安全密码相同!"); 
+                return false;
+            }
+        }
+        if($("#passwordRepeat").val()!=""){
+            if($("#passwordRepeat").val()==""){
+                alert("请再次输入登录密码!"); 
+                return false;
+            }else if($("#passwordRepeat").val()!=$("#password").val()){
+                alert("两次输入的登录密码不相同!请再次输入!"); 
+                return false;
+            }
+        }
+        return result;
+    }
+</script>
+        <!--底部 end-->
+</div>
+  </form>
+
+
+</body></html>

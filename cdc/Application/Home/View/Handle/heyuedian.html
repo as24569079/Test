@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="__PUBLIC__/css/tongji.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script src="__PUBLIC__/js/bianse.js"></script>
+    <style>
+        .yinhangka{
+            margin-top:20px;margin-left:20px;
+            width:90%;
+        }
+        .yinhangka > span{
+            color:#0000cc;
+        }
+        .yinhangka > input{
+            width:200px;height:25px;
+        }
+        .sub{
+            width:250px;height:30px;
+            outline: none;border:0px;
+            background:#F90;color:#FFF;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <form method="post" id='form'>
+    <div>
+        <span>旗舰店管理</span>
+    </div>
+        <div class="yinhangka">
+            <input type="button" value="新增旗舰店" id="add">　　
+            <input type="button" value="收益详情" id="detail">
+            <table id="neirong" border="0" cellspacing="0">
+                <tr>
+                    <th>序号</th>
+                    <th>旗舰店名称</th>
+                    <th>旗舰店地址</th>
+                    <th>旗舰店店长</th>
+                    <!--<th>旗舰店电话</th>-->
+                    <th>旗舰店编号</th>
+                    <th colspan="2">操作</th>
+                </tr>
+                <volist name="ren" id="val">
+                <tr class="neirong">
+                    <td></td>
+                    <td>{$val.shop_name}</td>
+                    <td>{$val.address}</td>
+                    <td>{$val.real_name}</td>
+                    <!--<td>{$val.tel}</td>-->
+                    <td>{$val.shop_no}</td>
+                    <td><a href="__URL__/heyuedian_U?shop_id={$val.shop_id}"><input type="button" value="修改"  data-id="{$val.shop_id}" data-open="off"></a></td>
+                    <td><input type="button" value="删除" class="yinhan_del" data-id="{$val.shop_id}"></td>
+                </tr>
+                </volist>
+            </table>
+        </div>
+    </form>
+    <script>
+        $(document).ready(function(){
+            var tr = $(".neirong");
+            for(var i=0;i<tr.length;i++){
+                $(".neirong").eq(i).children("td").eq(0).html(i+1);
+            }
+            $(".yinhan_upt").click(function(){
+                if($(this).attr("data-open")=="off"){
+                    var name = $(this).parent("td").siblings("td").eq(1).text();
+                    var ka = $(this).parent("td").siblings("td").eq(2).text();
+                    var tel = $(this).parent("td").siblings("td").eq(4).text();
+                    var hao = $(this).parent("td").siblings("td").eq(5).text();
+                    var boss = $(this).parent("td").siblings("td").eq(3).text();
+                    $(this).parent("td").siblings("td").eq(1).html("<input type='text' value='"+name+"' name='name_upt'>");
+                    $(this).parent("td").siblings("td").eq(2).html("<input type='text' value='"+ka+"' name='ka_upt'>");
+                    $(this).parent("td").siblings("td").eq(3).html("<input type='text' value='"+boss+"' name='boss_upt'>");
+                    $(this).parent("td").siblings("td").eq(4).html("<input type='text' value='"+tel+"' name='tel_upt'>");
+                    $(this).parent("td").siblings("td").eq(5).html("<input type='text' value='"+hao+"' name='hao_upt'>");
+                    $(this).attr("data-open","on");
+                    $(this).val("确定");
+                }else if($(this).attr("data-open")=="on"){
+                    var id = $(this).attr("data-id");
+                    var frm = document.getElementById('form');
+                        frm.action='__URL__/uptheyue/id/'+id;
+                        frm.submit();
+                }
+            })
+            $("#add").click(function(){
+                window.location.href='__URL__/addheyuedian'
+            })
+            $("#detail").click(function(){
+                window.location.href='__URL__/shop_detail'
+            })
+            $(".yinhan_del").click(function(){
+                if(confirm('确定删除此旗舰店吗？')){
+                    var id = $(this).attr("data-id");
+                    var frm = document.getElementById('form');
+                        frm.action='__URL__/delheyue/id/'+id;
+                        frm.submit();
+                }
+            })
+        })
+    </script>
+</body>
+</html>

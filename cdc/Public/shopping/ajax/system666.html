@@ -1,0 +1,2410 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>管理页面</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="__PUBLIC__/css/system.css">
+        <link rel="stylesheet" href="__PUBLIC__/css/page.css">
+        <script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.2.min.js"></script> 
+        <link rel="shortcut icon" href="__PUBLIC__/image/favicon.ico" type="image/x-icon">
+    </head>
+    <body>
+        <form method="post" enctype="multipart/form-data" id='form'>
+        <div class="dang" id="dang"></div>
+        <div class="div">
+            <div class="time" id="time" style="display:none">
+                <span id="show"></span>
+                <script type="text/javascript">
+                 window.onload = function() {
+                  var show = document.getElementById("show");
+                  setInterval(function() {
+                   var time = new Date();
+                   var m = time.getMonth() + 1;
+                   var t = time.getFullYear() + "-" + m + "-"
+                     + time.getDate() + " " + time.getHours() + ":"
+                     + time.getMinutes() + ":" + time.getSeconds();
+                   show.innerHTML = t;
+                  }, 1000);
+                 };
+                </script>
+            </div>
+            <div class="header">
+                <div class="header_ge"></div>
+                <div class="logo">
+                    <img src="__PUBLIC__/system/logo.png">
+                </div>
+                <div class="header_mid">
+                    <div class="header_fen"></div>
+                    <div class="header_fen"></div>
+                    <div class="header_fen" id="header_fen_name">
+                        <span id="login_user_name"></span>
+                    </div>
+                    <script>
+                        function req(){
+                                if(window.XMLHttpRequest){
+                                    var request = new XMLHttpRequest();
+                                } else {
+                                    var request = new ActiveXObject('Microsoft.XMLHTTP');
+                                }
+                                return request;
+                        }
+                        function login_user_name(){
+                             var ajax = req();
+                                    ajax.open("post","cook2",true);
+                                    ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                                    ajax.send(null);
+                                    ajax.onreadystatechange=function(){
+                                        if(ajax.readyState==4 && ajax.status == 200){
+                                            var data = ajax.responseText;
+                                            document.getElementById("login_user_name").innerHTML="当前登录者为:" + data;
+                                        }
+                                    }      
+                        }
+                        setInterval(login_user_name,100);
+                    </script>
+                    <div class="header_fen">
+                        <div class="header_fen_top"></div>
+                        <div class="header_fen_bot">
+                            <div class="header_fen_one">
+                                <img src="__PUBLIC__/system/tubiao3.png" width="20" height="20"><br>
+                                <a href="index.html" class="header_link" target="_blank">站点首页</a>
+                            </div>
+                            <div class="header_fen_one">
+                                <img src="__PUBLIC__/system/tubiao4.png" width="20" height="20"><br>
+                                <a href="#.html" class="header_link" id='time_dian'>当前时间</a>
+                            </div>
+                            <div class="header_fen_one">
+                                <img src="__PUBLIC__/system/tubiao2.png" width="20" height="20"><br>
+                                <a href="#.html" class="header_link" id='shezhi'>账号设置</a>
+                            </div>
+                            <div class="header_fen_one">
+                                <img src="__PUBLIC__/system/tubiao1.png" width="20" height="20"><br>
+                                <span onclick="winshow()" class="header_link">在线咨询</span><br><span class="shanshuo" id="shanshuo">新消息</span>
+                                <script>
+                                    function req(){
+                                        if(window.XMLHttpRequest){
+                                            var request = new XMLHttpRequest();
+                                        } else {
+                                            var request = new ActiveXObject('Microsoft.XMLHTTP');
+                                        }
+                                        return request;
+                                    }
+                                    function shanshuo(){
+                                            var ajax = req();
+                                            ajax.open("post","shanshuo",true);
+                                            ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                                            ajax.send(null);
+                                            ajax.onreadystatechange=function(){
+                                                if(ajax.readyState==4 && ajax.status == 200){
+                                                    var data = ajax.responseText;
+                                                        if(data==123){
+                                                            document.getElementById("shanshuo").style.display="block";
+                                                        }
+                                                    }
+                                                } 
+                                    }   
+                                    Timer = setInterval(shanshuo,200);
+                                    function winshow(){
+                                        openWin = window.open('show_one','_blank','width=550,height=530,left=800,top=400,location=yes,menubar=1,status=1');
+                                        document.getElementById("shanshuo").style.display="none";
+                                        clearInterval(Timer);
+                                    }
+                                </script>
+                            </div>
+                            <div class="header_fen_one">
+                                <img src="__PUBLIC__/system/tubiao1.png" width="20" height="20"><br>
+                                <a href="tuichu" class="header_link">安全退出</a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="bar">
+                <div class="nav">
+                    <div class="nav_one">
+                        <a href='__URL__/index' target="_blank"><img src="__PUBLIC__/system/zong_logo.png"></a>
+                    </div>
+                    <div class="nav_fen">
+                        <div class="ul_one">
+                            <div class="ul_one_left">
+                                <div class="one_top"></div>
+                                <div class="one_mid"></div>
+                                <div class="one_bot"></div>
+                            </div>
+                            <div class="ul_one_right">
+                                <b class="xinxi">商品信息</b>
+                            </div>
+                        </div>
+                        <div class="li_one" id="nav1">
+                            <div class="li_one_one">&nbsp;<span id='font1'>商品上架</span></div>
+                            <div class="li_one_two" id="fangxiang1"><img src="__PUBLIC__/system/zhixiang.png" width="10" height="10"></div>
+                        </div>
+                        <div class="li_one" id="nav2">
+                            <div class="li_one_one">&nbsp;<span id='font2'>商品分类</span></div>
+                            <div class="li_one_two" id="fangxiang2" style="display: none"><img src="__PUBLIC__/system/zhixiang.png" width="10" height="10"></div>
+                        </div>
+                        <div class="li_one" id="nav3">
+                            <div class="li_one_one">&nbsp;<span id='font3'>商品属性</span></div>
+                            <div class="li_one_two" id="fangxiang3" style="display: none"><img src="__PUBLIC__/system/zhixiang.png" width="10" height="10"></div>
+                        </div>
+                    </div>
+                    <div class="nav_fen">
+                        <div class="ul_one">
+                            <div class="ul_one_left">
+                                <div class="one_top"></div>
+                                <div class="one_mid"></div>
+                                <div class="one_bot"></div>
+                            </div>
+                            <div class="ul_one_right">
+                                <b class="xinxi">订单管理</b>
+                            </div>
+                        </div>
+                        <div class="li_one" id="nav4">
+                            <div class="li_one_one">&nbsp;<span id='font4'>订单列表</span></div>
+                            <div class="li_one_two" id="fangxiang4" style="display: none"><img src="__PUBLIC__/system/zhixiang.png" width="10" height="10"></div>
+                        </div>
+                        <div class="li_one" id="nav5">
+                            <div class="li_one_one">&nbsp;<span id='font5'>配送发货</span></div>
+                            <div class="li_one_two" id="fangxiang5" style="display: none"><img src="__PUBLIC__/system/zhixiang.png" width="10" height="10"></div>
+                        </div>
+                        <div class="li_one" id="nav6">
+                            <div class="li_one_one">&nbsp;<span id='font6'>订单审核</span></div>
+                            <div class="li_one_two" id="fangxiang6" style="display: none"><img src="__PUBLIC__/system/zhixiang.png" width="10" height="10"></div>
+                        </div>
+                    </div>
+                    <div class="nav_fen">
+                        <div class="ul_one">
+                            <div class="ul_one_left">
+                                <div class="one_top"></div>
+                                <div class="one_mid"></div>
+                                <div class="one_bot"></div>
+                            </div>
+                            <div class="ul_one_right">
+                                <b class="xinxi">库存管理</b>
+                            </div>
+                        </div>
+                        <div class="li_one" id="nav7">
+                            <div class="li_one_one">&nbsp;<span id='font7'>入库管理</span></div>
+                            <div class="li_one_two" id="fangxiang7" style="display: none"><img src="__PUBLIC__/system/zhixiang.png" width="10" height="10"></div>
+                        </div>
+                        <div class="li_one" id="nav8">
+                            <div class="li_one_one">&nbsp;<span id='font8'>库存盘点</span></div>
+                            <div class="li_one_two" id="fangxiang8" style="display: none"><img src="__PUBLIC__/system/zhixiang.png" width="10" height="10"></div>
+                        </div>
+                        <div class="li_one" id="nav9">
+                            <div class="li_one_one">&nbsp;<span id='font9'>操作日志</span></div>
+                            <div class="li_one_two" id="fangxiang9" style="display: none"><img src="__PUBLIC__/system/zhixiang.png" width="10" height="10"></div>
+                        </div>
+                    </div>
+                    <div class="nav_fen">
+                        <div class="ul_one">
+                            <div class="ul_one_left">
+                                <div class="one_top"></div>
+                                <div class="one_mid"></div>
+                                <div class="one_bot"></div>
+                            </div>
+                            <div class="ul_one_right">
+                                <b class="xinxi">人员信息</b>
+                            </div>
+                        </div>
+                        <div class="li_one" id="nav10">
+                            <div class="li_one_one">&nbsp;<span id='font10'>权限管理</span></div>
+                            <div class="li_one_two" id="fangxiang10" style="display: none"><img src="__PUBLIC__/system/zhixiang.png" width="10" height="10"></div>
+                        </div>
+                        <div class="li_one" id="nav11">
+                            <div class="li_one_one">&nbsp;<span id='font11'>人员列表</span></div>
+                            <div class="li_one_two" id="fangxiang11" style="display: none"><img src="__PUBLIC__/system/zhixiang.png" width="10" height="10"></div>
+                        </div>
+                        <div class="li_one" id="nav12">
+                            <div class="li_one_one">&nbsp;<span id='font12'>资金管理</span></div>
+                            <div class="li_one_two" id="fangxiang12" style="display: none"><img src="__PUBLIC__/system/zhixiang.png" width="10" height="10"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ng" id="ng1">
+                    <div class="ng_top">
+                        <div class='ng_top_left'>
+                            <img src='__PUBLIC__/system/biao1.png'>
+                            <span class='title'>商品上架</span>
+                        </div>
+                        <div class='ng_top_mid'></div>
+                        <div class='ng_top_right'>
+                            <br>
+                            <a style="text-decoration: none;font-size:22px;cursor: pointer" id="tjtj">统计</a><br>
+                            <a style="text-decoration: none;font-size:22px;cursor: pointer" id="xiaoxi">发布消息</a>
+                        </div>
+                    </div>
+                    <div class="ng_bot">
+                        <div class="ng1_bot_left">
+                            <div class="ng1_bot_left_top"></div>
+                            <div class="ng1_bot_left_bot">
+                                <br><br><br>
+<!--                                &nbsp;&nbsp;&nbsp;&nbsp;<span class='ng1_font'>商品名称:</span>&nbsp;<input type="text" placeholder="请输入商品信息" name="ng1_text" id="ng1_text"><br><br>-->
+&nbsp;&nbsp;&nbsp;&nbsp;<span class='ng1_font'>商品类别:</span>&nbsp;<input type="text" disabled="disabled" id="ng1_one" placeholder="请选择类别" name='ng1_one' value=""><input type='button' id='ng1_lei' value="选择类别"><br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class='ng1_font'>产品选择:</span>&nbsp;<input type="text" disabled="disabled" id="ng1_two" placeholder="请选择产品" name='ng1_two' value=""><input type='button' id='ng1_chan' value="选择产品"><br><br>
+                            <input type="hidden" name="ng1_jia" id="ng1_jia"><input type="hidden" name="ng1_shu" id="ng1_shu">
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class='ng1_font'>商品摘要:</span>&nbsp;<textarea name='ng1_zhai' id='ng1_zhai'></textarea><br><br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class='ng1_font'>上传图片:</span>&nbsp;<label class="uploadImg"><input type="file" id="ng1_file" name="ng1_file"><span>上传图片</span></label>
+                                <span class='ng1_font'>图片2:</span>&nbsp;<label class="uploadImg"><input type="file" id="ng1_file" name="ng1_file2"><span>上传图片</span></label>
+                                <span class='ng1_font'>图片3:</span>&nbsp;<label class="uploadImg"><input type="file" id="ng1_file" name="ng1_file3"><span>上传图片</span></label><br><br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='ng1_font'>图片4:</span>&nbsp;<label class="uploadImg"><input type="file" id="ng1_file" name="ng1_file4"><span>上传图片</span></label>
+                                <span class='ng1_font'>图片5:</span>&nbsp;<label class="uploadImg"><input type="file" id="ng1_file" name="ng1_file5"><span>上传图片</span></label>
+                                <span class='ng1_font'>图片6:</span>&nbsp;<label class="uploadImg"><input type="file" id="ng1_file" name="ng1_file6"><span>上传图片</span></label><br><br>
+                                <input name="ng1_chanpinsl" type="hidden" id="ng1_chanpinsl">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" name='ng1_sub' id='ng1_sub' value='提交' onclick="ruku()">
+                            </div>
+                            
+                        </div>
+                        <div class="ng1_leidiv" id="ng1_leidiv">      
+                            <div class="ng1_leidiv_top">
+                                <input type="button" value="关闭" id="ng1_leiguan">
+                            </div>
+                            <div class="ng1_leidiv_bot">
+                                <center>
+                                    <br><br><br>
+                            <table border="1" cellspacing="0"  class="table_leibie">
+                                <tr>
+                                    <th>商品类别</th>
+                                    <th>操作</th>
+                                </tr>
+                                <volist name="leibie" id="value">
+                                    <tr>
+                                        <td>{$value.leibie}</td>
+                                        <td><input type='button' value='选择' onclick='cun("{$value.leibie}")' class="ng1_leibut"></td>
+                                    </tr>
+                                </volist>
+                            </table>
+                                </center>
+                            </div>
+                        </div>
+                        <div class="ng1_chandiv" id="ng1_chandiv">
+                            <div class="ng1_leidiv_top">
+                                <input type="button" value="关闭" id="ng1_changuan">
+                            </div>
+                            <div class="ng1_leidiv_bot">
+                                <center>
+                                    <br><br><br>
+                                <table border="1" cellspacing="0"  class="table_leibie">
+                                <tr>
+                                    <th>商品名称</th>
+                                    <th>操作</th>
+                                </tr>
+                                <volist name="xuanze" id="value">
+                                    <tr>
+                                        <td>{$value.chanpin}</td>
+                                        <td><input type='button' value='选择' onclick='bun("{$value.chanpin}","{$value.jiage}","{$value.shuliang}")' class="ng1_chanbut"></td>
+                                    </tr>
+                                </volist>
+                            </table>
+                                </center>
+                            </div>
+                        </div>
+                        <script>
+                            var ng1_lei = document.getElementById("ng1_lei"); 
+                            var ng1_chan = document.getElementById("ng1_chan"); 
+                            var ng1_leidiv = document.getElementById("ng1_leidiv"); 
+                            var ng1_leiguan = document.getElementById("ng1_leiguan"); 
+                            var ng1_changuan = document.getElementById("ng1_changuan"); 
+                            var dang = document.getElementById("dang"); 
+                            ng1_lei.onclick=function(){
+                                ng1_leidiv.style.display='block';
+                                dang.style.display='block';
+                            }
+                            ng1_chan.onclick=function(){
+                                ng1_chandiv.style.display='block';
+                                dang.style.display='block';
+                            }
+                            ng1_leiguan.onclick=function(){
+                                ng1_leidiv.style.display='none';
+                                dang.style.display='none';
+                            }
+                            ng1_changuan.onclick=function(){
+                                ng1_chandiv.style.display='none';
+                                dang.style.display='none';
+                            }
+                            function cun(leibie){
+                                ng1_leidiv.style.display='none';
+                                dang.style.display='none';
+                                document.getElementById('ng1_one').value=leibie;
+                            }
+                            function bun(chanpin,jiage,shuliang){
+                                ng1_chandiv.style.display='none';
+                                dang.style.display='none';
+                                document.getElementById('ng1_two').value=chanpin;
+                                document.getElementById('ng1_jia').value=jiage;
+                                document.getElementById('ng1_chanpinsl').value=shuliang;
+                                
+                            }
+                            function ruku(){
+                                document.getElementById('ng1_two').disabled="";
+                                document.getElementById('ng1_one').disabled="";
+                                var frm = document.getElementById('form');
+                                frm.action="system";
+                                frm.submit();
+                            }
+                        </script>
+                        <div class="ng1_bot_right">
+                            <center>
+                                <br><br><br><input type="text" name="ng1_sel" id="ng1_sel" placeholder="请输入查询信息"><input type="submit" name="ng1_selsub" id="ng1_selsub" value="查询"><br><br>
+<!--                                        <a href='javascript:all1()'>全选</a>
+                                        <a href="javascript:fall1()">反选</a>
+                                        <a href="javascript:nall1()">全不选</a>
+                                        <input type="button" value="修改" id="ng1_plxiu" onclick="ng1plxiu()">
+                                        <input type="button" value="删除" id="ng1_plshan">-->            
+                            <table cellspacing="0"  id="table" class="table">
+                                <tr>
+                                    <!--<th onclick="this.style.backgroundColor='#66ffcc'" onmouseout="this.style.backgroundColor='rgb(27,169,123)'">选择</th>-->
+                                    <th onclick="this.style.backgroundColor='#66ffcc'" onmouseout="this.style.backgroundColor='rgb(27,169,123)'">商品名称</th>
+                                    <th onclick="this.style.backgroundColor='#66ffcc'" onmouseout="this.style.backgroundColor='rgb(27,169,123)'">商品类别</th>
+                                    <th onclick="this.style.backgroundColor='#66ffcc'" onmouseout="this.style.backgroundColor='rgb(27,169,123)'">商品价格</th>
+                                    <th onclick="this.style.backgroundColor='#66ffcc'" onmouseout="this.style.backgroundColor='rgb(27,169,123)'">商品数量</th>
+                                    <th onclick="this.style.backgroundColor='#66ffcc'" onmouseout="this.style.backgroundColor='rgb(27,169,123)'">上架日期</th>
+                                    <th colspan="2" onclick="this.style.backgroundColor='#66ffcc'" onmouseout="this.style.backgroundColor='rgb(27,169,123)'">商品操作</th>
+                                </tr>
+                                <volist name="chanpin" id="val">
+                                    <tr>
+                                        <!--<td><input type="checkbox" name="kc[]" value="{$val.mingcheng},{$val.leibie}"></td>-->
+                                    <input type="hidden" value="{$val.xiaoliang}" name="zxl[]">
+                                    <input type="hidden" value="{$val.shuliang}" name="zsl[]">
+                                    <input type="hidden" value="{$val.pinglun}" name="zpl[]">
+                                    <input type="hidden" value="{$val.jiage}" name="zjg[]">
+                                        <td>{$val.mingcheng}</td>
+                                        <td>{$val.leibie}</td>
+                                        <td>{$val.jiage}</td>
+                                        <td>{$val.shuliang}</td>
+                                        <td>{$val.riqi}</td>
+                                        <td><input type="button" value="修改" class="ng1_chanbut" onclick='upt("{$val.mingcheng}","{$val.leibie}","{$val.jiage}","{$val.shuliang}","{$val.id}")'></a></td>
+                                                                            </tr>
+                                </volist>
+                                </table>
+                                {$show}
+                                <div class="ng1_table" id="ng1_table">
+                                    <div class="ng1_table_top">
+                                        <input type="button" value="关闭" onclick="cl()" class="ng1_uptguan">
+                                    </div>
+                                    <div class="ng1_table_bot">
+                                        <h2>修改信息</h2><br><br><br><br>
+                                        商品名称:<input type='text' id='ng1_mc' name='ng1_mc' disabled="disabled"><br><br>
+                                        商品类别:<input type='text' id='ng1_lb' name='ng1_lb' disabled="disabled"><br><br>
+                                        商品价格:<input type='text' id='ng1_jg' name='ng1_jg'><br><br>
+                                        商品数量:<input type='text' id='ng1_sl' name='ng1_sl'><br><br>
+                                        <input type='submit' value="修改" name='ng1_uptsub' id='ng1_uptsub' class="ng1_chanbut" onclick="aj()">
+<!--                                        <img src='__URL__/code'>-->
+                                    </div>
+                                </div> 
+                                <script>
+//                                    var kcbox = document.getElementsByName("kc[]");
+                                    var ng1_table = document.getElementById('ng1_table');
+                                    function upt(mc,lb,jg,sl,id){
+                                       ng1_table.style.display='block';
+                                       document.getElementById('ng1_mc').value=mc;
+                                       document.getElementById('ng1_lb').value=lb;
+                                       document.getElementById('ng1_jg').value=jg;
+                                       document.getElementById('ng1_sl').value=sl;
+                                       ng1_table.idval = id;
+                                       dang.style.display='block';
+                                    }
+                                    function aj(){
+                                        var frm = document.getElementById('form');
+                                        frm.action='update/id/'+ng1_table.idval;
+                                        frm.submit();
+                                        dang.style.display='none';
+                                    }
+                                    function cl(){
+                                        ng1_table.style.display='none';
+                                        dang.style.display='none';
+                                    }
+                                </script>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                <div class="tongji">
+                    <div class="tongji_top">
+                        <a id="tongji_guan" style="font-size: 22px; float:right;cursor: pointer">×</a>
+                    </div>
+                    <div class="tongji_bot">
+                        <span>网站注册人数:<span id="zrs"></span></span><br>
+                        <span>商品总销量:<span id="zxl"></span></span><br>
+                        <span>商品总销价:<span id="zxj"></span></span><br>
+                        <span>商品总评价数:<span id="zpj"></span></span><br>
+                        <span>商品总数:<span id="zsl"></span></span><br>
+                        <span>商品种类:<span id="zl"></span></span><br>
+                        <span>商品总价值:<span id="zjg"></span></span><br>
+                    </div>
+                </div>
+                <div class="xiaoxi">
+                    <div class="xiaoxi_top">
+                        <a class="xiaoxi_guan">×</a>
+                    </div>
+                    <div class="xiaoxi_bot">
+                        请选择收信人:<select name="xiaoxi_user">
+                            <volist name="renyuan" id="val">
+                            <option value="{$val.username}">{$val.username}</option>
+                            </volist>
+                        </select><br><br>
+                        标题:<select name="xiaoxi_biaoti" style="width: 160px">
+                            <option value="优惠促销">优惠促销</option>
+                            <option value="订单提醒">订单提醒</option>
+                            <option value="社区消息">社区消息</option>
+                            <option value="会员联盟">会员联盟</option>
+                            <option value="其他消息">其他消息</option>
+                        </select><br><br>
+                        内容:<textarea name="xiaoxi_neirong" style="width: 150px;height:60px;"></textarea><br><br>
+                        图片:<input type="file" name="xiaoxi_file"  style="width: 150px;"><br><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="xiaoxi_sub" value="发布" style="width: 150px;">
+                    </div>
+                </div>
+                <div class="ng" id="ng2" style="display:none">
+                    <div class="ng_top">
+                        <div class='ng_top_left'>
+                            <img src='__PUBLIC__/system/biao2.png'>
+                            <span class='title'>商品分类</span>
+                        </div>
+                        <div class='ng_top_mid'></div>
+                        <div class='ng_top_right'></div>
+                    </div>
+                    <script>
+                        $(document).ready(function(e){
+                            var zxl = $("input[name='zxl[]']");
+                            var zsl = $("input[name='zsl[]']");
+                            var zjg = $("input[name='zjg[]']");
+                            var zpl = $("input[name='zpl[]']");
+                            var renshu = $("input[name='renshu[]']");
+                            var zxlnum = 0;
+                            var zslnum = 0;
+                            var zjgnum = 0;
+                            var zxjnum = 0;
+                            var zplnum = 0;
+                            for(var i =0;i<zxl.length;i++){
+                                zxlnum += zxl.eq(i).val()*1;
+                                zslnum += zsl.eq(i).val()*1;
+                                zjgnum += zsl.eq(i).val()*zjg.eq(i).val();
+                                zxjnum += zxl.eq(i).val()*zjg.eq(i).val();
+                                zplnum += zpl.eq(i).val()*1;
+                            }
+                            $("#zxl").text(zxlnum);
+                            $("#zsl").text(zslnum);
+                            $("#zl").text(zsl.length);
+                            $("#zjg").text(zjgnum);
+                            $("#zxj").text(zxjnum);
+                            $("#zpj").text(zplnum);
+                            $("#zrs").text(renshu.length);
+                           
+                        })
+                        $(function(){
+                            $("#xiaoxi_sub").click(function(){
+                                if($("input[name='xiaoxi_biaoti']").val()!=""){
+                                    var frm = document.getElementById('form');
+                                        frm.action='__URL__/xiaoxi_sub';
+                                        frm.submit();
+                                }
+                            })
+                            $("#xiaoxi").click(function(){
+                                $(".xiaoxi").show();
+                                $("#dang").show();
+                            })
+                            $(".xiaoxi_guan").click(function(){
+                                $(".xiaoxi").hide();
+                                $("#dang").hide();
+                            })
+                            $("#tjtj").click(function(){
+                                $("#dang").show();
+                                $(".tongji").show();
+                            })
+                            $("#tongji_guan").click(function(){
+                                $("#dang").hide();
+                                $(".tongji").hide();
+                            })
+                        })
+                    </script>
+                    <div class="ng_bot">
+                        <div class="ng2_top"></div>
+                        <div class="ng2_bot">
+                            <center>
+                                <input type="text" name="ng2_sel" id="ng2_sel" placeholder="请输入查询信息"><input type="button" name="ng2_selsub" id="ng1_selsub" value="查询" onclick="ng2_chaxun()"><br><br>
+                                请输入新增的数量:<input type="number" id="ng2_num">&nbsp;<input type='button' value='新增类别' onclick="ng2_add()" class='ng2_addbut'><br><br>
+                            <table class="table2" cellspacing="0" id="table2">
+                                <tr>
+                                    <th class="xuan">选择</th>
+                                    <th>类别名称</th>
+                                </tr>
+                            <volist name="leibie" id="val">
+                                <tr>
+                                    <td class="td_ng2"><input type="checkbox" name="ck[]" value='{$val.leibie}'></td>
+                                    <td class="td_ng2"><span name="shuchu[]">{$val.leibie}</span></td>
+                                </tr>
+                                <tr>
+                            </volist>
+                                    <td colspan="2" class="td_ng2">
+                                        <a href='javascript:all()'>全选</a>
+                                        <a href="javascript:fall()">反选</a>
+                                        <a href="javascript:nall()">全不选</a>
+                                    </td>
+                            </table>
+                            <table cellspacing="0" id="table2_shu" class="table2_shu" width="1400" style="display: none"> 
+                                <tr>
+                                    <th>类别名称</th>
+                                </tr>
+                                <tr>
+                                    <td><span id="ng2_shu"></span></td>
+                                </tr>
+                            </table>
+                                <br>
+                                <input type="button" value="修改" class='ng1_chanbut' onclick='plupt()' id="ng1_chanbut"></a>
+                                <input type="button" value="删除" onclick="pldel()" class='ng1_chanbut'>
+                                <div id='ng2_adddiv'>
+                                    <div class='ng2_add_top'>
+                                        <input type='button' value='关闭' onclick="ng2_guan()" id='ng2guan'>
+                                    </div>
+                                    <div class='ng2_add_bot'>
+                                        <br><br>
+                                        <span id="addshu"></span>
+                                        <input type='button' name='ng2_sub' class='ng1_chanbut' onclick="ng2_Add()" value='新增'>
+                                    </div>
+                                </div>
+                            </center>
+                        <script>
+                        var ckbox = document.getElementsByName("ck[]");
+                        var shuchu = document.getElementsByName("shuchu[]");
+                        var ng2add = document.getElementById("ng2_adddiv");
+//                        var ng2_upt = document.getElementById("ng2_upt");
+                        var ng2_num = document.getElementById("ng2_num");
+                        var ng2_uptt = document.getElementsByName("ng2_uptt[]");
+                        var Number = 0;
+                        var SPLB = "";
+                        function req(){
+                            if(window.XMLHttpRequest){
+                                var request = new XMLHttpRequest();
+                            } else {
+                                var request = new ActiveXObject('Microsoft.XMLHTTP');
+                            }
+                            return request;
+                        }
+                        function ng2_chaxun(){
+                            ng2_sel = document.getElementById("ng2_sel").value;
+                            if(ng2_sel ==""){
+                            }else{ 
+                                var ajax = req();
+                                ajax.open("post","ajax",true);
+                                ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                                ajax.send("value=" + ng2_sel);
+                                ajax.onreadystatechange=function(){
+                                    if(ajax.readyState==4 && ajax.status == 200){
+                                        var data = ajax.responseText;
+                                        eval("var obj="+data);
+                                        if(ng2_sel == obj.leibie){
+                                        document.getElementById("table2").style.display='none';
+                                        document.getElementById("table2_shu").style.display=''; 
+                                        document.getElementById("ng2_shu").innerHTML=obj.leibie;
+//                                        alert(obj.leibie);
+                                        }
+                                    } 
+                                }
+
+                            }
+                        }
+                         function plupt(){
+                             var a=0;
+                             for(var i=0; i<ckbox.length; i++){
+                                if(ckbox[i].checked){
+                                    a+=1;
+                                }
+                            }
+                            if(a){
+                                    if(Number %2==0){
+                                        document.getElementById("ng1_chanbut").value='提交';
+                                    }else{
+                                        var frm = document.getElementById('form');
+                                        frm.action='plupdate/leibie/' + SPLB;
+                                        frm.submit();
+                                    }
+                                    Number ++;
+                            }
+                            for(var i=0; i<ckbox.length; i++){
+                                if(ckbox[i].checked){
+                                    var input = document.createElement("input");
+                                    input.setAttribute("value", ckbox[i].value); 
+                                    input.setAttribute("name","ng2_uptt[]"); 
+                                    input.setAttribute("type","text");
+                                    input.setAttribute("class","ng2_upttt");
+                                    shuchu[i].innerHTML="";
+                                    shuchu[i].appendChild(input);
+                                    SPLB += ckbox[i].value + ",";
+                                }
+                            }
+                        }
+                        function all(){
+                            for(var a=0; a<ckbox.length; a++){
+                                ckbox[a].checked="true";
+                            }
+                        }
+                        function ng2_add(){
+                          ng2add.style.display='block';
+                          document.getElementById("dang").style.display='block';
+                          var Num = ng2_num.value;
+                          for(var v=0; v<Num; v++){
+                                    var input = document.createElement("input");
+                                    input.setAttribute("placeholder","请输入商品类别"); 
+                                    input.setAttribute("name","ng2_text[]"); 
+                                    input.setAttribute("type","text");
+                                    input.setAttribute("class","ng2_uptt");
+                                    var inputdiv = document.getElementById("addshu");
+                                    inputdiv.appendChild(input);
+                                    inputdiv.appendChild(document.createElement("br"));
+                                    inputdiv.appendChild(document.createElement("br"));      
+                          }
+ //                          alert(Num);
+                        }
+                        function fall(){
+                            for(var a=0; a<ckbox.length; a++){
+                                if(ckbox[a].checked){
+                                    ckbox[a].checked="";
+                                } else{
+                                    ckbox[a].checked="true";
+                                }
+                            }
+                        }
+                        function ng2_guan(){
+                            ng2add.style.display='none';
+                            document.getElementById("dang").style.display='none'
+//                            ng2_upt.style.display='none'
+//                            var v = 0;
+//                            return v;
+                        }
+
+                        function nall(){
+                            for(var a=0; a<ckbox.length; a++){
+                                ckbox[a].checked="";
+                            }
+                        }
+                        function pldel(){
+                            var frm = document.getElementById('form');
+                            frm.action='pldelete';
+                            frm.submit();
+                        }
+                        function ng2_Add(){
+                            var frm = document.getElementById('form');
+                            frm.action='leibie_add';
+                            frm.submit();
+                            document.getElementById("dang").style.display='none';
+                        }
+        </script>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="ng" id="ng3" style="display:none">
+                    <div class="ng_top">
+                        <div class='ng_top_left'>
+                            <img src='__PUBLIC__/system/biao3.png'>
+                            <span class='title'>商品属性</span>
+                        </div>
+                        <div class='ng_top_mid'></div>
+                        <div class='ng_top_right'></div>
+                    </div>
+                    <div class="ng_bot">
+                        <div class="ng3_top"></div>
+                        <div class="ng3_bot">
+                            <input type="text" name="ng2_sel" id="ng3_sel" class="ng2_sel" placeholder="请输入查询信息"><input type="button" class="ng3_selsub" id="ng3_selsub" value="查询" onclick="ng3_chaxun()"><br><br>
+                            请输入新增的数量:<input type="number" name="ng3_num" id="ng3_num">
+                            <input type="button" value="新增商品" class="ng2_addbut" onclick="ng3_adds()"><br><br>
+                            <center>
+                            <table cellspacing="0" class="table3" id="table3">
+                                <tr>
+                                    <th>商品名称</th>
+                                    <th>商品价格</th>
+                                    <th colspan="2">操作</th>
+                                </tr>
+                                <volist name="xuanze" id="val">
+                                <tr>
+                                    <td>{$val.chanpin}</td>
+                                    <td>{$val.jiage}</td>
+                                    <td class="td_ng3"><input type="button" value="修改" onclick="ng3_show('{$val.chanpin}','{$val.jiage}','{$val.id}')" class="ng1_chanbut"></td>
+                                    <td class="td_ng3"><a href="chan_del/id/{$val.id}"><input type="button" value="删除" class="ng1_chanbut"></a></td>
+                                </tr>
+                                </volist>
+                            </table>
+                            <table cellspacing="0" id="table3_shu" class="table2_shu" width="1400" style="display: none"> 
+                                <tr>
+                                    <th>商品名称</th>
+                                    <th>商品价格</th>
+                                </tr>
+                                <tr>
+                                    <td><span id="ng3_shu"></span></td>
+                                    <td><span id="ng3_shu2"></span></td>
+                                </tr>
+                            </table>
+                            </center>
+                        </div>
+                    </div>
+                    <center>
+                    <div class="ng3_table" id="ng3_table">
+                        <div class="ng1_table_top">
+                            <input type="button" value="关闭" onclick="ng3_cl()" class="ng1_uptguan">
+                        </div>
+                        <div class="ng1_table_bot">
+                            <h2>修改商品</h2>
+                            商品名称:<input type="text" name="ng3_chan" id="ng3_chan"><br><br>
+                            商品价格:<input type="text" name="ng3_jia" id="ng3_jia"><br><br>
+                            <input type="button" value="修改" class="ng1_chanbut" onclick="ng3_upt()">
+                        </div>
+                    </div>
+                        <div id="ng3_adddiv">
+                            <div class="ng2_add_top">
+                                <input type="button" value="关闭" onclick="ng3_guan()" id="ng3guan">
+                            </div>
+                            <div class="ng2_add_bot">
+                                <span id="addshu2"></span><br><br>
+                                <input type="button" value="新增" class="ng1_chanbut" onclick="ng3_Add()">
+                            </div>
+                        </div>
+                    </center>
+                </div>
+                <script>
+                    var ng3_table = document.getElementById("ng3_table");
+                    var ng3add = document.getElementById("ng3_adddiv");
+                    function ng3_chaxun(){
+                            ng3_sel = document.getElementById("ng3_sel").value;
+                            if(ng3_sel ==""){
+                            }else{ 
+                                var ajax = req();
+                                ajax.open("post","ng3_cha",true);
+                                ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                                ajax.send("value=" + ng3_sel);
+                                ajax.onreadystatechange=function(){
+                                    if(ajax.readyState==4 && ajax.status == 200){
+                                        var data = ajax.responseText;
+                                        eval("var obj="+data);
+//                                        if(ng3_sel == obj.chanpin){
+                                        document.getElementById("table3").style.display='none';
+                                        document.getElementById("table3_shu").style.display=''; 
+                                        document.getElementById("ng3_shu").innerHTML=obj.chanpin;
+                                        document.getElementById("ng3_shu2").innerHTML=obj.jiage;
+//                                        alert(obj.chanpin);
+//                                        }
+                                    } 
+                                }
+
+                            }
+                    }
+                    function ng3_guan(){
+                        document.getElementById("ng3_adddiv").style.display='none';
+                        dang.style.display='none';
+                    }
+                    function ng3_cl(){
+                        ng3_table.style.display='none';
+                        dang.style.display='none';
+                    }
+                    function ng3_show(chanpin,jiage,id){
+                        ng3_table.style.display='block';
+                        dang.style.display='block';
+                        document.getElementById("ng3_chan").value=chanpin;
+                        document.getElementById("ng3_jia").value=jiage; 
+                        ng3_table.idval = id;
+//                        alert(ng3_table.idval);
+                    }
+                    function ng3_upt(){
+                        var frm = document.getElementById('form');
+                            frm.action='update_chan/id/'+ ng3_table.idval;
+                            frm.submit();
+                            document.getElementById("dang").style.display='none';
+                    }
+                    function ng3_adds(){
+                          ng3add.style.display='block';
+                          document.getElementById("dang").style.display='block';
+                          var Num2 = ng3_num.value;
+                          for(var k=0; k<Num2; k++){
+                                    var input = document.createElement("input");
+                                    input.setAttribute("placeholder","请输入商品名称"); 
+                                    input.setAttribute("name","ng3_text[]"); 
+                                    input.setAttribute("type","text");
+                                    input.setAttribute("class","ng2_uptt");
+                                    var inputdiv = document.getElementById("addshu2");
+                                    inputdiv.appendChild(input); 
+                                    var input = document.createElement("input");
+                                    input.setAttribute("placeholder","请输入商品价格"); 
+                                    input.setAttribute("name","ng3_jia[]"); 
+                                    input.setAttribute("type","number");
+                                    input.setAttribute("class","ng2_uptt");
+                                    var inputdiv = document.getElementById("addshu2");
+                                    inputdiv.appendChild(input); 
+                          }
+                    }
+                    function ng3_Add(){
+                            var frm = document.getElementById('form');
+                            frm.action='chanpin_add';
+                            frm.submit();
+                            document.getElementById("dang").style.display='none';
+                    }
+                </script>
+                <div class="ng" id="ng4" style="display:none">
+                    <div class="ng_top">
+                        <div class='ng_top_left'>
+                            <img src='__PUBLIC__/system/biao4.png'>
+                            <span class='title'>订单列表</span>
+                        </div>
+                        <div class='ng_top_mid'></div>
+                        <div class='ng_top_right'></div>
+                    </div>
+                    <div class="ng_bot">
+                        <div class="ng3_top"></div>
+                        <div class="ng3_bot">
+                            <center>
+                                <input type="text" name="ng4_sel" id="ng4_sel" class="ng2_sel" placeholder="请输入查询信息"><input type="button" name="ng4_bnt" value="查询" class="ng3_selsub" onclick="ng4_chaxun()" id="ng4_selsub"><br><br>
+                            <table cellspacing="0" class="table3" id="table4">
+                                <tr>
+                                    <th>订单编号</th>
+                                    <th>商品名称</th>
+                                    <th>商品数量</th>
+                                    <th>商品价格</th>
+                                    <th>购买用户</th>
+                                    <th>订单时间</th>
+                                    <th>订单状态</th>
+                                    <th colspan="2">操作</th>
+                                </tr>
+                            <volist name="dingdan" id="val">
+                                <tr>
+                                    <td>{$val.bianhao}</td>
+                                    <td>{$val.mingcheng}</td>
+                                    <td>{$val.shuliang}</td>
+                                    <td>{$val.jiage}</td>
+                                    <td>{$val.name}</td>
+                                    <td>{$val.time}</td>
+                                    <td>{$val.zhuangtai}</td>
+                                    <td class="td_ng3"><input type="button" value="修改" class="ng1_chanbut" onclick="ng4_upt('{$val.bianhao}','{$val.mingcheng}','{$val.shuliang}','{$val.jiage}','{$val.name}','{$val.time}','{$val.zhuangtai}','{$val.id}')"></td>
+                                    <td class="td_ng3"><a href="dingdandel/id/{$val.id}"><input type="button" value="删除" class="ng1_chanbut"></a></td>
+                                </tr>
+                            </volist>
+                            </table>
+                            <table cellspacing="0" id="table4_shu" class="table2_shu" width="1400" style="display: none"> 
+                                <tr>
+                                    <th>订单编号</th>
+                                    <th>商品名称</th>
+                                    <th>商品数量</th>
+                                    <th>商品价格</th>
+                                    <th>购买用户</th>
+                                    <th>订单时间</th>
+                                    <th>订单状态</th>
+                                </tr>
+                                <tr>
+                                    <td><span id="ng4_shu"></span></td>
+                                    <td><span id="ng4_shu2"></span></td>
+                                    <td><span id="ng4_shu3"></span></td>
+                                    <td><span id="ng4_shu4"></span></td>
+                                    <td><span id="ng4_shu5"></span></td>
+                                    <td><span id="ng4_shu6"></span></td>
+                                    <td><span id="ng4_shu7"></span></td>
+                                </tr>
+                            </table>
+                            </center>
+                        </div>
+                    </div>
+                    <div id="ng4_table">
+                            <div class="ng4_add_top">
+                                <input type="button" value="关闭" onclick="ng4_guan()" id="ng4guan">
+                            </div>
+                            <div class="ng4_add_bot">
+                                <center>
+                                    <h2>订单修改</h2>
+                                订单编号:<input type="text" name="ng4_bianhao" id="ng4_bianhao" disabled="disabled"><br><br>
+                                商品名称:<input type="text" name="ng4_mingcheng" id="ng4_mingcheng" disabled="disabled"><br><br>
+                                商品数量:<input type="text" name="ng4_shuliang" id="ng4_shuliang"><br><br>
+                                商品价格:<input type="text" name="ng4_jiage" id="ng4_jiage"><br><br>
+                                购买用户:<input type="text" name="ng4_name" id="ng4_name"  disabled="disabled"><br><br>
+                                订单日期:<input type="text" name="ng4_time" id="ng4_time"  disabled="disabled"><br><br>
+                                订单状态:<input type="text" name="ng4_zhuangtai" id="ng4_zhuangtai"  disabled="disabled"><br><br>
+                                <input type="button" value="修改"  onclick="ng4_sub()" class="ng1_chanbut">
+                                </center>
+                            </div>
+                    </div>
+                </div>
+                <script>
+                    var ng4_table = document.getElementById("ng4_table");
+                    function ng4_chaxun(){
+                            ng4_sel = document.getElementById("ng4_sel").value;
+//                            alert(ng4_sel);
+                            if(ng4_sel ==""){
+                            }else{ 
+                                var ajax = req();
+                                ajax.open("post","ng4_cha",true);
+                                ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                                ajax.send("value=" + ng4_sel);
+                                ajax.onreadystatechange=function(){
+                                    if(ajax.readyState==4 && ajax.status == 200){
+                                        var data = ajax.responseText;
+                                        eval("var obj="+data);
+//                                        if(ng3_sel == obj.chanpin){
+                                        document.getElementById("table4").style.display='none';
+                                        document.getElementById("table4_shu").style.display=''; 
+                                        document.getElementById("ng4_shu").innerHTML=obj.bianhao;
+                                        document.getElementById("ng4_shu2").innerHTML=obj.mingcheng;
+                                        document.getElementById("ng4_shu3").innerHTML=obj.shuliang;
+                                        document.getElementById("ng4_shu4").innerHTML=obj.jiage;
+                                        document.getElementById("ng4_shu5").innerHTML=obj.name;
+                                        document.getElementById("ng4_shu6").innerHTML=obj.time;
+                                        document.getElementById("ng4_shu7").innerHTML=obj.zhuangtai;
+//                                        alert(obj.bianhao);
+//                                        }
+                                    } 
+                                }
+
+                            }
+                        }
+                    function ng4_upt(bianhao,mingcheng,shuliang,jiage,name,time,zhuangtai,id){
+                        document.getElementById("dang").style.display='block';
+                        document.getElementById("ng4_table").style.display='block';
+                        document.getElementById("ng4_bianhao").value=bianhao;
+                        document.getElementById("ng4_mingcheng").value=mingcheng;
+                        document.getElementById("ng4_shuliang").value=shuliang;
+                        document.getElementById("ng4_jiage").value=jiage;
+                        document.getElementById("ng4_name").value=name;
+                        document.getElementById("ng4_time").value=time;
+                        document.getElementById("ng4_zhuangtai").value=zhuangtai;
+                        ng4_table.idval = id;
+//                        alert(ng4_table.idval);
+                    }
+                    function ng4_guan(){
+                        document.getElementById("dang").style.display='none';
+                        document.getElementById("ng4_table").style.display='none';
+                    }
+                </script>
+                <div class="ng" id="ng5" style="display:none">
+                    <div class="ng_top">
+                        <div class='ng_top_left'>
+                            <img src='__PUBLIC__/system/biao5.png'>
+                            <span class='title'>配送发货</span>
+                        </div>
+                        <div class='ng_top_mid'></div>
+                        <div class='ng_top_right'></div>
+                    </div>
+                    <div class="ng_bot" id="ng4fahuo">
+                        <div class="ng3_top"></div>
+                        <div class="ng3_bot">
+                            <center>
+                                <!--<input type="text" name="ng4_sel2" placeholder="请输入查询信息">-->
+                                <!--<input type="button" name="ng4_bnt2" value="查询" class="ng1_chanbut"><br><br>-->
+                            <table cellspacing="0" class="table3">
+                                <tr>
+                                    <th>订单编号</th>
+                                    <th>订单状态</th>
+                                    <th>订单操作</th>
+                                </tr>
+                            <volist name="dingdan" id="val">
+                                <tr>
+                                    <td>{$val.bianhao}</td>
+                                    <td>{$val.zhuangtai}</td>
+                                    <td><input type="button" value="发货" onclick="ng4_huo('{$val.id}','{$val.zhuangtai}')" class="ng1_chanbut"></td>
+                                </tr>
+                            </volist>
+                            </table>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                <div class="ng4_tan" id="ng4_tan">
+                    <br><br>
+                    确认发货吗?<br><br>
+                    <input type="button" value="发货" class="ng1_chanbut" onclick="ng4_fa()">
+                    <input type="button" value="取消" onclick="ng4_bi()" class="ng1_chanbut">
+                </div>
+                <script>
+                    function ng4_huo(id,zhuangtai){
+                         document.getElementById("ng4_tan").style.display='block';
+                         document.getElementById("dang").style.display='block';
+                         ng4fahuo.idval = id;
+                         ng4fahuo.ztval = zhuangtai;
+                    }
+                    function ng4_bi(){
+                        document.getElementById("ng4_tan").style.display='none';
+                        document.getElementById("dang").style.display='none';
+                    }
+                    function ng4_fa(){
+                        if(ng4fahuo.ztval=="审核中"){
+                            alert("订单尚未过审!请过审后再操作!");
+                        } else{
+                        var frm = document.getElementById('form');
+                            frm.action='fahuo/id/' + ng4fahuo.idval;
+                            frm.submit();
+                            document.getElementById("dang").style.display='none';
+                        }
+                    }
+                </script>
+                <div class="ng" id="ng6" style="display:none">
+                    <div class="ng_top">
+                        <div class='ng_top_left'>
+                            <img src='__PUBLIC__/system/biao6.png'>
+                            <span class='title'>订单审核</span>
+                        </div>
+                        <div class='ng_top_mid'></div>
+                        <div class='ng_top_right'></div>
+                    </div>
+                    <div class="ng_bot" id="ng4shenhe">
+                        <div class="ng3_top"></div>
+                        <div class="ng3_bot">
+                            <center>
+                                <!--<input type="text" name="ng4_sel3" placeholder="请输入查询信息">-->
+                                <!--<input type="button" name="ng4_bnt3" value="查询" class="ng1_chanbut"><br><br>-->
+                            <table cellspacing="0" class="table3">
+                                <tr>
+                                    <th>订单编号</th>
+                                    <th>订单状态</th>
+                                    <th>订单审核</th>
+                                </tr>
+                            <volist name="dingdan" id="val">
+                                <tr>
+                                    <td>{$val.bianhao}</td>
+                                    <td>{$val.zhuangtai}</td>
+                                    <td><input type="button" value="审核" onclick="ng4_shenhe('{$val.id}','{$val.zhuangtai}')" class="ng1_chanbut"></td>
+                                </tr>
+                            </volist>
+                            </table>
+                            </center>
+                        </div>
+                    </div>
+                    <div class="ng4_tan" id="ng4_he">
+                    <br><br>
+                    确认过审吗?<br><br>
+                    <input type="button" value="确认" class="ng1_chanbut" onclick="ng4_shen()">
+                    <input type="button" value="取消" onclick="ng4_bibi()" class="ng1_chanbut">
+                </div>
+                    <script>
+                        function ng4_shenhe(id,zhuangtai){
+                         document.getElementById("ng4_he").style.display='block';
+                         document.getElementById("dang").style.display='block';
+                         ng4shenhe.idval = id;
+                         ng4shenhe.ztval = zhuangtai;
+                        }
+                        function ng4_bibi(){
+                            document.getElementById("ng4_he").style.display='none';
+                            document.getElementById("dang").style.display='none';
+                        }
+                        function ng4_shen(){
+                            if(ng4shenhe.ztval=="已发货"){
+                                alert("订单已审核,发货中！请重新操作！");
+                            } else{
+                            var frm = document.getElementById('form');
+                                frm.action='shenhe/id/' + ng4shenhe.idval;
+                                frm.submit();
+                                document.getElementById("dang").style.display='none';
+                            }
+                        }
+                    </script>
+                </div>
+                <div class="ng" id="ng7" style="display:none">
+                    <div class="ng_top">
+                        <div class='ng_top_left'>
+                            <img src='__PUBLIC__/system/biao7.png'>
+                            <span class='title'>入库管理</span>
+                        </div>
+                        <div class='ng_top_mid'></div>
+                        <div class='ng_top_right'></div>
+                    </div>
+                    <div class="ng_bot">
+                        <div class="ng3_top"></div>
+                        <div class="ng3_bot">
+                            <center>
+                                <input type="button" value="新增入库单" onclick="ruku_add()" class="ng1_chanbut"><br><br>
+                                <table cellspacing="0" class="table3">
+                                    <tr>
+                                        <th>入库单编号</th>
+                                        <th>状态</th>
+                                        <th>产品名称</th>
+                                        <th>入库时间</th>
+                                        <th>产品数量</th>
+                                        <th>产品单价</th>
+                                        <th>产品总价</th>
+                                        <th>负责人</th>
+                                        <th colspan="2">操作</th>
+                                    </tr>
+                                <volist name="ruku" id="val">
+                                    <tr>
+                                        <td>{$val.bianhao}</td>
+                                        <td>{$val.zhuangtai}</td>
+                                        <td>{$val.chanpin}</td>
+                                        <td>{$val.time}</td>
+                                        <td>{$val.shuliang}</td>
+                                        <td>{$val.jiage}</td>
+                                        <td>{$val.zongjia}</td>
+                                        <td>{$val.name}</td>
+                                        <td><input type="button" value="修改" onclick="ruku_upt('{$val.id}','{$val.chanpin}','{$val.shuliang}','{$val.jiage}')" class="ng1_chanbut"></td>
+                                        <td><input type="button" value="删除" class="ng1_chanbut" onclick="ruku_del('{$val.id}')"></td>
+                                    </tr>
+                                </volist>
+                                </table>
+                                <div class="rukuadd" id="rukuadd">
+                                    <div class="rukuadd_top">
+                                        <input type="button" value="关闭" onclick="ruku_abi()" class="ruku_bi">
+                                    </div>
+                                    <div class="rukuadd_bot">
+                                        <h2>产品入库</h2>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;产品名称:<input type="text" name="ruku_mc" id="ng6_mc" disabled="disabled"><input type="button" value="选择商品" onclick="ruku_chan()"><br><br>
+                                        产品数量:<input type="text" name="ruku_shuliang"><br><br>
+                                        产品价格:<input type="text" name="ruku_jiage" id="ng6_jiage"><br><br>
+                                        <input type="button" value="新增" id="add_ruku" class="ng1_chanbut" onclick="ng6_add()">
+                                    </div>
+                                </div>
+                                <div class="rukuupt" id="rukuupt">
+                                    <div class="rukuupt_top"><input type="button" value="关闭" onclick="ruku_bi()" class="ruku_bi">
+                                    </div>
+                                    <div class="rukuupt_bot">
+                                        <h2>修改页面</h2><br><br><br>
+                                        产品名称:<input type="text" name="ruku2_mc" id='ruku_mc'><br><br>
+                                        产品数量:<input type="text" name="ruku2_shuliang" id='ruku_shuliang'><br><br>
+                                        产品价格:<input type="text" name="ruku2_jiage" id='ruku_jiage'><br><br>
+                                        <input type="button" value="修改" id="ruku_sub" class='ng1_chanbut' onclick="ng6_upt()">
+                                    </div>
+                                </div>
+        <div class="rukuchan" id="rukuchan" style="display:none">
+            <div class="rukuchan_top">
+                <input type="button" value="关闭" onclick="ng6_guan()" class="ruku_bi">
+            </div>
+            <div class="rukuchan_bot">
+                <center>
+                    <h2>选择商品</h2><br>
+                <table cellspacing="0" class="table_chan" id="table5">
+                    <tr>
+                        <th>商品名称</th>
+                        <th>商品数量</th>
+                        <th>操作</th>
+                    </tr>
+                    <volist name="xuanzechan" id="val">
+                    <tr>
+                        <td>{$val.chanpin}</td>
+                        <td>{$val.shuliang}</td>
+                        <td><input type="button" value="选择" class="ng1_chanbut" onclick="ng6_xuanze('{$val.id}','{$val.chanpin}','{$val.jiage}')"></td>
+                    </tr>
+                    </volist>
+                </table>
+                </center>
+            </div>
+        </div>
+                            </center>
+                            <script>
+                                var table5 = document.getElementById("table5");
+                                
+                                function ng6_guan(){
+                                    document.getElementById("rukuchan").style.display='none';
+                                    document.getElementById("rukuadd").style.display='block';
+                                }
+                                function ruku_chan(){
+                                    document.getElementById("rukuchan").style.display='block';
+                                    document.getElementById("rukuadd").style.display='none';
+//                                    document.getElementById("dang").style.display='none';
+                                }
+                                function ng6_xuanze(id,chanpin,jiage){
+                                    document.getElementById("ng6_mc").value = chanpin;
+                                    document.getElementById("ng6_jiage").value = jiage;
+                                    document.getElementById("rukuchan").style.display='none';
+                                    document.getElementById("rukuadd").style.display='block';
+                                    table5.id = id;
+                                }
+                                function ruku_upt(id,chanpin,shuliang,jiage){
+                                    document.getElementById("dang").style.display='block';
+                                    document.getElementById("rukuupt").style.display='block';
+                                    document.getElementById("ruku_mc").value=chanpin;
+                                    document.getElementById("ruku_shuliang").value=shuliang;
+                                    document.getElementById("ruku_jiage").value=jiage;
+                                    table5.val = id;
+                                    
+                                }
+                                function ruku_bi(){
+                                    document.getElementById("dang").style.display='none';
+                                    document.getElementById("rukuupt").style.display='none';
+                                }
+                                function ruku_add(){
+                                    document.getElementById("dang").style.display='block';
+                                    document.getElementById("rukuadd").style.display='block';
+                                }
+                                function ruku_abi(){
+                                    document.getElementById("dang").style.display='none';
+                                    document.getElementById("rukuadd").style.display='none';
+                                }
+                                function ng6_add(){
+//                                    document.getElementById("ng6_jiage").disabled="";
+                                    document.getElementById("ng6_mc").disabled="";
+                                    var frm = document.getElementById('form');
+                                    frm.action='ng6_add/id/' + table5.id;
+                                    frm.submit();
+                                    document.getElementById("dang").style.display='none';
+                                }
+                                function ng6_upt(){
+                                    var frm = document.getElementById('form');
+                                    frm.action='ng6_upt/id/' + table5.val;
+                                    frm.submit();
+                                    document.getElementById("dang").style.display='none';
+                                }
+                                function ruku_del(id){
+                                    var frm = document.getElementById('form');
+                                    frm.action='ng6_del/id/' + id;
+                                    frm.submit();
+                                }
+                            </script>
+                        </div>
+                    </div>
+                </div>
+                <div class="ng" id="ng8" style="display:none">
+                    <div class="ng_top">
+                        <div class='ng_top_left'>
+                            <img src='__PUBLIC__/system/biao8.png'>
+                            <span class='title'>库存盘点</span>
+                        </div>
+                        <div class='ng_top_mid'></div>
+                        <div class='ng_top_right'></div>
+                    </div>
+                    <div class="ng_bot">
+                        <div class="ng3_top"></div>
+                        <div class="ng3_bot">
+                            <input type="button" value="新增盘点单" onclick="ng7_add()" class="ng1_chanbut">
+                            <h2>双击实际数量开始盘点</h2>
+                            <table cellspacing="0" class="table3" id="table6">
+                                <tr>
+                                    <th>产品名称</th>
+                                    <th>负责人</th>
+                                    <th>账面数量</th>
+                                    <th>实际数量</th>
+                                    <th>盈亏数量</th>
+                                    <th>盘点时期</th>
+                                    <th>备注</th>
+                                    <th>状态</th>
+                                    <th>操作</th>
+                                </tr>
+                                <volist name="pandian" id="val">
+                                <tr id="ooo">
+                                    <td id="chanpin{$key}">{$val.chanpin}</td>
+                                    <td>{$val.fuzeren}</td>
+                                    <td>{$val.zhangmian}</td>
+                                    <td id="{$key}" ondblclick="ng7_xian(this)" class="td_dianji"><span name="ng7_shiji[]" id="ng7_shiji">{$val.shiji}</span><center><input type="number" name="ng7_shuliang[]" id="ng7_shuliang" onblur="ng7_show('{$val.id}')" style="display: none"></center></td>
+                                    <td name="panying[]">{$val.panying}</td>
+                                    <td>{$val.time}</td>
+                                    <td>{$val.beizhu}</td>
+                                    <td>{$val.zhuangtai}</td>
+                                    <td><input type="button" value="删除" class="ng1_chanbut" onclick="ng7_del('{$val.id}')"></td>
+                                </tr>
+                                </volist>
+                            </table>
+                            <div class="ng7pandian" id="ng7pandian">
+                                <div class="rukuchan_top">
+                                    <input type="button" value="关闭" onclick="ng7_guan()" class="ruku_bi">
+                                </div>
+                                <div class="rukuchan_bot">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;产品名称:<input type="text" disabled="disabled" id="ng7_chanpin" name="ng7_chanpin"><input type="button" value="选择商品" onclick="ng7_xuan()"><br><br>
+                                    账面数量:<input type="text" id="ng7_jiage" name="ng7_jiage"><br><br>
+                                    备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注:<input type="text" id="ng7_beizhu" name="ng7_beizhu"><br><br>
+                                    <input type="button" value="盘点" id="ng7_bnt" class="ng1_chanbut" onclick="ng7_sub()">
+                                </div>
+                            </div>
+                            <div class="rukuchan" id="ng7_chan" style="display:none">
+                                <div class="rukuchan_top">
+                                    <input type="button" value="关闭" onclick="ng7_changuan()" class="ruku_bi">
+                                </div>
+                                <div class="rukuchan_bot">
+                                    <center>
+                                        <h2>选择商品</h2><br>
+                                    <table cellspacing="0" class="table_chan" id="table7">
+                                        <tr>
+                                            <th>商品名称</th>
+                                            <th>商品价格</th>
+                                            <th>操作</th>
+                                        </tr>
+                                        <volist name="ruku" id="val">
+                                        <tr>
+                                            <td>{$val.chanpin}</td>
+                                            <td>{$val.shuliang}</td>
+                                            <td><input type="button" value="选择" class="ng1_chanbut" onclick="ng7_xuanze('{$val.id}','{$val.chanpin}','{$val.shuliang}')"></td>
+                                        </tr>
+                                        </volist>
+                                    </table>
+                                    </center>
+                                </div>
+                            </div>
+                            <script>
+                                var ng7_shiji = document.getElementsByName("ng7_shiji[]");
+                                var ng7_shuliang = document.getElementsByName("ng7_shuliang[]");
+                                var panying = document.getElementsByName("panying[]");
+                                var bianhao = document.getElementById('table6');
+                                var table7 = document.getElementById('table7');
+                                function ng7_xuanze(id,chanpin,jiage){
+                                    document.getElementById('ng7pandian').style.display='block';
+                                    document.getElementById('ng7_chan').style.display='none';
+                                    document.getElementById('ng7_chanpin').value=chanpin;
+                                    document.getElementById('ng7_jiage').value=jiage;
+                                    table7.id = id;
+                                }
+                                function ng7_sub(){
+                                    document.getElementById('ng7_chanpin').disabled="";
+                                    var frm = document.getElementById('form');
+                                    frm.action='ng7_add/id/' + table7.id;
+                                    frm.submit();
+                                }
+                                function ng7_xuan(){
+                                    document.getElementById('ng7pandian').style.display='none';
+                                    document.getElementById('ng7_chan').style.display='block';
+                                }
+                                function ng7_changuan(){
+                                    document.getElementById('ng7pandian').style.display='block';
+                                    document.getElementById('ng7_chan').style.display='none';
+                                }
+                                function ng7_add(){
+                                    document.getElementById('ng7pandian').style.display='block';
+                                    document.getElementById('dang').style.display='block';
+                                }
+                                function ng7_guan(){
+                                    document.getElementById('ng7pandian').style.display='none';
+                                    document.getElementById('dang').style.display='none';
+                                }
+                                function ng7_del(id){
+                                    var frm = document.getElementById('form');
+                                    frm.action='ng7_del/id/' + id;
+                                    frm.submit();
+                                }
+                                function ng7_xian(obj){
+                                    bianhao.id = obj.id;
+                                    for(var i = bianhao.id;i<=bianhao.id;i++){
+                                    ng7_shiji[i].style.display='none';
+                                    ng7_shuliang[i].style.display='block';
+                                    }
+                                }
+                                function ng7_show(id){
+                                     for(var i = bianhao.id;i<=bianhao.id;i++){
+                                         var value = ng7_shuliang[i].value
+                                     }
+                                    var ajax = req();
+                                        ajax.open("post","ng7_ajax",true);
+                                        ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                                        ajax.send("value=" + value + "&id=" + id);
+                                        ajax.onreadystatechange=function(){
+                                            if(ajax.readyState==4 && ajax.status == 200){
+                                                var data = ajax.responseText;
+                                                for(var i = bianhao.id;i<=bianhao.id;i++){
+                                                    panying[i].innerHTML=data;
+                                                    ng7_shiji[i].style.display='block';
+                                                    ng7_shuliang[i].style.display='none';
+                                                }
+                                            }
+                                        }
+                                }
+                                function ng7_table(){
+                                    var ajax = req();
+                                        ajax.open("post","ng7_table",true);
+                                        ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                                        ajax.send(null);
+                                        ajax.onreadystatechange=function(){
+                                            if(ajax.readyState==4 && ajax.status == 200){
+                                                var data = ajax.responseText;
+                                                eval("var obj="+data);
+                                                for(var i = bianhao.id;i<=bianhao.id;i++){
+                                                ng7_shiji[i].innerHTML=obj[i].shiji;
+                                                }
+                                            }
+                                        }
+                                }
+                                setInterval(ng7_table,100);
+                            </script>
+                        </div>
+                    </div>
+                </div>
+                <div class="ng" id="ng9" style="display:none">
+                    <div class="ng_top">
+                        <div class='ng_top_left'>
+                            <img src='__PUBLIC__/system/biao9.png'>
+                            <span class='title'>操作日志</span>
+                        </div>
+                        <div class='ng_top_mid'></div>
+                        <div class='ng_top_right'></div>
+                    </div>
+                    <div class="ng_bot">
+                        <div class="ng3_top"></div>
+                        <div class="ng3_bot">
+                            <input type="button" value="清空日志" class="ng1_chanbut" onclick="rizhi()"><br><br>
+                            <table cellspacing="0" class="table_caozuo">
+                            <tr>
+                                <th>操作记录</th>
+                                <th>操作时间</th>
+                                <th>操作人员</th>
+                            </tr>
+                            <volist name="caozuo" id="val">
+                            <tr>
+                                <td>{$val.caozuo}</td>
+                                <td>{$val.time}</td>
+                                <td>{$val.people}</td>
+                            </tr>
+                            </volist>
+                            </table>
+                            <div class='caozuomima' id='caozuomima'>
+                                请输入安全密码:<input type='password' id='caozuo_mima'>
+                                <input type='button' value='确认' onclick='rizhi_queren()'>
+                                <input type='button' value='取消' onclick='rizhi_guan()'>
+                            </div>
+                            <script>
+                                function rizhi(){
+                                    document.getElementById('dang').style.display='block';
+                                    document.getElementById('caozuomima').style.display='block';
+                                    document.getElementById('caozuo_mima').focus();
+                                }
+                                function rizhi_guan(){
+                                    document.getElementById('dang').style.display='none';
+                                    document.getElementById('caozuomima').style.display='none';
+                                }
+                                function rizhi_queren(){
+                                    var mima =  document.getElementById('caozuo_mima').value;
+                                    if(mima == 940103){
+                                        var frm = document.getElementById('form');
+                                        frm.action='__URL__/qingkongrizhi';
+                                        frm.submit();
+                                    }else{
+                                        alert("安全密码不正确!拒绝操作!");
+                                        document.getElementById('caozuo_mima').value="";
+                                        document.getElementById('caozuo_mima').focus();
+                                    }
+                                }
+                            </script>
+                        </div>
+                    </div>
+                </div>
+                <div class="ng" id="ng10" style="display:none">
+                    <div class="ng_top">
+                        <div class='ng_top_left'>
+                            <img src='__PUBLIC__/system/biao10.png'>
+                            <span class='title'>权限管理</span>
+                        </div>
+                        <div class='ng_top_mid'></div>
+                        <div class='ng_top_right'></div>
+                    </div>
+                    <div class="ng_bot">
+                        <div class="ng3_top"></div>
+                        <div class="ng3_bot">
+                            <center>
+                            <table cellspacing="0" class="table_caozuo">
+                                <tr>
+                                    <th>用户名</th>
+                                    <th>权限</th>
+                                    <th>操作</th>
+                                </tr>
+                                <volist name="renyuan" id="val">
+                                    <tr>
+                                        <td><center>{$val.username}</center></td>
+                                        <td><center>{$val.quanxian}</center></td>
+                                <td><center>
+                                    <select name="sel_quanxian[]">
+                                        <option>请选择</option>
+                                        <option value="游客">游客</option>
+                                        <option value="管理员">管理员</option>
+                                    </select>
+                                    <input type="button" onclick="quanxian_ti('{$val.id}','{$val.quanxian}','{$key}')" value="修改" class="ng1_chanbut">
+                                </center></td>
+                                    </tr>
+                                </volist>
+                            </table>
+                            </center>
+                            <script>
+                                function quanxian_ti(id,quanxian,key){
+                                    var qx = quanxian;
+                                    var key = key;
+                                    if(qx == "超级管理员"){
+                                        alert("无法修改超级管理员权限")
+                                    }else{
+                                        var frm = document.getElementById('form');
+                                            frm.action='__URL__/quanxianguanli/id/'+id+'/key/'+key;
+                                            frm.submit();
+                                    }
+                                }
+                            </script>
+                        </div>
+                    </div>
+                </div>
+                <div class="ng" id="ng11" style="display:none">
+                    <div class="ng_top">
+                        <div class='ng_top_left'>
+                            <img src='__PUBLIC__/system/biao11.png'>
+                            <span class='title'>人员列表</span>
+                        </div>
+                        <div class='ng_top_mid'></div>
+                        <div class='ng_top_right'></div>
+                    </div>
+                    <div class="ng_bot">
+                        <div class="ng3_top"></div>
+                        <div class="ng3_bot">
+                                <center>
+                                <table class="table_caozuo" cellspacing="0">
+                                    <tr>
+                                        <th>用户名</th>
+                                        <th>电话</th>
+                                        <th>身份证</th>
+                                        <th>邮箱</th>
+                                        <th>注册时间</th>
+                                        <th>用户权限</th>
+                                    </tr>
+                                    <volist name="renyuan" id="val">
+                                    <tr>
+                                        <input type="hidden" value="{$val.id}" name="renshu[]">
+                                        <td><center>{$val.username}</center></td>
+                                        <td><center>{$val.tel}</center></td>
+                                        <td><center>{$val.code}</center></td>
+                                        <td><center>{$val.email}</center></td>
+                                        <td><center>{$val.time}</center></td>
+                                        <td><center>{$val.quanxian}</center></td>
+                                    </tr>
+                                    </volist>
+                                </table>
+                                </center>
+                        </div>
+                    </div>
+                </div>
+                <div class="ng" id="ng12" style="display:none">
+                    <div class="ng_top">
+                        <div class='ng_top_left'>
+                            <img src='__PUBLIC__/system/biao12.png'>
+                            <span class='title'>资金管理</span>
+                        </div>
+                        <div class='ng_top_mid'></div>
+                        <div class='ng_top_right'></div>
+                    </div>
+                    <div class="ng_bot">
+                        <div class="ng3_top"></div>
+                        <div class="ng3_bot">
+                            <center>
+                                <table class="table_caozuo" cellspacing="0">
+                                    <tr>
+                                        <th>用户名</th>
+                                        <th>资金</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    <volist name="renyuan" id="val">
+                                        <tr>
+                                            <td><center>{$val.username}</center></td>
+                                            <td><center><input type="number" name="zijin_num[]" style="display: none"><span name="zijin_shu[]">{$val.zijin}.00</span></center></td>
+                                            <td><center><a><input type="button" value="修改" class="ng1_chanbut" onclick="zijin_upt(this)" id="{$key}" name="zijin_up[]"></a><input type="button" value="提交" class="ng1_chanbut" onclick="zijin_subb('{$val.id}')" style="display:none" name="zijin_sub[]"></center></td>
+                                        </tr>
+                                    </volist>
+                                </table>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    var zijin_shu = document.getElementsByName("zijin_shu[]");
+                    var zijin_num = document.getElementsByName("zijin_num[]");
+                    var zijin_sub = document.getElementsByName("zijin_sub[]");
+                    var zijin_up = document.getElementsByName("zijin_up[]");
+                    function zijin_upt(obj){
+                        bianhao.id = obj.id;
+                        for(var i=bianhao.id;i<=bianhao.id;i++){
+                            zijin_shu[i].style.display='none';
+                            zijin_num[i].style.display='block';
+                            zijin_sub[i].style.display='block';
+                            zijin_up[i].style.display='none';
+                        }
+                    }
+                    function zijin_subb(id){
+                        var frm = document.getElementById('form');
+                            frm.action='__URL__/zijinupt/id/' +id;
+                            frm.submit();
+                    }
+                </script>
+                <div class="ng" id="ng13" style="display:none">
+                    <div class="ng_top">
+                        <div class='ng_top_left'>
+                            <img src='__PUBLIC__/system/biao13.png'>
+                            <span class='title'>账号设置</span>
+                        </div>
+                        <div class='ng_top_mid'></div>
+                        <div class='ng_top_right'></div>
+                    </div>
+                    <div class="ng_bot">
+                        <div class="ng3_top"></div>
+                        <div class="ng3_bot">
+                            <input type="button" value="修改密码" class="ng1_chanbut" onclick="shezhi_upt()">
+                            <input type="button" value="找回密码" class="ng1_chanbut" onclick="shezhi_zhao()">
+                        </div>
+                    </div>
+                    <div class="shezhi_upt" id="shezhiupt">
+                        <center>
+                        请输入原密码:<input type="password" id="shezhi_pass"><br><br>
+                        请输入新密码:<input type="password" name="shezhi_pass" id="shezhi_pass1"><br><br>
+                        再次输入密码:<input type="password" id="shezhi_pass2"><br><br>
+                        <input type="button" value="修改" class="ng1_chanbut" onclick="shezhi_uptt()">
+                        </center>
+                    </div>
+                    <div class="shezhi_upt" id="zhaohui">
+                        <center>
+                            请输入手机号码:<input type="text" id="shezhi_phone"><br><br>
+                            <input type="button" value="提交" class="ng1_chanbut" onclick="shezhi_zhaohui()">
+                        </center>
+                    </div>
+                    <div class="shezhi_upt" id="zhaohuimima">
+                        <center>
+                            请输入新密码:<input type="password" name="shezhi_pswd" id="zhaohui_pass1"><br><br>
+                            再次输入密码:<input type="password" id="zhaohui_pass2"><br><br>
+                            <input type="button" value="提交" class="ng1_chanbut" onclick="zhaohui_zhaohui()">
+                        </center>
+                    </div>
+                    <script>
+                        function shezhi_upt(){
+                             document.getElementById('shezhiupt').style.display='block';
+                             document.getElementById('zhaohui').style.display='none'; 
+                        }
+                        function shezhi_uptt(){
+                            var pass = document.getElementById('shezhi_pass').value;
+                            var pass1 = document.getElementById('shezhi_pass1').value;
+                            var pass2 = document.getElementById('shezhi_pass2').value;
+                            var ajax = req();
+                                        ajax.open("post","mima_upt",true);
+                                        ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                                        ajax.send(null);
+                                        ajax.onreadystatechange=function(){
+                                            if(ajax.readyState==4 && ajax.status == 200){
+                                                var data = ajax.responseText;
+                                                eval("var obj="+data);
+                                                if(pass == obj.password1){
+                                                    if(pass1==pass2){
+                                                        var frm = document.getElementById('form');
+                                                        frm.action='__URL__/shezhi_pass';
+                                                        frm.submit();
+                                                    }else{
+                                                        alert("两次输入的密码不相同");
+                                                    }
+                                                }else{
+                                                    alert("原密码输入错误");
+                                                }
+                                            }
+                                        }
+                        }
+                        function shezhi_zhao(){
+                            document.getElementById('shezhiupt').style.display='none';
+                            document.getElementById('zhaohui').style.display='block';
+                        }
+                        function shezhi_zhaohui(){
+                             var phone = document.getElementById('shezhi_phone').value;
+                             var ajax = req();
+                                        ajax.open("post","mima_zhao",true);
+                                        ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                                        ajax.send(null);
+                                        ajax.onreadystatechange=function(){
+                                            if(ajax.readyState==4 && ajax.status == 200){
+                                                var data = ajax.responseText;
+                                                eval("var obj="+data);
+                                                if(phone == obj.tel){
+                                                    document.getElementById('shezhiupt').style.display='none';
+                                                    document.getElementById('zhaohui').style.display='none';
+                                                    document.getElementById('zhaohuimima').style.display='block';
+                                                }else{
+                                                    alert("输入的手机号码与注册时所填不符合")
+                                                }
+                                            }
+                                        }                
+                        }
+                        function zhaohui_zhaohui(){
+                            var pass1 = document.getElementById('zhaohui_pass1').value;
+                            var pass2 = document.getElementById('zhaohui_pass2').value;
+                            if(pass1 == pass2){
+                                var frm = document.getElementById('form');
+                                    frm.action='__URL__/zhaohui_pass';
+                                    frm.submit();
+                            }
+                        }
+                    </script>
+                </div>
+                <script>
+                    var ng1 = document.getElementById("ng1"); 
+                    var ng2 = document.getElementById( "ng2" ); 
+                    var ng3 = document.getElementById( "ng3" ); 
+                    var ng4 = document.getElementById( "ng4" );
+                    var ng5 = document.getElementById( "ng5" ); 
+                    var ng6 = document.getElementById( "ng6" ); 
+                    var ng7 = document.getElementById( "ng7" ); 
+                    var ng8 = document.getElementById( "ng8" ); 
+                    var ng9 = document.getElementById( "ng9" ); 
+                    var ng10 = document.getElementById( "ng10" ); 
+                    var ng11 = document.getElementById( "ng11" ); 
+                    var ng12 = document.getElementById( "ng12" ); 
+                    var nav1 = document.getElementById("nav1");
+                    var nav2 = document.getElementById( "nav2" ); 
+                    var nav3 = document.getElementById( "nav3" ); 
+                    var nav4 = document.getElementById( "nav4" ); 
+                    var nav5 = document.getElementById( "nav5" ); 
+                    var nav6 = document.getElementById( "nav6" ); 
+                    var nav7 = document.getElementById( "nav7" ); 
+                    var nav8 = document.getElementById( "nav8" ); 
+                    var nav9 = document.getElementById( "nav9" ); 
+                    var nav10 = document.getElementById( "nav10" ); 
+                    var nav11 = document.getElementById( "nav11" ); 
+                    var nav12 = document.getElementById( "nav12" ); 
+                    var nav13 = document.getElementById( "nav13" ); 
+                    var fangxiang1 = document.getElementById("fangxiang1"); 
+                    var fangxiang2 = document.getElementById( "fangxiang2" ); 
+                    var fangxiang3 = document.getElementById( "fangxiang3" ); 
+                    var fangxiang4 = document.getElementById( "fangxiang4" ); 
+                    var fangxiang5 = document.getElementById( "fangxiang5" ); 
+                    var fangxiang6 = document.getElementById( "fangxiang6" ); 
+                    var fangxiang7 = document.getElementById( "fangxiang7" ); 
+                    var fangxiang8 = document.getElementById( "fangxiang8" ); 
+                    var fangxiang9 = document.getElementById( "fangxiang9" ); 
+                    var fangxiang10 = document.getElementById( "fangxiang10" ); 
+                    var fangxiang11 = document.getElementById( "fangxiang11" ); 
+                    var fangxiang12 = document.getElementById( "fangxiang12" );
+                    var font1 = document.getElementById( "font1" );
+                    var font2 = document.getElementById( "font2" );
+                    var font3 = document.getElementById( "font3" );
+                    var font4 = document.getElementById( "font4" );
+                    var font5 = document.getElementById( "font5" );
+                    var font6 = document.getElementById( "font6" );
+                    var font7 = document.getElementById( "font7" );
+                    var font8 = document.getElementById( "font8" );
+                    var font9 = document.getElementById( "font9" );
+                    var font10 = document.getElementById( "font10" );
+                    var font11 = document.getElementById( "font11" );
+                    var font12 = document.getElementById( "font12" );
+                    var shezhi = document.getElementById( "shezhi" ); 
+                    var time = document.getElementById( "time" ); 
+                    var timedian = document.getElementById( "time_dian" );
+                    var clickNumber = 0;
+                    timedian.onclick=function(){
+                        if(clickNumber %2==0){
+                            time.style.display='block';
+                        }else{
+                            time.style.display='none';
+                        }
+                        clickNumber++;
+                    }
+                    shezhi.onclick=function(){
+                        ng1.style.display='none';
+                        ng2.style.display='none';
+                        ng3.style.display='none';
+                        ng4.style.display='none';
+                        ng5.style.display='none';
+                        ng6.style.display='none';
+                        ng7.style.display='none';
+                        ng8.style.display='none';
+                        ng9.style.display='none';
+                        ng10.style.display='none';
+                        ng11.style.display='none';
+                        ng12.style.display='none';
+                        ng13.style.display='block';
+                        fangxiang1.style.display='none';
+                        fangxiang2.style.display='none';
+                        fangxiang3.style.display='none';
+                        fangxiang4.style.display='none';
+                        fangxiang5.style.display='none';
+                        fangxiang6.style.display='none';
+                        fangxiang7.style.display='none';
+                        fangxiang8.style.display='none';
+                        fangxiang9.style.display='none';
+                        fangxiang10.style.display='none';
+                        fangxiang11.style.display='none';
+                        fangxiang12.style.display='none';
+                        font1.style.color='#000';
+                        font2.style.color='#000';
+                        font3.style.color='#000';
+                        font4.style.color='#000';
+                        font5.style.color='#000';
+                        font6.style.color='#000';
+                        font7.style.color='#000';
+                        font8.style.color='#000';
+                        font9.style.color='#000';
+                        font10.style.color='#000';
+                        font11.style.color='#000';
+                        font12.style.color='#000'; 
+                    }
+                    nav1.onclick=function(){
+                        ng1.style.display='block';
+                        ng2.style.display='none';
+                        ng3.style.display='none';
+                        ng4.style.display='none';
+                        ng5.style.display='none';
+                        ng6.style.display='none';
+                        ng7.style.display='none';
+                        ng8.style.display='none';
+                        ng9.style.display='none';
+                        ng10.style.display='none';
+                        ng11.style.display='none';
+                        ng12.style.display='none';
+                        ng13.style.display='none';
+                        fangxiang1.style.display='block';
+                        fangxiang2.style.display='none';
+                        fangxiang3.style.display='none';
+                        fangxiang4.style.display='none';
+                        fangxiang5.style.display='none';
+                        fangxiang6.style.display='none';
+                        fangxiang7.style.display='none';
+                        fangxiang8.style.display='none';
+                        fangxiang9.style.display='none';
+                        fangxiang10.style.display='none';
+                        fangxiang11.style.display='none';
+                        fangxiang12.style.display='none';
+                        font1.style.color='rgb(27,169,123)';
+                        font2.style.color='#000';
+                        font3.style.color='#000';
+                        font4.style.color='#000';
+                        font5.style.color='#000';
+                        font6.style.color='#000';
+                        font7.style.color='#000';
+                        font8.style.color='#000';
+                        font9.style.color='#000';
+                        font10.style.color='#000';
+                        font11.style.color='#000';
+                        font12.style.color='#000'; 
+                    }
+                    nav2.onclick=function(){
+                        ng1.style.display='none';
+                        ng2.style.display='block';
+                        ng3.style.display='none';
+                        ng4.style.display='none';
+                        ng5.style.display='none';
+                        ng6.style.display='none';
+                        ng7.style.display='none';
+                        ng8.style.display='none';
+                        ng9.style.display='none';
+                        ng10.style.display='none';
+                        ng11.style.display='none';
+                        ng12.style.display='none';
+                        ng13.style.display='none';
+                        fangxiang1.style.display='none';
+                        fangxiang2.style.display='block';
+                        fangxiang3.style.display='none';
+                        fangxiang4.style.display='none';
+                        fangxiang5.style.display='none';
+                        fangxiang6.style.display='none';
+                        fangxiang7.style.display='none';
+                        fangxiang8.style.display='none';
+                        fangxiang9.style.display='none';
+                        fangxiang10.style.display='none';
+                        fangxiang11.style.display='none';
+                        fangxiang12.style.display='none';
+                        font1.style.color='#000';
+                        font2.style.color='rgb(27,169,123)';
+                        font3.style.color='#000';
+                        font4.style.color='#000';
+                        font5.style.color='#000';
+                        font6.style.color='#000';
+                        font7.style.color='#000';
+                        font8.style.color='#000';
+                        font9.style.color='#000';
+                        font10.style.color='#000';
+                        font11.style.color='#000';
+                        font12.style.color='#000'; 
+                    }
+                    nav3.onclick=function(){
+                        ng1.style.display='none';
+                        ng2.style.display='none';
+                        ng3.style.display='block';
+                        ng4.style.display='none';
+                        ng5.style.display='none';
+                        ng6.style.display='none';
+                        ng7.style.display='none';
+                        ng8.style.display='none';
+                        ng9.style.display='none';
+                        ng10.style.display='none';
+                        ng11.style.display='none';
+                        ng12.style.display='none';
+                        ng13.style.display='none';
+                        fangxiang1.style.display='none';
+                        fangxiang2.style.display='none';
+                        fangxiang3.style.display='block';
+                        fangxiang4.style.display='none';
+                        fangxiang5.style.display='none';
+                        fangxiang6.style.display='none';
+                        fangxiang7.style.display='none';
+                        fangxiang8.style.display='none';
+                        fangxiang9.style.display='none';
+                        fangxiang10.style.display='none';
+                        fangxiang11.style.display='none';
+                        fangxiang12.style.display='none';
+                        font1.style.color='#000';
+                        font2.style.color='#000';
+                        font3.style.color='rgb(27,169,123)';
+                        font4.style.color='#000';
+                        font5.style.color='#000';
+                        font6.style.color='#000';
+                        font7.style.color='#000';
+                        font8.style.color='#000';
+                        font9.style.color='#000';
+                        font10.style.color='#000';
+                        font11.style.color='#000';
+                        font12.style.color='#000'; 
+                    }
+                    nav4.onclick=function(){
+                        ng1.style.display='none';
+                        ng2.style.display='none';
+                        ng3.style.display='none';
+                        ng4.style.display='block';
+                        ng5.style.display='none';
+                        ng6.style.display='none';
+                        ng7.style.display='none';
+                        ng8.style.display='none';
+                        ng9.style.display='none';
+                        ng10.style.display='none';
+                        ng11.style.display='none';
+                        ng12.style.display='none';
+                        ng13.style.display='none';
+                        fangxiang1.style.display='none';
+                        fangxiang2.style.display='none';
+                        fangxiang3.style.display='none';
+                        fangxiang4.style.display='block';
+                        fangxiang5.style.display='none';
+                        fangxiang6.style.display='none';
+                        fangxiang7.style.display='none';
+                        fangxiang8.style.display='none';
+                        fangxiang9.style.display='none';
+                        fangxiang10.style.display='none';
+                        fangxiang11.style.display='none';
+                        fangxiang12.style.display='none';
+                        font1.style.color='#000';
+                        font2.style.color='#000';
+                        font3.style.color='#000';
+                        font4.style.color='rgb(27,169,123)';
+                        font5.style.color='#000';
+                        font6.style.color='#000';
+                        font7.style.color='#000';
+                        font8.style.color='#000';
+                        font9.style.color='#000';
+                        font10.style.color='#000';
+                        font11.style.color='#000';
+                        font12.style.color='#000'; 
+                    }
+                    nav5.onclick=function(){
+                        ng1.style.display='none';
+                        ng2.style.display='none';
+                        ng3.style.display='none';
+                        ng4.style.display='none';
+                        ng5.style.display='block';
+                        ng6.style.display='none';
+                        ng7.style.display='none';
+                        ng8.style.display='none';
+                        ng9.style.display='none';
+                        ng10.style.display='none';
+                        ng11.style.display='none';
+                        ng12.style.display='none';
+                        ng13.style.display='none';
+                        fangxiang1.style.display='none';
+                        fangxiang2.style.display='none';
+                        fangxiang3.style.display='none';
+                        fangxiang4.style.display='none';
+                        fangxiang5.style.display='block';
+                        fangxiang6.style.display='none';
+                        fangxiang7.style.display='none';
+                        fangxiang8.style.display='none';
+                        fangxiang9.style.display='none';
+                        fangxiang10.style.display='none';
+                        fangxiang11.style.display='none';
+                        fangxiang12.style.display='none';
+                        font1.style.color='#000';
+                        font2.style.color='#000';
+                        font3.style.color='#000';
+                        font4.style.color='#000';
+                        font5.style.color='rgb(27,169,123)';
+                        font6.style.color='#000';
+                        font7.style.color='#000';
+                        font8.style.color='#000';
+                        font9.style.color='#000';
+                        font10.style.color='#000';
+                        font11.style.color='#000';
+                        font12.style.color='#000'; 
+                    }
+                    nav6.onclick=function(){
+                        ng1.style.display='none';
+                        ng2.style.display='none';
+                        ng3.style.display='none';
+                        ng4.style.display='none';
+                        ng5.style.display='none';
+                        ng6.style.display='block';
+                        ng7.style.display='none';
+                        ng8.style.display='none';
+                        ng9.style.display='none';
+                        ng10.style.display='none';
+                        ng11.style.display='none';
+                        ng12.style.display='none';
+                        ng13.style.display='none';
+                        fangxiang1.style.display='none';
+                        fangxiang2.style.display='none';
+                        fangxiang3.style.display='none';
+                        fangxiang4.style.display='none';
+                        fangxiang5.style.display='none';
+                        fangxiang6.style.display='block';
+                        fangxiang7.style.display='none';
+                        fangxiang8.style.display='none';
+                        fangxiang9.style.display='none';
+                        fangxiang10.style.display='none';
+                        fangxiang11.style.display='none';
+                        fangxiang12.style.display='none';
+                        font1.style.color='#000';
+                        font2.style.color='#000';
+                        font3.style.color='#000';
+                        font4.style.color='#000';
+                        font5.style.color='#000';
+                        font6.style.color='rgb(27,169,123)';
+                        font7.style.color='#000';
+                        font8.style.color='#000';
+                        font9.style.color='#000';
+                        font10.style.color='#000';
+                        font11.style.color='#000';
+                        font12.style.color='#000'; 
+                    }
+                    nav7.onclick=function(){
+                        ng1.style.display='none';
+                        ng2.style.display='none';
+                        ng3.style.display='none';
+                        ng4.style.display='none';
+                        ng5.style.display='none';
+                        ng6.style.display='none';
+                        ng7.style.display='block';
+                        ng8.style.display='none';
+                        ng9.style.display='none';
+                        ng10.style.display='none';
+                        ng11.style.display='none';
+                        ng12.style.display='none';
+                        ng13.style.display='none';
+                        fangxiang1.style.display='none';
+                        fangxiang2.style.display='none';
+                        fangxiang3.style.display='none';
+                        fangxiang4.style.display='none';
+                        fangxiang5.style.display='none';
+                        fangxiang6.style.display='none';
+                        fangxiang7.style.display='block';
+                        fangxiang8.style.display='none';
+                        fangxiang9.style.display='none';
+                        fangxiang10.style.display='none';
+                        fangxiang11.style.display='none';
+                        fangxiang12.style.display='none';
+                        font1.style.color='#000';
+                        font2.style.color='#000';
+                        font3.style.color='#000';
+                        font4.style.color='#000';
+                        font5.style.color='#000';
+                        font6.style.color='#000';
+                        font7.style.color='rgb(27,169,123)';
+                        font8.style.color='#000';
+                        font9.style.color='#000';
+                        font10.style.color='#000';
+                        font11.style.color='#000';
+                        font12.style.color='#000'; 
+                    }
+                    nav8.onclick=function(){
+                        ng1.style.display='none';
+                        ng2.style.display='none';
+                        ng3.style.display='none';
+                        ng4.style.display='none';
+                        ng5.style.display='none';
+                        ng6.style.display='none';
+                        ng7.style.display='none';
+                        ng8.style.display='block';
+                        ng9.style.display='none';
+                        ng10.style.display='none';
+                        ng11.style.display='none';
+                        ng12.style.display='none';
+                        ng13.style.display='none';
+                        fangxiang1.style.display='none';
+                        fangxiang2.style.display='none';
+                        fangxiang3.style.display='none';
+                        fangxiang4.style.display='none';
+                        fangxiang5.style.display='none';
+                        fangxiang6.style.display='none';
+                        fangxiang7.style.display='none';
+                        fangxiang8.style.display='block';
+                        fangxiang9.style.display='none';
+                        fangxiang10.style.display='none';
+                        fangxiang11.style.display='none';
+                        fangxiang12.style.display='none';
+                        font1.style.color='#000';
+                        font2.style.color='#000';
+                        font3.style.color='#000';
+                        font4.style.color='#000';
+                        font5.style.color='#000';
+                        font6.style.color='#000';
+                        font7.style.color='#000';
+                        font8.style.color='rgb(27,169,123)';
+                        font9.style.color='#000';
+                        font10.style.color='#000';
+                        font11.style.color='#000';
+                        font12.style.color='#000'; 
+                    }
+                    nav9.onclick=function(){
+                        ng1.style.display='none';
+                        ng2.style.display='none';
+                        ng3.style.display='none';
+                        ng4.style.display='none';
+                        ng5.style.display='none';
+                        ng6.style.display='none';
+                        ng7.style.display='none';
+                        ng8.style.display='none';
+                        ng9.style.display='block';
+                        ng10.style.display='none';
+                        ng11.style.display='none';
+                        ng12.style.display='none';
+                        ng13.style.display='none';
+                        fangxiang1.style.display='none';
+                        fangxiang2.style.display='none';
+                        fangxiang3.style.display='none';
+                        fangxiang4.style.display='none';
+                        fangxiang5.style.display='none';
+                        fangxiang6.style.display='none';
+                        fangxiang7.style.display='none';
+                        fangxiang8.style.display='none';
+                        fangxiang9.style.display='block';
+                        fangxiang10.style.display='none';
+                        fangxiang11.style.display='none';
+                        fangxiang12.style.display='none';
+                        font1.style.color='#000';
+                        font2.style.color='#000';
+                        font3.style.color='#000';
+                        font4.style.color='#000';
+                        font5.style.color='#000';
+                        font6.style.color='#000';
+                        font7.style.color='#000';
+                        font8.style.color='#000';
+                        font9.style.color='rgb(27,169,123)';
+                        font10.style.color='#000';
+                        font11.style.color='#000';
+                        font12.style.color='#000'; 
+                    }
+                    nav10.onclick=function(){
+                        ng1.style.display='none';
+                        ng2.style.display='none';
+                        ng3.style.display='none';
+                        ng4.style.display='none';
+                        ng5.style.display='none';
+                        ng6.style.display='none';
+                        ng7.style.display='none';
+                        ng8.style.display='none';
+                        ng9.style.display='none';
+                        ng10.style.display='block';
+                        ng11.style.display='none';
+                        ng12.style.display='none';
+                        ng13.style.display='none';
+                        fangxiang1.style.display='none';
+                        fangxiang2.style.display='none';
+                        fangxiang3.style.display='none';
+                        fangxiang4.style.display='none';
+                        fangxiang5.style.display='none';
+                        fangxiang6.style.display='none';
+                        fangxiang7.style.display='none';
+                        fangxiang8.style.display='none';
+                        fangxiang9.style.display='none';
+                        fangxiang10.style.display='block';
+                        fangxiang11.style.display='none';
+                        fangxiang12.style.display='none';
+                        font1.style.color='#000';
+                        font2.style.color='#000';
+                        font3.style.color='#000';
+                        font4.style.color='#000';
+                        font5.style.color='#000';
+                        font6.style.color='#000';
+                        font7.style.color='#000';
+                        font8.style.color='#000';
+                        font9.style.color='#000';
+                        font10.style.color='rgb(27,169,123)';
+                        font11.style.color='#000';
+                        font12.style.color='#000'; 
+                    }
+                    nav11.onclick=function(){
+                        ng1.style.display='none';
+                        ng2.style.display='none';
+                        ng3.style.display='none';
+                        ng4.style.display='none';
+                        ng5.style.display='none';
+                        ng6.style.display='none';
+                        ng7.style.display='none';
+                        ng8.style.display='none';
+                        ng9.style.display='none';
+                        ng10.style.display='none';
+                        ng11.style.display='block';
+                        ng12.style.display='none';
+                        ng13.style.display='none';
+                        fangxiang1.style.display='none';
+                        fangxiang2.style.display='none';
+                        fangxiang3.style.display='none';
+                        fangxiang4.style.display='none';
+                        fangxiang5.style.display='none';
+                        fangxiang6.style.display='none';
+                        fangxiang7.style.display='none';
+                        fangxiang8.style.display='none';
+                        fangxiang9.style.display='none';
+                        fangxiang10.style.display='none';
+                        fangxiang11.style.display='block';
+                        fangxiang12.style.display='none';
+                        font1.style.color='#000';
+                        font2.style.color='#000';
+                        font3.style.color='#000';
+                        font4.style.color='#000';
+                        font5.style.color='#000';
+                        font6.style.color='#000';
+                        font7.style.color='#000';
+                        font8.style.color='#000';
+                        font9.style.color='#000';
+                        font10.style.color='#000';
+                        font11.style.color='rgb(27,169,123)';
+                        font12.style.color='#000'; 
+                    }
+                    nav12.onclick=function(){
+                        ng1.style.display='none';
+                        ng2.style.display='none';
+                        ng3.style.display='none';
+                        ng4.style.display='none';
+                        ng5.style.display='none';
+                        ng6.style.display='none';
+                        ng7.style.display='none';
+                        ng8.style.display='none';
+                        ng9.style.display='none';
+                        ng10.style.display='none';
+                        ng11.style.display='none';
+                        ng12.style.display='block';
+                        ng13.style.display='none';
+                        fangxiang1.style.display='none';
+                        fangxiang2.style.display='none';
+                        fangxiang3.style.display='none';
+                        fangxiang4.style.display='none';
+                        fangxiang5.style.display='none';
+                        fangxiang6.style.display='none';
+                        fangxiang7.style.display='none';
+                        fangxiang8.style.display='none';
+                        fangxiang9.style.display='none';
+                        fangxiang10.style.display='none';
+                        fangxiang11.style.display='none';
+                        fangxiang12.style.display='block';
+                        font1.style.color='#000';
+                        font2.style.color='#000';
+                        font3.style.color='#000';
+                        font4.style.color='#000';
+                        font5.style.color='#000';
+                        font6.style.color='#000';
+                        font7.style.color='#000';
+                        font8.style.color='#000';
+                        font9.style.color='#000';
+                        font10.style.color='#000';
+                        font11.style.color='#000';
+                        font12.style.color='rgb(27,169,123)'; 
+                    }
+                </script>
+            </div>
+            <div class="quan">Copyright© 2002-2016 ，天软版权所有 ICP备10207551号-4 B1-20130131 B2-20130376 B2-20130391 出版物经营许可证新出发批字第A-243号</div>
+        </div>
+        </form>
+<script>   
+  
+    var tableSort = function(){   
+    this.initialize.apply(this,arguments);   
+    }   
+
+    tableSort.prototype = {   
+
+    initialize : function(tableId,clickRow,startRow,endRow,classUp,classDown,selectClass){   
+    this.Table = document.getElementById(tableId);   
+    this.rows = this.Table.rows;
+    this.Tags = this.rows[clickRow-1].cells; 
+    this.up = classUp;   
+    this.down = classDown;   
+    this.startRow = startRow;   
+    this.selectClass = selectClass;   
+    this.endRow = (endRow == 999? this.rows.length : endRow);   
+    this.T2Arr = this._td2Array();
+    this.setShow();   
+    },   
+    setShow:function(){   
+    var defaultClass = this.Tags[0].className;   
+    for(var Tag ,i=0;Tag = this.Tags[i];i++){   
+    Tag.index = i;   
+    addEventListener(Tag ,'click', Bind(Tag,statu));   
+    }   
+    var _this =this;   
+    var turn = 0;   
+    function statu(){   
+    for(var i=0;i<_this.Tags.length;i++){   
+    _this.Tags[i].className = defaultClass;   
+    }   
+    if(turn==0){   
+    addClass(this,_this.down)   
+    _this.startArray(0,this.index);   
+    turn=1;   
+    }else{   
+    addClass(this,_this.up)   
+    _this.startArray(1,this.index);   
+    turn=0;   
+    }   
+    }   
+    },   
+    colClassSet:function(num,cla){   
+    for(var i= (this.startRow-1);i<(this.endRow);i++){   
+    for(var n=0;n<this.rows[i].cells.length;n++){   
+    removeClass(this.rows[i].cells[n],cla);   
+    }   
+    addClass(this.rows[i].cells[num],cla);   
+    }   
+    },   
+    startArray:function(aord,num){   
+    var afterSort = this.sortMethod(this.T2Arr,aord,num);
+    this.array2Td(num,afterSort);//输出   
+    },   
+    _td2Array:function(){   
+    var arr=[];   
+    for(var i=(this.startRow-1),l=0;i<(this.endRow);i++,l++){   
+    arr[l]=[];   
+    for(var n=0;n<this.rows[i].cells.length;n++){   
+    arr[l].push(this.rows[i].cells[n].innerHTML);   
+    }   
+    }   
+    return arr;   
+    },   
+    array2Td:function(num,arr){   
+    this.colClassSet(num,this.selectClass);   
+    for(var i= (this.startRow-1),l=0;i<(this.endRow);i++,l++){   
+    for(var n=0;n<this.Tags.length;n++){   
+    this.rows[i].cells[n].innerHTML = arr[l][n];   
+    }   
+    }   
+    },   
+    sortMethod:function(arr,aord,w){   
+    arr.sort(function(a,b){   
+    x = killHTML(a[w]);   
+    y = killHTML(b[w]);   
+    x = x.replace(/,/g,'');   
+    y = y.replace(/,/g,'');   
+    switch (isNaN(x)){   
+    case false:   
+    return Number(x) - Number(y);   
+    break;   
+    case true:   
+    return x.localeCompare(y);   
+    break;   
+    }   
+    });   
+    arr = aord==0?arr:arr.reverse();   
+    return arr;   
+    }   
+    }   
+    function addEventListener(o,type,fn){   
+    if(o.attachEvent){o.attachEvent('on'+type,fn)}   
+    else if(o.addEventListener){o.addEventListener(type,fn,false)}   
+    else{o['on'+type] = fn;}   
+    }   
+    function hasClass(element, className) {   
+    var reg = new RegExp('(\\s|^)'+className+'(\\s|$)');   
+    return element.className.match(reg);   
+    }   
+    function addClass(element, className) {   
+    if (!this.hasClass(element, className))   
+    {   
+    element.className += " "+className;   
+    }   
+    }   
+    function removeClass(element, className) {   
+    if (hasClass(element, className)) {   
+    var reg = new RegExp('(\\s|^)'+className+'(\\s|$)');   
+    element.className = element.className.replace(reg,' ');   
+    }   
+    }   
+    var Bind = function(object, fun) {   
+    return function() {   
+    return fun.apply(object, arguments);   
+    }   
+    }   
+    function killHTML(str){   
+    return str.replace(/<[^>]+>/g,"");   
+    }   
+    var ex1 = new tableSort('table',1,2,999,'up','down','hov');
+</script> 
+    </body>
+    
+</html>
+

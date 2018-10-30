@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+    <link href="__PUBLIC__/css/jquery-confirm.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/mobilemain.css" type="text/css" rel="stylesheet">
+    <link href="__PUBLIC__/css/main.css" type="text/css" rel="stylesheet">
+
+    <style>
+        #table3 tr:nth-child(3){
+            background-color: yellow;
+        }
+         .fena >div{
+    text-align: center;height: 30px;
+    line-height: 30px;
+}
+.fena >div> span{
+    width: 50px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+}
+.fena >div> a{
+    width: 50px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+    text-decoration: none;
+}
+.fena >div> li{
+    list-style: none;
+    width: 200px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+    text-decoration: none;
+}
+.fena >div> a:hover{
+    text-decoration: none;
+}
+        </style>
+</head>
+<body>
+          
+                    <table class="table" >
+                            <tr class="fir-tr">
+                                <th>序号</th>
+                                <th>月份</th>
+                                <th>营业额</th>
+                                <th>奖励比例</th>
+                                <th>收益</th>
+                                <th>结算时间</th>
+                                <th>发放时间</th>
+                                <th>状态</th>
+                            </tr>
+                            <volist name="flagshi" id="flag" key="k">
+                              
+                           <tr class="sec-tr">
+                                <td>{:(I('get.p'))?((I('get.p')-1)*6+$k):($k)}</td>
+                                <td>{$flag.earing_month}</td>
+                                <td>{$flag.volume}</td>
+                                <td>{$flag.ratio}%</td>
+                                <td>{$flag[volume]*$flag[ratio]/100}</td>
+                                <td>{$flag.created_time}</td>
+                                <td>{$flag.reward_time}</td>
+                                <td>                        
+                                <switch name="flag.status" >
+                                    <case value="1">未发放</case>
+                                    <case value="2">已发放</case>
+                                 </switch>
+                                </td>
+                            </tr>
+                            </volist>
+                    </table>
+                    <div class="fena">{$show}</div>
+  
+    <script src="__PUBLIC__/js/jquery-1.10.2.js"></script>
+   
+<script>window.parent.scrollTo(0, 0);</script>
+</body>
+</html>

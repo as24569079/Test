@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/xiangqing1.css">
+                <link rel="stylesheet" href="__PUBLIC__/m-cdc/css/cardCenter.css?t=1479096374308">
+                    <script type="text/javascript" src="__PUBLIC__/js/LodopFuncs.js"></script>  
+                <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+                <style>
+                    div{
+                        font-family:"微软雅黑";
+                    }
+                </style>      
+          
+    </head>
+    <body>
+        <input type='button' value='返回' class='button' style='width:100px;height:25px' id='fanhui'>
+    <h1>订单确认并支付</h1><hr style="color:#999; height:100%; margin-top:40px;">
+    <h2>订单详情</h2>
+  
+    <table>
+        <tr>
+          <th>序号</th>
+          <th>商品</th>
+          <th>单价</th>
+          <th>数量</th>
+          <th>小计</th>
+        </tr>
+        
+        <tr class="kb"></tr>
+        <!--<tr>
+        	<td class="time" colspan="6"></td>
+        </tr> -->
+        <volist name="arr" id="val" key="k">
+        <tr>
+            <input type="hidden" value="{$val.item_id}">
+             <td>{$k}</td>
+             <td>{$val.item_name}</td>
+             <td>￥{$val.Money}</td>
+             <td>{$val.quantity}</td>
+             <td class="total_price" >￥{$val[quantity]*$val[Money]}</td>
+        </tr>
+        </volist>
+    </table>
+    <div>
+        <div class="div"><span>合计：<span id="heji"></span></span></div>
+        <div class="div"><span>电子币：</span><span id='eMoney'><if condition="$toal_price.eMoney neq ''">{$toal_price.eMoney}<else />0</if></span></div>
+        <div class="div"><span>积分：</span><span id='sMoney'><if condition="$toal_price.sMoney neq ''">{$toal_price.sMoney}<else />0</if></span></div>
+        <script>
+            $(document).ready(function(){
+                $("#heji").text($("#eMoney").text()*1 + $("#sMoney").text()*1)
+            })
+        </script>
+    </div>
+    <hr style="color:#999; height:100%; margin-top:50px;">
+    <div>
+    	<div class="xinxi">支付信息：</div>
+        <div class="xinxi"><span>　手机号：</span><input type="tel" style="height:25px; width:200px" class='tel' >
+            <span id="tel_no"></span></div>
+        <div class="xinxi">姓　　名：<span id='tel_name'></span></div>
+        <div class="xinxi">余　　额：<span id='yue_emoney'></span>&nbsp;&nbsp;<span id='yue_smoney'></span></div>
+        <div class="xinxi">安全密码：<input type="password" style="display:none;height:25px; width:200px" id="login_pwd" ><span id="pwd_no"></span></div>
+        
+        <button class="button xinxi" id="login_ok" style="display:none;">确定</button>　　
+        <!--style="display:none;"-->
+    </div>
+    <div style="display: none;z-index:99999999999999999999;position: absolute;top:0px;left:0px;width:100%;height:100%;background: rgba(0,0,0,0.6);" id='tanceng'>
+        <div style='background:#fff;width:100%;height:100%;'>
+            <center>
+            <div>
+                <img src="__PUBLIC__/images/gou.jpg" style="width:80px; height:80px;margin-top: 20%">
+                <span style="font-size:24px">您已成功提交订单</span>
+                <button class="button xinxi" onClick="prn1_preview();" id="preview" style="display:block;">打印</button>
+                <button class="button xinxi" onClick="div_close();" id="close" style="display:block;">关闭</button>
+            </div>
+            </center>
+        </div>
+    </div>
+    
+    <!--style="display:none;"-->
+    
+    <div  id="form1" style="display:none;">
+                            <div style="width:50mm;">　　 　 诚兑城　　</div>   
+                           
+                            <div style="width:48mm;text-align: center;font-size: 12px">{$shop_name}</div>  
+                            <div style="width:50mm;font-size: 12px"><center>欢迎惠顾</center></div>   
+                            <div style="width:50mm;font-size: 12px"><center>-　会员：<span id="vip"></span>　-</center></div>
+  
+                            <div>------------------------------</div>
+                             <if condition="$array.chuangye neq ''"><div>----------<span style="font-size:12px ">积分商城</span>-------------</div><else /></if>
+                         <volist name="array.chuangye" id="vla">      
+                           
+                         
+                    
+                            <div style="width:55mm; font-size: 12px"><div style="float:left;width:25mm;">{$vla.item_name}</div><div style="float:left;width:9mm;">×{$vla.quantity}</div><div style="float:right;width:20mm;font-size: 12px">{$vla[quantity]*$vla[Money]}</div></div><span style="font-size: 12px">{$vla.bar_code}</span>
+                       </volist>
+                               <if condition="$array.dazhong neq ''"><div>----------<span style="font-size:12px ">消费商城</span>-------------</div><else /></if>
+                            <volist name="array.dazhong" id="vla">      
+                           
+                         
+                    
+                            <div style="width:55mm; font-size: 12px"><div style="float:left;width:25mm;">{$vla.item_name}</div><div style="float:left;width:9mm;">×{$vla.quantity}</div><div style="float:right;width:20mm;font-size: 12px">{$vla[quantity]*$vla[Money]}</div></div><span style="font-size: 12px">{$vla.bar_code}</span>
+                       </volist>
+                                
+                                 <if condition="$array.nianhuo neq ''"><div>----------<span style="font-size:12px ">年货商城</span>-------------</div><else /></if>
+                            <volist name="array.nianhuo" id="vla">      
+                           
+                         
+                    
+                            <div style="width:55mm; font-size: 12px"><div style="float:left;width:25mm;">{$vla.item_name}</div><div style="float:left;width:9mm;">×{$vla.quantity}</div><div style="float:right;width:20mm;font-size: 12px">{$vla[quantity]*$vla[Money]}</div></div><span style="font-size: 12px">{$vla.bar_code}</span>
+                       </volist>
+
+                           <div>------------------------------</div>
+                           <div style='font-size:12px'>已付电子币　　　　￥<if condition='$toal_price[eMoney] gt 0'>{$toal_price[eMoney]}<else/>0.00</if></div>
+                           <div style='font-size:12px'>已付积分　　　　　￥<if condition='$toal_price[sMoney] gt 0'>{$toal_price[sMoney]}<else/>0</if></div>
+                           <div>------------------------------</div>
+                           <div style="font-size: 12px" id="danhao"></div>
+                           <div>　*******************</div>
+                            <div style="font-size: 12px" id="etime"></div>
+                           <div>　*******************</div>
+        </div>
+               
+
+
+    
+    
+    
+    
+    
+    
+    
+    </body>
+    <script>
+        $(document).ready(function() {
+ 
+            $(".tel").change(function () {
+            var tel= $(".tel").val();
+   
+                        var data={
+                        tel:tel,
+                   
+                    };
+                        $.ajax({
+                          url: "shouyin_usetel",
+                          type: "post",
+                          data: JSON.stringify(data),
+                          contentType: "application/json; charset=UTF-8",
+                          success: function (res) {
+//                              alert(res);
+                                 if(res==1){
+//                                 alert("1");
+                                var item="手机号不存在！";
+                                $("#tel_no").text(item) ;
+                             }else{
+                              
+                                 $("#tel_no").text("");
+                                 eval("obj="+res);
+                                 $("#tel_name").text(obj.real_name);
+                                 $("#vip").text(obj.real_name);
+                                 $("#yue_emoney").text("电子币:"+obj.emoney);
+                                 $("#yue_smoney").text("积分:"+obj.smoney);
+                                 $("#login_pwd").show();
+                             }
+                          }
+                      })
+            
+            })            
+                $("#login_pwd").change(function () {
+                     var tel= $(".tel").val();
+                     var login_pwd= $("#login_pwd").val();
+                        var data={
+                            tel:tel,
+                            pwd:login_pwd,
+                    };
+                        $.ajax({
+                          url: "shouyin_usepwd",
+                          type: "post",
+                          data: JSON.stringify(data),
+                          contentType: "application/json; charset=UTF-8",
+                          success: function (res) {
+                             if(res==1){
+                                var item="支付密码不正确！";
+                                $("#pwd_no").text(item) ;
+                             }else{
+                                 $("#pwd_no").text("") ;
+                                $("#login_ok").show();
+                             }
+                          }
+                      })
+            
+            })
+
+               $("#login_ok").click(function () {
+                     var tel= $(".tel").val();
+                     var eMoney= $("#eMoney").text();
+                     var sMoney= $("#sMoney").text();
+                     var jiancaibi= $("#jiancaibi").text();
+                     var integral= $("#integral").text();
+                        var data={
+                            tel:tel,
+                            eMoney:eMoney,
+                            sMoney:sMoney,
+                            jiancaibi:jiancaibi,
+                            integral:integral
+  
+                    };
+//                    alert(JSON.stringify(data));return;
+                        $.ajax({
+                          url: "shouyin_money",
+                          type: "post",
+                          data: JSON.stringify(data),
+                          contentType: "application/json; charset=UTF-8",
+                          success: function (res) {
+                             
+                             if(res==1){
+                                 alert("余额不足！");
+                             }else{
+                                 eval("var obj="+res);   
+                                 $("#danhao").text(obj[0]);
+                                 $("#etime").text('退货请在7日内进行，'+obj[1]+'前');
+                                $("#tanceng").fadeIn("slow"); 
+                                $("#login_ok").hide();
+                             }
+                          }
+                      })
+            
+             })
+            
+            
+            
+       })
+       function div_close(){
+           var result=confirm("确定关闭吗？");
+                if(result)
+                {
+                    window.location.href='shouyin';
+                }
+       }
+       $("#fanhui").click(function(){
+           window.location.href='fanhui_yanzheng/id/233';
+       })
+        
+    </script>
+    <script type="text/javascript">  
+    var LODOP; //声明为全局变量  
+    // 打印预览  
+    function prn1_preview() {            
+        CreateOneFormPage();      
+//        LODOP.PREVIEW();  
+         LODOP.PRINT();  
+    };  
+    // 直接打印  
+    function prn1_print() {       
+        CreateOneFormPage();  
+        LODOP.PRINT();    
+    };  
+    // 选择打印机  
+    function prn1_printA() {          
+        CreateOneFormPage();  
+        LODOP.PRINTA();       
+    };   
+    // 创建打印页面  
+    function CreateOneFormPage(){  
+        LODOP=getLodop();    
+//        LODOP.PRINT_INIT("打印控件功能演示_Lodop功能_表单一");  
+        LODOP.SET_PRINT_STYLE("FontSize",12);  
+        LODOP.SET_PRINT_STYLE("Bold",1);  
+        LODOP.SET_PRINT_PAGESIZE(3,"260px","10px",""); 
+        LODOP.SET_PRINT_COPIES(2);
+        LODOP.ADD_PRINT_HTM(10,0,500,5000,document.getElementById("form1").innerHTML);  
+    };  
+</script>
+</html>

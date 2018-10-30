@@ -1,0 +1,76 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>诚兑城商城管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <meta name="keywords" content="Flat Dark Web Login Form Responsive Templates, Iphone Widget Template, Smartphone login forms,Login form, Widget Template, Responsive Templates, a Ipad 404 Templates, Flat Responsive Templates" />
+    <link href="__PUBLIC__/css/login2.css" rel='stylesheet' type='text/css' />
+    <link href="__PUBLIC__/css/boot.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery.min.js"></script>
+    <!--<script src="js/login.js"></script>-->
+</head>
+    <body style="background:#006666;">
+ <form method="post" action="__URL__/login_yanzheng" id="form" onSubmit="return confirm();">
+    <!--SIGN UP-->
+
+    <div class="logo">
+
+        <img class="logo5" src="__PUBLIC__/images/logo-01.png" />
+        <!--<img src="../images/logo4.png" class="logo4" />-->
+    </div>
+    <div class="tu">
+        <div class="box">
+            <div class="box2">
+                <span> 用户名 </span>
+                <input class="Text1" type="text" value="" style="color:#808080" name="username"/>
+                <span>
+                    密码
+                </span>
+                <input class="Text1" type="password" value="" style="color:#808080" name="password"/>
+                <input class="btn btn-primary" type="submit" value="登录" style="width:310px;margin-top: 50px"/>
+                <!--<a href='__URL__/register'><input class="Button3" type="button" value="注册"/></a>-->   
+            </div>
+        </div>
+      
+        </div>
+<!--        <div class="copy-rights">
+            <p>版权所有：诚兑城技术团队</p>
+        </div>-->
+ </form>
+    <script>
+         function confirm(){
+            var result=false;
+            if($("input[name='username']").val()==""){
+                alert("请输入账号用户名!");
+                return false;
+            }
+            if($("input[name=password]").val()==""){
+                alert("请输入登录密码!");
+                return false;
+            }else{
+                var username = $("input[name='username']").val();
+                var password = $("input[name=password]").val();
+                $.ajax({
+                    async:false,
+                    type:"post",
+                    url:"__URL__/loginVerificationAjax",
+                    dataType: "text",
+                    data:{user:username,pass:password},
+                    success:
+                    function(data){
+                        if(data == 0){
+                            alert("账号密码错误！请重新输入！");
+                            result=false;
+                        }else if(data == 1){
+                            result=true;
+                        }
+                    }
+                })
+            }
+            return result;
+        }
+    </script>
+    </body>
+</html>

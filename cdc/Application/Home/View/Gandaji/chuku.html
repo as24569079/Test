@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>出库申请</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="__PUBLIC__/css/tongji.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script src="__PUBLIC__/js/bianse.js"></script>
+    <script src="__PUBLIC__/js/jquery.table2excel.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/boot.css"/>
+    <style>
+        tr td{
+            width:150px;
+            word-break : break-all;
+        }
+    </style>
+    </head>
+    <body>
+         <div style="width: 100%">
+            <a  class="btn btn-primary" href="__URL__/add_chuku" target="main" style="margin:10px;">申请出库</a>
+        </div>
+        <table  cellpadding="0" style="text-align: center">
+               <tr class="neirong ">
+                    <td>序号</td>
+                    <td>商品名称</td>
+                    <td>商品条码</td>
+                    <td>数量</td>
+                    <td>旗舰店</td>
+                    <td>申请时间</td>
+                    <td>申请人</td>
+                    <td>所属商城</td>  
+                    <td>备注</td>  
+                    <td>状态</td>  
+                    <td>操作</td> 
+                </tr>
+                
+                    <volist name="arr" id="val">
+                        <tr class="neirong">
+                        <td>{$val.xuhao}</td>
+                        <td>{$val.item_name}</td>
+                        <td>{$val.bar_code}</td>
+                        <td>{$val.number}</td>
+                        <td>{$val.shop_name}</td>
+                        <td>{$val.sq_time}</td>
+                        <td>{$val.sqren}</td>
+                        <td>{$val.mall_name}</td>
+                        <td>{$val.beizhu}</td>
+                        <if condition="$val.status eq 0">
+                            <td><input type="button" value="申请" class="sq btn btn-primary" data-id="{$val.chuku_id}" ></td>
+                            <elseif condition="$val.status eq 1"/>
+                            <td>申请中</td>
+                            <elseif condition="$val.status eq 2"/>
+                            <td>通过</td>
+                            <elseif condition="$val.status eq 3"/>
+                            <td>未通过</td>
+                        </if>
+                        <td><if condition="$val.status eq 0"><input type="button" value="编辑" class="bianji btn btn-primary" data-id="{$val.chuku_id}"></if></td>
+                        </tr>
+                    </volist>
+        
+            </table>
+        <div class="fena">
+            {$show}
+        </div>
+        <script>
+            $(function(){
+                $(".sq").click(function(){
+                    var id = $(this).attr("data-id");
+                    if(confirm('确认发送申请,申请后不可编辑')){
+                    $.post("__URL__/sq_chuku",{"id":id},function(data){
+                        if(data==1){
+                            alert("出货申请，已发送");
+                            location.reload();
+                        } else{
+                            alert("系统忙，请稍后");
+                        }
+                    })
+                    }
+                })
+                
+                $(".bianji").click(function(){
+                    var chuku_id = $(this).attr("data-id");
+                    window.location.href="chuku_bianji/id/"+chuku_id;
+                })
+            })
+        </script>
+    </body>
+</html>

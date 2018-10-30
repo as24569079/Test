@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="__PUBLIC__/css/tongji.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script src="__PUBLIC__/js/bianse.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/boot.css"/>
+</head>
+<body>
+
+    <div>
+        <div style="margin-bottom: 10px">
+            <br>
+            <form action="__URL__/xj_shop_cookie" method="post">
+                请输入选择商城:<select  name="mall_id" style="margin-bottom: 0px">
+                    <if condition="$Think.cookie.mall_ids neq ''">
+                       <option value="{$Think.cookie.mall_ids}">{$Think.cookie.mall_names}</option><else />
+                    <option value="0">请选择</option></if>
+                    <volist name="item" id="val">
+                       
+                        <option value="{$val.mall_id}">{$val.mall_name}</option>
+                    </volist>
+                            </select>　　
+                请输入商品名称:<input type="text" name="item_name" id="item_name" style="margin-bottom: 0px;width:150px" value="{$Think.cookie.item_names}">
+                请输入商品条形码:<input type="text" name="bar_code" id="bar_code" style="margin-bottom: 0px;width:150px" value="{$Think.cookie.bar_codes}">
+                　　<input type="submit" value="搜索" class="btn btn-primary">　　<a href="__URL__/xj_shop_cookieD"><input type="button" value="显示全部" class="btn btn-primary"></a>
+            </form>
+            </div>
+        
+            <table id="neirong" cellspacing='0'>
+                <tr class="neirong">
+                    <td>序号</td>
+                    <td>商品名称</td>
+                    <td>商品图片</td>
+                    <!--<td>商品类别</td>-->
+                    <td>所属商城</td>
+                    <td>电子币</td>
+                    <td>积分</td>
+                    <td>库存</td>
+                     <td>销量</td>
+                    <td>销量金额</td>
+                    <!--<td>库存添加</td>-->
+                    <td>编辑</td>
+                    <td>上架</td>
+                </tr>
+                <volist name='arr' id='val' key="k">
+                <tr class="neirong">
+                    <td>{:(I('get.p'))?((I('get.p')-1)*10+$k):($k)}</td>
+                    <td>{$val.item_name}</td>
+                    <td><img src="{$val.img_url}"></td>
+                    <!--<td>{$val.category_name}</td>-->
+                    <td>{$val.mall_name}</td>
+                    <td>{$val.eMoney}</td>
+                    <td>{$val.sMoney}</td>
+                    <td>{$val.number}</td>
+                     <td>{$val.rale}</td>
+                <if condition='$val.mall_id eq 1'>
+                    <td>{$val['rale']*$val['sMoney']}</td>
+                    <elseif condition='$val.mall_id eq 2 || $val.mall_id eq 3'/>
+                    <td>{$val['rale']*$val['eMoney']}</td>
+                    <else/>
+                    <td>{$val['rale']*($val['eMoney']+$val['sMoney'])}</td>
+                </if>
+                    <!--<td>-->
+                        <!--<input type='button' value='添加库存' class='inventory' data-item_id="{$val.item_id}">-->
+                    <!--</td>-->
+                    <td>
+                        <a href="__URL__/shops_update?item_id={$val.item_id}" target="main"><input type='button' value='编辑' class='sup_del btn btn-primary' data-id='{$val.supplier_id}'></a>
+                    </td>
+                    <td><input type='button' value='上架' class='sup_dels btn btn-primary' data-id="{$val.item_id}"></td>
+                </tr>
+                </volist>
+            </table>
+            <div class="fena">
+            {$show}
+            </div>
+            <div style="width: 550px; height:150px; position: absolute; z-index: 10000; display: block; overflow: hidden; top: 225px; left: 350px; border:1px  solid red; background:#FFF;display: block; border-radius: 5px;display: none" id="address_people">
+              
+               
+          	<div style="margin:40px 20px">
+                    <div>    <form method="post"  action="__URL__/shop_inventory" onsubmit="return sub()">
+                <span><span style="color:red">&nbsp;&nbsp;&nbsp;&nbsp;*</span>请输入购入数量：</span>
+                <input type="text" style="width:100px; height:20px;" id="item_number" name="item_number" maxlength="5"><span id="item_stop"></span>
+                    <input type="hidden" id="item_id" name="item_id"><br><br>
+                    　　　　<input type="submit" style="width:200px; height:20px;" value="确认">
+                    <input type="button" value="x" style="left: 500px;top: 20px; position: absolute; "id="address_d">
+                    </form>
+                </div>                  
+            </div>
+             
+          </div>
+        </div>
+    </div>
+ 
+</body>
+<script>
+    function sub(){
+        if($("#item_number").val()==""){
+            $("#item_stop").text(" 请输入数量！")
+            return false;
+        }else if(isNaN($("#item_number").val())){
+             $("#item_stop").text(" 请输入正确格式！")
+             return false;
+        }
+        
+    }
+    $(document).ready(function () {
+        $(".inventory").click(function(){
+             $("#address_people").fadeIn(1000);
+             $("#item_id").val($(this).attr("data-item_id"));
+            
+        })
+        $("#address_d").click(function(){
+             $("#address_people").fadeOut(1000);
+            
+        })
+        $(".sup_dels").click(function(){
+            if(confirm("确定要上架吗？"))
+            {
+                var id = $(this).attr("data-id");
+               $.post("__URL__/shop_shang",{item_id:id},function(res){
+                   if(res==1){
+                       location.reload();
+                   }else{
+                       alert("上架失败");
+                   }
+               })
+            }else{
+                
+            }
+            
+        })
+    })
+    
+    
+    </script>
+</html>

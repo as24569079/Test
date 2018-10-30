@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html><head>
+       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="__PUBLIC__/css2/bootstrap.min.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/css2/jquery.jOrgChart.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/css2/custom.css"/>
+    <link href="__PUBLIC__/css2/prettify.css" type="text/css" rel="stylesheet" />
+
+    
+    
+    <!-- jQuery includes -->
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>    
+    <script type="text/javascript" src="__PUBLIC__/jq/prettify.js"></script>
+    <script src="__PUBLIC__/jq/jquery.jOrgChart.js"></script>
+
+    <script>
+    jQuery(document).ready(function() {
+        $("#org").jOrgChart({
+            chartElement : '#chart',
+            dragAndDrop  : true
+        });
+    });
+    </script>
+    <style>
+        .node{position: relative;}
+        .xuan{position: absolute;top:50px;left:100px;width:150px;height:auto;border:1px solid #ccc;z-index: 9999999999999999999;background:#FFF}
+    </style>
+  </head>
+
+  <body onload="prettyPrint();">
+    
+    <ul id="org" style="display:none">
+    <volist name="user" id="user">       
+    <li data-id='{$user.crdentials_id}' data-biao='{$user.biaoshi}' data-tid="">
+        {$user.zizhanghu}<br>
+        {$user.real_name}({$user.goods_id})<br>
+        资质数:{$user.count}<br>
+        团队营业额:{$user.yingyee}
+       <ul class='cha'>
+       </ul>
+     </li>
+    </volist>
+    </ul>
+    <div id="chart" class="orgChart"></div>
+    
+    <script>
+        jQuery(document).ready(function() {
+          var bian = 0;
+            var liang;
+            
+            $('#list-html').text($('#org').html());
+            
+            $("#org").bind("DOMSubtreeModified", function() {
+                $('#list-html').text('');
+                
+                $('#list-html').text($('#org').html());
+                
+                prettyPrint();                
+            });
+            function yzm(){
+                var arr = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9'];
+                var str = '';
+                for(var i = 0 ; i < 10 ; i ++ )
+                    str += ''+arr[Math.floor(Math.random() * arr.length)];
+                return str;
+            }
+            var liang = new Array;
+            $(".node").live("click",function(){  
+                var id = $(this).attr("data-id");
+                var div_this = $(this);
+                var ex = 0;
+                for(var i=0;i<liang.length;i++){
+                    if(liang[i]==$(this).attr("data-id")){
+                        ex = 1;
+                        $(this).parent().parent(".node-cells").siblings(".wodege").remove();
+                        var li = $(".cha li");
+                        for(var a=0;a<li.length;a++){
+                            if(li.eq(a).attr("data-tid")==id){
+                                li.eq(a).remove();
+                            }
+                        }
+                        liang.splice($.inArray(id,liang),1);
+                        if($(this).attr("data-tid")==""){
+                            window.close();
+                        }
+                    }
+                }
+                if(ex == 0 ){
+                 $.post("__URL__/ajax_tree",{id:id},function(res){
+                     var html = "";
+//                     alert(res);
+                     eval("var obj= " + res);
+                     if(!obj){
+                         alert("此账户无子账户");
+                     }else{
+                        for(var i=0;i<obj.length;i++){
+                            html += "<li data-id='"+obj[i]['crdentials_id']+"' data-biao='"+obj[i]['biaoshi']+"' data-tid = '"+id+"' id='"+obj[i]['crdentials_id']+"'>";
+                            html += obj[i]['zizhanghu'];
+                            html += "<br>";
+                            html += obj[i]['real_name'];
+                            html += "(";
+                            html += obj[i]['goods_id'];
+                            html += ")<br>";
+                            html += "资质数:"+ obj[i]['count']+"<br>";
+                            html += "团队营业额:"+obj[i]['yingyee'];
+                            html += "<ul class='"+obj[i]['crdentials_id']+"'>";
+                            html += "</ul>";
+                            html += "</li>";
+                        }
+                        if(bian==0){
+                            $(".cha").append(html);
+                            bian++;
+                        }else{
+                            $("."+div_this.attr("data-id")+"").append(html);
+                        }
+                        liang.push(div_this.attr("data-id"));
+                        $(".jOrgChart").remove();
+                        $("#org").jOrgChart({
+                               chartElement : '#chart',
+                               dragAndDrop  : true
+                        });
+                    }
+                 },"text")
+                }
+            })
+            $("#fanhui").click(function(){
+                window.location.href='tree_sel';
+            })
+            
+            $(".node").live("mouseenter",function(){
+                var html = "";
+                var zong = 0;
+                var id = $(this).attr("data-id");
+                var node_this = $(this);
+                $.post("__URL__/tree_data_ajax",{id:id},function(res){
+                    eval("var obj="+res);
+                    html += "<div class='xuan'>";
+                    html += "<span>本月新增资质数为:";
+                    html += obj.benyue;
+                    html += "<br>";
+                    html += "上月新增资质数为:";
+                    html += obj.shangyue;
+                    html += "<br>";
+                    html += "本月比上月多增了";
+                    if((obj.benyue-obj.shangyue)<0){
+                        zong = 0;
+                    }else{
+                        zong = obj.benyue - obj.shangyue;
+                    }
+                    html += zong;
+                    html += "个资质";
+                    html +="</span>";
+                    html += "</div>";
+                    node_this.append(html);
+                },"text")
+                
+            }).live("mouseleave",function(){
+                $(this).children(".xuan").remove();
+            })
+            $("#fanhui").click(function(){
+                window.location.href='__URL__/tree_sel';
+            })
+        });
+    </script>
+
+</body>
+</html>

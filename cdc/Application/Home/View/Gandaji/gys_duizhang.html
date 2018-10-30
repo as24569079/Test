@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="__PUBLIC__/css/tongji.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script src="__PUBLIC__/js/bianse.js"></script>
+    <script src="__PUBLIC__/js/jquery.table2excel.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/boot.css"/>
+</head>
+<body>
+
+    <form method="post" id='form'>
+    <div>
+      
+         <div style="margin-bottom: 10px">
+            <br>
+            
+           
+                请选择旗舰店:<select  name="qijd" style="margin-bottom: 0px">
+                    
+                    <option value="ad">请选择</option></if>
+                    <volist name="qd" id="val">
+                      
+                        <option value="{$val.shop_id}">{$val.shop_name}</option>
+                     
+                    </volist>
+                            </select>　
+<!--                            动作:<select name="dz" style="width:100px">
+                                <option value="5">请选择</option>
+                                <option value="0">入库</option>
+                                <option value="1">退货</option>
+                                <option value="2">线上</option>
+                                <option value="3">线下</option>
+                                <option value="4">出货</option>
+                            </select>-->
+                             所属商城:<select name="sc" style="width:100px">
+                                <option value="sc">请选择</option>
+                                <volist name="shangcheng" id="val">
+                                    
+                                    <option value="{$val.mall_id}">{$val.mall_name}</option>
+                                </volist>   
+                            </select>
+                            请输入商品名称:<input type="text" name="item_name" id="item_name" style="margin-bottom: 0px;width:150px" >
+                            请输入条形码:<input type="text" name="bar_code" id="bar_code" style="margin-bottom: 0px;width:210px"><br><br>
+                            请选择时间:<input type="date" name="times" id="times" style="margin-bottom: 0px;width:150px">-<input type="date" name="timess" id="timess" style="margin-bottom: 0px;width:150px">
+                　　<input type="button" value="搜索" id="sousuo" class="btn btn-primary">　　<input type="button" value="显示全部" id="qb" class="btn btn-primary">　　<input type="button" value="导出明细表" id="btn" class="btn btn-primary">
+            
+            </div>
+       
+        <div id="table">
+<!--            <div style="background:orange; width:100px; float:left;text-align:center; border-radius:5px"><a href="__URL__/addgongying">新增供应商</a></div>-->
+            <div style="width:400px; float:right; background:#eae1e1; border-radius:5px; text-align:center">
+            </div>
+            <table id="neirong" cellspacing='0'>
+                <tr class="neirong ">
+                    <td>序号</td>
+                    <td>品牌名字</td>
+                    <td>商品名称</td>
+                    <td>商品条码</td>
+                    <!--<td>动作</td>-->
+                    <!--<td>商品图片</td>-->
+                    <!--<td>商品类别</td>-->
+<!--                    <td>库存</td>
+                    <td>售出</td>-->
+                    <td>进货数量</td>
+                    <td>旗舰店</td>
+                    <td>购入时间</td>
+                    <!--<td>实际数量</td>-->
+                    <!--<td>-->
+                    <!--<td>操作用户</td>-->
+                    <td>所属商城</td>
+                    <td>供货商价格</td>
+                   
+                </tr>
+                <volist name='arr' id='val' key="k">
+                <tr class="neirong trr">
+                    <td>{$val.xuhao}</td>
+                    <td>{$val.brand_name}</td>
+                     <td>{$val.item_name}</td>
+                     <td>{$val.bar_code}</td>
+                    <!--<td><img src="{$val.img_url}"></td>-->
+                    <!--<td>{$val.category_name}</td>-->
+                    <!--<td>{$val.mall_name}</td>-->
+                    <td>{$val.inventory_new}</td>
+                    <td>{$val.shop_name}</td>
+                    <!--<td>{$val[inventory]-$val[number]}</td>-->
+                    <td>{$val.created_date}</td>
+                    <td>{$val.mall_name}</td>
+                    <td>{$val.gh_money}</td>
+                </tr>
+                </volist>
+            </table>
+           <div class="fena">
+            {$show}
+        </div>
+           
+        </div>
+        <div id="sstable" style="display: none">
+            <table  cellspacing='0' id="seach">
+                <tr class="neirong">
+                     <td>序号</td>
+                    <td>品牌名字</td>
+                    <td>商品名称</td>
+                    <td>商品条码</td>
+                    <!--<td>动作</td>-->
+                    <!--<td>商品图片</td>-->
+                    <!--<td>商品类别</td>-->
+<!--                    <td>库存</td>
+                    <td>售出</td>-->
+                    <td>进货数量</td>
+                    <td>旗舰店</td>
+                    <td>购入时间</td>
+                    <!--<td>实际数量</td>-->
+                    <!--<td>-->
+                    <!--<td>操作用户</td>-->
+                    <td>所属商城</td>
+                    <td>供货商价格</td>
+                </tr>
+                 <volist name='arrr' id='val' key="k">
+                <tr class="neirong trr">
+                 <td>{$val.xuhao}</td>
+                    <td>{$val.brand_name}</td>
+                     <td>{$val.item_name}</td>
+                     <td>{$val.bar_code}</td>
+                    <!--<td><img src="{$val.img_url}"></td>-->
+                    <!--<td>{$val.category_name}</td>-->
+                    <!--<td>{$val.mall_name}</td>-->
+                    <td>{$val.inventory_new}</td>
+                    <td>{$val.shop_name}</td>
+                    <!--<td>{$val[inventory]-$val[number]}</td>-->
+                    <td>{$val.created_date}</td>
+                    <td>{$val.mall_name}</td>
+                    <td>{$val.gh_money}</td>
+                </tr>
+                </volist>
+            </table>
+        </div>
+    </div>
+    </form>
+    <p id="p"></p>
+    <script>
+        $(function(){  
+            $("#sousuo").click(function(){
+                $("#table").html("<img src='/Public/images/wait.gif' style='margin-top:200px;margin-left:450px'>");
+                 $(".ssre").remove();
+                 $(".trr ").remove();
+                var qjd = $("[name='qijd'] option:selected").val();
+                var item_name = $("#item_name").val();
+                var bar_code = $("#bar_code").val();
+                var sc = $("[name='sc'] option:selected").val();
+                var times = $("#times").val();
+                var timess = $("#timess").val();
+                 $.post("__URL__/seach_kcc",{"qjd":qjd,"name":item_name,"code":bar_code,"sc":sc,"times":times,"timess":timess},function(data){
+                     $("#table").hide();
+                     if (data) {
+                    eval("var obj ="+data);
+                    $("#table").hide();
+                    $("#sstable").show();
+                     for(var i =0; i<obj.length;i++){
+                        
+                         
+                         var html = '';
+                             html  += '<tr class="neirong ssre">';
+                             html += '<td>'+(i*1+1)+'</td>';
+                             html += '<td>'+obj[i].brand_name+'</td>';
+                             html += '<td>'+obj[i].name+'</td>';
+                             html += '<td>'+obj[i].code+'</td>';
+                             html += '<td>'+obj[i].inventory_new+'</td>';
+                             html += '<td>'+obj[i].qjdname+'</td>';
+                             html += '<td>'+obj[i].created_date+'</td>';
+                             html += '<td>'+obj[i].scname+'</td>';
+                             html += '<td>'+obj[i].gh_money+'</td>';
+                             html += '</tr>';
+                           
+//                             $("#neirong").append(html);
+                             $("#seach").append(html);
+                            
+                     }
+//                        $("#table").hide();
+//                       $("#sstable").show();
+                   } else {
+                       alert("没有找到相关的商品");
+                   } 
+                 });
+                
+            });
+            $("#qb").click(function(){ 
+                $("[name='qijd']").val('ad');
+                $("#item_name").val('');
+                $("#bar_code").val('');
+                $("#times").val('');
+                $("#timess").val('');
+                $("#sstable").hide();
+                $("#table").show();
+                window.location.href="__URL__/gys_duizhang";
+               
+            })
+        })
+    </script>
+   
+        <script>
+           $(function() {
+               var myDate = new Date();    
+			$("#btn").click(function(){
+				$("#seach").table2excel({
+					exclude: ".noExl",
+					name: "Excel Document Name",
+					filename: myDate.toLocaleDateString(),
+//					exclude_img: true,
+//					exclude_links: true,
+//					exclude_inputs: true
+				});
+			});
+                        
+			
+		});
+        </script>
+</body>
+</html>

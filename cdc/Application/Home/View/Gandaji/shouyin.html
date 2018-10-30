@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8>
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/shouyin.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/shouyin-you.css">
+<script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+<script src="__PUBLIC__/js/shouyin.js"></script>
+<style>
+    html{
+        font-family: "微软雅黑";
+    }
+</style>
+</head>
+
+<body>
+<div>
+    <div class="childen" style='width:450px'>
+        <div>
+            <label><span>商品分类：</span></label>
+            <span class="sp_qian"></span>
+            <!--<span class="sp_hou">111111111</span>-->
+        </div>
+        <div>
+            <label><span>商品名称：</span></label>
+            <input class="name" type="text" value="" placeholder="直接输入开始销售" id="itemname"></input>
+        </div>
+        <div>
+            <label><span>商品单价：</span></label>
+            <span class="price"></span><span></span>
+        </div>
+<!--        <div>
+            <span class="price2">111111111</span><span>(购物币价格)</span>
+        </div>-->
+        <div>
+            <label><span>规　　格：</span></label>
+            <span class="Specifications"></span>
+        </div>
+        <div>
+            <label><span>库　　存：</span></label>
+            <span class="Stock"></span>
+        </div>
+<!--        <div>
+            <label><span>商品总价：</span></label>
+            <span class="total"></span>
+        </div>-->
+<!--        <div>
+            <label><span>实收金额：</span></label>
+              <span class="account"></span>
+        </div>-->
+        <div>
+            <label><span>备注信息：</span></label>
+            
+            <textarea id="remark" style="" maxlength="100"></textarea>
+        </div>
+    </div>
+    <div class="childen">
+         <div class="itemlist">
+             <volist name='item' id='val'>
+            <div class="item" data-id="{$val.item_id}">
+                <div class="itemimg">
+                    <img src="{$val.img_url}">
+                </div>
+                <div class="iteminfo">
+                    <div class="upinfo">{$val.item_name}</div>
+                    <div class="downinfo">
+                        <div class="subitem">
+                            <span class="left">电子币：</span>
+                            <span class="right emoney_price">{$val.eMoney}</span>
+                            <span>元</span>
+                        </div>
+                        <div class="subitem">
+                            <span class="left">积分：</span>
+                            <span class="right smoney_price">{$val.sMoney}</span>
+                            <span></span>
+                        </div>
+                        <div class="subitem">
+                            <span class="left">数量：</span>
+                            <span class="right txt-orange quantity">{$val.quantity}</span>
+                        </div>
+                        <div class="subitem">
+                            <span class="left">小计：</span>
+                            <span class="right txt-orange count">{$val[eMoney]+$val[sMoney]}</span>
+                            <span>元</span>
+                        </div>
+                        <input type='hidden' value='{$val.eMoney}' class='zj_emoney'>
+                        <input type='hidden' value='{$val.sMoney}' class='zj_smoney'>
+                    </div>
+                </div>
+                <div class="itemopt">
+                    <span class="add bg-black">+</span>
+                    <span class="reduce bg-black">-</span>
+                    <span class="delete bg-red">×</span>
+                </div>
+            </div>
+             </volist>
+         </div>
+         
+         <div class="tongji">
+            <div class="quantit">
+                <span>共</span>
+                <span  class="itemCount">1</span>
+                <span>种商品</span>               
+                <!--，数量-->
+                <!--<span class="quantitCount">1</span>-->
+            </div>
+            <div class="heji"><span>合计：</span>电子币：<span>￥</span><span class="txt-orange emoney_total"></span>积分：<span></span><span class="txt-orange smoney_total"></span></div>
+            <div><button style='background: #08c;cursor: pointer;color:#fff;border:0px' class='jiezhang'>结账</button></div>
+            <input type="hidden" class="emoney_heji" value="0">
+            <input type="hidden" class="smoney_heji" value="0">
+        </div>
+    </div>
+</div>
+    <script>
+        $(function(){
+            $("#itemname").focus();
+            var e = $(".zj_emoney");
+            var s = $(".zj_smoney");
+            var e_num = 0;
+            var s_num = 0;
+            for(var i=0;i<e.length;i++){
+                e_num += e.eq(i).val()*1;
+                s_num += s.eq(i).val()*1;
+            }
+            $(".emoney_total").html(e_num);
+            $(".smoney_total").html(s_num);
+            $(".emoney_heji").val(e_num);
+            $(".smoney_heji").val(s_num);
+        })
+        
+//    $(".jiezhang").click(function () {
+//         var item_id='';
+//            $(".item").each(function(){       
+//                    item_id+= $(this).attr("data-id")+",";
+//                
+//         });   
+//     
+//          var quantity='';
+//          $(".quantity").each(function(){       
+//                    quantity+= $(this).text()+",";
+//                
+//
+//         });   
+//         var data={
+//             item_id:item_id,
+//             quantity:quantity,
+//         };
+//         
+//         $.ajax({
+//		url: "shouyin_cookie",
+//		type: "post",
+//		data: JSON.stringify(data),
+//		contentType: "application/json; charset=UTF-8",
+//		success: function (res) {
+//                      if(res==1){
+//                          window.location.href="shouyin_user";
+//                      }
+//                }
+//            })
+//    }); 	
+    </script>
+</body>
+</html>

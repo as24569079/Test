@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="__PUBLIC__/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    </head>
+    <body style="margin-left:10px">
+        <form method="post" action="__URL__/manager_add" id='form'>
+         <div class='group' style="width: 50%;float:left">
+            <div class="form-group" style="margin: 0">&nbsp;</div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">请输入招商经理姓名</label>
+                <input type="text" class="form-control" id="tel" style="width:50%;" maxlength="11" name="manager_name" data-kai="off">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">请输入招商经理电话</label>
+                <input type="text" class="form-control" id="name" style="width:50%;" maxlength="11" name="tel" data-kai="off">
+            </div>
+            <div class="form-group" id='tel_tishi' style='color:red'></div>
+<!--            <div class="form-group">
+                <label for="exampleInputEmail1">选择旗舰店</label>
+                <select id="sel" name="shop" class="form-control" style="width:50%;">
+                    <option value="0">请选择</option>
+                    <volist name="flagship" id="val">
+                        <option value="{$val.shop_id}">{$val.shop_name}</option>
+                    </volist>
+                </select>
+            </div>-->
+            <input type='hidden' id='tel_code' value='false'>
+            <input type='submit' value='新增' class='btn btn-primary' style='width:50%'>
+         </div>
+            <br><br>
+            <table class='table table-striped'>
+                <tr>
+                    <th>序号</th>
+                    <th>招商经理姓名</th>
+                    <th>招商经理电话</th>
+                    <th>创建时间</th>
+                    <th>操作</th>
+                </tr>
+                <volist name='shop' id='val' key="k">
+                <tr>
+                    <td>{:(I('get.p'))?((I('get.p')-1)*12+$k):($k)}</td>
+                    <td>{$val.manager_name}</td>
+                    <td>{$val.manager_tel}</td>
+                    <td>{$val.creat_time}</td>
+                    <td><input type="button" value="删除" class="btn btn-primary del" data-id="{$val.manager_id}"></td>
+                </tr>
+                </volist>
+            </table>
+            <div class='form-group'>
+                {$show}
+            </div>
+        </form>
+    <script>
+        $("#form").submit(function(){
+            if($("#tel").val()==""){
+                alert("请输入招商经理姓名!")
+                return false;
+            }
+            if($("#name").val()==""){
+                alert("请输入招商经理电话!");
+                return false;
+            }
+//            if($("#sel").val()=="0"){
+//                alert("请选择旗舰店!");
+//                return false;
+//            }
+        })
+        $(".del").click(function(){
+            var id = $(this).attr("data-id");
+            if(confirm('确定删除吗？')){
+                $.post("__URL__/manager_del",{id:id},function(res){
+                    if(res==1){
+                        alert("删除成功");
+                        location.reload();
+                    }else{
+                        alert("删除失败");
+                    }
+                },"text")
+            }
+
+        })
+    </script>
+        <script type="text/javascript">
+   jQuery(window).load(function() {
+    jQuery("#load").fadeOut(500);
+});
+  </script>
+	<!-- END JAVASCRIPTS -->
+        <div style="position: absolute;display:block;width:100%;top:25%" id="load">
+            <center><img src='/Public/images/wait.gif' style="width:70px;height:70px"></center>
+        </div>
+    </body>
+</html>

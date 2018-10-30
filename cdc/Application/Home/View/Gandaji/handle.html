@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="__PUBLIC__/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script src="__PUBLIC__/jq/handle.js"></script>
+    <style>
+        .op{
+            display: inline;
+        }
+        #em,#em2{
+            color:red;
+        }
+        .color{
+            color:red;
+        }
+        #zongji{
+            font-size:24px;
+        }
+    </style>
+</head>
+<body style="margin-left:10px">
+    <div style="width:100%;background: rgba(0,0,64, 0.6);z-index: 999999;position: absolute;display: none" id="div">
+        <div style="background:#fff;z-index: 10000000;width:20%;margin: auto;margin-top:15%;height:200px;border-radius: 5px;text-align: center;line-height: 200px;color:red;">
+            
+        </div>
+    </div>
+    <form method="post" id='form' action="__URL__/jiazhuang">
+        <div class='group' style="width: 50%;float:left">
+            <div class="form-group" style="margin: 0">&nbsp;</div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">请输入客户手机号码</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" style="width:50%;" maxlength="11" name="tel" data-kai="off">
+            </div>
+            <div class="form-group">
+                <input type="button" value="发送验证码" class="btn btn-primary" style="width:50%" id="send">
+            </div>
+            <div class="form-group" id="user"></div>
+            <div class="form-group">
+                <label for="danhao">请输入合同单号</label>
+                <input type="text" class="form-control" id="danhao" style="width:50%" name="danhao">
+            </div>
+            <div class="form-group" id="select">
+                <label for="select" id="sel_lab" style="display:none">请选择客户签署家装子账户</label>
+            </div>
+            <div class="form-group" id="form1">
+                <div id="xianshi" style="display:none">
+                <span>已享受装修券</span>
+                <em id="em2"></em>
+                <em class="color">.00</em>
+                <span class="color">元</span>
+                <span>需支付主材预存款</span>
+                <em id="em"></em>
+                <em class="color">.00</em>
+                <span class="color">元</span>
+                </div>
+            </div>
+            <div class="hide">
+                <input type="hidden" name="money" id="money">
+                <input type="hidden" name="chaochu" id="input" value="0">
+                <input type="hidden" name="jiancai" id="jiancai">
+                <input type="hidden" name="zongji" id="zong">
+                <input type="hidden" id="yzm">
+                <input type="hidden" id="user_emoney">
+            </div>
+        </div>
+        <div style="width:50%;float:left">
+            <div class="form-group" style="margin: 0">&nbsp;</div>
+            <div class="form-group">
+                <label for="dianzhang">请输入客户经理手机号码</label>
+                <input type="text" class="form-control" id="dianzhang" style="width:50%" maxlength="11" name="dianzhang">
+            </div>
+            <div class="form-group" id="user2"></div>
+            <div class="form-group">
+                <label for="sheji">请输入设计师手机号码</label>
+                <input type="text" class="form-control" id="sheji" style="width:50%" maxlength="11" name="sheji">
+            </div>
+            <div class="form-group" id="user3"></div>
+            <div class="form-group">
+                <label for="number">请输入客户手机验证码</label>
+                <input type="text" maxlength="4" class="form-control" id="number" style="width: 50%">
+            </div>
+            <div class="form-group">
+                <label for="jine">请输入合同金额</label>
+                <input type="number" class="form-control" id="jine" style="width:50%" disabled="disabled" name="jine">
+            </div>
+            <div class="form-group" id="youhui"></div>
+            <div class="form-group" id="chaochu"></div>
+            <div class="form-group" id="jiaona"></div>
+            <div class="form-group" id="shiji"></div>
+<!--            <div class="form-group" id="zongji">
+                <span>总计</span>
+                <em class="color" id="em3">0</em>
+                <em class="color">.00</em><span class="color">元</span>
+            </div>-->
+<!--            <div class="form-group" style="display:none" id="zhifuxiangqing">
+                <span>需支付诚兑城主材预存款</span><em id="emoney" class="color">0</em><em class="color"></em><span class="color">元</span><span>(优先扣除电子币)</span><br>
+                <span>实付诚兑城主材预存款</span><em id="xianjin" class="color">0</em><em class="color"></em><span class="color">元</span>
+            </div>-->
+            <div class="form-group">
+            <input type="submit" value="支付" class="btn btn-primary" style="width:50%"> 
+            </div>
+        </div>
+    </form>
+</body>
+</html>

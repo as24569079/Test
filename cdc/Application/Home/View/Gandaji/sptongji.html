@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="__PUBLIC__/css/tongji.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script src="__PUBLIC__/js/bianse.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/boot.css"/>
+    <script src="__PUBLIC__/js/jquery.table2excel.js"></script>
+</head>
+<body>
+    <div style="width:100%;float:none" id="divBig">
+        <div style="margin-bottom: 10px">
+            <br>
+            <form action="__URL__/mx_cookie" method="post">
+<!--                请输入选择商城:<select  name="mall_id" style="margin-bottom: 0px">
+                    <if condition="$Think.cookie.mall_ids neq ''">
+                       <option value="{$Think.cookie.mall_id}">{$Think.cookie.mall_names}</option><else />
+                    <option value="0">请选择</option></if>
+                    <volist name="item" id="val">
+                       
+                        <option value="{$val.mall_id}">{$val.mall_name}</option>
+                    </volist>
+                            </select>　　-->
+              请选择时间:<input type="date" name="times" id="times" style="margin-bottom: 0px;width:150px" value="{$Think.cookie.time}">-<input type="date" name="timess" id="timess" style="margin-bottom: 0px;width:150px" value="{$Think.cookie.times}">
+              请选择销售方式:<select name="xx">
+                  <if condition="$Think.cookie.xx eq aa || $Think.cookie.xx eq ''">
+                       <option value="aa" selected>请选择</option>
+                  <option value="1">线上</option>
+                  <option value="2">线下</option>
+                  <elseif condition='$Think.cookie.xx eq 1'/>
+                    <option value="aa">请选择</option>
+                  <option value="1" selected>线上</option>
+                  <option value="2">线下</option>
+                  <else/>
+                    <option value="aa" >请选择</option>
+                  <option value="1">线上</option>
+                  <option value="2" selected>线下</option>
+                  </if>
+                 
+              </select>
+                　　<input type="submit" value="搜索" class="btn btn-primary">　　<a href="__URL__/shop_cookiess"><input type="button" value="显示全部" class="btn btn-primary"></a>　　<input type='button' id='daochus' value="导出Exale" class="btn btn-primary">
+            </form>
+            </div>
+        
+            <table id="neirong" cellspacing='0'>
+                  <thead>
+                <tr class="neirong">
+                    <td>序号</td>
+                    <td>商品名称</td>
+                    <td>商品条码</td>
+                    <td>所属商城</td>
+                    <td>电子币</td>
+                    <td>积分</td>
+                    <td>销量</td>
+                    <td>销量金额</td>
+                    <td>销售时间</td>
+                    <td>销售方式</td>
+                    <td>客户名字</td>
+                </tr>
+                <volist name='arr' id='val' key="k">
+                    <!--<if condition="$val.item_name neq undefined">-->
+                <tr class="neirong">
+                    <td>{$val.xuhao}</td>
+                    <td>{$val.item_name}</td>
+                    <td>{$val.bar_code}</td>
+                    <!--<td>{$val.category_name}</td>-->
+                    <td>{$val.mall_name}</td>
+                    <td>{$val.eMoney}</td>
+                    <td>{$val.sMoney}</td>
+                    <td>{$val.quantity}</td>
+                <if condition='$val.mall_id eq 1'>
+                    <td>{$val['quantity']*$val['sMoney']}</td>
+                    <elseif condition='$val.mall_id eq 2 || $val.mall_id eq 3'/>
+                    <td>{$val['quantity']*$val['eMoney']}</td>
+                    <else/>
+                    <td>{$val['quantity']*($val['eMoney']+$val['sMoney'])}</td>
+                </if>
+                <td>{$val.created_date}</td>
+                <if condition="$val.type eq 1">
+                    <td>线上</td>
+                    <else/>
+                    <td>线下</td>
+                </if>
+                <td>{$val.real_name}</td>
+                </tr>
+                    <!--</if>-->
+                </volist>
+            </thead>
+            </table>
+            <div class="fena">
+            {$show}
+            </div>
+            <div style="width: 550px; height:200px; position: absolute; z-index: 10000; display: block; overflow: hidden; top: 225px; left: 350px; border:1px  solid red; background:#FFF;display: block; border-radius: 5px;display: none" id="address_people">
+              
+               
+          	<div style="margin:40px 20px">
+                    <div>    
+                        <!--<form method="post"  action="__URL__/shop_inventory" onsubmit="return sub()">-->
+                        <form id="form">
+                <span><span style="color:red">&nbsp;&nbsp;&nbsp;&nbsp;*</span>请输入购入数量：</span>
+                <input type="text" style="width:100px; height:20px;" id="item_number" name="item_number" maxlength="5"><span id="item_stop"></span>
+                    <input type="hidden" id="item_id" name="item_id"><br><br>
+                <span><span style="color:red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span>请选择旗舰店：</span> 
+                    <select style="width:200px;" name="qjd_id">
+                        <volist name="qjd" id="val">
+                            <option value="{$val.shop_id}">{$val.shop_name}</option>
+                        </volist>
+                    </select><br><br>
+                    　　　　<div style="width:100%;float: left">
+                            <div style="float:left;width:200px">
+                                <input type="button" style="width:150px; height:20px;" value="入库" id="ruku">
+                            </div>
+<!--                             <div style="float:left;width:200px">
+                                <input type="button" style="width:150px; height:20px;" value="退货" id="tuihuo">
+                            </div>-->
+                    </div>
+                    <input type="button" value="x" style="left: 500px;top: 20px; position: absolute; "id="address_d">
+                    <!--</form>-->
+                        </form>
+                </div>                  
+            </div>
+             
+          </div>
+        </div>
+    <div style='display:none'>
+                    <table id="daochu" cellspacing='0'>
+                  <thead>
+                <tr class="neirong">
+                    <td>序号</td>
+                    <td>商品名称</td>
+                    <td>商品条码</td>
+                    <td>所属商城</td>
+                    <td>电子币</td>
+                    <td>积分</td>
+                    <td>销量</td>
+                    <td>销量金额</td>
+                    <td>销售时间</td>
+                    <td>销售方式</td>
+                </tr>
+                <volist name='arrs' id='val' key="k">
+                <tr class="neirong">
+                     <td>{$val.xuhao}</td>
+                    <td>{$val.item_name}</td>
+                    <td>{$val.bar_code}</td>
+                    <!--<td>{$val.category_name}</td>-->
+                    <td>{$val.mall_name}</td>
+                    <td>{$val.eMoney}</td>
+                    <td>{$val.sMoney}</td>
+                    <td>{$val.quantity}</td>
+                <if condition='$val.mall_id eq 1'>
+                    <td>{$val['quantity']*$val['sMoney']}</td>
+                    <elseif condition='$val.mall_id eq 2 || $val.mall_id eq 3'/>
+                    <td>{$val['quantity']*$val['eMoney']}</td>
+                    <else/>
+                    <td>{$val['quantity']*($val['eMoney']+$val['sMoney'])}</td>
+                </if>
+                <td>{$val.created_date}</td>
+                <if condition="$val.type eq 1">
+                    <td>线上</td>
+                    <else/>
+                    <td>线下</td>
+                </if>
+                 <td>{$val.real_name}</td>
+                </tr>
+                </volist>
+            </thead>
+            </table>
+    </div>
+</body>
+ <script>
+    var divBig = document.getElementById("divBig");
+    window.parent.iframe.style.minHeight = divBig.scrollHeight+"px";
+</script>
+<script>
+    function sub(){
+        if($("#item_number").val()==""){
+            $("#item_stop").text(" 请输入数量！")
+            return false;
+        }else if(isNaN($("#item_number").val())){
+             $("#item_stop").text(" 请输入正确格式！")
+             return false;
+        }
+        
+    }
+    $(document).ready(function () {
+        $(".inventory").click(function(){
+             $("#address_people").fadeIn(1000);
+             $("#item_id").val($(this).attr("data-item_id"));
+            
+        })
+        $("#address_d").click(function(){
+             $("#address_people").fadeOut(1000);
+             $("#item_number").val('');
+            
+        })
+        $("#ruku").click(function() {
+             if($("#item_number").val()==""){
+                $("#item_stop").text(" 请输入数量！")
+                return false;
+            }else if(isNaN($("#item_number").val())){
+                 $("#item_stop").text(" 请输入正确格式！")
+                 return false;
+            } else {
+                $.post("__URL__/ruku",$("#form").serialize(),function(data){
+                   
+                    if(data==1) {
+                        alert("入库申请已发送");
+                        $("#address_people").fadeOut(1000);
+                        location.reload();
+                    } else {
+                         alert("系统繁忙，请稍后");
+                    }
+                })
+            }
+        })
+         $("#tuihuo").click(function() {
+             if($("#item_number").val()==""){
+                $("#item_stop").text(" 请输入数量！")
+                return false;
+            }else if(isNaN($("#item_number").val())){
+                 $("#item_stop").text(" 请输入正确格式！")
+                 return false;
+            } else {
+                $.post("__URL__/tuihuo",$("#form").serialize(),function(data){
+                    if(data==1) {
+                       alert("该商品还没有库存，请确认");
+                    } else if(data == 2) {
+                        alert("退货成功");
+                        $("#address_people").fadeOut(1000);
+                        location.reload();
+                    } else if(data== 3) {
+                         alert("系统繁忙，请稍后");
+                    } else if(data==4){
+                        alert("库存没有那么多数量，请核对")
+                    }
+                })
+            }
+        })
+         var myDate = new Date();    
+			$("#daochus").click(function(){
+				$("#daochu").table2excel({
+					exclude: ".noExl",
+					name: "Excel Document Name",
+					filename: myDate.toLocaleDateString(),
+//					exclude_img: true,
+//					exclude_links: true,
+//					exclude_inputs: true
+				});
+			});
+    })
+    
+    
+    </script>
+</html>

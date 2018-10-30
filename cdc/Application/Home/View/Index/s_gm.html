@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+    <link href="__PUBLIC__/css/jquery-confirm.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+
+    <link href="__PUBLIC__/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/mobilemain.css" type="text/css" rel="stylesheet">
+    <link href="__PUBLIC__/css/main.css" type="text/css" rel="stylesheet">
+
+</head>
+<body>
+
+    <div class="container body-content">
+
+        <div class="fanhuian redbutton"><a class="ui-button fleft" href="__URL__/Exchangelist">兑换</a></div>
+        <table class="table">
+            <tbody>
+                <tr class="fir-tr">
+                    <th>兑换积分金额</th>
+                    <th>兑换时间</th>
+                    <th>获得积分</th>
+                    <th>审核状态</th>
+                </tr>
+            <volist name="qian" id="val">
+                <tr style="text-align: center">
+                    <td>{$val.money}</td>
+                    <td>{$val.time}</td>
+                    <td>{$val.jifen}</td>
+                    <td class="tai"></td>
+                    <input type="hidden" value="{$val.zhuangtai}" class="zhuang">
+                </tr>
+            </volist>
+            </tbody>
+        </table>
+        <div class="pagination-container page_new">
+            <div class="pagination-container"><ul class="pagination"><li class="disabled PagedList-skipToPrevious"><a rel="prev">«</a></li><li class="disabled PagedList-skipToNext"><a rel="next">»</a></li></ul></div>
+        </div>
+
+    </div>
+    <script src="__PUBLIC__/js/jquery-1.10.2.js"></script>
+
+<script>
+    window.parent.scrollTo(0, 0);
+    $(document).ready(function(){
+            var zhuang = $(".zhuang");
+            var tai = $(".tai");
+            for(var i=0;i<zhuang.length;i++){
+                if(zhuang.eq(i).val()==0){
+                    tai.eq(i).text("待审核");
+                }else if(zhuang.eq(i).val()==1){
+                    tai.eq(i).text("通过审核");
+                }
+            }
+    })
+</script>
+
+
+</body>
+</html>

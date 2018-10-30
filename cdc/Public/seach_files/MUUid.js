@@ -1,0 +1,1 @@
+M.define("MUUid",function(b){var a=function(c){this.init(c)};M.object.merge(a.prototype,{init:function(c){},run:function(){var c=this;M.require("//st.360buyimg.com/so/js/2016/layout/MIdentification.js",function(){})}});b.clazz=a});

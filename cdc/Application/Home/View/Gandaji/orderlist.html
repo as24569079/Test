@@ -1,0 +1,394 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<span style="font-family:Microsoft YaHei;font-size:12px;"><script type="text/javascript" src="__PUBLIC__/js/LodopFuncs.js"></script>  
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/boot.css"/>
+                    <!--<script type="text/javascript" src="__PUBLIC__/js/LodopFuncs.js"></script>-->  
+<style>
+    .fena >div{
+    text-align: center;height: 30px;
+    line-height: 30px;
+}
+.fena >div> span{
+    width: 50px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+}
+.fena >div> a{
+    width: 50px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+    text-decoration: none;
+}
+.fena >div> li{
+    list-style: none;
+    width: 200px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+    text-decoration: none;
+}
+.fena >div> a:hover{
+    text-decoration: none;
+}
+div{ width:auto; height:100%}
+.paixu{ width:193px; height:30px; float:left; text-align:center; border:1px solid #CCC;line-height: 30px}
+.zhuangtai{ width:400px; height:30px;}
+.xinxi{ width:100%; float:left; background:#E1E1E1; }
+.span{ float:right; width:200px}
+.span2{ margin-left:40px}
+.span3{ float:right; width:200px}
+.span4{ float:right; width:200px}
+.xq{ width:100%; height:50px; float:left; background:#74D5F1}
+</style>
+</head>
+
+<body>
+    <!--<div>-->
+    	
+            <!--<div class="paixu"><span>未处理</span></div>-->
+<!--            <div class="paixu"><span>配送中</span></div>-->
+            <!--<div class="paixu"><span>已完成</span></div>-->
+            <!--<div class="paixu"><span>删除/退款</span></div>-->
+<!--            <div class="paixu"><span>所有订单</span></div>-->
+            <div class="paixu" style='width: 350px'><span style='display: block;'>旗舰店   <select id="select" name="qjd">
+                   <if condition="$Think.cookie.shop_name neq ''"><option value ="{$Think.cookie.shop_id}">{$Think.cookie.shop_name}</option>  <else /></if>
+                    <volist name="shop_id" id="val">
+                  <option value ="{$val.shop_id}">{$val.shop_name}</option>
+                    </volist>
+                </select></span>
+            </div>
+          <a href="__URL__/orderlist_s?orderlistpay_type=1">
+              <div> <if condition="$Think.cookie.type eq '1'"><div class="paixu"style='color:green;border-bottom: 5px greenyellow solid'><span>线上</span></div>
+                  <else /><div class="paixu"><span>线上</span>
+             </div> </if></a>
+            <a href="__URL__/orderlist_s?orderlistpay_type=2"><if condition="$Think.cookie.type eq '2'"><div class="paixu"style='color:green;border-bottom: 5px greenyellow solid'><span>线下</span></div><else /><div class="paixu"><span>线下</span></div></if></a>
+            <a href="__URL__/orderlist_s?orderlist_status=2"><if condition="$Think.cookie.status eq '2'"><div class="paixu"style='color:green;border-bottom: 5px greenyellow solid'><span>未发货</span></div><else /><div class="paixu"><span>未发货</span></div> </if></a>
+            <a href="__URL__/orderlist_s?orderlist_status=3"><if condition="$Think.cookie.status eq '3'"><div class="paixu"style='color:green;border-bottom: 5px greenyellow solid'><span>已发货</span></div><else /><div class="paixu"><span>已发货</span></div> </if></a>
+            
+        <!--</div>-->
+        
+<!--        <div style=" float:left;">
+            <div class="paixu" style="width:500px;margin-top: 10px">
+            	<span>旗舰店：</span>
+                <select>
+                    <volist name="shop_id" id="val">
+                  <option value ="{$val.shop_id}">{$val.shop_name}</option>
+                    </volist>
+                </select>
+            </div>-->
+            
+        <!--</div>-->
+        
+        <volist name="arr" id="val"> 
+            
+        <div style="width:auto; min-height:60px; float:left;" class='position{$val.order_id} stupid' data-order_id='{$val.order_id}'  data-flag="0">
+                <div class="xinxi" style="display:block; margin-top:10px">
+                    <span style="display:block; margin-top:10px">
+                        订单编号：<span>{$val.order_no}　申请时间：{$val.create_date}　<if condition="$val.type eq 2">姓名：{$val.real_name}<else/>收货人姓名:{$val.shouhuo_name}</if>　电话：<if condition="$val.type eq 2">{$val.tel}<else/>{$val.shouhuo_tel}</if>
+                            收货地址：<span><if condition="$val.type eq '2'">线下下单<else />{$val.address_name}</if></span>
+                           </span>
+                        <!--<span class="span">电子币：<span>{$val.emenoy}</span><span>元</span></span>-->
+                            
+                    </span>
+                    
+                </div>
+                <div class="xinxi">
+                    <span style="display:block;margin-top:10px">电子币：<span>{$val.emenoy}</span><span>元</span> 积分：<span>{$val.smenoy}</span><span></span>　  　状态：
+                  
+                        <if condition="$val.tuihuo eq 6">
+                            用户取消订单
+                            <else/>
+                            <switch name="val.shenhe">
+                        
+                                           <case value="">未支付</case>
+                                            <case value="0"><input type="button" class="wifahuo" value="申请发货" data-id="{$val.order_id}" data-type="{$val.type}" class="btn btn-primary"></case>
+                                            <case value="2">已发货　　　　<if condition="$val.type eq 1">快递名称:{$val.express} 快递号:{$val.express_no}</if> </case>
+                                            <case value="4">退款</case>
+                                            <case value="1">审核中</case>
+                                            </switch>
+                        </if>
+                    </span>
+                    
+                    
+                </div>
+                                 <div style="width: 550px; height:200px; position: absolute; z-index: 10000; display: block; overflow: hidden; top: 225px; left: 350px; border:1px  solid red; background:#FFF;display: block; border-radius: 5px;display: none" id="address_people">
+              
+               
+          	<div style="margin:40px 20px">
+                    <div>    <form method="post"  action=""  id="form">
+                             <span><span style="color:red">&nbsp;&nbsp;&nbsp;&nbsp;*</span>请输入快递名称：</span>
+                <input type="text" style="width:250px; height:20px;" id="express" name="express" maxlength="40"><span id="express_no"></span><br><br>
+                <span><span style="color:red">&nbsp;&nbsp;&nbsp;&nbsp;*</span>请输入快递号：</span>
+                <input type="text" style="width:250px; height:20px;" id="number" name="number" maxlength="40"><span id="item_stop"></span>
+                    <input type="hidden" name="flag_id" id="flag_id"><br><br>
+                   <input type="hidden" id="order_id" name="order_id" >
+                   <input type="hidden" id="order_type" name="type" >
+                    　　　　<input type="button" style="width:200px; height:20px;" value="发货" id="fahuo">
+                    <input type="button" value="x" style="left: 500px;top: 20px; position: absolute; "id="address_d">
+                        </form>
+                </div>                  
+            </div>
+             
+          </div>
+        </div>
+        </volist>
+
+        </div>
+            <div class="fena"  style="float:left">{$show}</div>
+            
+                                <div  id="form1" style="display:none;">
+                       <div class="fahuodan">
+                         <div style="width:55mm;">　　 　 发货单　　</div> 
+                         <div style="width:55mm;font-size: 12px">诚兑城天津市友谊路旗舰店</div>
+                         <div style="width:55mm;font-size: 12px" id="danhaoss"></div>
+                                 <div style="width:55mm;font-size: 12px">会员：<span id="vip"></span></div>
+                         
+                            <div style="width:55mm;font-size: 12px">电话：<span id="tel"></span></div>  
+                       
+                                <div style="width:55mm;font-size: 12px;word-break:break-all">地址：<span id="dizhi"></span></div>
+                        
+                       <div>------------------------------</div>
+                       
+                       <div style="display:none" id="chuangye"><div>----------<span style="font-size:12px ">积分商城</span>-------------</div></div>
+                              
+                           
+                              <div style="display:none" id="dazhong"> <div  >----------<span style="font-size:12px ">消费商城</span>-------------</div></div>
+                             
+                             
+                               
+                     
+                                 <div style="display:none" id="nianhuo"><div  >----------<span style="font-size:12px ">年货商城</span>-------------</div></div>
+                                
+                          
+                            
+                       <div>------------------------------</div>
+                      <div style="font-size: 12px" id="timess"></div>
+                         <div>　*******************</div>
+                         <div>　*******************</div>
+                        </div>
+                </div>   
+      
+         
+            
+            
+            
+            
+            
+            
+<script>
+
+	$(document).ready(function () {
+
+            $("#select").change(function(){
+                window.location.href="orderlist_s?shop_id="+$("#select").val();
+//            alert();
+            })
+            
+            
+
+                $(".stupid").click(function () {
+                   // alert($(this).data("flag"));
+                 if($(this).data("flag")=="1")
+                 {   
+                    $(this).find(".fuc").remove();                   
+                    $(this).data("flag","0");
+                    return;
+                 }
+                 else
+                 {
+                    
+                      $(this).data("flag","1");
+                  
+                 }
+                var order_id=$(this).attr("data-order_id");
+                $(".fuc").empty();
+                        $.ajax({
+                                type:"post",
+                                url:"__URL__/orderlist_ajax",
+                                dataType: "text",
+                                data:{value:order_id},
+                                success:
+                                function(data){                                
+                                    var b = "";
+                                    eval("var zhi="+data);
+                                     b+='<div class="fuc" >'+
+                                        '<div class="xq">订单详情('+zhi.length+'件商品)</div>';
+                               
+                                    for(var i=0;i<zhi.length;i++){
+                             b+='<div class="xq"><span>'+zhi[i].item_name+'('+zhi[i].price+')*'+zhi[i].quantity+'</span></div>';
+                                    }
+                                    b+='</div> ';
+                                    $(".position"+zhi[0].order_id).append(b);
+                                }
+                            })             
+                 })  
+                 $("#fahuo").click(function() {
+                      if($("#express").val()==""){
+                        $("#express_no").text(" 请输入快递名称！")
+                        return false;
+                    }
+                    if($("#number").val()==""){
+                        $("#item_stop").text(" 请输入快递号！")
+                        return false;
+                    }
+                    if(isNaN($("#number").val())){
+                         $("#item_stop").text(" 请输入正确格式！")
+                         return false;
+
+                    } else{
+                     $.post("__URL__/orderlist_send",$("#form").serialize(),function(data){
+                                             if(data) {
+                         eval("var obj =" + data);
+                         $("#danhaoss").text(obj[0].order_no);
+                         if(obj[0].real_name){
+                            $("#vip").text(obj[0].real_name);
+                         }else{
+                            $("#vip").text(obj[0].shouhuo_name);
+    
+                         }
+                         if(obj[0].tel){
+                              $("#tel").text(obj[0].tel);
+                         }else{
+                              $("#tel").text(obj[0].shouhuo_tel);
+            
+                         }
+                         if(obj[0].address_name){
+                             $("#dizhi").text(obj[0].address_name);
+                         
+                        }else{
+                               $("#dizhi").text("线下订单");
+                        }
+                         html += '<div>------------------------------</div>';
+                         for(var i =0; i<obj[1].length;i++) {
+                             if(obj[1][i].mall ==1) {
+                                   var html ='';
+                                 html += '<div style="width:55mm; font-size: 12px">';
+                                 html += '<div style="float:left;width:25mm;">'+obj[1][i].item_name+'</div><div style="float:left;width:9mm;">×'+obj[1][i].quantity+'</div><div style="float:right;width:20mm;font-size: 12px">'+(obj[1][i].jia)*1+'</div></div><span style="font-size: 12px">'+obj[1][i].bar_code+'</span>'
+                                 $("#chuangye").append(html);
+                                 $("#chuangye").show();
+                             } else  if(obj[1][i].mall ==2 || obj[1][i].mall ==3) {
+                                var str = '';
+                                 str += '<div style="width:55mm; font-size: 12px">';
+                                 str += '<div style="float:left;width:25mm;">'+obj[1][i].item_name+'</div><div style="float:left;width:9mm;">×'+obj[1][i].quantity+'</div><div style="float:right;width:20mm;font-size: 12px">'+(obj[1][i].jia)*1+'</div></div><span style="font-size: 12px">'+obj[1][i].bar_code+'</span>'
+                                  $("#dazhong").append(str);
+                                  $("#dazhong").show();
+                             } else  if(obj[1][i].mall ==4) {
+                               var strss = '';
+                                 strss += '<div style="width:55mm; font-size: 12px">';
+                                 strss += '<div style="float:left;width:25mm;">'+obj[1][i].item_name+'</div><div style="float:left;width:9mm;">×'+obj[1][i].quantity+'</div><div style="float:right;width:20mm;font-size: 12px">'+(obj[1][i].jia)*1+'</div></div><span style="font-size: 12px">'+obj[1][i].bar_code+'</span>'
+                                  $("#jiancai").append(strss);
+                                  $("#jiancai").show();
+                             }  
+                             
+                         }
+                       $("#timess").append(　'-'+obj[0].time+'-');
+                        prn1_preview();
+                     }
+                     location.reload();
+                     })
+ 
+                    } 
+             })
+                 
+    })
+     var LODOP; //声明为全局变量  
+    // 打印预览  
+    function prn1_preview() {            
+        CreateOneFormPage();      
+//        LODOP.PREVIEW();  
+         LODOP.PRINT();  
+    };  
+    // 直接打印  
+    function prn1_print() {       
+        CreateOneFormPage();  
+        LODOP.PRINT();    
+    };  
+    // 选择打印机  
+    function prn1_printA() {          
+        CreateOneFormPage();  
+        LODOP.PRINTA();       
+    };   
+    // 创建打印页面  
+    function CreateOneFormPage(){  
+        LODOP=getLodop();    
+//        LODOP.PRINT_INIT("打印控件功能演示_Lodop功能_表单一");  
+        LODOP.SET_PRINT_STYLE("FontSize",12);  
+        LODOP.SET_PRINT_STYLE("Bold",1);  
+        LODOP.SET_PRINT_PAGESIZE(3,"280px","10px",""); 
+          LODOP.SET_PRINT_COPIES(2);
+        LODOP.ADD_PRINT_HTM(10,0,500,5000,document.getElementById("form1").innerHTML);  
+    };  
+</script>
+</body>
+<!--    <script>
+        function PrintArticle() {
+                var pc = document.getElementById("<%=PrintContent.ClientID%>");
+                var pw = window.open('', '', 'width=500,height=400');
+                    pw.document.write('<html>');
+                    pw.document.write('<head>');
+                    pw.document.write('<title>打印小票</title>');
+                    pw.document.write('</head>');
+                    pw.document.write('<div>　****XXXXXXX*****</div>');
+                    pw.document.write('<body>');
+                    pw.document.write(pc.innerHTML);
+                    pw.document.write('</body>');
+                    pw.document.write('</html>');
+                    pw.document.close();
+//                setTimeout(function () {
+                    pw.print();
+//                }, 500);
+                return false;
+            }
+        </script>-->
+<script>
+function sub(){
+        if($("#express").val()==""){
+            $("#express_no").text(" 请输入快递名称！")
+            return false;
+        }
+        if($("#number").val()==""){
+            $("#item_stop").text(" 请输入快递号！")
+            return false;
+        }
+        if(isNaN($("#number").val())){
+             $("#item_stop").text(" 请输入正确格式！")
+             return false;
+      
+        }
+    }
+    $(document).ready(function () {
+        $(".wifahuo").click(function(){
+             $("#address_people").fadeIn(1000);
+             $("#item_id").val($(this).attr("data-item_id"));
+    
+             $("#order_id").val($(this).attr("data-id"));
+             $("#order_type").val($(this).attr("data-type"));
+        
+             $("#flag_id").val($("[name='qjd'] option:selected ").val())
+            
+        })
+        $("#address_d").click(function(){
+             $("#address_people").fadeOut(1000);
+            
+        })
+        
+        
+    })
+    
+    </script>
+</html>

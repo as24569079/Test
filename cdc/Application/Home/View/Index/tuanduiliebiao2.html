@@ -1,0 +1,52 @@
+<!--﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="__PUBLIC__/css/jquery-confirm.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/mobilemain.css" type="text/css" rel="stylesheet">
+    <link href="__PUBLIC__/css/main.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+    <div class="container body-content">
+        <div class="shuju">
+            团队人数:<span class="go-up"></span>&nbsp;&nbsp;
+            直属团队人数:<span class="go-up"</span>&nbsp;&nbsp;
+            扩展团队人数:<span class="go-up"> 8</span>&nbsp;&nbsp;
+        </div>
+        <volist name="ding" id="val"></volist>
+        <div class="fanhuian task_r">
+            <a style="padding: 3px 20px;border: 1px solid #24b5e7;background-color: #24b5e7;color:#fff" href="__URL__/tuanduiliebiao2/id/{$val.crdentials_id}">向上</a>
+            <a style="padding: 3px 20px;border: 1px solid #e74c38;background-color: #e74c38;color:#fff" href="__URL__/tuanduiliebiao">返回</a></div>
+        <table class="table">
+            <tbody>
+                <tr class="fir-tr">
+                    <th>单号</th>
+                    <th>名称</th>
+                    <th>合作资质</th>
+                    <th>手机</th>
+                    <th>合同时间</th>
+                </tr>
+                <volist name="ding" id="val">
+                <tr class="sec-tr">
+                    <td><a href="__URL__/tuanduiliebiao/id/{$val.crdentials_id}">{$val.tel}</a></td>
+                    <td>{$val.assessor_id}</td>
+                    <td>{$val.goods_id}</td>
+                    <td>{$val.tel}</td>
+                    <td>{$val.end_date}</td>
+                </tr>
+                </volist>
+            </tbody>
+        </table>
+        <div class="pagination-container page_new">
+            <div class="pagination-container"><ul class="pagination"><li class="disabled PagedList-skipToPrevious"><a rel="prev">«</a></li><li class="active"><a>1</a></li><li class="disabled PagedList-skipToNext"><a rel="next">»</a></li></ul></div>
+        </div>
+    </div>
+    <script src="__PUBLIC__/js/jquery-1.10.2.js"></script>
+    <script>window.parent.scrollTo(0,0);</script>
+</body>
+</html>-->

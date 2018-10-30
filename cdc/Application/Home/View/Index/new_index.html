@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>天津诚兑城电子商务控股有限公司</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="__PUBLIC__/shopping/css/index.css">
+        <script type="text/javascript" src="__PUBLIC__/shopping/js/jquery-1.8.2.min.js"></script> 
+        <script type="text/javascript" src="__PUBLIC__/shopping/jq/index.js"></script>
+        <link rel="shortcut icon" href="__PUBLIC__/images/bitbug_favicon.ico" type="image/x-icon">
+    </head>
+    <body class="root1200">
+        <!--登录条-->
+        <div class="ng-toolbar">
+            <div class="ng-toolbar-con wrapper">
+                <div class="ng-toolbar-left">
+                    <a class="ng-bar-node ng-site-nav-box" href="__URL__/index">
+                        <i class="ng-iconfont ng-backhome"></i>
+                        <span>返回官网首页</span>
+                        <i class="ng-line ng-iconfont ml10"></i>
+                    </a>
+                    <div class="ng-bar-node-box ng-site-nav-box">
+                        <a class="ng-bar-node ng-site-nav-box" href="__URL__/shop_index">
+                        <i class="ng-iconfont ng-backhome"></i>
+                        <span>返回商城首页</span>
+                        <i class="ng-line ng-iconfont ml10"></i>
+                    </a>
+                    </div>
+                </div>
+                <div class="ng-toolbar-right">
+                    <a class="ng-bar-node username-bar-node username-bar-node-showside">
+                        <span></span>
+                        <em class="hasmsg ng-iconfont"></em>
+                    </a>
+                    <if condition='$find neq ""'>
+                    <div class="ng-bar-node-box username-handle"  id="username-node-slide">
+                        <a class="ng-bar-node username-bar-node username-bar-node-noside">
+                            <span id="usernameHtml02">{$find.real_name}</span>
+                            <em class="hasmsg ng-iconfont"></em>
+                            <em class="ng-iconfont down"></em>
+                        </a>
+                        <div class="ng-d-box ng-down-box ng-username-slide" style="display: none" id="guanli">
+                            <a class="ng-vip-union" href="__URL__/member" target="_blank">账号管理</a>
+                            <a href="__URL__/signOut">退出登录</a>
+                        </div>
+                    </div>
+                    <else/>
+                    <div class="ng-bar-node reg-bar-node" id="username-node">
+                        <a class="login" href="__URL__/login">登录</a>
+                        <a class="login reg-bbb" href="__URL__/register" target="_blank">注册</a>
+                    </div>
+                    </if>
+                    <if condition='$find neq ""'>
+<!--                    <div class="ng-bar-node-box myorder-handle">
+                        <a class="ng-bar-node ng-bar-node-fix touch-href ng-bar-node-pr5" href="__URL__/my">
+                            <span>我的订单</span>
+                            <em class="ng-iconfont down"></em>
+                        </a>
+                        <div class="ng-down-box ng-d-box myorder-child" style="display: none">
+                            <a href='__URL__/member#dingdanxiangqing'>未发货</a>
+                            <a>已发货</a>
+                        </div>
+                    </div>-->
+                    </if>
+                    <if condition='$find neq ""'>
+                    <a class="ng-bar-node ng-bar-node-mini-cart" href="__URL__/gouwuchejs">
+                        <span>购物车</span>
+                        <em class="ng-iconfont cart"></em>
+                        <span class="total-num-box">
+                            <b class="total-num J_cart_total_num" style="background:#db0638">{$gouwunum}</b>
+                            <span class="total-num-bg-box">
+                                <em></em>
+                                <i></i>
+                            </span>
+                        </span>
+                    </a>
+                        </if>
+                </div>
+                <div class="ng-minicart-slide-box"></div>
+            </div>
+        </div>
+        <!--头部内容-->
+        <div class="ng-header">
+            <div class="code-maintain">
+                <div class="code-maintain-bg" style="background: #fff"></div>
+            </div>
+            <div class="ng-header-con">
+                <div class="ng-header-box">
+                    <a class="logo-set"  href="__URL__/index">
+                        <img src="__PUBLIC__/images/chengcuicheng.png" width="248" height="74" style="width:248px;height:74px;margin-top:10px">
+                    </a>
+<!--                    <a class="ng-gif-logo">
+                        <img src="__PUBLIC__/shopping/image/giflogo.gif">
+                    </a>-->
+                </div>
+                <div class="ng-search">
+                    <div class="g-search">
+                        <i class="ng-iconfont search-icon"></i>
+                            <div class="search-keyword-box" style="border-color:#db0638">
+                                <input type="text" class="search-keyword" placeholder="请输入查询商品信息" id='sea' autocomplete="off">
+                            </div>
+                        <form id="form" method="post">
+                            <a id="bnt_tiao"><input type="button" class="search-btn" value="搜索" style="background:#db0638;color:#fff"></a>
+                            <input type="hidden" id="ssz">
+                        </form>
+                        <div class="g-ac-results hide" id="sea_jilu" style="height:270px;overflow: hidden">
+                            <ul>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </div>
+                        <script>
+                            $(document).ready(function(event){
+                             $("#bnt_tiao").click(function(){
+                                    var value = $.trim($("#ssz").val());
+//                                    var qb = "所有商品";
+                                    if(value != ""){
+                                        $("#bnt_tiao").attr("href","__URL__/sea/mc/"+value);
+                                    }
+                                })
+                                var last;
+                                var i = 0;
+                                $("#sea").keyup(function(event){
+                                    last = event.timeStamp;
+                                    var value = $.trim($("#sea").val());
+                                    $("#ssz").val(value);
+//                                    setTimeout(function(){ 
+                                        if(last-event.timeStamp==0)
+                                        {
+                                          if(event.which!=40&&event.which!=8&&event.which!=32&&event.which!=38&&event.which!=39&&event.which!=37&&event.which!=13){  
+                                            $("#sea_jilu").show();
+                                            $.ajax({
+                                                type:"post",
+                                                url:"__URL__/seaajax",
+                                                dataType: "text",
+                                                data:"value="+ value,
+                                                success:
+                                                function(data){
+//                                                    alert(data);
+                                                    eval("var obj="+data);
+                                                    if(obj.length>0){
+                                                        for(var i=0;i<obj.length;i++){
+                                                            $("#sea_jilu > ul > li").eq(i).text(obj[i].item_name).attr("data-val",obj[i].item_name);
+                                                        }
+                                                    }
+                                                }
+                                            })
+                                        }
+                                    }
+//                                        },1000);
+                                    if(event.which==8){
+                                           $("#sea_jilu > ul > li").empty().removeAttr("data-val");
+                                           $("#ssz").val("");
+                                           $(".sea_jilu").hide();
+                                    } 
+                                    if(event.which==40){
+                                        var length = $("#sea_jilu > ul > li").length;
+                                        if(i<length){
+                                            $("#sea_jilu > ul > li").eq(i).attr("class","xuanzeyan").siblings().removeAttr("class");
+                                        }
+                                        i++;
+                                        if(i == length){
+                                            i=0;
+                                        }
+                                    }
+                                    if(event.which==38){
+                                        var length = $("#sea_jilu > ul > li").length;
+                                        i--;
+                                        if(i<length){
+                                            $("#sea_jilu > ul > li").eq(i).attr("class","xuanzeyan").siblings().removeAttr("class");
+                                        }
+                                        if(i == 0){
+                                            i = length;
+                                        }
+                                    }
+                                    if(event.which==13){
+                                        $("#sea").val($(".xuanzeyan").text());
+                                        $("#sea_jilu > ul > li").empty().removeAttr("data-val");
+                                        $("#sea_jilu").hide();
+                                        i=0;
+                                    }
+                                })
+                                $("#sea_jilu > ul > li").mouseover(function(){
+                                    $(this).attr("class","xuanzeyan").siblings().removeAttr("class");
+                                }).click(function(){
+                                    var val = $(this).attr("data-val");
+                                    $("#sea").val(val);
+                                    $("#ssz").val(val);
+                                    $("#sea_jilu > ul > li").empty().removeAttr("data-val");
+                                    $("#sea_jilu").hide();
+                                })
+                                $("#sea_jilu").mouseleave(function(){
+                                    $("#sea_jilu > ul > li").empty().removeAttr("data-val");
+                                    $("#sea_jilu").hide();
+                                })
+                            })
+                        </script>
+                        <div class="g-rec-results hide"></div>
+                    </div>
+                </div>
+                <div class="index-head-active"></div>
+            </div>
+        </div>
+        <!--导航-->
+        <div class="ng-nav-bar">
+            <div class="ng-sort ng-sort-index">
+                <a class="ng-all-hook">
+                    <span>全部商品分类</span>
+                    <span class="angle"></span>
+                </a>
+                <div class="ng-sort-list-box">
+                    <ul class="sort-list">
+                        <volist name="ren" id="vel">
+                            <li>
+                            <volist name="vel.parent" id="va">
+                                
+                                        <a href="__URL__/business_shop?category_id={$va.category_id}&id={$getid}">{$va.category_name}</a>
+                                        <!--<span></span>-->
+                            </volist>
+                                </li>
+                        </volist>
+                        <div class="clear"></div>
+                    </ul>
+                    <div class="ng-sort-detail">
+                        <div class="sort-btn">
+                            <a></a>
+                            <a></a>
+                            <a></a>
+                            <a></a>
+                            <a></a>
+                            <a></a>
+                            <a></a>
+                        </div>
+                        <div class="cate-list">
+                            <dl>
+                                <dt>
+                                    <a></a>
+                                </dt>
+                                <dd>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>
+                                    <a></a>
+                                </dt>
+                                <dd>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>
+                                    <a></a>
+                                </dt>
+                                <dd>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>
+                                    <a></a>
+                                </dt>
+                                <dd>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>
+                                    <a></a>
+                                </dt>
+                                <dd>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>
+                                    <a></a>
+                                </dt>
+                                <dd>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>
+                                    <a></a>
+                                </dt>
+                                <dd>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>
+                                    <a></a>
+                                </dt>
+                                <dd>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>
+                                    <a></a>
+                                </dt>
+                                <dd>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                    <a></a>
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="actShow">
+                            <div class="brandList">
+                                <a>
+                                    <img>
+                                </a>
+                                <a>
+                                    <img>
+                                </a>
+                                <a>
+                                    <img>
+                                </a>
+                                <a>
+                                    <img>
+                                </a>
+                                <a>
+                                    <img>
+                                </a>
+                                <a>
+                                    <img>
+                                </a>
+                            </div>
+                            <div class="actList">
+                                <a>
+                                    <img>
+                                </a>
+                                <a>
+                                    <img>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ng-nav-index">
+                <h4 class="ng-title">
+                    <span></span>
+                </h4>
+                <ul class="ng-nav">
+                    <li>
+                        <a href="__URL__/shop_index">返回首页</a>
+                    </li>
+                    <li>
+                        <a href="__URL__/business_shop/id/2">购物商城</a>
+                    </li>
+                    <li>
+                        <a href="__URL__/business_shop/id/1">积分商城</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <!--轮播-->
+        <div class="first-screen">
+            <div class="banner-wrapper" style="overflow:hidden">
+                <ul class="banner" style="overflow:hidden">
+                    <volist name="banner" id="va">
+                    <li style="display:block; background: #db0638">
+                        <a>
+                            <img src="{$va.images_url}">
+                        </a>
+                    </li>
+                    </volist>
+                </ul>
+                <a class="angle-btn prev-btn">
+                    <i></i>
+                </a>
+                <a class="angle-btn next-btn">
+                    <i></i>
+                </a>
+                <div class="banner-nav-wrapper">
+                    <div class="banner-nav">
+                        <volist name="banner" id="va" key="k">
+                            <a class="page-item">{:(I('get.p'))?((I('get.p')-1)*12+$k):($k)}</a>
+                        </volist>
+                    </div>
+                </div>
+            </div>
+            <!--<script src="__PUBLIC__/lunbo/js/jquery-1.8.3.min.js"></script>-->
+            <script src="__PUBLIC__/lunbo/js/slide_2.js"></script>
+            <script>
+                    $('.banner-wrapper').ckSlide({
+                            autoPlay: true,//默认为不自动播放，需要时请以此设置
+                            dir: 'x',//默认效果淡隐淡出，x为水平移动，y 为垂直滚动
+                            interval:3000//默认间隔2000毫秒
+
+                    });
+            </script>
+            <div class="show-case" style="height:455px;top:0px">
+                <ul class="infor-nav-narrow">
+                    <li class="left">
+                        <a>公告</a>
+                        <span class="border"></span>
+                    </li>
+                </ul>
+                <div class="infor-content" style="height:440px">
+                    <ul class="infor-nav">
+                        <li class="left current">
+                            <a>公告</a>
+                            <span class="border"></span>
+                        </li>
+                    </ul>
+                    <div class="infor-list">
+                        <div class="infor-item item-tell" style="margin-bottom:59px">
+                            <volist name="new" id="val">
+                            <p class="red-show">
+                                <a href="__URL__/kaiye/id/{$val.new_id}" target="blank">
+                                    <i>[公告]</i>
+                                    {$val.title}
+                                </a>
+                            </p>
+                            </volist>
+                        </div>
+                    <ul class="infor-nav">
+                        <li class="left current">
+                            <a>了解诚兑城</a>
+                            <span class="border"></span>
+                        </li>
+                    </ul>
+                <div class="mc">
+                    <img data-lzled="true" src="{$images.images_url}"  width="248" height="208">
+                </div>
+<!--                    <div class="app-down">
+                        <p class="title">APP</p>
+                        <ul class="applist">
+                            <li class="snyg">
+                                <span>
+                                    <i></i>
+                                </span>
+                            </li>
+                            <li class="yfb">
+                                <span>
+                                    <i></i>
+                                </span>
+                            </li>
+                            <li class="redbaby">
+                                <span>
+                                    <i></i>
+                                </span>
+                            </li>
+                            <li class="snts">
+                                <span>
+                                    <i></i>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>-->
+                </div>
+                <a class="show-btn">
+                    <i></i>
+                </a>
+            </div>
+        </div>
+        <volist name="ren" id="vel" key="k">
+        <div class="wrapper floor floor1 g-floor lazy-floor J-floor1 dalei" >
+            <div class="floor-head clearfix">
+                <div class="title">
+                    <h3>
+                        <b>F{:(I('get.p'))?((I('get.p')-1)*12+$k):($k)}</b>
+                        {$vel.category_name}
+                    </h3>
+                </div>
+                <ul class="floor-tab" id="f1">
+                    <volist name="vel.parent" id="va">
+                    <li>
+                        <a class='xiaolei' data-id='{$va.category_id}'>
+                            <em>{$va.category_name}</em>
+                        </a>
+                        <span class="up-arrow"></span>
+                    </li>
+                    </volist>
+                </ul>
+            </div>
+            <div class="floor-main" id="f1-main">
+                <div class="side">
+                    <a class="side-img">
+                        <img class="lazy-loading" src="{$vel.category_url}">
+                    </a>
+                    <ul class="entrances">
+                        <volist name="vel.parent" id="va">
+                    <li>
+                        <a  href="__URL__/sea?category_id={$va.category_id}" class='xiaolei' data-id='{$va.category_id}'>
+                            <em>{$va.category_name}</em>
+                        </a>
+            
+                    </li>
+                    </volist>
+                    </ul>
+<!--                    <div class="hot-word">
+                        <div>
+                            <a>男装3免1</a>
+                            <a>牛仔裤男</a>
+                            <a>女装3免1</a>
+                            <a>牛仔裙</a>
+                            <a>内衣9.9元起</a>
+                            <a>潮流衬衫</a>
+                            <a>连衣裙</a>
+                            <a>休闲鞋男</a>
+                        </div>
+                        <div class="right">
+                            <a>鞋包3免1</a>
+                            <a>拉杆箱</a>
+                            <a>时尚饰品</a>
+                            <a>男士手表</a>
+                            <a>太阳镜</a>
+                            <a>跑步鞋</a>
+                            <a>跑步机</a>
+                            <a>运动3折抢</a>
+                        </div>-->
+                    <!--</div>-->
+<!--                    <div class="last-img">
+                        <a>
+                            <img class="lazy-loading" src="__PUBLIC__/shopping/images/F1/147150885383685544.jpg">
+                        </a>
+                    </div>-->
+                </div>
+                <div class="main-cont g-tab-list fenleis" style="display: block" >
+
+                </div>
+                <div class="main-cont g-tab-list fenlei {$k}">   
+                </div>
+                <div class="main-cont g-tab-list">
+                    <ul class="prd-list">
+                        <volist name="chanpin2" id="val">
+                        <li>
+                            <p class="prd-img">
+                                <a href="__URL__/chanpin/id/{$val.id}" target="_blank">
+                                    <img src="{$val.lujing2}">
+                                </a>
+                            </p>
+                            <p class="name">
+                                <a href="__URL__/chanpin/id/{$val.id}" target="_blank">{$val.mingcheng}</a>
+                            </p>
+                            <p class="price">
+                                <i>¥</i>
+                                <span>{$val.jiage}.00</span>
+                            </p>
+                        </li>
+                        </volist>
+                    </ul>
+                </div>
+                <div class="main-cont g-tab-list">
+                    <ul class="prd-list">
+                        <volist name="chanpin3" id="val">
+                        <li>
+                            <p class="prd-img">
+                                <a href="__URL__/chanpin/id/{$val.id}" target="_blank">
+                                    <img src="{$val.lujing2}">
+                                </a>
+                            </p>
+                            <p class="name">
+                                <a href="__URL__/chanpin/id/{$val.id}" target="_blank">{$val.mingcheng}</a>
+                            </p>
+                            <p class="price">
+                                <i>¥</i>
+                                <span>{$val.jiage}.00</span>
+                            </p>
+                        </li>
+                        </volist>
+                    </ul>
+                </div>
+                <div class="main-cont g-tab-list">
+                    <ul class="prd-list" >
+                        <volist name="chanpin4" id="val">
+                        <li>
+                            <p class="prd-img">
+                                <a href="__URL__/chanpin/id/{$val.id}" target="_blank">
+                                    <img src="{$val.lujing2}">
+                                </a>
+                            </p>
+                            <p class="name">
+                                <a href="__URL__/chanpin/id/{$val.id}" target="_blank">{$val.mingcheng}</a>
+                            </p>
+                            <p class="price">
+                                <i>¥</i>
+                                <span>{$val.jiage}.00</span>
+                            </p>
+                        </li>
+                        </volist>
+                    </ul>
+                </div>
+            </div>
+        </div>  
+        </volist>
+        <div class="clear"></div>
+        <!--版权区-->
+        <div class="ng-footer" style="height:auto">
+            <div class="ng-new-pro">
+                <div class="ng-new-pro-con">
+                    <div class="ng-new-pro-list">
+                        <dl>
+                            <dt>
+                                <a>
+                                    <img src="__PUBLIC__/shopping/images/f1.png">
+                                </a>
+                            </dt>
+                            <dd>
+                                <p class="ng-title">
+                                    <a>咨询热线</a>
+                                </p>
+                                <p class="ng-intro">
+                                    <a>022-88274018</a>
+                                </p>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <a>
+                                    <img src="__PUBLIC__/shopping/images/f2.png">
+                                </a>
+                            </dt>
+                            <dd>
+                                <p class="ng-title">
+                                    <a>客服热线</a>
+                                </p>
+                                <p class="ng-intro">
+                                    <a>4006-116-226</a>
+                                </p>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="ng-serch-suning">
+                        <dl>
+                            <dt></dt>
+                            <dd>
+                                <p class="ng-title">地址</p>
+                                <p class="ng-intro">
+                             天津市河西区友谊路友谊大厦3楼
+                                </p>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="footer-egg-con"></div>
+                </div>
+                <div class="footer-egg-btn"></div>
+            </div>
+            <div class="ng-s-footer">
+                <div class="ng-s-f-con" style="position: relative">
+                    <p class="ng-url-list">
+                        <a href="__URL__/qiye.html" target="_blank" >企业联盟</a>
+                        <span>|</span>
+                        <a href="__URL__/qiye.html" target="_blank">加入我们</a>
+                        <span>|</span>
+                        <a href="__URL__/kefuzhongxin.html" target="_blank">客服中心</a>
+                        <span>|</span>
+                        <a href="__URL__/xinwenzhongxin.html" target="_blank">新闻中心</a>
+                        <span>|</span>
+                        <a href="__URL__/guanyu.html" target="_blank">关于我们</a>
+                        <span>|</span>
+                        <a href="__URL__/gonggao.html" target="_blank">公告</a>
+                    </p>
+                    
+                    <p class="ng-copyright">                        
+                        <!--Copyright© 2002-2016 ，天津天软公司版权所有-->
+                    </p>
+                    <p class="ng-copyright ng-copyright-2">
+                        备案号:<a href="http://www.miitbeian.gov.cn/" style="color:#fff">津ICP备16004932号-2</a>
+                    </p>
+                    <p></p>
+                    <div class="ng-app-down" style="position: absolute;right:20px;bottom:20px">
+                        <p>扫一扫</p>
+                        <a>
+                            <img width="87" height="87" src="__PUBLIC__/images/erwei.jpg">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="ng-fix-bar"></div>
+        </div>
+        <div class="ECode-floatBar" style="position: fixed;top: 50%;left: 50%;z-index: 10000;right: auto;margin-left: -670px;margin-top: -187px;display: none;">
+            <ul class="floor-guide" id="gundong">
+                <li class="on">
+                    <a class="name" id="nav1">服饰百货</a>
+                </li>
+                <li>
+                    <a class="name" id="nav2">手机通讯</a>
+                </li>
+                <li>
+                    <a class="name" id="nav3">食品酒水</a>
+                </li>
+                <li>
+                    <a class="name" id="nav4">家用电器</a>
+                </li>
+                <li>
+                    <a class="name" id="nav5">生活电器</a>
+                </li>
+                <li>
+                    <a class="name" id="nav6">电脑数码</a>
+                </li>
+                <li>
+                    <a class="name" id="nav7">母婴玩具</a>
+                </li>
+                <li>
+                    <a class="name" id="nav8">生活日用</a>
+                </li>
+                <li>
+                    <a class="name" id="nav9">美妆个护</a>
+                </li>
+                <li>
+                    <a class="name" id="nav10">家装建材</a>
+                </li>
+                <li>
+                    <a class="name" id="nav11">运动汽车</a>
+                </li>
+                <li>
+                    <a class="name" id="nav12">图书音像</a>
+                </li>
+            </ul>
+        </div>
+        <div id="fuzhi" style="display:none"></div>
+<!--    </form>-->
+        <script>
+//            function winshow(){
+////                    openWin = window.open('__URL__/show_two','_blank','width=550,height=530,left=800,top=400,location=yes,menubar=1,status=1');
+//                      window.location.href='__URL__/liaotian_qian';
+//            }
+ 
+
+            $(document).ready(function(e){
+                for(var a=0;a<$(".dalei").length;a++){
+                    var m =0;
+                    var name = $(".dalei").eq(a).children().find("a").attr("data-id"); 
+                     var ths = $(".dalei").eq(a).children().find(".fenlei"); 
+                     futu(name,ths);
+                }
+               
+                $(".xiaolei").mouseover(function(){
+                    var category_id = $(this).attr("data-id");
+                    var th = $(this);
+                    $.post("__URL__/seaxiaolei",{"category_id":category_id},function(data){
+                        
+                        eval("var obj =" +data);
+                        var html = '';
+                            html += '<ul class="prd-list" >';
+                          for(var i =0; i<obj.length;i++){
+                                html +='<li>'; 
+                                html += '<p class="prd-img">';
+                                html += '<a href="__URL__/chanpin/id/'+obj[i]['item_id']+'"target="_blank">';
+                                html +='<img src="'+obj[i]['img_url'] + '">'; 
+                                html += '</a>';
+                                html += '</p>';
+                                html += '<p class="name">';
+                                html += ' <a href="__URL__/chanpin/id/'+obj[i]['item_id']+'" target="_blank">'+obj[i]['item_name']+'</a>';
+                                html += '</p>';
+                                html += '<p class="price">';
+                                if(obj[i]['mall_id'] == 2){
+                                    html += '<i>¥</i>';
+                                    html += '<span>'+obj[i]['eMoney']+'</span>';
+                                }else{
+                                     html += '<i>积分</i>';
+                                    html += '<span>'+obj[i]['sMoney']+'</span>';
+                                }
+                                html +='</li>'; 
+                          } 
+                          html += '</ul>'
+                          th.parent().parent().parent().next().find(".fenlei").html(html);
+                          th.parent().parent().parent().next().find(".fenlei").show();
+                          th.parent().parent().parent().next().find(".fenlei").prev().hide();
+                    })
+                })
+                $('html').bind("selectstart", function () { return false; });
+                var jia = 0;
+                var l = $("input[name='duoxuan[]']").length;
+                $(".J_cart_checked_num").text(l);
+                for(var i=0;i<l;i++){
+                  jia +=$("input[name='duoxuan[]']").eq(i).val()*1;  
+                }
+                $("#zongjia").text(jia);
+                $("#zongjia_i").val(jia);
+//                $.ajax({
+//                    type:"post",
+//                    url:"__URL__/cook",
+//                    dataType: "text",
+//                    data:null,
+//                    success:
+//                    function(data){
+//                      eval("var obj="+data);
+//                        if(data!=""){
+//                            $("#username-node-slide").show();
+//                            $("#username-node").hide();
+//                            $("#usernameHtml02").text(obj.username);
+//                            if(obj.touxiang==""){
+//                                $(".headimg > img").attr("src","__PUBLIC__/shopping/images/0000000000_01_60x60.jpg");
+//                                $("#zujing_img").attr("src","__PUBLIC__/shopping/images/0000000000_01_60x60.jpg");
+//                            }else{
+//                                $(".headimg > img").attr("src","/ShoppingSite/"+obj.touxiang);
+//                                $("#zujing_img").attr("src","/ShoppingSite/"+obj.touxiang);
+//                            }
+//                            $(".mysuning-detail > .login").hide();
+//                            $(".mysuning-detail > .username").css("display","block");
+//                            $(".mysuning-detail > .username").text(obj.username);
+//                            $(".pls-login").hide();
+//                            $("#zujing").show();
+//                            $("#zujing > a").eq(0).text(obj.username);
+//                            $("#zujing_img").attr("src","/ShoppingSite/"+obj.touxiang);
+//                            $(".desc").empty().append("按下键盘上的<i>G</i>即可快速打开/关闭购物车功能");
+//                            if(obj.quanxian=="超级管理员"||obj.quanxian=="管理员"){
+//                                $("#hguanli").show();
+//                            }else{
+//                                $("#hguanli").hide();
+//                            }
+//                        }
+//                    }
+//                })
+                var num = 0;
+                $(document).keydown(function(event){
+                    if(event.keyCode == 71){ 
+                        if(num %2==0){
+                            $(".sn-sidebar-contents").attr("class","sn-sidebar-contents sn-sidebar-contents-show");
+                            $(".sn-sidebar-contents").animate({right : '35px'},"slow"); 
+                            $(".sn-sidebar-cart").show();
+                        }else{
+                            $(".sn-sidebar-contents").attr("class","sn-sidebar-contents");
+                            $(".sn-sidebar-contents").animate({right : '-400px'},"slow"); 
+                            $(".sn-sidebar-cart").hide();
+                        }
+                    }
+                    num++;
+                }); 
+//                $.ajax({
+//                    type:"post",
+//                    url:"__URL__/gouwuchesl",
+//                    dataType: "text",
+//                    data:null,
+//                    success:
+//                    function(data){
+//                        $(".J_cart_total_num").text(data);
+//                        if(data > 0){
+//                            $("#myCart_wu").hide();
+//                            $("#myCart").show();
+//                        }else{
+//                            $("#myCart_wu").show();
+//                            $("#myCart").hide();
+//                        }
+//                    }
+//                })
+            })
+            function futu(obj,name){
+                $.post("__URL__/seaxiaolei",{"category_id":obj},function(data){
+                        eval("var obj =" +data);
+                        var html = '';
+                            html += '<ul class="prd-list" >';
+                          for(var i =0; i<obj.length;i++){
+                                html +='<li>'; 
+                                html += '<p class="prd-img">';
+                                html += '<a href="__URL__/chanpin/id/'+obj[i]['item_id']+'"target="_blank">';
+                                html +='<img src="'+obj[i]['img_url'] + '">'; 
+                                html += '</a>';
+                                html += '</p>';
+                                html += '<p class="name">';
+                                html += ' <a href="__URL__/chanpin/id/'+obj[i]['item_id']+'" target="_blank">'+obj[i]['item_name']+'</a>';
+                                html += '</p>';
+                                html += '<p class="price">';
+                                if(obj[i]['mall_id'] == 2){
+                                    html += '<i>¥</i>';
+                                    html += '<span>'+obj[i]['eMoney']+'</span>';
+                                }else{
+                                     html += '<i>积分</i>';
+                                    html += '<span>'+obj[i]['sMoney']+'</span>';
+                                }
+                                html +='</li>'; 
+                          } 
+                          html += '</ul>';      
+                          name.html(html);
+                          name.show();
+                          name.prev().hide();                      
+
+                    })
+            }
+        </script>
+    </body>
+</html>
+ 

@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="__PUBLIC__/css/tongji.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script src="__PUBLIC__/js/bianse.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/boot.css"/>
+</head>
+<body>
+    <form method="post" id='form'>
+    <div>
+        <div>
+            <div style="background:orange; width:100px; float:left;text-align:center; border-radius:5px"><a href="__URL__/addgongying">新增供应商</a></div>
+            <div style="width:400px; float:right; background:#eae1e1; border-radius:5px; text-align:center">
+<!--                <span>
+                    您共有
+                    <span>1</span>
+                    位供应商，共供应
+                    <span>1</span>
+                    种商品，累计欠款¥
+                    <span>0</span>
+                </span>-->
+            </div>
+            <table id="neirong" cellspacing='0'>
+                <tr class="neirong">
+                    <td>供应商名称</td>
+                    <td>联系人</td>
+                    <td>供应商电话</td>
+                    <!--<td>供应商商品数量</td>-->
+                    <!--<td>欠款金额</td>-->
+                    <td>操作</td>
+                </tr>
+                <volist name='ren' id='val'>
+                <tr class="neirong">
+                    <td>{$val.supplier_name}</td>
+                    <td>{$val.contacts}</td>
+                    <td>{$val.tel}</td>
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <td>
+                    <input type='button' value='修改' class='sup_upt' data-id='{$val.supplier_id}' data-open='off'>
+                    <input type='button' value='删除' class='sup_del' data-id='{$val.supplier_id}'>
+                    </td>
+                </tr>
+                </volist>
+            </table>
+            <script>
+                $(function(){
+                    $(".sup_upt").click(function(){
+                        if($(this).attr("data-open")=="off"){
+                            var name = $(this).parent().siblings("td").eq(0).text();
+                            var user = $(this).parent().siblings("td").eq(1).text();
+                            var tel = $(this).parent().siblings("td").eq(2).text();
+                            $(this).parent().siblings("td").eq(0).html("<input type='text' name='name' value='"+name+"'>");
+                            $(this).parent().siblings("td").eq(1).html("<input type='text' name='user' value='"+user+"'>");
+                            $(this).parent().siblings("td").eq(2).html("<input type='text' name='tel' value='"+tel+"'>");
+                            $(this).val("确定");
+                            $(this).attr("data-open","on");
+                        }else{
+                            var id = $(this).attr("data-id");
+                            var frm = document.getElementById('form');
+                                frm.action='__URL__/gongyingupt/id/'+id;
+                                frm.submit();
+                        }
+                    })
+                    $(".sup_del").click(function(){
+                        var id = $(this).attr("data-id");
+                        var frm = document.getElementById('form');
+                            frm.action='__URL__/gongyingdel/id/'+id;
+                            frm.submit();
+                    })
+                })
+            </script>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

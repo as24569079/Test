@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head id="head">
+<title></title>
+<meta charset="UTF-8"> 
+<link rel="stylesheet" href="__PUBLIC__/css/reset.css">
+<link rel="stylesheet" href="__PUBLIC__/css/footer.css">
+<script src="__PUBLIC__/js/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/js/myjs.js" type="text/javascript"></script> 
+<link href="__PUBLIC__/css/index.css" type="text/css" rel="stylesheet" media="screen">
+<link href="__PUBLIC__/css/kefu.css" type="text/css" rel="stylesheet" media="screen"> 
+<link href="__PUBLIC__/css/shopping-cart.css" type="text/css" rel="stylesheet" media="screen"> 
+<link href="__PUBLIC__/css/shoppingcart2.css" type="text/css" rel="stylesheet" media="screen"> 
+<link href="__PUBLIC__/css/area.css" type="text/css" rel="stylesheet" media="screen"> 
+</head>
+<body class="LTR Safari Chrome Safari42 Chrome42 ZHCN PCDevice ContentBody">
+<form method="post" action="__URL__/gouwutijiao_add" id="form">
+<div class="aspNetHidden">
+<!--<input type="hidden" name="" id="" value="">
+<input type="hidden" name="" id="" value="">
+<input type="hidden" name="" id="" value="">
+<input type="hidden" name="" id="" value="">-->
+</div>
+<div class="aspNetHidden">
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="A5343185">
+	<input type="hidden" name="__SCROLLPOSITIONX" id="__SCROLLPOSITIONX" value="0">
+	<input type="hidden" name="__SCROLLPOSITIONY" id="__SCROLLPOSITIONY" value="0">
+</div>
+    <div id="ctxM"></div>
+    <div style="display:none">
+<a id="p_lt_ctl00_TopSignOutButton_btnSignOutLink" class="signoutLink" href="javascript:__doPostBack('p$lt$ctl00$TopSignOutButton$btnSignOutLink','')">注销</a></div><!--顶部-->
+    <div id="header">
+        <div class="w">
+           <ul class="fl">
+              <li><a style="color:#b1191a;" href="/PCmaster/Index">诚兑城商城首页</a></li>
+                <li class="login">你好,{$Think.cookie.LoginName}</li><li class="spacer"></li>&nbsp;&nbsp;<a href="javascript:__doPostBack('p$lt$ctl00$TopSignOutButton$btnSignOutLink','')">退出</a>
+           </ul>
+            <ul class="fr">
+                <li class="fore1 dorpdown dd" id="li-myjd">
+                    <div class="dt">
+                        <i></i>
+                        <a href="" style="color:#b1191a;font-weight:600;padding-left: 18px;">会员中心</a>
+                        <span class="icon"></span>
+                    </div>
+                    <div class="dorpdown-layer">
+                        <div class="dd-spacer"></div>
+                       
+                        <div class="user-info">                        
+                             <div class="u-pic">                            
+                              <a href=""><img src="" alt=""></a>  
+                              </div>
+                            <div class="u-name">
+                           <a href="">123</a>
+                        </div>
+                        </div>
+                        <div class="otherlist">
+                            <div class="fore1">
+                                <div class="item"><a href="">基本资料</a></div>
+                                <div class="item"><a href=""> 实名认证</a></div>
+                                <div class="item"><a href="">密码修改</a></div>
+                                <div class="item"><a href="">签署协议</a></div>
+                                <div class="item"><a href="">子账户管理</a></div>
+                            </div>
+                            <div class="fore2">
+                                <div class="item"><a href="">银行卡管理</a></div>
+                                <div class="item"><a href="">提现管理</a></div>
+                                <div class="item"><a href="">电子币线下充值</a></div>
+                                <div class="item"><a href="">电子币网银充值</a></div>
+                                <div class="item"><a href="">电子币转账</a></div>
+                            </div>
+                            <div class="fore3">
+                                <div class="item"><a href="">购买积分</a></div>
+                                <div class="item"><a href="">奖金记录</a></div>
+                                <div class="item"><a href="">财务流水</a></div>
+                                <div class="item"><a href="">订单信息</a></div>
+                                <div class="item"><a href="">收货地址</a></div>
+                            </div>
+                        </div>
+                        <!--otherlist-->
+                      
+                    </div>
+                    <!--dorpdown-layer-->
+                </li>
+                <li class="spacer"></li>
+                <li class="fore"><div class="dt"><a href="" target="_blank">诚兑城官网</a></div></li>
+                <li class="spacer"></li>
+                <li class="fore dorpdown dd" id="li-serv">
+                    <div class="dt">
+                        <a href="#">客户服务</a><span class="icon"></span>
+                    </div>
+                    <div class="dorpdown-layer">
+                        <div class="dd-spacer"></div>
+                        <div class="serv-item"><a href="">帮助中心</a></div>
+                        <div class="serv-item"><a href="">售后服务</a></div>
+                        <div class="serv-item"><a href="" target="_blank">留言建议</a></div>
+                    </div>
+                </li>
+            </ul>
+            <span class="clr"></span>
+        </div>
+    </div>
+    <!--顶部end-->
+<div id="global-sidebar">
+  <div class="relative-div">
+    <div class="cart-im-panel">
+      <div id="jl-active-enter">
+        <ul style="display: block;" class="jl-active-items">
+        </ul>
+      </div>
+      <div class="cart-im-box-wrap">
+        <div class="cart-im-box">
+			<a id="side-cart" class="side-button log-send" target="_blank" href=""> <em class="red-cart"></em> <em class="white-cart"> </em>
+               <div class="vertical-font">购物车</div>
+            </a>
+            <a id="side-im" class="side-button openIM log-send" href=""><em class="red-im"><span></span></em> <em class="white-im"><span></span></em>
+               <div class="vertical-font">联系客服</div>
+            </a>
+		</div>
+      </div>
+    </div>
+    <div class="side-other slide-out">
+          <div class="empty-block-before"></div>
+          <div class="side-other-all">
+	     	  <a id="side-coupon" class="side-button log-send" target="_blank" href=""> <em class="red-coupon"></em> <em class="white-coupon"></em>
+                <div class="tip"> 会员中心<em class="black-triangle"></em></div>
+              </a>
+	     	  <a id="side-like" class="side-button log-send" target="_blank" href=""> <em class="red-like"></em> <em class="white-like"></em>
+                <div class="tip"> 大众商城 <em class="black-triangle"></em></div>
+              </a>
+	      </div>
+      <div class="empty-block-after"></div>
+    </div>
+    <div class="side-go2top-panel">
+      <div id="go2top"> <em class="red-up-arrow"></em>
+        <div><a href="javascript:scroll(0,0)">返回顶部</a>&gt;</div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+	$(function(){
+	   $("#global-sidebar").hover(function(){
+		   $(".side-other").removeClass("slide-out").addClass("slide-in");
+	   },function(){
+		   $(".side-other").removeClass("slide-in").addClass("slide-out");
+	   });
+	});
+</script>
+
+<!--logo and search-->
+<div class="w">
+    <div id="logo">
+        
+    </div>
+  <div class="checkout-nav">
+    <ul><li><span class="selected1"></span>购物车</li>
+    <li><span class="selected"></span>账单&amp;配送</li>
+    <li><span class="progress-number2"></span>浏览订单</li>
+    <li><span class="progress-number3"></span>支付</li>
+    </ul>
+
+</div>
+        <span class="clr"></span>
+    </div>
+    <!--logo and search end-->
+<div style="border-bottom: 1px solid #bd1c25;"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+         <div class="form-box">
+      <div class="cart-filter-bar">
+          <h2 class="cart-filter-bar-title">提交物流信息<span>请填写正确的收货地址，以保证货物准确到达！</span></h2>
+      </div><div id="p_lt_ctl01_pageplaceholder_p_lt_ctl01_pageplaceholder_p_lt_ctl01_sys_pnlUpdate">
+	<div class="item item-title">
+	<span data-phase-id="d_p_addNewDeliverAddress" id="J_DeliverTitle">创建地址</span>
+    <!--<span class="tsl" data-phase-id="d_p_addNewDeliverAddressNotice">请选择物流方式</span>-->
+</div>
+<div class="item item-street" id="J_ItemStreet">
+  <span class="item-label tsl" data-phase-id="d_p_addressDetail">选择物流：</span>
+<div class="ks-combobox" id="J_ComboboxStreet" aria-pressed="false">
+				<div class="ks-combobox-input-wrap">
+                <div id="p_lt_ctl01_pageplaceholder_p_lt_ctl01_pageplaceholder_p_lt_ctl01_ShippingSelection_pnlShipping" class="PanelShipping">
+    <div class="SelectorClass">
+    <div id="">
+    <div class="control-group-inline">
+        <select name="courier" onchange="" id="" class="DropDownField form-control">
+			<option selected="selected" value="0" data-hash="">(请选择)</option>
+			<option value="物流(运费自付)" data-hash="" class="DropDownItemEnabled">物流(运费自付)</option>
+			<option value="韵达快递" data-hash="" class="DropDownItemEnabled">韵达快递</option>
+
+        </select>
+    </div>
+<!--<input type="hidden" name="" id="">
+<input type="hidden" name="" id="" value="">
+<input type="hidden" name="" id="">
+<input type="hidden" name="" id="">
+<input type="hidden" name="" id="" value="">
+<input type="hidden" name="" id="" value="0">-->
+</div>
+</div>            
+
+	</div>
+</div>
+</div>
+</div>
+<!--	<div class="item ifshow" style="display: block;">
+        <div class="form-horizontal ecommerce_address address_selector">
+            <div class="form-group">
+                <div class="item-label tsl">
+                    <label class="control-label">选择地址：</label>
+                </div>
+                <div class="editing-form-value-cell">
+                    <select class="CustomerAddressSelector form-control">
+			<option selected="selected" value="0">(创建地址)</option>
+		</select>
+                </div>
+            </div>
+        </div>
+	</div><div id="">-->
+		
+    
+    <div id="" class="ShowAddressCheckbox">
+			
+        
+    
+		</div>
+    
+    <div id="">
+			<div id="" class="form-horizontal ecommerce_address">
+
+<!--<div class="item item-title hid">
+			<span data-phase-id="" id="" class="changetitle">创建地址</span>
+            <span class="tsl" data-phase-id="d_p_addNewDeliverAddressNotice">所在地区、详细地址为必填项</span>
+		</div>-->
+<div class="item item-devision" id="J_ItemDivision">
+			<span class="item-label tsl" data-phase-id="d_p_location">收货人：</span>
+			<div id="J_CitySelect" class="ks-clear clearfix">
+             <div id="p_lt_ctl01_pageplaceholder_p_lt_ctl01_pageplaceholder_p_lt_ctl01_CustomerAddress_addressForm_ctl00_iAddressPersonalName">
+					<input name="" type="text" value="" maxlength="200" id="" class="form-control">
+				</div>
+		  </div>
+	</div>
+<div class="item item-devision" id="J_ItemDivision">
+    <span class="item-label tsl" data-phase-id="d_p_location">联系电话：</span>
+    <div id="" class="ks-clear clearfix">
+        <div id="">
+            <input name="" type="text" maxlength="100" id="" class="form-control">
+            <input type="hidden" name="" id="">
+            <input type="hidden" name="" id="">
+        </div>
+	</div>
+</div>
+<div class="item item-devision" id="">
+			<span class="item-label tsl" data-phase-id="d_p_location">所在地区：</span>
+			<div id="" class="ks-clear clearfix">
+            <div id="">
+			<input name="" type="text" maxlength="100" id="" class="form-control AreaCity" placeholder="请选择所在省/市/区" >
+				</div>
+		  </div>
+		</div>  
+<div class="item item-street item-street1" id="">
+			<span class="item-label tsl" data-phase-id="d_p_addressDetail">详细地址：</span>
+			<div class="ks-combobox" id="" aria-pressed="false">
+				<div class="ks-combobox-input-wrap">
+                <div id="">
+					<textarea name="" rows="2" cols="20" id="" class="form-control cityarea" placeholder="请填写详细地址"></textarea>
+				</div>
+				</div>
+			</div>
+		</div>
+<div class="item item-postcode" id="J_ItemPostCode">
+	<span class="item-label tsl" data-phase-id="d_p_postCode">邮政编码：</span>
+<div id="">
+	<input name="" type="text" value="" maxlength="20" id="" class="form-control">
+</div>
+</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+    </div>
+    <div class="col-md-12">
+       <div class="options-box clearfix">
+                <div class="operation">
+<a id="" class="checkout-back-link" onclick=""; return false;"><span id="">&lt;返回购物车</span></a>
+</div>
+<div class="btn-area">
+	<input type="submit" name="" value="下一步" onclick="" id="" class="btn-primary checkout-button btn btn-default">
+</div>
+<div class="addtip">请您核对邮寄地址，核对无误后提交！&nbsp;&nbsp;</div>
+    </div>
+  </div>
+</div>
+
+
+<div id="footer">
+<div class="container">
+<div class="footer_list">
+<ul id="Footer">
+	<li><a href="" style="margin-bottom: 10px;display: block;">买家帮助</a>
+	<ul>
+		<li class="footertitle"><a href="">操作指南</a></li>
+		<li class="footertitle"><a href="">常见问题</a></li>
+		<li class="footertitle"><a href="">登陆帮助</a></li>
+	</ul>
+	</li>
+	<li><a href="" style="margin-bottom: 10px;display: block;">支付方式</a>
+	<ul>
+		<li class="footertitle"><a href="">网银支付</a></li>
+		<li class="footertitle"><a href="">支付宝支付</a></li>
+		<li class="footertitle"><a href="">货到付款</a></li>
+		<li class="footertitle"><a href="">线下支付</a></li>
+		<li class="footertitle"><a href="">公司转账</a></li>
+	</ul>
+	</li>
+	<li><a href="" style="margin-bottom: 10px;display: block;">配送方式</a>
+	<ul>
+		<li class="footertitle"><a href="">配送范围及运费</a></li>
+		<li class="footertitle" style="1"><a href="" style="1">验货与签收</a></li>
+	</ul>
+	</li>
+	<li><a href="" style="margin-bottom: 10px;display: block;">售后服务</a>
+	<ul>
+		<li class="footertitle"><a href="">退货政策</a></li>
+		<li class="footertitle" style="1"><a href="" style="1">退货流程</a></li>
+		<li class="footertitle"><a href="">退款方式和时效</a></li>
+	</ul>
+	</li>
+	<li><a href="" style="margin-bottom: 10px;display: block;">关于我们</a>
+	<ul>
+		<li class="footertitle" style="1"><a href="" style="1">关于京广和</a></li>
+		<li class="footertitle" style="1"><a href="" style="1">联系我们</a></li>
+	</ul>
+	</li>
+	<li><a href="" style="margin-bottom: 10px;display: block;">合作商帮助</a>
+	<ul>
+		<li class="footertitle" style="1"><a href="" style="1">合作微商方案</a></li>
+		<li class="footertitle" style="1"><a href="" style="1">O2O经销商合作协议</a></li>
+		<li class="footertitle" style="1"><a href="" style="1">招商加盟</a></li>
+	</ul>
+	</li>
+</ul>
+</div>
+	<div style="display: block;overflow: hidden;clear: both;height: 0;line-height: 0;font-size: 0;">&nbsp;</div>
+	<div class="footpc"></div>
+</div>
+</div>
+
+
+  </form>
+
+
+</body>
+</html>

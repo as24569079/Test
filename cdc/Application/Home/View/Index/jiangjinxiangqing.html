@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="__PUBLIC__/css/jquery-confirm.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/mobilemain.css" type="text/css" rel="stylesheet">
+    <link href="__PUBLIC__/css/main.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+    <table class="table">
+        <tbody>
+            <tr class="fir-tr">
+                <th>得奖单号</th>
+                <th>期数</th>
+                <th>结算时间</th>
+                <th>转电子币</th>
+                <th>扣综合管理费</th>
+                <th>积分</th>
+                <!--<th>实发奖金</th>-->
+                <th>审核状态</th>
+            </tr>
+            <volist name="ren" id="val">
+            <tr class="sec-tr">
+                <td>{$val.tel},{$val.name}</td>
+                <td>{$val.qixian}</td>
+                <td>{$val.fenlitime}</td>
+                <td>{$val.emoney}</td>
+                <td>{$val.guanlifei}</td>
+                <td>{$val.smoney}</td>
+                <!--<td>105.00</td>-->
+                <td>发奖完成</td>
+            </tr>
+            </volist>
+        </tbody>
+    </table>
+    <div class="pagination-container page_new">
+        <div class="pagination-container"><ul class="pagination"><li class="disabled PagedList-skipToPrevious"><a rel="prev">«</a></li><li class="active"><a>1</a></li><li class="disabled PagedList-skipToNext"><a rel="next">»</a></li></ul></div>
+    </div>
+    <script src="__PUBLIC__/js/jquery-1.10.2.js"></script>
+    <script src="__PUBLIC__/js/bootstrap.js"></script>
+    <script src="__PUBLIC__/js/jquery-confirm.min.js"></script>
+    <script src="__PUBLIC__/js/jquery.validate.js"></script>
+    <script src="__PUBLIC__/js/jquery.validate.unobtrusive.js"></script>
+    <script src="__PUBLIC__/js/jquery.unobtrusive-ajax.js"></script>
+    <script src="__PUBLIC__/js/bootstrap-datetimepicker.js"></script>
+    <script src="__PUBLIC__/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script>window.parent.scrollTo(0,0);</script>
+</body>
+</html>

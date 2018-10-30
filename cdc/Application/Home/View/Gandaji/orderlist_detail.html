@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>详情</title>
+</head>
+
+    <body><a href="__URL__/orderlist">返回</a>
+<div align="center">
+<p align="center" style="width: 794px; height: 45px; line-height: 45px; font-size: 22px; border-bottom-color: rgb(0, 0, 0); border-bottom-width: 1px; border-bottom-style: solid;"><b>诚兑城销售货单</b></p>
+
+<p style="width:794px;text-align:left;font-size:14px"><strong>下单人</strong><strong style="font-size: 14px; line-height: 22.3999996185303px;">姓名</strong><strong>：</strong><span style="font-size: 14px; line-height: 22px;">{$information.real_name}　　</span><strong style="font-size: 14px; line-height: 22.3999996185303px;">下单人账户</strong><strong>：</strong><span style="font-size: 14px; line-height: 22px;">{$information.tel}</span></p>
+
+<p style="width: 794px; text-align: left; font-size: 14px;font-family: Segoe UI Semibold;"><strong>单据日期：</strong><span style="line-height: 22px; font-size: 14px;">{$information.pay_date}　　</span><strong>订单编号：</strong><span style="line-height: 22px; font-size: 14px;font-family: Segoe UI Semibold;">{$information.order_no}　　</span><strong>客户</strong>：<span style="line-height: 22px; font-size: 14px;font-family: Segoe UI Semibold;
+">{$information.address_people}&nbsp;&nbsp;&nbsp;&nbsp;
+<strong>电话：</strong>{$information.address_tel}<br>
+<strong>地址：</strong>{$information.address_details}
+</span></p>
+
+<table align="center" border="0" cellpadding="0" cellspacing="0" style="font-size: 14px;" valign="middle" width="794">
+	<tbody>
+		<tr height="50">
+			<td colspan="2" style="text-align: left;font-family: Segoe UI Semibold;" valign="center"><table class="productsList" width="100%" cellspacing="0" border="1" cellpadding="2" style="text-align: right;border-style:solid;">
+  <thead>
+    <tr>
+      <th style="text-align: left;">序号</th>
+      <th style="text-align: left;">商品名称</th>
+      <!--<th style="text-align: left;">商品名称</th>-->
+      <th style="text-align: right;">数量</th>
+      <th style="text-align: right;">单价</th>
+
+      <th style="text-align: right;">小计</th>
+    </tr>
+  </thead>
+  <tbody>
+    <volist name="item" id="val" key="k">  
+    <tr>
+	<td style="text-align: left;">{$k}</td> 
+	<td style="text-align: left;">{$val.item_name}</td> 
+	<!--<td style="text-align: right; vertical-align: top;">2</td>-->
+	<td style="text-align: right; vertical-align: top;">{$val.quantity}</td>
+	<td style="text-align: right; vertical-align: top;">¥ {$val.price}</td>
+	<td style="text-align: right; vertical-align: top;">¥ {$val[price]*$val[quantity]}</td>
+    </tr>
+    </volist>
+  </tbody>
+</table>
+			<hr size="1">
+			<div style="float: right;"><strong style="font-size: 12px;font-family: Segoe UI Semibold;">数量合计：</strong>{$total.number}<span style="font-size: 14px; line-height: 22.4px;">　　 <strong style="font-size: 12px;font-family: Segoe UI Semibold;">配送金额：</strong>¥ 0　　 <strong style="font-size: 12px;font-family: Segoe UI Semibold;">合计金额：</strong>¥ {$total.price}</span></div>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: left; vertical-align: top;"><span style="font-weight: bold;">备注：</span></td>
+		</tr>
+	</tbody>
+</table>
+
+<!--<p style="width: 794px; text-align: left; font-size: 14px;"><strong>商品来源：</strong> <span style="font-size: 14px; line-height: 22.4px;">大众商城</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>支付方式：</strong>农行　　<strong>配送方式：</strong>运费自付(含厂家发货)<span style="line-height: 22px; font-size: 14px;">　　</span><strong>制单人：</strong><span>　　　　　</span><strong>审核人：</strong></p>-->
+</div>
+</body>
+</html>

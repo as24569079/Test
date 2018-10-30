@@ -1,0 +1,87 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>诚兑城后台管理注册</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <meta name="keywords" content="Flat Dark Web Login Form Responsive Templates, Iphone Widget Template, Smartphone login forms,Login form, Widget Template, Responsive Templates, a Ipad 404 Templates, Flat Responsive Templates" />
+    <link href="__PUBLIC__/css/login2.css" rel='stylesheet' type='text/css' />
+    <script src="__PUBLIC__/js/jquery.min.js"></script>
+    <!--<script src="js/login.js"></script>-->
+</head>
+<body>
+ <form method="post" action="__URL__/zhuce" id="form" onSubmit="return confirm();">
+    <!--SIGN UP-->
+
+    <div class="logo">
+
+        <img class="logo5" src="__PUBLIC__/images/logo-01.png" />
+        <!--<img src="../images/logo4.png" class="logo4" />-->
+    </div>
+    <div class="tu">
+        <div class="box" style='height:auto'>
+            <div class="box2">
+                <span>用户名</span>
+                <input class="Text1" type="text" value="" style="color:#808080" name='username'/>
+                <span>姓名</span>
+                <input class="Text1" type="text" value="" style="color:#808080" name='name'/>
+                <span>密码</span>
+                <input class="Text1" type="password" value="" style="color:#808080" name='password'/>
+                <span>确认密码</span>
+                <input class="Text1" type="password" value="" style="color:#808080" name="pass"/>
+                <input class="Button3" type="submit" value="注册"/>
+                <a href="__URL__/login"><input class="Button3" type="button" value="返回"/></a>
+            </div>
+        </div>
+      
+        </div>
+<!--        <div class="copy-rights">
+            <p>版权所有：诚兑城技术团队</p>
+        </div>-->
+ </form>
+    <script>
+        function confirm(){
+            var result=false;
+            if($("input[name='username']").val()==""){
+                alert("用户名为必填项!");
+                return false;
+            }else{
+                var username = $("input[name='username']").val();
+                $.ajax({
+                    async:false,
+                    type:"post",
+                    url:"__URL__/loginUsernameAjax",
+                    dataType: "text",
+                    data:{user:username},
+                    success:
+                    function(data){
+                        if(data == 1){
+                            alert("用户名已存在!请更换用户名!");
+                            result=false;
+                        }else{
+                            result=true;
+                        }
+                    }
+                })
+            }
+            if($("input[name='name']").val()==""){
+                alert("姓名为必填项!");
+                return false;
+            }
+            if($("input[name=password]").val()==""){
+                alert("登录密码为必填项!");
+                return false;
+            }
+            if($("input[name=pass]").val()==""){
+                alert("请再次输入密码!");
+                return false;
+            }else if($("input[name=password]").val()!=$("input[name=pass]").val()){
+                alert("两次输入的密码不相同!");
+                return false;
+            }
+            return result;
+        }
+    </script>
+    </body>
+</html>

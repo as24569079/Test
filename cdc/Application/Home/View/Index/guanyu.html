@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head id="head">
+<title>关于我们</title> 
+<meta charset="UTF-8">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/icons-core.css">
+<link href="__PUBLIC__/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/css/style.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/css/kefu.css" type="text/css" rel="stylesheet" media="screen"> 
+<link href="__PUBLIC__/css/nystyle.css" type="text/css" rel="stylesheet" media="screen"> 
+<!--<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/guanyu.css"/>-->
+<link rel="shortcut icon" href="__PUBLIC__/images/bitbug_favicon.ico" type="image/x-icon">
+<!--[if lte IE 6]>
+<div id="ie6shengji">亲爱的朋友，您正在使用浏览器版本严重过低(IE6，或使用IE内核的国产浏览器)，请升级新版IE8，Chrome，火狐等浏览器。</div>
+<script type="text/javascript">
+function position_fixed(el, eltop, elleft){
+// check if this is IE6
+if(!window.XMLHttpRequest)
+window.onscroll = function(){
+el.style.top = (document.documentElement.scrollTop + eltop)+"px";
+el.style.left = (document.documentElement.scrollLeft + elleft)+"px";
+}
+else el.style.position = "fixed";
+}
+position_fixed(document.getElementById("ie6-warning"),0, 0);
+</script>
+<![endif]-->
+<!--[if lt IE 8]>
+ <link href="/CMSPages/GetResource.ashx?stylesheetfile=~/App_Themes/GuanWang/css/bootstrap.min1.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+<!--[if IE 8]>
+<link href="/CMSPages/GetResource.ashx?stylesheetfile=~/App_Themes/GuanWang/css/bootstrap.min1.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+<!--[if lte IE 9]>
+<script src="bootstrap/js/respond.min.js"></script>
+<script src="bootstrap/js/html5.js"></script>
+<![endif]-->
+
+<script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/nav_index.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/member.js"></script> 
+
+<link rel="stylesheet" href="__PUBLIC__/shopping/css/index.css">
+</head>
+<body class="LTR Safari Chrome Safari42 Chrome42 ZHCN PCDevice ContentBody">
+<div class="aspNetHidden">
+<input type="hidden" name="manScript_HiddenField" id="manScript_HiddenField" value="">
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+
+</div>
+<div id="header">
+  <div class="container">
+    <div class="row">
+                    <div class="col-sm-3 col-md-3 hidden-xs" style="float:left">
+                        <a href="__URL__/index"><img src="__PUBLIC__/images/chengcuicheng.png" width="248" height="74"></a>
+                    </div>
+                    <div class="col-xs-6 col-sm-9 col-md-9 fr hidden-xs" style="float:left">
+                        <ul class="topnav fr">
+                            <li id="login_li">
+                                <a id="p_lt_ctl00_TopSignOutButton_btnSignOutLink" class="signoutLink" href="__URL__/login">[登陆]</a>
+                            </li>
+                            <li id="register_li">
+                                <a href="__URL__/register">[注册]</a>
+                            </li>
+                            <li style="display: none" id="zhongxin">
+                                <a href="__URL__/member">个人中心</a>
+
+                            </li>
+                        </ul>
+
+                        <ul class="nav nav-pills">
+                            <li class="dropdown"><a class="dropdown-toggle" href="__URL__/index">首页</a></li>
+                            <li role="presentation" class="dropdown">
+                                <a class="dropdown-toggle" href="__URL__/guanyu">关于诚兑城</a>
+                            </li>
+                            <li role="presentation" class="dropdown">
+                                <a class="dropdown-toggle" href="__URL__/shop_index">诚兑城商城</a>
+                            </li>
+                            <li role="presentation" class="dropdown">
+                                <a class="dropdown-toggle" href="__URL__/jiaruwomen">加入我们</a>
+                            </li>
+                            <li role="presentation" class="dropdown">
+                                <a class="dropdown-toggle" href="__URL__/kefuzhongxin">客服中心</a>
+                            </li>
+                            <li role="presentation" class="dropdown">
+                                <a class="dropdown-toggle" href="__URL__/xinwenzhongxin">新闻中心</a>
+                            </li>
+                            <li role="presentation" class="dropdown">
+                                <a class="dropdown-toggle" href="__URL__/gonggao">公告</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+      <script>
+            $(document).ready(function(){
+                $.ajax({
+                    type:"post",
+                    url:"__URL__/cookSelect",
+                    dataType: "text",
+                    data:null,
+                    success:
+                    function(data){
+                        if(data != ""){
+                            eval("var obj="+data);
+                            var str = obj.tel.substring(0,3);
+                            var str2 = obj.tel.substring(7);
+                            $("#login_li").html("用户："+str+"****"+str2);
+                            $("#register_li").html("<a href='__URL__/signOut'>[退出]</a>");
+                            $("#zhongxin").show();
+                        }else{
+                            $("#login_li").html("<a href='__URL__/login'>[登录]</a>");
+                            $("#register_li").html("<a href='__URL__/register'>[注册]</a>");
+                            $("#zhongxin").hide();
+                        }
+                    }
+                })
+            })
+        </script>
+  </div>
+</div>
+
+<div id="global-sidebar">
+  <div class="relative-div">
+    <div class="cart-im-panel">
+      <div id="jl-active-enter">
+        <ul style="display: block;" class="jl-active-items">
+        </ul>
+      </div>
+      <div class="cart-im-box-wrap">
+        <div class="cart-im-box">
+			<a id="side-cart" class="side-button log-send" target="_blank" href=""> <em class="red-cart"></em> <em class="white-cart"> </em>
+               <div class="vertical-font">购物车</div>
+            </a>
+            <a id="side-im" class="side-button openIM log-send" href=""><em class="red-im"><span></span></em> <em class="white-im"><span></span></em>
+               <div class="vertical-font">联系客服</div>
+            </a>
+		</div>
+      </div>
+    </div>
+    <div class="side-other slide-out">
+          <div class="empty-block-before"></div>
+          <div class="side-other-all">
+	     	  <a id="side-coupon" class="side-button log-send" target="_blank" href=""> <em class="red-coupon"></em> <em class="white-coupon"></em>
+                <div class="tip"> 会员中心<em class="black-triangle"></em></div>
+              </a>
+	     	  <a id="side-like" class="side-button log-send" target="_blank" href="/PCmaster/Products?s=2"> <em class="red-like"></em> <em class="white-like"></em>
+                <div class="tip"> 大众商城 <em class="black-triangle"></em></div>
+              </a>
+	      </div>
+      <div class="empty-block-after"></div>
+    </div>
+    <div class="side-go2top-panel">
+      <div id="go2top"> <em class="red-up-arrow"></em>
+        <div><a href="javascript:scroll(0,0)">返回顶部</a>&gt;</div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+	$(function(){
+	   $("#global-sidebar").hover(function(){
+		   $(".side-other").removeClass("slide-out").addClass("slide-in");
+	   },function(){
+		   $(".side-other").removeClass("slide-in").addClass("slide-out");
+	   });
+	});
+</script>
+
+
+<div class="container">
+<div class="row">
+    <div class="col-sm-3 col-md-3 hidden-xs">
+        <div class="content_l">
+            <div class="s">
+                <h1>关于诚兑城</h1><em>About us</em>
+            </div>
+            <div class="x">
+                <ul>
+                    <li><a href="__URL__/jianjie.html" target="main"><img src="__PUBLIC__/images/nynavli.png" width="3" height="5">企业简介</a></li>
+                    <li><a href="__URL__/wenhua.html" target="main"><img src="__PUBLIC__/images/nynavli.png" width="3" height="5">企业文化</a></li>
+                    <li><a href="__URL__/weilai.html" target="main"><img src="__PUBLIC__/images/nynavli.png" width="3" height="5">未来展望</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+<iframe name="main" src="jianjie.html" frameborder="0" width="75%" height="800px"></iframe>
+</div>
+</div>
+<iframe width="100%" height="250" src="__URL__/footer.html"></iframe>
+        </body>
+</html>

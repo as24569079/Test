@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="__PUBLIC__/css/tongji.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script src="__PUBLIC__/js/bianse.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/boot.css"/>
+    <script src="__PUBLIC__/js/jquery.table2excel.js"></script>
+</head>
+<body>
+    <div style="width:100%;float:none" id="divBig">
+        <div style="margin-bottom: 10px">
+            <br>
+            <form action="__URL__/cookie_tuihuo" method="post">
+                请输入客户手机号:<input type="text" name="tel" value="{$Think.cookie.tuihuo_tel}">　
+                请选择时间:<input type="date" name="times" id="times" style="margin-bottom: 0px;width:150px" value="{$Think.cookie.time_th}">-<input type="date" name="timess" id="timess" style="margin-bottom: 0px;width:150px" value="{$Think.cookie.times_th}">
+                　　<input type="submit" value="搜索" class="btn btn-primary">　　<a href="__URL__/tuihuo_cookieD"><input type="button" value="显示全部" class="btn btn-primary"></a>　　<input type='button' id='daochus' value="导出Exale" class="btn btn-primary">
+            </form>
+            </div>
+        
+            <table id="neirong" cellspacing='0'>
+                  <thead>
+                <tr class="neirong">
+                    <td>序号</td>
+                    <td>订单号</td>
+                    <td>商品名称</td>
+                    <td>退货数量</td>
+                    <td>备注</td>
+                    <td>退货时间</td>
+                    <td>退货用户</td>
+                    <td>操作</td>
+                   
+                    <!--<td>商品类别</td>-->
+                </tr>
+                <volist name='arr' id='val' key="k">
+                <tr class="neirong">
+                    <td>{$val.xuhao}</td>
+                    <td>{$val.order_no}</td>
+                    <td>{$val.item_name}</td>
+                    <td>{$val.number}</td>
+                    <td>{$val.beizhu}</td>
+                    <td>{$val.time}</td>
+                    <td>{$val.real_name}</td>
+                <if condition='$val.status eq 0'>
+                    <td><input type='button' class="tongguo" value="通过" data-id="{$val.tuihuo_id}"></td>
+                    <elseif condition="$val.status eq 1"/>
+                     <td><input type='button' class="shenbi" value="确认收货" data-id="{$val.tuihuo_id}"></td>
+                     <elseif condition="$val.status eq 2"/>
+                     <td>退货完成</td>
+                     <else/>
+                     <td>用户取消退货</td>
+                </if>
+                </tr>
+                </volist>
+            </thead>
+            </table>
+            <div class="fena">
+            {$show}
+            </div>
+         
+             
+          </div>
+        </div>
+    <div style='display:none'>
+                    <table id="daochu" cellspacing='0'>
+                  <thead>
+                  <tr class="neirong">
+                    <td>序号</td>
+                    <td>订单号</td>
+                    <td>商品名称</td>
+                    <td>退货数量</td>
+                    <td>备注</td>
+                    <td>退货时间</td>
+                    <td>退货用户</td>
+                   
+                    <!--<td>商品类别</td>-->
+                </tr>
+                <volist name='arrs' id='val' key="k">
+                 <tr class="neirong">
+                    <td>{$val.xuhao}</td>
+                    <td>{$val.order_no}</td>
+                    <td>{$val.item_name}</td>
+                    <td>{$val.number}</td>
+                    <td>{$val.beizhu}</td>
+                    <td>{$val.time}</td>
+                    <td>{$val.real_name}</td> 
+                </tr>
+                </volist>
+            </thead>
+            </table>
+    </div>
+</body>
+<script>
+    $(function(){
+        $(".tongguo").click(function(){
+              if(confirm('确认通过退货申请')){
+                  var id = $(this).attr("data-id");
+                  $.post("__URL__/tuihuo_sh",{"id":id},function(data){
+                      if(data==1){
+                          alert("通过退货申请");
+                          window.location.reload();
+                      }else{
+                          alert("系统忙，请稍后")
+                      }
+                  })
+              }
+        })
+         $(".shenbi").click(function(){
+              if(confirm('确认收到用户的退货')){
+                  var id = $(this).attr("data-id");
+                  $.post("__URL__/tuihuo_ws",{"id":id},function(data){
+//                      alert(data);
+                      if(data==1){
+                          alert("退货完成");
+                          window.location.reload();
+                      }else{
+                          alert("系统忙，请稍后")
+                      }
+                  })
+              }
+        })
+           var myDate = new Date();    
+			$("#daochus").click(function(){
+				$("#daochu").table2excel({
+					exclude: ".noExl",
+					name: "Excel Document Name",
+					filename: myDate.toLocaleDateString(),
+//					exclude_img: true,
+//					exclude_links: true,
+//					exclude_inputs: true
+				});
+			});
+    })
+</script>
+</html>

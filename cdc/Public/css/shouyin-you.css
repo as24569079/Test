@@ -1,0 +1,67 @@
+@charset "utf-8";
+.itemlist{
+ 	width:100%;
+	heigth:auto;
+	border:solid 0px red; 
+	}
+.itemlist .item
+	{
+		width:100%;
+		height:50px;
+		border:solid 0px red;  
+		position:relative;
+		margin-bottom:10px;
+		border-bottom:solid 1px #cfcfcf;
+	}
+.itemlist .item div{float:left;}
+.itemlist .item .itemimg{width:50px; height:50px;}
+.itemlist .item .itemimg img{ width:100%; height:100%;}	
+.itemlist .item .iteminfo{width:480px; height:100%; border:solid 0px red;}
+.itemlist .item .iteminfo div{ width:100%; height:25px;}
+.itemlist .item .iteminfo .downinfo .subitem{ float:left; font-size:12px;  width:110px; border:solid 0px red; text-align:left;}
+.itemlist .item .iteminfo .downinfo .subitem .left{ text-align:right;float:left;border:solid 0px red;}
+.itemlist .item .iteminfo .downinfo .subitem .right{ text-align:left; float:left;}
+.txt-orange{ color:#F90}
+.itemlist .item  .itemopt{width:90px;float:right; height:25px; border:solid 0px red; position:absolute;bottom:5px;right:0; }
+.itemlist .item  .itemopt span{ width:25px; height:25px; float:left; border:solid 0px red; display:block ; 
+			margin-right:3px; text-align:center;line-height:25px; color:white; border-radius:3px; cursor:pointer}
+.bg-red{background-color:red}
+.bg-black{background-color:#666}
+.tongji{
+	width:100%;
+	heigth:auto;
+	border:solid 0px red;
+	}
+.quantity{
+	width:50%;
+	height:50px;
+	border:solid 0px red;
+	float:left;
+	}
+.quantity span{
+	font-size:16px;
+	line-height:25px;
+	}
+.heji{
+	width:300px; 
+	height:50px;
+	border:solid 0px red;
+	float:left
+	}
+.heji span{
+	font-size:16px;
+	line-height:25px;
+	}
+.jiezhang{
+width: 90px;
+height: 25px;
+border: solid 0px red;
+float:right;
+}
+.jiezhang button{
+	background:#3C3;
+	border:solid 1px #3C3;
+	border-radius:3px;
+	width:80px;
+	height:30px;
+	}

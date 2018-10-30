@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="__PUBLIC__/css/tongji.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script src="__PUBLIC__/js/bianse.js"></script>
+    <style>
+        .yinhangka{
+            padding-top:20px;padding-left:20px;
+            width: 90%
+        }
+        .yinhangka > span{
+            color:#0000cc;
+        }
+        .yinhangka > input{
+            width:200px;height:25px;
+        }
+        .sub{
+            width:250px;height:30px;
+            outline: none;border:0px;
+            background:#F90;color:#FFF;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <form method="post" id='form' onsubmit="return yan()" action="__URL__/pass_upt">
+    <div>
+        <span>修改密码</span>
+    </div>
+        <div class="yinhangka">
+            原登录密码：<input type="password" id="password"><br><br>
+            新登录密码：<input type="password" id="pass" name="password"><br><br>
+            请再次输入：<input type="password" id="pass2"><br><br>
+            <input type="submit" value="修改" style="margin-left: 100px">
+        </div>
+    </form>
+    <script>
+        function yan(){
+            var result;
+            if($("#password").val()==""){
+                alert("请输入原登录密码!");
+                return false;
+            }else{
+                var value = $("#password").val();
+                $.ajax({
+                    async:false,
+                    type:"post",
+                    url:"__URL__/passselect",
+                    dataType: "text",
+                    data:{pass:value},
+                    success:
+                    function(data){
+                        if(data!=1){
+                            alert("原登录密码输入错误!请再次输入!");
+                            result = false;
+                        }
+                    }
+                })
+            }
+            if($("#pass").val()==""){
+                alert("请输入新登录密码!");
+                return false;
+            }else{
+                if($("#pass2").val()==""){
+                    alert("请再次输入密码!");
+                    return false;
+                }else if($("#pass").val()!=$("#pass2").val()){
+                    alert("两次输入的密码不相同!请重新输入!");
+                    return false;
+                }
+            }
+            return result;
+        }
+    </script>
+</body>
+</html>

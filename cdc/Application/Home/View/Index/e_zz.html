@@ -1,0 +1,226 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+    <link href="__PUBLIC__/css/jquery-confirm.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+
+    <link href="__PUBLIC__/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/mobilemain.css" type="text/css" rel="stylesheet">
+    <link href="__PUBLIC__/css/main.css" type="text/css" rel="stylesheet">
+
+</head>
+<body>
+
+    <div class="container body-content">
+        <div class="shuju">
+            用户名：<span class="go-up"></span>
+            电子币余额：<span class="go-up"></span>
+            积分余额：<span class="go-up"></span>
+        </div>
+        <div class="fanhuian mobileyc"><a class="ui-button fleft" href="__URL__/E_giro">返回列表</a></div>
+        <div id="load" style="display:none;z-index:60;">正在加载请稍后....</div>
+
+        <form id="form0" onSubmit="return confirm();" action="__URL__/zhuan" method="post">
+            <input name="__RequestVerificationToken" value="zvMAe49SptVye9YPtOgLBEf3QvdrKDIPXrTkx7X8uH-ov1MGF_Cz7xwOY-wjl_fgKE6GEtUZQK0hFfzbYhPS5IwW8HSeCMbvgPyULlQDBcIr_Yt20" type="hidden"><!--防止跨越提交-->
+            <div class="form-horizontal cms-bootstrap">
+                <!--显示错误验证信息-->
+                <div class="form-group">
+                    <label class="editing-form-label-cell control-label col-md-2 col-xs-4 col-sm-4" for="MoveType">转账类型</label>
+                    <div class="editing-form-value-cell col-md-10 col-xs-8 col-sm-8">
+                        <select id="MoveType" name="MoveType">
+                            <option value="emoney">电子币</option>
+                            <!--<option value="smoney">积分</option>-->
+                        </select>
+                        <span class="field-validation-valid" data-valmsg-for="MoveType" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="editing-form-label-cell control-label col-md-2 col-xs-4 col-sm-4" for="TagertUserName">收款人账号</label>
+                    <div class="editing-form-value-cell col-md-10 col-xs-8 col-sm-8">
+                        <input class="form-control" data-val="true" data-val-required="收款人账号是必填项！" id="TagertUserName" name="TagertUserName" value="" type="text" maxlength="11">
+                        <span class="field-validation-valid" data-valmsg-for="TagertUserName" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="editing-form-label-cell control-label col-md-2 col-xs-4 col-sm-4" for="TagertFullName">收款人姓名</label>
+                    <div class="editing-form-value-cell col-md-10 col-xs-8 col-sm-8">
+<!--                        <input class="form-control" data-val="true" data-val-required="收款人姓名是必填项！" id="TagertFullName" name="TagertFullName" value="" type="text">-->
+                        <span class="field-validation-valid" data-valmsg-for="TagertFullName" data-valmsg-replace="true" id="aaa"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="editing-form-label-cell control-label col-md-2 col-xs-4 col-sm-4" for="Fn_Amount">转账金额</label>
+                    <div class="editing-form-value-cell col-md-10 col-xs-8 col-sm-8">
+                        <input class="form-control" data-val="true" data-val-number="The field 转账金额 must be a number." data-val-range="转账金额必须大于1！" data-val-range-max="2147483647" data-val-range-min="1" data-val-required="转账金额必填项！" id="Fn_Amount" name="Fn_Amount" value="" type="text">
+                        <span class="field-validation-valid" data-valmsg-for="Fn_Amount" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="editing-form-label-cell control-label col-md-2 col-xs-4 col-sm-4" for="Fc_Remark">说明</label>
+                    <div class="editing-form-value-cell col-md-10 col-xs-8 col-sm-8">
+                        <textarea class="form-control" cols="20" id="Fc_Remark" name="Fc_Remark" rows="2"></textarea>
+                        <span class="field-validation-valid" data-valmsg-for="Fc_Remark" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="editing-form-label-cell control-label col-md-2 col-xs-4 col-sm-4" for="fc_TwoPassword">安全密码</label>
+                    <div class="editing-form-value-cell col-md-10 col-xs-8 col-sm-8">
+                        <input class="form-control" data-val="true" data-val-required="安全密码必填项！" id="fc_TwoPassword" name="fc_TwoPassword" type="password" maxlength="8">
+                        <span class="field-validation-valid" data-valmsg-for="fc_TwoPassword" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+
+
+                <div class="form-group redbutton">
+                    <div class="form-group-submit col-md-10">
+                        <input value="提交信息" id="save" class="btn btn-default" type="submit">
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <script src="__PUBLIC__/js/jquery-1.10.2.js"></script>
+    <script src="__PUBLIC__/js/E_zz.js"></script>
+    <script>
+        function confirm(){
+            var result;
+            var pattern = /^[\u4e00-\u9fa5]+$/;
+            if($("#TagertUserName").val().length<11){
+                $(".field-validation-valid").eq(1).html("请输入正确的收款人账号!");
+                return false;
+            }else if(isNaN($("#TagertUserName").val())){
+                $(".field-validation-valid").eq(1).html("请输入正确的收款人账号!");
+                return false;
+            }else{
+                var value = $("#TagertUserName").val();
+                $.ajax({
+                    async:false,
+                    type:"post",
+                    url:"__URL__/useryanzheng",
+                    dataType: "text",
+                    data:{user:value},
+                    success:
+                    function(data){
+                        if(data == ""){
+                            $("#aaa").html("收款人账号不存在!请重新输入!");
+                            result=false;
+                        }else{
+                            eval("var obj = " + data);
+                           $("#aaa").html("已找到收款人"+obj.real_name);
+                           result = true;
+                        }
+                    }
+                })
+            }
+            
+//            if($("#TagertFullName").val()==""){
+//                $(".field-validation-valid").eq(2).html("收款人姓名为必填项!");
+//                return false;
+//            }else if(!pattern.test($("#TagertFullName").val())){
+//                $(".field-validation-valid").eq(2).html("请输入中文!");
+//                return false;
+//            }else{
+//                var value = $("#TagertUserName").val();
+//                var val = $("#TagertFullName").val();
+//                $.ajax({
+//                    async:false,
+//                    type:"post",
+//                    url:"__URL__/r_nameyanzheng",
+//                    dataType: "text",
+//                    data:{user:value,val:val},
+//                    success:
+//                    function(data){
+//                        if(data != 1){
+//                            $(".field-validation-valid").eq(2).html("收款人姓名与账号不匹配!");
+//                            result=false;
+//                        }else{
+//                            $(".field-validation-valid").eq(2).html("");
+////                            result2=true;
+//                        }
+//                    }
+//                })
+//            }
+            if($("#Fn_Amount").val()==""){
+                $(".field-validation-valid").eq(3).html("转账金额为必填项!");
+                return false;
+            }else if(isNaN($("#Fn_Amount").val())){
+                $(".field-validation-valid").eq(3).html("转账金额必须为数字!");
+                return false;
+            }else if($("#Fn_Amount").val()<1){
+                $(".field-validation-valid").eq(3).html("转账金额必须大于1!");
+                return false;
+            }else{
+                var value = $("#Fn_Amount").val();
+                var xiala = $("#MoveType").val();
+                $.ajax({
+                    async:false,
+                    type:"post",
+                    url:"__URL__/moneyyanzheng",
+                    dataType: "text",
+                    data:{money:value,xiala:xiala},
+                    success:
+                    function(data){
+                        if(data != 1){
+                            $(".field-validation-valid").eq(3).html("账户金额不足!");
+                            result=false;
+                        }else{
+                            $(".field-validation-valid").eq(3).html("");
+//                            result4=true;
+                        }
+                    }
+                })
+            }
+            if($("#fc_TwoPassword").val()==""){
+                $(".field-validation-valid").eq(5).html("请填写您的安全密码!");
+                return false;
+            }else{
+                var pass = $("#fc_TwoPassword").val();
+                $.ajax({
+                    async:false,
+                    type:"post",
+                    url:"__URL__/passyanzheng",
+                    dataType: "text",
+                    data:{pass:pass},
+                    success:
+                    function(data){
+                        if(data != 1){
+                            $(".field-validation-valid").eq(5).html("安全密码不正确!请重新填写!");
+                            result=false;
+                        }else{
+                            $(".field-validation-valid").eq(5).html("");
+                        }
+                    }
+                })
+            }
+            return result;
+        }
+        $("#TagertUserName").keyup(function(){
+                var value = $("#TagertUserName").val();
+                $.ajax({
+                    async:false,
+                    type:"post",
+                    url:"__URL__/useryanzheng",
+                    dataType: "text",
+                    data:{user:value},
+                    success:
+                    function(data){
+                        if(data == ""){
+                            $("#aaa").html("收款人账号不存在!请重新输入!");
+                            result=false;
+                        }else{
+                            eval("var obj = " + data);
+                           $("#aaa").html("已找到收款人"+obj.real_name);
+                           result = true;
+                        }
+                    }
+                })
+            })
+    </script>
+</body>
+</html>

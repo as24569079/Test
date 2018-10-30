@@ -1,0 +1,47 @@
+@charset "utf-8";
+th{
+	height: 25px;
+
+    text-align: center;
+    background:  #e5e5e5;
+    color: #666;
+    font-size: 12px;
+	width:400px
+	}
+	td{
+    text-align: center;
+    color: #666;
+    font-size: 12px;
+	border:1px solid #eee;
+	}
+.yangshi{ float:left;
+ width:80px; 
+ height:80px;
+ }
+ .shop_name{float:left;
+ width:100px; 
+ height:50px;
+ }
+ img{
+	 width:80px;
+	 height:80px;
+	 }
+.kb{
+	width:400px;
+	height:20px;	
+	}
+.time{
+    color: #aaa;
+	height: 32px;
+    line-height: 32px;
+    text-align: left;
+    background: #aaa;
+    color: #666;
+    font-size: 12px;
+	}
+tr{
+	width:400px;
+	}
+p{
+    margin: 5px;        
+}

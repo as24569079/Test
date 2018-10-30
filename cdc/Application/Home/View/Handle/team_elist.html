@@ -1,0 +1,126 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>团队奖统计</title>
+
+    <link href="__PUBLIC__/css/jquery-confirm.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+
+    <link href="__PUBLIC__/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/mobilemain.css" type="text/css" rel="stylesheet">
+    <link href="__PUBLIC__/css/main.css" type="text/css" rel="stylesheet">
+    <link href="__PUBLIC__/css/tongji.css" type="text/css" rel="stylesheet">
+
+</head>
+<body>
+<form id="form0" method="post" action="__URL__/tongji_ri">
+    <div class="container body-content">
+        <input type="submit" value="生成统计表" style="margin: 10px" id="sheng" onclick="return confirm('确定吗？')">
+        <!--<a href="__URL__/quanbu"><input type="button" value="进入统计" style="margin: 10px" id="sheng"></a>-->
+<!--        <select id="sel" style="width: 150px;height:30px;">
+            <volist name="time" id="val">
+            <option>{$val.zhuangtai}</option>
+            </volist>
+        </select>-->
+        <!--<div class="fanhuian redbutton"><a class="ui-button fleft" href="__URL__/E_zz">转账</a></div>-->
+        <table class="table">
+            <tbody>
+                <tr class="fir-tr">
+                    <th>姓名</th>
+                    <th>营销等级</th>
+                    <th>子账户</th>
+                    <th>个人业绩</th>
+                    <th colspan="4">本次奖励</th>
+                    <th>统计时间</th>
+                    <th>发放计划</th>
+                    <th>操作状态</th>
+                </tr>
+                 <tr class="fir-tr">
+                    <th colspan="4"></th>
+                    <th>电子币</th>
+                    <th>积分</th>
+                    <th>管理费</th>
+                    <th>附加奖励</th>
+                    <th colspan="4"></th>
+                </tr>
+                <foreach name="arr" item="v" key="key">
+                    <!--<tr style='background:#FFF'>-->
+                        <!--<td colspan="10">{$key}</td>-->
+                    <!--</tr>-->
+                    <foreach name="v" item="value" key="key2">
+                        <if condition="$value.status eq 0">
+                        <tr class='e_tr' data-status='{$value.status}' data-tel='{$value.tel}' data-jl='{$value.emoney}' data-gl='{$value.guanlifei}' style="color:#009933">
+                            <td>{$value.real_name}</td>
+                            <td><if condition="$value.dengji eq 0">营销顾问<elseif condition="$value.dengji eq 3"/>普通会员<else/>营销专家</if></td>
+                            <td>{$value.zizhanghu}</td>
+                            <td>{$value.tongji_yeji}</td>
+                            <td class='jl'>{$value.emoney}</td>
+                            <td>{$value.smoney}</td>
+                            <td class='gl'>{$value.guanlifei}</td>
+                            <td><if condition="$value.reward_fafang neq ''">{$value.reward_fafang}<else/>--</if></td>
+                            <td>{$value.tongji_date}</td>
+                            <td>{$value.fafang_time}</td>
+                            <td><if condition="$value.status eq 0"><a href="__URL__/zjiangli?distribute_id={$value.distribute_id}"><input type="button" value="发放" class="fafang"  onclick="return confirm('确定吗？')"></a><else/>已发放</if></td>
+                        </tr>
+                        <else/>
+                        <tr class='e_tr' data-status='{$value.status}' data-tel='{$value.tel}' data-jl='{$value.emoney}' data-gl='{$value.guanlifei}'>
+                            <td>{$value.real_name}</td>
+                            <td><if condition="$value.dengji eq 0">营销顾问<elseif condition="$value.dengji eq 3"/>普通会员<else/>营销专家</if></td>
+                            <td>{$value.zizhanghu}</td>
+                            <td>{$value.tongji_yeji}</td>
+                            <td class='jl'>{$value.emoney}</td>
+                            <td>{$value.smoney}</td>
+                            <td class='gl'>{$value.guanlifei}</td>
+                            <td><if condition="$value.reward_fafang neq ''">{$value.reward_fafang}<else/>--</if></td>
+                            <td>{$value.tongji_date}</td>
+                            <td>{$value.fafang_time}</td>
+                            <td><if condition="$value.status eq 0"><a href="__URL__/zjiangli?distribute_id={$value.distribute_id}"><input type="button" value="发放" class="fafang"  onclick="return confirm('确定吗？')"></a><else/>已发放</if></td>
+                        </tr>
+                        </if>
+                    </foreach>
+                    <tr class="fir-tr zong" data-tel='{$value.tel}' style='background:#ccc'>
+                        <td colspan="4" class='leiji' style="text-align: right">累计奖励:0.00</td>
+                        <td colspan="3" class='yi'>已发放:0.00</td>
+                        <td colspan="3" class='wei' style="text-align: left">未发放:0.00</td>
+                    </tr>
+                </foreach>
+            </tbody>
+        </table>
+        <div class="fena">
+            {$show}
+        </div>
+        <div class="pagination-container page_new">
+            <!--<div class="pagination-container"><ul class="pagination"><li class="disabled PagedList-skipToPrevious"><a rel="prev">«</a></li><li class="active"><a>1</a></li><li class="disabled PagedList-skipToNext"><a rel="next">»</a></li></ul></div>-->
+        </div>
+    </div>
+</form>
+    <script src="__PUBLIC__/js/jquery-1.10.2.js"></script>
+    <script>
+        $(function(){
+            var tr_zong = $(".zong");
+            var tr = $(".e_tr");
+            for(var i=0;i<tr_zong.length;i++){
+                var num = 0;
+                var num2 = 0;
+                var num3 = 0;
+                for(var a=0;a<tr.length;a++){
+                    if(tr_zong.eq(i).attr("data-tel") == tr.eq(a).attr("data-tel")){
+                        num+= tr.eq(a).attr("data-jl")*1 + tr.eq(a).attr("data-gl")*1;
+                        tr_zong.eq(i).children(".leiji").html("累计奖励:"+num);
+                        if(tr.eq(a).attr("data-status")=="1"){
+                            num2+= tr.eq(a).attr("data-jl")*1 + tr.eq(a).attr("data-gl")*1;
+                            tr_zong.eq(i).children(".yi").html("已发放:"+num2);
+                        }else{
+                            num3+= tr.eq(a).attr("data-jl")*1 + tr.eq(a).attr("data-gl")*1;
+                            tr_zong.eq(i).children(".wei").html("未发放:"+num3);
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+<script>window.parent.scrollTo(0, 0);</script>
+</body>
+</html>

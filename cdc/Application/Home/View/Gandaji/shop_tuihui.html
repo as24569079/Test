@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="__PUBLIC__/css/tongji.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script src="__PUBLIC__/js/bianse.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/boot.css"/>
+</head>
+<body>
+    <div style="width:100%;float:none" id="divBig">
+        <div style="margin-bottom: 10px">
+            <br>
+            <form action="__URL__/shop_cookiee" method="post">
+                请输入选择商城:<select  name="mall_id" style="margin-bottom: 0px">
+                    <if condition="$Think.cookie.mall_idse neq ''">
+                       <option value="{$Think.cookie.mall_idse}">{$Think.cookie.mall_namese}</option><else />
+                    <option value="0">请选择</option></if>
+                    <volist name="item" id="val">
+                       
+                        <option value="{$val.mall_id}">{$val.mall_name}</option>
+                    </volist>
+                            </select>　　
+                请输入商品名称:<input type="text" name="item_name" id="item_name" style="margin-bottom: 0px;width:150px" value="{$Think.cookie.item_namese}">
+                请输入商品条形码:<input type="text" name="bar_code" id="bar_code" style="margin-bottom: 0px;width:150px" value="{$Think.cookie.bar_codese}">
+                  　　请输入库存<if condition="$Think.cookie.kucun1se neq 0"><input type="text" name="kucun1" style="margin-bottom: 0px;width:50px" value="{$Think.cookie.kucun1se}"><else/><input type="text" name="kucun1" style="margin-bottom: 0px;width:50px"></if>-<if condition="$Think.cookie.kucun2se neq 9999999"><input type="text" name="kucun2" style="margin-bottom: 0px;width:50px" value="{$Think.cookie.kucun2se}"><else/><input type="text" name="kucun2" style="margin-bottom: 0px;width:50px"></if><br><br>
+                　　<input type="submit" value="搜索" class="btn btn-primary">　　<a href="__URL__/shop_cookieDse"><input type="button" value="显示全部" class="btn btn-primary"></a>
+            </form>
+            </div>
+        
+            <table id="neirong" cellspacing='0'>
+                  <thead>
+                <tr class="neirong">
+                    <td>序号</td>
+                    <td>商品名称</td>
+                    <td>商品图片</td>
+                    <!--<td>商品类别</td>-->
+                    <td>所属商城</td>
+                    <td>电子币</td>
+                    <td>积分</td>
+                    <td>库存</td>
+                    <td>退货</td>
+     
+                </tr>
+                <volist name='arr' id='val' key="k">
+                <tr class="neirong">
+                    <td>{:(I('get.p'))?((I('get.p')-1)*10+$k):($k)}</td>
+                    <td>{$val.item_name}</td>
+                    <td><img src="{$val.img_url}"></td>
+                    <!--<td>{$val.category_name}</td>-->
+                    <td>{$val.mall_name}</td>
+                    <td>{$val.eMoney}</td>
+                    <td>{$val.sMoney}</td>
+                    <td>{$val.number}</td>
+                    <td>
+                        <input type='button' value='退货' class='inventory btn btn-primary' data-item_id="{$val.item_id}">
+                   
+                    
+                </tr>
+                </volist>
+            </thead>
+            </table>
+            <div class="fena">
+            {$show}
+            </div>
+            <div style="width: 550px; height:200px; position: absolute; z-index: 10000; display: block; overflow: hidden; top: 225px; left: 350px; border:1px  solid red; background:#FFF;display: block; border-radius: 5px;display: none" id="address_people">
+              
+               
+          	<div style="margin:40px 20px">
+                    <div>    
+                        <!--<form method="post"  action="__URL__/shop_inventory" onsubmit="return sub()">-->
+                        <form id="form">
+                <span><span style="color:red">&nbsp;&nbsp;&nbsp;&nbsp;*</span>请输入购入数量：</span>
+                <input type="text" style="width:100px; height:20px;" id="item_number" name="item_number" maxlength="5"><span id="item_stop"></span>
+                    <input type="hidden" id="item_id" name="item_id"><br><br>
+                <span><span style="color:red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span>请选择旗舰店：</span> 
+                    <select style="width:200px;" name="qjd_id">
+                        <volist name="qjd" id="val">
+                            <if condition="$Think.cookie.qxfenpei eq $val.shop_id || $Think.cookie.qxfenpei eq 0">
+                            <option value="{$val.shop_id}">{$val.shop_name}</option>
+                            </if>
+                        </volist>
+                    </select><br><br>
+                    　　　　<div style="width:100%;float: left">
+<!--                            <div style="float:left;width:200px">
+                                <input type="button" style="width:150px; height:20px;" value="入库" id="ruku">
+                            </div>-->
+                             <div style="float:left;width:200px">
+                                <input type="button" style="width:150px; height:20px;" value="退货" id="tuihuo">
+                            </div>
+                    </div>
+                    <input type="button" value="x" style="left: 500px;top: 20px; position: absolute; "id="address_d">
+                    <!--</form>-->
+                        </form>
+                </div>                  
+            </div>
+             
+          </div>
+        </div>
+ 
+</body>
+ <script>
+    var divBig = document.getElementById("divBig");
+    window.parent.iframe.style.minHeight = divBig.scrollHeight+"px";
+</script>
+<script>
+    function sub(){
+        if($("#item_number").val()==""){
+            $("#item_stop").text(" 请输入数量！")
+            return false;
+        }else if(isNaN($("#item_number").val())){
+             $("#item_stop").text(" 请输入正确格式！")
+             return false;
+        }
+        
+    }
+    $(document).ready(function () {
+        $(".inventory").click(function(){
+             $("#address_people").fadeIn(1000);
+             $("#item_id").val($(this).attr("data-item_id"));
+            
+        })
+        $("#address_d").click(function(){
+             $("#address_people").fadeOut(1000);
+            
+        })
+        $("#ruku").click(function() {
+             if($("#item_number").val()==""){
+                $("#item_stop").text(" 请输入数量！")
+                return false;
+            }else if(isNaN($("#item_number").val())){
+                 $("#item_stop").text(" 请输入正确格式！")
+                 return false;
+            } else {
+                $.post("__URL__/ruku",$("#form").serialize(),function(data){
+                   
+                    if(data==1) {
+                        alert("入库申请已发送");
+                        $("#address_people").fadeOut(1000);
+                        location.reload();
+                    } else {
+                         alert("系统繁忙，请稍后");
+                    }
+                })
+            }
+        })
+         $("#tuihuo").click(function() {
+             if($("#item_number").val()==""){
+                $("#item_stop").text(" 请输入数量！")
+                return false;
+            }else if(isNaN($("#item_number").val())){
+                 $("#item_stop").text(" 请输入正确格式！")
+                 return false;
+            } else {
+                $.post("__URL__/tuihuo",$("#form").serialize(),function(data){
+                    if(data==1) {
+                       alert("该商品还没有库存，请确认");
+                    } else if(data == 2) {
+                        alert("退货申请已发送");
+                        $("#address_people").fadeOut(1000);
+                        location.reload();
+                    } else{
+                        alert("该商品没有那么多库存")
+                    }
+                })
+            }
+        })
+        
+    })
+    
+    
+    </script>
+</html>

@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link href="__PUBLIC__/css/tongji.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script src="__PUBLIC__/js/bianse.js"></script>
+</head>
+<body>
+    <form method="post" action="__URL__/weirenzheng">
+    <div>
+        <div>
+            <span class="zhanghao">会员信息</span>
+            <input type="text" class="search" name="sea">
+            <input type="submit" value="搜索" class="search_sub">
+            <table id="neirong" border="0" cellspacing="0">
+                <tr class="tou">
+                    <td>序号</td>
+                    <td>用户名</td>
+                    <td>姓名</td>
+                    <td>注册时间</td>
+<!--                    <td>地址</td>
+                    <td>邮箱</td>-->
+                    <td>身份证</td>
+                    <td>电子币</td>
+                    <td>积分</td>
+                    <!--<td>积分</td>-->
+                    <td>建材电子币</td>
+                    <!--<td>审核</td>-->
+                </tr>
+                <volist name="ren" id="val" key="k">
+                    <if condition='$val.biaoji eq 1'>
+                        <tr class="neirong" style='color:red'>
+                    <td>{:(I('get.p'))?((I('get.p')-1)*12+$k):($k)}</td>
+                    <td>{$val.tel}</td>
+                    <td>{$val.real_name}</td>
+                    <td>{$val.created_date}</td>
+<!--                    <td>{$val.address}</td>
+                    <td>{$val.email}</td>-->
+                    <td>{$val.identity_card}</td>
+                    <td>{$val.emoney}</td>
+                    <td>{$val.smoney}</td>
+                    <!--<td>{$val.integral}</td>-->
+                    <td>{$val.no_money}</td>
+                    <!--<td><input type="button" value="通过"></td>-->
+                </tr>
+                <else/>
+                 <tr class="neirong">
+                    <td>{:(I('get.p'))?((I('get.p')-1)*12+$k):($k)}</td>
+                    <td>{$val.tel}</td>
+                    <td>{$val.real_name}</td>
+                    <td>{$val.created_date}</td>
+<!--                    <td>{$val.address}</td>
+                    <td>{$val.email}</td>-->
+                    <td>{$val.identity_card}</td>
+                    <td>{$val.emoney}</td>
+                    <td>{$val.smoney}</td>
+                    <!--<td>{$val.integral}</td>-->
+                    <td>{$val.no_money}</td>
+                    <!--<td><input type="button" value="通过"></td>-->
+                </tr>
+                    </if>
+               
+                </volist>
+            </table>
+            <div class="fena">{$show}</div>
+        </div>
+    </div>
+    </form>
+    <script type="text/javascript">
+   jQuery(window).load(function() {
+    jQuery("#load").fadeOut(500);
+});
+  </script>
+	<!-- END JAVASCRIPTS -->
+        <div style="position: absolute;display:block;width:100%;top:25%" id="load">
+            <center><img src='/Public/images/wait.gif' style="width:70px;height:70px"></center>
+        </div>
+</body>
+</html>

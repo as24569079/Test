@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="__PUBLIC__/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    </head>
+    <body>
+        <form method="post" action="__URL__/chuku_shenqing" id='form'>
+            <input type="hidden" name="item_id" id="item_id">
+         <div class='group' style="width: 50%;float:left">
+            <div class="form-group" style="margin: 0">&nbsp;</div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">请输入商品条形码</label>
+                <input type="text" class="form-control" id="tel" style="width:50%;" name="name" data-kai="off"><span id="spname"></span>
+            </div>
+            <div class="form-group" id='tel_tishi' style='color:red'></div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">选择旗舰店</label>
+                <select id="sel" name="flag" class="form-control" style="width:50%;">
+                    <volist name="arr" id="val">
+                        <option value="{$val.shop_id}">{$val.shop_name}</option>
+                    </volist>
+                </select>
+            </div>
+            <input type='hidden' id='tel_code' value='false'>
+            <div class="form-group">
+                <label for="exampleInputEmail1">请输入商品数量</label>
+                <input type="text" class="form-control" id="money" style="width:50%;" name="num" data-kai="off">
+            </div>
+             <div class="form-group">
+                <label for="exampleInputEmail1">备注</label>
+                <textarea cols="30" rows='5' name='beizhu' class="form-control"></textarea>
+            </div>
+            <input type='submit' value='申请' class='btn btn-primary' style='width:50%;display:none' id="add">
+         </div>
+        </form>
+        <script>
+            $(function(){
+                $("#tel").blur(function(){
+                      var zhi = $(this).val();
+                   if(zhi !== ''){
+                       $.post("__URL__/cxsp",{"zhi":zhi},function(data){
+                           if(data ==2) {
+                               $("#spname").text("没有找到相关商品");
+                                $("#item_id").val('');
+                                $("#add").hide()
+                           } else{
+                               eval("var obj="+data);
+                                $("#spname").text(obj['item_name']);
+                                $("#item_id").val(obj['item_id']);
+                                $("#add").show();
+                           }
+                       })
+                   }
+                })
+            })
+        </script>
+    </body>
+</html>

@@ -1,0 +1,58 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>团队奖统计</title>
+
+    <link href="__PUBLIC__/css/jquery-confirm.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+
+    <link href="__PUBLIC__/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/mobilemain.css" type="text/css" rel="stylesheet">
+    <link href="__PUBLIC__/css/main.css" type="text/css" rel="stylesheet">
+    <link href="__PUBLIC__/css/tongji.css" type="text/css" rel="stylesheet">
+
+</head>
+<body>
+<form id="form0" method="post" action="__URL__/tongji_ri">
+    <div class="container body-content">
+        <a href="__URL__/quanbu"><input type="button" value="进入统计" style="margin: 10px" id="sheng"></a>
+<!--        <select id="sel" style="width: 150px;height:30px;">
+            <volist name="time" id="val">
+            <option>{$val.zhuangtai}</option>
+            </volist>
+        </select>-->
+        <!--<div class="fanhuian redbutton"><a class="ui-button fleft" href="__URL__/E_zz">转账</a></div>-->
+        <table class="table">
+            <tbody>
+                <tr class="fir-tr">
+                    <th>序号</th>
+                    <th>账户名</th>
+                    <th>姓名</th>
+                    <th>电子币余额</th>
+                </tr>
+            <volist name="zhang" id="val" key="k">
+                <tr style="text-align: center" class="neirong">
+                    <td>{:(I('get.p'))?((I('get.p')-1)*12+$k):($k)}</td>
+                    <td><a href="__URL__/youtongji/tel/{$val.tel}">{$val.tel}</a></td>
+                    <td>{$val.real_name}</td>
+                    <td>{$val.emoney}</td>
+                </tr>
+            </volist>
+            </tbody>
+        </table>
+        <div class="fena">
+            {$show}
+        </div>
+        <div class="pagination-container page_new">
+            <!--<div class="pagination-container"><ul class="pagination"><li class="disabled PagedList-skipToPrevious"><a rel="prev">«</a></li><li class="active"><a>1</a></li><li class="disabled PagedList-skipToNext"><a rel="next">»</a></li></ul></div>-->
+        </div>
+    </div>
+</form>
+    <script src="__PUBLIC__/js/jquery-1.10.2.js"></script>
+    <script>
+    </script>
+<script>window.parent.scrollTo(0, 0);</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+.floor-guide {
+    width: 64px;
+    font-size: 12px;
+    border: 1px solid #eee;
+    background: #fafbfc;
+}
+.floor-guide li.on, .floor-guide li.hover {
+    background: #fe504f;
+    z-index: 1;
+    width: 64px;
+    left: -1px;
+}
+.floor-guide li {
+    position: relative;
+    height: 32px;
+    margin-top: -1px;
+    text-align: center;
+    overflow: hidden;
+}
+.floor-guide li a.name {
+    height: 31px;
+    width: 56px;
+    margin: 0 auto;
+/*    border-top: 1px solid #eee;
+    background: #FFF;*/
+    color: #000;
+    font: 12px/31px 'microsfot yahei';
+    cursor: pointer;
+}
+.floor-guide li.on a.name, .floor-guide li.hover a.name {
+/*    background: rgba(254, 80, 79, 0.8);
+    border-color: rgba(254, 80, 79, 0.8);*/
+    color: #FFF;
+}
+body, button, dd, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, hr, input, legend, li, ol, p, td, textarea, th, ul {
+    margin: 0;
+    padding: 0;
+}

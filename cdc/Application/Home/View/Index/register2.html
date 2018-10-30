@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>欢迎注册</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="__PUBLIC__/shopping/js/jquery-1.8.2.min.js"></script> 
+        <script type="text/javascript" src="__PUBLIC__/shopping/jq/zhuce.js"></script> 
+        <link rel="shortcut icon" href="__PUBLIC__/images/bitbug_favicon.ico" type="image/x-icon">
+        <link href="__PUBLIC__/shopping/css/zhuce.css" rel="stylesheet">
+        <link href="__PUBLIC__/shopping/css/login.css" rel="stylesheet">
+        <link href="__PUBLIC__/shopping/css/style-min.css" rel="stylesheet">
+        <link href="__PUBLIC__/shopping/css/style-person.css" rel="stylesheet">
+        <link href="__PUBLIC__/shopping/css/siler.css" rel="stylesheet">
+    </head>
+    <body>
+        <form id="form" method="post">
+        <div class="wrapper" style="height:1000px">
+            <!--头部内容-->
+            <div class="simple-header">
+                <div class="clearfix">
+                    <a href="__URL__/index" target="_blank">
+                        <img src="__PUBLIC__/images/chengcuicheng.png" style="width:248px;height:74px;margin-top:10px">
+                    </a>
+                    <span class="channel l reglogo"></span>
+                    <p class="login-bor">
+                        我已经注册，马上<a href="__URL__/login">登录></a>
+                    </p>
+                </div>
+            </div>
+            <!--注册表单-->
+            <div class="main-box reg mart reg-bor-top">
+                <form method="post">
+                    <div class="tab-cont cont-marg" style="height:700px">
+                        <div class="reg-nav">
+                            <ul class="reg-step clearfix" style="text-align:center;">
+                                <li>
+                                    <i class="icon-1"></i>设置登录名
+                                </li>
+                                <li class="current">
+                                    <i class="icon-2"></i>设置账户信息
+                                </li>
+                                <li class="mr0">
+                                    <i class="icon-3"></i>注册成功
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="reg-main">
+                            <div class="error-wrap gift-wrap"></div>
+                            <div class="reg-form pb85">
+                                <div class="reg-code reg-phone-code smsCodeDiv">
+	                        <div class="code-txtbox">
+	                            <i class="ico-code"></i>
+	                            <input class="txt-input" type="text" id="smsCode" name="mobileCode" maxlength="6" tabindex="3">
+	                            <label class="input-label" style="display: block;">请输入短信验证码</label>
+	                        </div>
+	                        <a class="btn-get-code void-clazz" href="javascript:;" id="sendSmsCode" name="Preg_index_none_getmobilenew"><span><i class="count"></i>重新获取验证码</span></a>
+                                </div>
+                                <div class="input-tip per-input-tip smsCodeDiv" id="smsCodeTip"></div>
+                                <div class="reg-txtbox">
+                                    <label class="input-label">请设置账号密码</label>
+                                    <i class="ico-pwd"></i>
+                                    <input class="txt-input text-email" type="password" name="password" value="" maxlength="20" tabindex="1" id="password">
+                                </div>
+                                <div class="input-tip per-input-tip" id="tishi"></div>
+                                <div class="reg-txtbox">
+                                    <label class="input-label">请再次输入密码</label>
+                                    <i class="ico-pwd"></i>
+                                    <input class="txt-input text-email" type="password" name="password2" value="" maxlength="20" tabindex="1" id="password2" disabled="disabled">
+                                </div>
+                                <div class="input-tip per-input-tip" id="tishi2"></div>
+                                <div class="reg-txtbox">
+                                    <label class="input-label">请设置安全密码</label>
+                                    <i class="ico-pwd"></i>
+                                    <input class="txt-input text-email" type="password" name="password2" value="" maxlength="20" tabindex="1" id="password2" disabled="disabled">
+                                </div>
+                                <div class="input-tip per-input-tip" id="tishi2"></div>
+                                <div class="reg-txtbox">
+                                    <label class="input-label">请再次输入安全密码</label>
+                                    <i class="ico-pwd"></i>
+                                    <input class="txt-input text-email" type="password" name="password2" value="" maxlength="20" tabindex="1" id="password2" disabled="disabled">
+                                </div>
+                                <div class="input-tip per-input-tip" id="tishi2"></div>
+                                <div class="reg-txtbox">
+                                    <label class="input-label">请输入身份证号码</label>
+                                    <i class="ico-pwd"></i>
+                                    <input class="txt-input text-email" type="password" name="password2" value="" maxlength="20" tabindex="1" id="password2" disabled="disabled">
+                                </div>
+                                <div class="input-tip per-input-tip" id="tishi2"></div>
+                                <div class="reg-tip"></div>
+                                <div class="input-tip  per-input-tip red"></div>
+                                <div class="btn-reg">
+                                    <a class="reg-submit" id="sub">提交，去领惊喜</a>
+                                </div>
+                                <p class="bottom-tip mt10"></p>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-cont cont-marg"></div>
+                </form>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <!--版权区域-->
+        <div class="ng-footer">
+                <div class="ng-s-footer">
+                    <div class="ng-s-f-con">
+                        <p class="ng-url-list">
+                            <a href="__URL__/qiye.html" target="_blank" >企业联盟</a>
+                                <span>|</span>
+                                <a href="__URL__/qiye.html" target="_blank">加入我们</a>
+                                <span>|</span>
+                                <a href="__URL__/kefuzhongxin.html" target="_blank">客服中心</a>
+                                <span>|</span>
+                                <a href="__URL__/xinwenzhongxin.html" target="_blank">新闻中心</a>
+                                <span>|</span>
+                                <a href="__URL__/guanyu.html" target="_blank">关于我们</a>
+                                <span>|</span>
+                                <a href="__URL__/gonggao.html" target="_blank">公告</a>
+                                </p>
+                                <p class="ng-copyright ng-copyright-2">
+                        备案号:<a href="http://www.miitbeian.gov.cn/" style="color:#000">津ICP备16004932号-2</a>
+                    </p>
+                        <div class="ng-authentication">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="ng-fix-bar"></div>
+            </div>
+        </form>
+        <script>
+            $(function(){
+                var number = 0;
+                $("#password").focus(function(){
+                    $(".input-label").eq(0).hide();
+                    $("#tishi").attr("class","input-tip per-input-tip");
+                    $(".reg-txtbox").eq(0).attr("class","reg-txtbox");
+                    $("#tishi").text("6-20个字符,由字母、数字和符号的两种以上组合。");
+                }).blur(function(){
+                    var value = $(this).val();
+                    value = $.trim(value);
+                    if(value==""){
+                        $(".input-label").eq(0).show();
+                        $("#tishi").attr("class","input-tip per-input-tip");
+                        $(".reg-txtbox").eq(0).attr("class","reg-txtbox");
+                        $("#tishi").text("");
+                    }else if(value.length<6||value.length>20){
+                        $("#tishi").attr("class","input-tip per-input-tip tip-error-color");
+                        $(".reg-txtbox").eq(0).attr("class","reg-txtbox error-border");
+                        $("#tishi").text("请输入6-20位密码!");
+                    }else if(/^([\u4e00-\u9fa5])*$/.test(value)){
+                        $("#tishi").attr("class","input-tip per-input-tip tip-error-color");
+                        $(".reg-txtbox").eq(0).attr("class","reg-txtbox error-border");
+                        $("#tishi").text("密码不能为中文");
+                    }else{
+                        number = 1;
+                        $("#password2").removeAttr("disabled");
+                        $("#tishi").text("");
+                    }
+                })
+                $("#password2").focus(function(){
+                    $(".input-label").eq(1).hide();
+                    $("#tishi2").attr("class","input-tip per-input-tip");
+                    $(".reg-txtbox").eq(1).attr("class","reg-txtbox");
+                    $("#tishi2").text("请再次输入密码。");
+                }).blur(function(){
+                    if($(this).val()!=$("#password").val()){
+                        $("#tishi2").attr("class","input-tip per-input-tip tip-error-color");
+                        $(".reg-txtbox").eq(1).attr("class","reg-txtbox error-border");
+                        $("#tishi2").text("两次输入的密码不相同!请再次输入!");
+                        number = 2;
+                    }else{
+                        $("#tishi2").text(""); 
+                    }
+                })
+                $("#sub").click(function(){
+                    if(number==1){
+                        var frm = document.getElementById('form');
+                            frm.action='__URL__/zhuce_cg';
+                            frm.submit();
+                    }
+                })
+
+        })
+        $(document).ready(function(){
+    $('html').bind("selectstart", function () { return false; });
+})
+        </script>
+    </body>
+</html>

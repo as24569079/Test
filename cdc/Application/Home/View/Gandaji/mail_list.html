@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>站内信</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="__PUBLIC__/css/bootstrap-min.css">
+        <script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.2.min.js"></script> 
+        <script type="text/javascript" src="__PUBLIC__/js/bootstrap.js"></script> 
+        <link href="__PUBLIC__/css/tongji.css" rel="stylesheet" />
+        <script src="__PUBLIC__/js/bianse.js"></script>
+    </head>
+    <body>
+        <div style="width:100%;">
+             <form method="post" id="form" action="__URL__/mail_page">
+                 <span style="margin-left: 10px;">站内信</span>
+                <input type="date" name="date" style="with:140px;height:20px;margin-top:15px" value="{$value}">
+                <input type="submit" value="查询"> 
+                <a href="__URL__/mail_page/qb/1" style="color:#000">
+                    <input type="button" value="显示全部">
+                </a>
+             </form>             
+          <!--新闻list页面开始-->
+            <table  cellpadding="0"  style="text-align: center;margin-top: 15px;">
+                <tr class="neirong">
+                    <th style="text-align: center">发送人</th>
+                    <th style="text-align: center">发送标题</th>
+                    <th style="text-align: center">发布时间</th>
+                    <!--<th style="text-align: center">接收人</th>-->
+                    <th style="text-align: center">操作</th>
+                </tr>
+                <volist name="row" id="val">
+                    <tr class="neirong">
+                        <td>{$val.send_name}</td>
+                        <td><a href="__URL__/mail_xx/id/{$val.mail_id}">{$val.title}</a></td>
+                        <td>{$val.time}</td>
+                        <!--<td>{$val.accept_name.real_name}</td>-->
+                        <td>
+                            <center>
+                                <a  href="__URL__/delete_mail/num/{$val.num}" class="btn btn-danger" target="main" onClick="return confirm('确定删除?');">删除</a>  
+                            </center>
+                        </td>
+                    </tr>
+                </volist>
+            </table>
+            <div class="fena">{$show}</div>
+            <!--新闻list页面结束-->
+        </div>   
+        <script>   
+        </script>
+    </body>
+</html>

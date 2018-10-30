@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>管理系统</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <link rel="stylesheet" href="__PUBLIC__/shop/css/bootstrap.css" type="text/css" />
+  <link rel="stylesheet" href="__PUBLIC__/shop/css/animate.css" type="text/css" />
+  <link rel="stylesheet" href="__PUBLIC__/shop/css/font-awesome.min.css" type="text/css" />
+  <link rel="stylesheet" href="__PUBLIC__/shop/css/simple-line-icons.css" type="text/css" />
+  <link rel="stylesheet" href="__PUBLIC__/shop/css/font.css" type="text/css" />
+  <link rel="stylesheet" href="__PUBLIC__/shop/css/app.css" type="text/css" />
+  <style>
+      #main{
+         width:100%;display: none;
+      }
+      #nav > li{
+          display: none;
+      }
+      .l-h-2x > li{
+          display: none;
+      }
+      #nav li ul li {
+          display:none;
+      }
+  </style>
+</head>
+<body>
+  <div class="app app-header-fixed" id="app">
+    <!-- navbar -->
+    <div class="app-header navbar">
+      <!-- navbar header -->
+      <div class="navbar-header bg-dark">
+        <button class="pull-right visible-xs dk" data-toggle="class:show" data-target=".navbar-collapse">
+          <i class="glyphicon glyphicon-cog"></i>
+        </button>
+        <button class="pull-right visible-xs" data-toggle="class:off-screen" data-target=".app-aside" ui-scroll="app">
+          <i class="glyphicon glyphicon-align-justify"></i>
+        </button>
+        <!-- brand -->
+        <a class="navbar-brand text-lt">
+          <i class="fa fa-btc"></i>
+          <!--<img src="__PUBLIC__/shop/img/logo.png" alt="." class="hide">-->
+          <span class="hidden-folded m-l-xs">System</span>
+        </a>
+        <!-- / brand -->
+      </div>
+      <!-- / navbar header -->
+
+      <!-- navbar collapse -->
+      <div class="collapse pos-rlt navbar-collapse box-shadow bg-white-only">
+        <!-- buttons -->
+        <div class="nav navbar-nav hidden-xs">
+          <a href="#" class="btn no-shadow navbar-btn" data-toggle="class:app-aside-folded" data-target=".app">
+            <i class="fa fa-dedent fa-fw text"></i>
+            <i class="fa fa-indent fa-fw text-active"></i>
+          </a>
+          <a href class="btn no-shadow navbar-btn" data-toggle="class:show" data-target="#aside-user">
+            <i class="icon-user fa-fw"></i>
+          </a>
+        </div>
+        <!-- / buttons -->
+
+        <!-- link and dropdown -->
+        <ul class="nav navbar-nav hidden-sm">
+          <li class="dropdown pos-stc">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+              <span>菜单</span> 
+              <span class="caret"></span>
+            </a>
+            <div class="dropdown-menu wrapper w-full bg-white">
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="m-l-xs m-t-xs m-b-xs font-bold">Pages<span class="badge badge-sm bg-success">快捷</span></div>
+                  <div class="row">
+                    <div class="col-xs-6">
+                      <ul class="list-unstyled l-h-2x">
+                        <li id="shangpin2"><i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i><a href="__URL__/shangpin" target="main"><span class="submenu-title">新增商品</span></a></li>
+                        <li id="fenlei2"><i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i><a href="__URL__/fenlei" target="main"><span class="submenu-title">分类列表</span></a></li>
+                        <li id="shop2"><i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i><a href="__URL__/shop" target="main"><span class="submenu-title">商品列表</span></a></li>
+                        <li id="xj_shop2"><i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i><a href="__URL__/xj_shop" target="main"><span class="submenu-title">商品下架列表</span></a></li>
+                        <li id="brand2"><i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i><a href="__URL__/brand" target="main"><span class="submenu-title">品牌列表</span></a></li>
+                        <li id="unit2"><i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i><a href="__URL__/unit" target="main"><span class="submenu-title">单位列表</span></a></li>
+                        <li id="gongyingshang2"><i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i><a href="__URL__/gongyingshang" target="main"><span class="submenu-title">供应商列表</span></a></li>
+                        <li id="rukushenq2"><i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i><a href="__URL__/rukushenqing" target="main"><span class="submenu-title">入库申请</span></a></li>
+                      </ul>
+                    </div>
+                    <div class="col-xs-6">
+                      <ul class="list-unstyled l-h-2x">
+                        <li id="orderlist_cookie2"><i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i><a href="__URL__/orderlist_cookie" target="main"><span class="submenu-title">订单列表</span></a></li>
+                        <li id="orderlist_dy2"><i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i><a href="__URL__/dy_orderlist" target="main"><span class="submenu-title">主材合同</span></a></li>
+                        <li id="chukugl2"><i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i><a href="__URL__/chuku" target="main"><span class="submenu-title">出库申请</span></a></li>
+                        <li id="rkgl2"><i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i><a href="__URL__/rukusq" target="main"><span class="submenu-title">入库申请列表</span></a></li>                             
+                        <li id="fhgl2"><i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i><a href="__URL__/fahsq" target="main"><span class="submenu-title">发货申请列表</span></a></li>                             
+                        <li id="inventory2"><i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i><a href="__URL__/inventory" target="main"><span class="submenu-title">库存列表</span></a></li>
+                        <li id="shouyin2"><i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i><a href="__URL__/shouyin" target="main"><span class="submenu-title">收银</span></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4 b-l b-light">
+                  <div class="m-l-xs m-t-xs m-b-xs font-bold">Pages<span class="label label-sm bg-primary">快捷</span></div>
+                  <div class="row">
+                    <div class="col-xs-6">
+                      <ul class="list-unstyled l-h-2x">
+                        <li id="banner_weihu2"><i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i><a href="__URL__/phone_banner" target="main"><span class="submenu-title">手机商城banner</span></a></li>
+                        <!--<li id="xinwen_weihu2"><i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i><a href="__URL__/shop_new" target="main"><span class="submenu-title">商城新闻维护</span></a></li>-->
+                        <li id="xinwen_dc2"><i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i><a href="__URL__/shop_dc" target="main"><span class="submenu-title">首页弹层维护</span></a></li>
+                        <li id="newgl2"><i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i><a href="__URL__/new_list" target="main"><span class="submenu-title">新闻管理</span></a></li>
+                        <li id="bannergl2"><i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i><a href="__URL__/phone_banners" target="main"><span class="submenu-title">PC首页banner</span></a></li>
+                        <li id="tjgl2"><i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i><a href="__URL__/phone_goom" target="main"><span class="submenu-title">推荐图片管理</span></a></li>
+                      </ul>
+                    </div>
+                    <div class="col-xs-6">
+                      <ul class="list-unstyled l-h-2x">
+                        <li id="pc_banner2"><i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i><a href="__URL__/phone_bannerss" target="main"><span class="submenu-title">PC商城banner</span></a></li>
+                        <li id="sc_xiaotu2"><i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i><a href="__URL__/shangcheng_tu" target="main"><span class="submenu-title">小图片管理</span></a></li>
+                        <li id="sjs_banner2"><i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i><a href="__URL__/sphone_bannerss" target="main"><span class="submenu-title">手机首页banner</span></a></li>
+                        <li id="kylcaozuo2"><i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i><a href="__URL__/handle" target="main"><span class="submenu-title">操作</span></a></li>	
+                        <li id="hetongliebiao2"><i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i><a href="__URL__/handle_list" target="main"><span class="submenu-title">合同列表</span></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4 b-l b-light">
+                  <div class="m-l-xs m-t-xs m-b-sm font-bold">handle</div>
+                  <div class="text-center">
+                     <div class="col-xs-6">
+                      <ul class="list-unstyled l-h-2x">
+                        <li style="display: block"><i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i><a href="__URL__/passupt" target="main"><span class="submenu-title">修改密码</span></a></li>
+                      </ul>
+                    </div>
+                     <div class="col-xs-6">
+                      <ul class="list-unstyled l-h-2x">
+                        <li style="display: block"><i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i><a href="__URL__/signOut"><span class="submenu-title">退出登录</span></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <!-- / link and dropdown -->
+
+        <!-- nabar right -->
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle clear" data-toggle="dropdown">
+              <span class="hidden-sm hidden-md" id="username"></span> <b class="caret"></b>
+            </a>
+            <!-- dropdown -->
+            <ul class="dropdown-menu animated fadeInRight w">
+              <li class="wrapper b-b m-b-sm bg-light m-t-n-xs">
+                <progressbar value="60" class="progress-xs m-b-none bg-white"></progressbar>
+              </li>
+              <li>
+                <a href="__URL__/passupt" target="main">
+                  <span>修改密码</span>
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="__URL__/signOut">安全退出</a>
+              </li>
+            </ul>
+            <!-- / dropdown -->
+          </li>
+          <li class="dropdown">
+              <a href="__APP__/Handle/admin" class="dropdown-toggle clear" target="blank">
+              <span class="hidden-sm hidden-md">点击跳转资质后台</span> <b class="caret"></b>
+            </a>
+          </li>
+        </ul>
+        <!-- / navbar right -->
+
+      </div>
+      <!-- / navbar collapse -->
+    </div>
+    <!-- / navbar -->
+
+    <!-- menu -->
+    <div class="app-aside hidden-xs bg-dark">
+      <div class="aside-wrap">
+        <div class="navi-wrap">
+          <!-- user -->
+          <div class="clearfix hidden-xs text-center hide" id="aside-user">
+            <div class="dropdown wrapper">
+              <a href="#" data-toggle="dropdown" class="dropdown-toggle hidden-folded">
+                <span class="clear">
+                  <span class="block m-t-sm">
+                    <strong class="font-bold text-lt" id="username2"></strong> 
+                    <b class="caret"></b>
+                  </span>
+                  <span class="text-muted text-xs block">操作</span>
+                </span>
+              </a>
+              <!-- dropdown -->
+              <ul class="dropdown-menu animated fadeInRight w hidden-folded">
+                <li class="wrapper b-b m-b-sm bg-info m-t-n-xs">
+                  <span class="arrow top hidden-folded arrow-info"></span>
+                  <progressbar value="60" type="white" class="progress-xs m-b-none dker"></progressbar>
+                </li>
+                <li>
+                  <a href="__URL__/passupt" target="main">修改密码</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a href="__URL__/signOut">安全退出</a>
+                </li>
+              </ul>
+              <!-- / dropdown -->
+            </div>
+            <div class="line dk hidden-folded"></div>
+          </div>
+          <!-- / user -->
+
+          <!-- nav -->
+          <nav ui-nav class="navi">
+            <ul class="nav"  id="nav">
+              <li>
+                <a href class="auto">      
+                  <span class="pull-right text-muted">
+                    <i class="fa fa-fw fa-angle-right text"></i>
+                    <i class="fa fa-fw fa-angle-down text-active"></i>
+                  </span>
+                  <i class="glyphicon glyphicon-stats icon text-primary-dker"></i>
+                  <span class="font-bold" translate="aside.nav.DASHBOARD">商品信息</span>
+                </a>
+                <ul class="nav nav-sub dk">
+                    <li id="shangpin"><a href="__URL__/shangpin" target="main"><span class="submenu-title">新增商品</span></a></li>
+                    <li id="fenlei"><a href="__URL__/fenlei" target="main"><span class="submenu-title">分类列表</span></a></li>
+                    <li id="shop"><a href="__URL__/shop" target="main"><span class="submenu-title">商品列表</span></a></li>
+                    <li id="xj_shop"><a href="__URL__/xj_shop" target="main"><span class="submenu-title">商品下架列表</span></a></li>
+                    <li id="brand"><a href="__URL__/brand" target="main"><span class="submenu-title">品牌列表</span></a></li>
+                    <li id="unit"><a href="__URL__/unit" target="main"><span class="submenu-title">单位列表</span></a></li>
+                    <li id="gongyingshang"><a href="__URL__/gongyingshang" target="main"><span class="submenu-title">供应商列表</span></a></li>
+                    <li id="gys_duizhang"><a href="__URL__/gys_duizhang" target="main"><span class="submenu-title">供应商对账表</span></a></li>
+                    <li id="rukushenq"><a href="__URL__/rukushenqing" target="main"><span class="submenu-title">入库申请</span></a></li>
+                    <li id="tuihuoshenhe"><a href="__URL__/tuihuoshenhe" target="main"><span class="submenu-title">退货审核</span></a></li>
+                    <li id="sptongji"><a href="__URL__/sptongji" target="main"><span class="submenu-title">销售统计</span></a></li>
+                    <li id="diaojia_jl"><a href="__URL__/diaojia_jl" target="main"><span class="submenu-title">调价记录</span></a></li>
+                    <li id="supplier_list"><a href="__URL__/supplier_list" target="main"><span class="submenu-title">供货商价格列表</span></a></li>
+                    <li id="item_mall"><a href="__URL__/item_mall" target="main"><span class="submenu-title">商品商城维护</span></a></li>
+
+                    
+                </ul>
+              </li>
+               <li>
+                <a href class="auto">      
+                  <span class="pull-right text-muted">
+                    <i class="fa fa-fw fa-angle-right text"></i>
+                    <i class="fa fa-fw fa-angle-down text-active"></i>
+                  </span>
+                  <i class="glyphicon glyphicon-stats icon text-primary-dker"></i>
+                  <span class="font-bold" translate="aside.nav.DASHBOARD">补打小票</span>
+                </a>
+                <ul class="nav nav-sub dk">
+                    <li id="budaxiaopiao"><a href="__URL__/budaxiaopiao" target="main"><span class="submenu-title">补打小票</span></a></li>  
+                    <li id="budaxiaopiaols"><a href="__URL__/budaxiaopiaols" target="main"><span class="submenu-title">补打小票列表</span></a></li>  
+                    
+                </ul>
+              </li>
+              <li ui-sref-active="active">
+                <a ui-sref="app.calendar">
+                  <span class="pull-right text-muted">
+                    <i class="fa fa-fw fa-angle-right text"></i>
+                    <i class="fa fa-fw fa-angle-down text-active"></i>
+                  </span>
+                  <i class="glyphicon glyphicon-calendar icon text-info-dker"></i>
+                  <span class="font-bold" translate="aside.nav.CALENDAR">订单管理</span>
+                </a>
+                <ul class="nav nav-sub dk">
+                    <li id="orderlist_cookie"><a href="__URL__/orderlist_cookie" target="main"><span class="submenu-title">订单列表</span></a></li>
+                    <li id="orderlist_line"><a href="__URL__/orderlist_line" target="main"><span class="submenu-title">线上订单处理</span></a></li>
+                    <li id="orderlist_tuihuo"><a href="__URL__/orderlist_tuihuo" target="main"><span class="submenu-title">客户订单退货</span></a></li>
+                   
+                </ul>
+              </li>
+              <li ui-sref-active="active">
+                <a ui-sref="app.mail.list">
+                  <span class="pull-right text-muted">
+                    <i class="fa fa-fw fa-angle-right text"></i>
+                    <i class="fa fa-fw fa-angle-down text-active"></i>
+                  </span>
+                  <i class="glyphicon glyphicon-envelope icon text-info-lter"></i>
+                  <span class="font-bold" translate="aside.nav.EMAIL">库存管理</span>
+                </a>
+                <ul class="nav nav-sub dk">
+                    <li id="chukugl"><a href="__URL__/chuku" target="main"><span class="submenu-title">出库申请</span></a></li>
+                    <li id="rkgl"><a href="__URL__/rukusq" target="main"><span class="submenu-title">入库管理</span></a></li>
+                     <li id="fhgl"><a href="__URL__/fahsq" target="main"><span class="submenu-title">发货管理</span></a></li>     
+                      <li id="inventory"><a href="__URL__/inventory" target="main"><span class="submenu-title">库存列表</span></a></li>
+                    <li id="shop_tuihui"><a href="__URL__/shop_tuihui" target="main"><span class="submenu-title">退货申请</span></a></li>     
+                    <li id="shop_tuihuisq"><a href="__URL__/shop_tuihuisq" target="main"><span class="submenu-title">退货申请列表</span></a></li>     
+                </ul>
+              </li>
+<!--              <li>
+                <a href class="auto">
+                  <span class="pull-right text-muted">
+                    <i class="fa fa-fw fa-angle-right text"></i>
+                    <i class="fa fa-fw fa-angle-down text-active"></i>
+                  </span>
+                  <i class="glyphicon glyphicon-th-large icon text-success"></i>
+                  <span class="font-bold">入库管理</span>
+                </a>
+                <ul class="nav nav-sub dk">
+                    <li id="rkgl"><a href="__URL__/rukusq" target="main"><span class="submenu-title">入库申请列表</span></a></li>                             
+                </ul>
+              </li>-->
+<!--              <li>
+                <a href class="auto">      
+                  <span class="pull-right text-muted">
+                    <i class="fa fa-fw fa-angle-right text"></i>
+                    <i class="fa fa-fw fa-angle-down text-active"></i>
+                  </span>
+                  <i class="glyphicon glyphicon-th"></i>
+                  <span>发货管理</span>
+                </a>
+                <ul class="nav nav-sub dk">
+                  <li id="fhgl"><a href="__URL__/fahsq" target="main"><span class="submenu-title">发货申请列表</span></a></li>     
+                
+                </ul>
+              </li>-->
+<!--              <li ng-class="{active:$state.includes('app.ui')}">
+                <a href class="auto">
+                  <span class="pull-right text-muted">
+                    <i class="fa fa-fw fa-angle-right text"></i>
+                    <i class="fa fa-fw fa-angle-down text-active"></i>
+                  </span>
+                  <i class="glyphicon glyphicon-briefcase icon"></i>
+                  <span translate="aside.nav.components.ui_kits.UI_KITS">库存管理</span>
+                </a>
+                <ul class="nav nav-sub dk">
+                  <li id="inventory"><a href="__URL__/inventory" target="main"><span class="submenu-title">库存列表</span></a></li>
+                    <li id="shop_tuihui"><a href="__URL__/shop_tuihui" target="main"><span class="submenu-title">退货</span></a></li>     
+                    <li id="shop_tuihuisq"><a href="__URL__/shop_tuihuisq" target="main"><span class="submenu-title">退货申请</span></a></li>     
+                </ul>
+              </li>-->
+              <li ng-class="{active:$state.includes('app.table')}">
+                <a href class="auto">
+                  <span class="pull-right text-muted">
+                    <i class="fa fa-fw fa-angle-right text"></i>
+                    <i class="fa fa-fw fa-angle-down text-active"></i>
+                  </span>
+                  <i class="glyphicon glyphicon-list"></i>
+                  <span translate="aside.nav.components.table.TABLE">收银管理</span>
+                </a>
+                <ul class="nav nav-sub dk">
+                    <li id="shouyin"><a href="__URL__/shouyin" target="main"><span class="submenu-title">收银</span></a></li>
+                </ul>
+              </li>
+              <li ng-class="{active:$state.includes('app.form')}">
+                <a href class="auto">
+                  <span class="pull-right text-muted">
+                    <i class="fa fa-fw fa-angle-right text"></i>
+                    <i class="fa fa-fw fa-angle-down text-active"></i>
+                  </span>
+                  <i class="glyphicon glyphicon-edit"></i>
+                  <span translate="aside.nav.components.form.FORM">手机商城</span>
+                </a>
+                <ul class="nav nav-sub dk">
+                    <li id="banner_weihu"><a href="__URL__/phone_banner" target="main"><span class="submenu-title">banner图维护</span></a></li>
+                    <!--<li id="xinwen_weihu"><a href="__URL__/shop_new" target="main"><span class="submenu-title">商城新闻维护</span></a></li>-->
+                    <li id="xinwen_dc"><a href="__URL__/shop_dc" target="main"><span class="submenu-title">首页弹层维护</span></a></li>
+                    <li id="phonefl_tj"><a href="__URL__/phonefl_tj" target="main"><span class="submenu-title">分类推荐</span></a></li>
+                </ul>
+              </li>
+              <li ui-sref-active="active">
+                <a ui-sref="app.chart">
+                  <span class="pull-right text-muted">
+                    <i class="fa fa-fw fa-angle-right text"></i>
+                    <i class="fa fa-fw fa-angle-down text-active"></i>
+                  </span>
+                  <i class="glyphicon glyphicon-signal"></i>
+                  <span translate="aside.nav.components.CHART">首页管理</span>
+                </a>
+                <ul class="nav nav-sub dk">
+                    <li id="newgl"><a href="__URL__/new_list" target="main"><span class="submenu-title">新闻管理</span></a></li>
+                    <li id="newg2"><a href="__URL__/new_list2" target="main"><span class="submenu-title">公告新闻管理</span></a></li>
+                    <li id="bannergl"><a href="__URL__/phone_banners" target="main"><span class="submenu-title">banner管理</span></a></li>
+                    <li id="tjgl"><a href="__URL__/phone_goom" target="main"><span class="submenu-title">推荐图片管理</span></a></li>
+                </ul>
+              </li>
+              <li ng-class="{active:$state.includes('app.page')}">
+                <a href class="auto">
+                  <span class="pull-right text-muted">
+                    <i class="fa fa-fw fa-angle-right text"></i>
+                    <i class="fa fa-fw fa-angle-down text-active"></i>
+                  </span>
+                  <i class="glyphicon glyphicon-file icon"></i>
+                  <span translate="aside.nav.components.pages.PAGES">PC商城管理</span>
+                </a>
+                <ul class="nav nav-sub dk">
+                    <li id="pc_banner"><a href="__URL__/phone_bannerss" target="main"><span class="submenu-title">banner管理</span></a></li>
+                    <li id="sc_xiaotu"><a href="__URL__/shangcheng_tu" target="main"><span class="submenu-title">小图片管理</span></a></li>
+                    <li id="fenlei_tj"><a href="__URL__/fenlei_tj" target="main"><span class="submenu-title">分类推荐</span></a></li>
+                </ul>
+              </li>
+              <li>
+                <a ui-sref="app.page.profile">
+                  <span class="pull-right text-muted">
+                    <i class="fa fa-fw fa-angle-right text"></i>
+                    <i class="fa fa-fw fa-angle-down text-active"></i>
+                  </span>
+                  <i class="icon-user icon text-success-lter"></i>
+                  <span translate="aside.nav.your_stuff.PROFILE">手机首页</span>
+                </a>
+                <ul class="nav nav-sub dk">
+                    <li id="sjs_banner"><a href="__URL__/sphone_bannerss" target="main"><span class="submenu-title">banner管理</span></a></li>
+                     <li id="fabu_news"><a href="__URL__/fabu_news" target="main"><span class="submenu-title">文章管理</span></a></li>
+                </ul>
+                   
+              <li>
+                <a ui-sref="app.docs">
+                  <span class="pull-right text-muted">
+                    <i class="fa fa-fw fa-angle-right text"></i>
+                    <i class="fa fa-fw fa-angle-down text-active"></i>
+                  </span>
+                  <i class="icon-question icon"></i>
+                  <span translate="aside.nav.your_stuff.DOCUMENTS">会员装修</span>
+                </a>
+                <ul class="nav nav-sub dk">
+                    <li id="kylcaozuo"><a href="__URL__/handle" target="main"><span class="submenu-title">装修合同录入</span></a></li>	
+                    <li id="hetongliebiao"><a href="__URL__/handle_list" target="main"><span class="submenu-title">合同列表</span></a></li>
+                    <li id="phone_list"><a href="__URL__/phone_list" target="main"><span class="submenu-title">通知列表</span></a></li>
+                     <li id="orderlist_dy"><a href="__URL__/dy_orderlist" target="main"><span class="submenu-title">主材合同</span></a></li>
+                     
+                </ul>
+              </li>
+               <li>
+                <a ui-sref="app.docs">
+                  <span class="pull-right text-muted">
+                    <i class="fa fa-fw fa-angle-right text"></i>
+                    <i class="fa fa-fw fa-angle-down text-active"></i>
+                  </span>
+                  <i class="icon-question icon"></i>
+                  <span translate="aside.nav.your_stuff.DOCUMENTS">站内信管理</span>
+                </a>
+                <ul class="nav nav-sub dk">
+                    <li id="mailgl"><a href="__URL__/send_mail" target="main"><span class="submenu-title">发送站内信</span></a></li>	
+                    <li id="maillist"><a href="__URL__/mail_list" target="main"><span class="submenu-title">站内信列表</span></a></li>
+                    
+                     
+                </ul>
+              </li>
+            </ul>
+          </nav>
+          <!-- nav -->
+
+        </div>
+      </div>
+    </div>
+    <!-- / menu -->
+
+    <!-- content -->
+    <div class="app-content">
+      <div ui-butterbar></div>
+      <a href class="off-screen-toggle hide" data-toggle="class:off-screen" data-target=".app-aside" ></a>
+      <div class="app-content-body fade-in-up">
+          
+        <iframe id="main" frameborder="0" scrolling="yes" marginheight="0" marginwidth="0" onLoad="iFrameHeight()" name="main"></iframe>
+      </div>
+    </div>
+    <!-- /content -->
+
+    <!-- footer -->
+    <div class="app-footer wrapper b-t bg-light">
+      <span class="pull-right">1.0.0 <a href="#app" class="m-l-sm text-muted"><i class="fa fa-long-arrow-up"></i></a></span>
+        诚兑城商城管理后台
+    </div>
+    <!-- / footer -->
+  </div>
+  <!-- jQuery -->
+  <script src="__PUBLIC__/shop/vendor/jquery/jquery.min.js"></script>
+  <script src="__PUBLIC__/shop/vendor/jquery/bootstrap.js"></script>
+  <script type="text/javascript">
+    +function ($) {
+      $(function(){
+        // class
+        $(document).on('click', '[data-toggle^="class"]', function(e){
+          e && e.preventDefault();
+          console.log('abc');
+          var $this = $(e.target), $class , $target, $tmp, $classes, $targets;
+          !$this.data('toggle') && ($this = $this.closest('[data-toggle^="class"]'));
+          $class = $this.data()['toggle'];
+          $target = $this.data('target') || $this.attr('href');
+          $class && ($tmp = $class.split(':')[1]) && ($classes = $tmp.split(','));
+          $target && ($targets = $target.split(','));
+          $classes && $classes.length && $.each($targets, function( index, value ) {
+            if ( $classes[index].indexOf( '*' ) !== -1 ) {
+              var patt = new RegExp( '\\s' + 
+                  $classes[index].
+                    replace( /\*/g, '[A-Za-z0-9-_]+' ).
+                    split( ' ' ).
+                    join( '\\s|\\s' ) + 
+                  '\\s', 'g' );
+              $($this).each( function ( i, it ) {
+                var cn = ' ' + it.className + ' ';
+                while ( patt.test( cn ) ) {
+                  cn = cn.replace( patt, ' ' );
+                }
+                it.className = $.trim( cn );
+              });
+            }
+            ($targets[index] !='#') && $($targets[index]).toggleClass($classes[index]) || $this.toggleClass($classes[index]);
+          });
+          $this.toggleClass('active');
+        });
+
+        // collapse nav
+        $(document).on('click', 'nav a', function (e) {
+          var $this = $(e.target), $active;
+          $this.is('a') || ($this = $this.closest('a'));
+          
+          $active = $this.parent().siblings( ".active" );
+          $active && $active.toggleClass('active').find('> ul:visible').slideUp(200);
+          
+          ($this.parent().hasClass('active') && $this.next().slideUp(200)) || $this.next().slideDown(200);
+          $this.parent().toggleClass('active');
+          
+          $this.next().is('ul') && e.preventDefault();
+
+          setTimeout(function(){ $(document).trigger('updateNav'); }, 300);      
+        });
+      });
+    }(jQuery);
+  </script>
+  
+<script type="text/javascript" language="javascript">   
+function iFrameHeight() {   
+//var ifm= document.getElementById("main");   
+//var subWeb = document.frames ? document.frames["main"].document : ifm.contentDocument;   
+//if(ifm != null && subWeb != null) {
+//   ifm.height = subWeb.body.scrollHeight;
+//}   
+$("#main").height($(".app-content").height());
+}   
+$(document).ready(function(){
+    $.ajax({
+        type:"post",
+        url:"cookSelect",
+        dataType: "text",
+        data:null,
+        success:
+        function(data){
+            if(data != ""){
+                eval("var obj="+data);
+                $("#username").html(obj.name);
+                $("#username2").html(obj.name);
+            }
+        }
+    })
+})
+$(document).ready(function(){
+    var number = 0;
+    $.ajax({
+             type:"post",
+              url:"__URL__/admin_quanxian",
+              dataType: "text",
+              data:null,
+             success:
+             function(data){                    
+                    eval("var obj="+data);
+                    for(i=0;i<obj.length;i++){                               
+                        $("#main").show();
+                        $('#'+obj[i]).parent().parent().show();
+                        $('#'+obj[i]).show();
+                        $("#"+obj[i]+"2").show();
+                        if(obj[i]=="shop"){
+                            number += 1;
+                        }
+                    }
+                    if(number>0){
+                        var href="__URL__/shop";
+                        $('#main').attr('src',href);
+                    }
+                    
+
+                 }
+     })
+})
+</script>
+</body>
+</html>

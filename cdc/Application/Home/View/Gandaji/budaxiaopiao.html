@@ -1,0 +1,274 @@
+ <!DOCTYPE html>
+<html>
+    <head>
+        <title>补打小票</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/boot.css"/>
+         <script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/js/LodopFuncs.js"></script>  
+         <style>
+    .fena >div{
+    text-align: center;height: 30px;
+    line-height: 30px;
+}
+.fena >div> span{
+    width: 50px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+}
+.fena >div> a{
+    width: 50px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+    text-decoration: none;
+}
+.fena >div> li{
+    list-style: none;
+    width: 200px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+    text-decoration: none;
+}
+.fena >div> a:hover{
+    text-decoration: none;
+}
+div{ width:auto; height:100%}
+.paixu{ width:193px; height:30px; float:left; text-align:center; border:1px solid #CCC;line-height: 30px}
+.zhuangtai{ width:400px; height:30px;}
+.xinxi{ width:100%; float:left; background:#E1E1E1; }
+.span{ float:right; width:200px}
+.span2{ margin-left:40px}
+.span3{ float:right; width:200px}
+.span4{ float:right; width:200px}
+.xq{ width:100%; height:50px; float:left; background:#74D5F1}
+</style>
+    </head>
+    <body>
+        <div style="margin:30px">
+            请输入订单号: <input type="text" class="form-control" id="name"> 　<input type="button" value="搜索" class="btn btn-primary" style="margin-top:-5px" id="sousuo">      
+        </div>
+        <div style="margin: 30px" id="div"></div>
+         <div style="width: 550px; height:150px; position: absolute; z-index: 10000; display: block; overflow: hidden; top: 150px; left: 250px; border:1px  solid red; background:#FFF;display: block; border-radius: 5px;display: none" id="liulan_pay">
+         <form id="tform">
+                <input type="hidden" name="inventory_id" id="inventory_ids">
+          	<div style="margin:40px 20px">
+                    <div> 
+                <span><span style="color:red">&nbsp;&nbsp;&nbsp;&nbsp;*</span>请输入补打原因：</span>
+                <textarea maxlength="40" value="" id="liulan_mima" name="yuanyin"></textarea><span id="liulan_shibai"></span>
+                 <br><br>
+                    　　　　<input type="button" style="width:200px; height:20px;" value="打印" id="liulan_z">
+                    <input type="button" value="x" style="left: 500px;top: 20px; position: absolute; " id="liulan_no">
+                    
+                </div>                  
+            </div>
+             </form>
+          </div>
+         <div  id="form1" style="display:none;">
+                       <div class="fahuodan">
+                         <div style="width:55mm;">　　 　 发货单　　</div> 
+                         <div style="width:55mm;font-size: 12px">诚兑城天津市友谊路旗舰店</div>
+                         <div style="width:55mm;font-size: 12px" id="danhaoss"></div>
+                                 <div style="width:55mm;font-size: 12px">会员：<span id="vip"></span></div>
+                         
+                            <div style="width:55mm;font-size: 12px">电话：<span id="tel"></span></div>  
+                       
+                                <div style="width:55mm;font-size: 12px;word-break:break-all">地址：<span id="dizhi"></span></div>
+                        
+                       <div>------------------------------</div>
+                       
+                       <div style="display:none" id="chuangye"><div>----------<span style="font-size:12px ">积分商城</span>-------------</div></div>
+                              
+                           
+                              <div style="display:none" id="dazhong"> <div  >----------<span style="font-size:12px ">消费商城</span>-------------</div></div>
+                             
+                         
+                               
+                     
+                                 <div style="display:none" id="nianhuo"><div  >----------<span style="font-size:12px ">年货商城</span>-------------</div></div>
+                                
+                          
+                            
+                       <div>------------------------------</div>
+                      <div style="font-size: 12px" id="timess"></div>
+                         <div>　*******************</div>
+                         <div>　*******************</div>
+                        </div>
+                </div>
+                      
+       
+        <script>
+            $(function(){
+            $("#sousuo").click(function(){
+                if($("#name").val() !== ''){
+                    $.post("__URL__/chaxun_xiaopiao",{"id":$("#name").val()},function(data){
+                        if(data == 2){ 
+                            alert("未找到该订单");
+                        }else{
+                            
+                            eval("var obj =" + data); 
+                            var html ='';
+                                html += '<div id="xianshi" data-id="'+obj.order_id+'">';
+                                html += '订单号:'
+                                html += obj.order_no
+                                html += '　　下单时间:'
+                                html += obj.create_date;
+                                html += '　　姓名';
+                                html += obj.shouhuo;
+                                html += '　　电话';
+                                html += obj.tel;
+                                html += '　　地址:';
+                                if(obj.dizhi){
+                                  
+                                    html += obj.dizhi; 
+                                }else{
+                                  html += '线下订单<br><br>';  
+                                }
+                                html += "　　电子币:"
+                                html += obj.emenoy;
+                                html += "　　积分::"
+                                html += obj.smenoy;
+                                html += "　　打印";
+                                html += '<input type="button" class="dayin" value="打印" style="margin-top:-5px" data-id="'+obj.order_id+'">'
+                                html += '</div>';
+                                $("#div").append(html);
+                        }
+                    })
+                }else{
+                    alert("请输入订单号");
+                }
+            })
+            $("#xianshi").live("click",function(){
+                var order_id=$(this).attr("data-id");
+                $(".fuc").hide();
+                $.ajax({
+                                type:"post",
+                                url:"__URL__/orderlist_ajax",
+                                dataType: "text",
+                                data:{value:order_id},
+                                success:
+                                function(data){                                
+                                    var b = "";
+                                    eval("var zhi="+data);
+                                     b+='<div class="fuc" >'+
+                                        '<div class="xq">订单详情('+zhi.length+'件商品)</div>';
+                               
+                                    for(var i=0;i<zhi.length;i++){
+                             b+='<div class="xq"><span>'+zhi[i].item_name+'('+zhi[i].price+')*'+zhi[i].quantity+'</span></div>';
+                                    }
+                                    b+='</div> ';
+                                    $("#xianshi").append(b);
+                                }
+                            })      
+            })
+            $(".dayin").live("click",function(){
+                $("#liulan_pay").show();
+                var id = $(this).attr("data-id");
+                $("#inventory_ids").val(id);
+               
+            })
+            $("#liulan_z").click(function(){
+                if($("#liulan_mima").val() == ''){
+                    alert("请输入补打小票原因");
+                }else{
+                    if(confirm('确认补打小票?')){
+                        $.post("__URL__/budaajax",$("#tform").serialize(),function(data){
+                                                                        if(data) {
+                         eval("var obj =" + data);
+                         alert(obj[0].create_date + 7);
+                            $("#danhaoss").text(obj[0].order_no);
+                         if(obj[0].real_name){
+                            $("#vip").text(obj[0].real_name);
+                         }else{
+                            $("#vip").text(obj[0].shouhuo_name);
+    
+                         }
+                         if(obj[0].tel){
+                              $("#tel").text(obj[0].tel);
+                         }else{
+                              $("#tel").text(obj[0].shouhuo_tel);
+            
+                         }
+                         if(obj[0].address_name){
+                             $("#dizhi").text(obj[0].address_name);
+                         
+                        }else{
+                               $("#dizhi").text("线下订单");
+                        }
+                         html += '<div>------------------------------</div>';
+                         for(var i =0; i<obj[1].length;i++) {
+                             if(obj[1][i].mall ==1) {
+                                   var html ='';
+                                 html += '<div style="width:55mm; font-size: 12px">';
+                                 html += '<div style="float:left;width:25mm;">'+obj[1][i].item_name+'</div><div style="float:left;width:9mm;">×'+obj[1][i].quantity+'</div><div style="float:right;width:20mm;font-size: 12px">'+(obj[1][i].jia)*1+'</div></div><span style="font-size: 12px">'+obj[1][i].bar_code+'</span>'
+                                 $("#chuangye").append(html);
+                                 $("#chuangye").show();
+                             } else  if(obj[1][i].mall ==2 || obj[1][i].mall ==3) {
+                                var str = '';
+                                 str += '<div style="width:55mm; font-size: 12px">';
+                                 str += '<div style="float:left;width:25mm;">'+obj[1][i].item_name+'</div><div style="float:left;width:9mm;">×'+obj[1][i].quantity+'</div><div style="float:right;width:20mm;font-size: 12px">'+(obj[1][i].jia)*1+'</div></div><span style="font-size: 12px">'+obj[1][i].bar_code+'</span>'
+                                  $("#dazhong").append(str);
+                                  $("#dazhong").show();
+                             } else  if(obj[1][i].mall ==4) {
+                               var strss = '';
+                                 strss += '<div style="width:55mm; font-size: 12px">';
+                                 strss += '<div style="float:left;width:25mm;">'+obj[1][i].item_name+'</div><div style="float:left;width:9mm;">×'+obj[1][i].quantity+'</div><div style="float:right;width:20mm;font-size: 12px">'+(obj[1][i].jia)*1+'</div></div><span style="font-size: 12px">'+obj[1][i].bar_code+'</span>'
+                                  $("#jiancai").append(strss);
+                                  $("#jiancai").show();
+                             }  
+                             
+                         }
+                       $("#timess").append(　'-'+obj[0].time+'-');
+                        prn1_preview();
+                     }
+                     location.reload();
+                        })
+                    }
+                }
+            })
+            $("#liulan_no").click(function(){
+                 $("#liulan_pay").hide();
+            })
+        })
+               var LODOP; //声明为全局变量  
+    // 打印预览  
+    function prn1_preview() {            
+        CreateOneFormPage();      
+//        LODOP.PREVIEW();  
+         LODOP.PRINT();  
+    };  
+    // 直接打印  
+    function prn1_print() {       
+        CreateOneFormPage();  
+        LODOP.PRINT();    
+    };  
+    // 选择打印机  
+    function prn1_printA() {          
+        CreateOneFormPage();  
+        LODOP.PRINTA();       
+    };   
+    // 创建打印页面  
+    function CreateOneFormPage(){  
+        LODOP=getLodop();    
+//        LODOP.PRINT_INIT("打印控件功能演示_Lodop功能_表单一");  
+        LODOP.SET_PRINT_STYLE("FontSize",12);  
+        LODOP.SET_PRINT_STYLE("Bold",1);  
+        LODOP.SET_PRINT_PAGESIZE(3,"280px","10px",""); 
+          LODOP.SET_PRINT_COPIES(2);
+        LODOP.ADD_PRINT_HTM(10,0,500,5000,document.getElementById("form1").innerHTML);  
+    };  
+        </script>
+    </body>
+</html>

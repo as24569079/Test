@@ -1,0 +1,29 @@
+.chanpin-zhanshi{
+    width:100%;height:auto;
+}
+.chanpin-zs{
+    margin:10px;float:left;
+    width: 260px;height:120px;
+    position: relative;
+    overflow: hidden;
+    border: 1px #eee solid;
+}
+.jingguo{
+    background: rgba(0, 0, 0, 0.7);
+    display: none;width: 260px;height: 120px;
+    position: absolute;
+    top:120px;left:0;
+}
+.jingguo > a{
+    color: #fff;
+    text-decoration: none;
+     margin-top:10px;
+}
+.chanpin-h3{
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+    padding: 10px;
+    background: #e74c3c;
+}

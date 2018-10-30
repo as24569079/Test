@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<span style="font-family:Microsoft YaHei;font-size:12px;"><script type="text/javascript" src="__PUBLIC__/js/LodopFuncs.js"></script>  
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/boot.css"/>
+ <!---->  
+<style>
+    
+    .fena >div{
+    text-align: center;height: 30px;
+    line-height: 30px;
+}
+.fena >div> span{
+    width: 50px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+}
+.fena >div> a{
+    width: 50px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+    text-decoration: none;
+}
+.fena >div> li{
+    list-style: none;
+    width: 200px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+    text-decoration: none;
+}
+.fena >div> a:hover{
+    text-decoration: none;
+}
+div{ width:auto}
+.paixu{ width:193px; height:30px; float:left; text-align:center; border:1px solid #CCC;line-height: 30px}
+.zhuangtai{ width:400px; height:30px;}
+.xinxi{ width:100%; float:left; background:#E1E1E1; }
+.span{ float:right; width:200px}
+.span2{ margin-left:40px}
+.span3{ float:right; width:200px}
+.span4{ float:right; width:200px}
+.xq{ width:100%; height:50px; float:left; background:#74D5F1}
+table{font-size: 12px; text-align: center;width:70%}
+table tr{margin: 5px;}
+</style>
+</head>
+
+<body>
+	
+    	
+            <!--<div class="paixu"><span>未处理</span></div>-->
+<!--            <div class="paixu"><span>配送中</span></div>-->
+            <!--<div class="paixu"><span>已完成</span></div>-->
+            <!--<div class="paixu"><span>删除/退款</span></div>-->
+<!--            <div class="paixu"><span>所有订单</span></div>-->
+            <div  style='width:100%'>
+                <form method="post" action="__URL__/fahuo_send">
+                    订单编号:<input type="text" style="margin-bottom: 0px;width:150px" name="bianhao" value="{$Think.cookie.fahuo_bianhao}"> <input type="submit" value="搜索"> <a href="__URL__/fahuoq"><input type="button" value="显示全部" id="quanbu"></a>
+                            </form>
+            </div>
+        </div>
+        
+<!--        <div style=" float:left;">
+            <div class="paixu" style="width:500px;margin-top: 10px">
+            	<span>旗舰店：</span>
+                <select>
+                    <volist name="shop_id" id="val">
+                  <option value ="{$val.shop_id}">{$val.shop_name}</option>
+                    </volist>
+                </select>
+            </div>-->
+            
+        </div>
+        
+        <volist name="arr" id="val"> 
+            
+        <div style="width:auto; min-height:60px; float:left;" class='position{$val.order_id} stupid' data-order_id='{$val.order_id}'  data-flag="0">
+                <div class="xinxi" style="display:block; margin-top:10px">
+                    <span style="display:block; margin-top:10px">
+                        订单编号：<span>{$val.order_no}　下单时间：{$val.create_date}　姓名：{$val.address_name}　电话：{$val.address_tel}
+                            收货地址：<span>{$val.address}</span>
+                           </span>
+                        <!--<span class="span">电子币：<span>{$val.emenoy}</span><span>元</span></span>-->
+                            
+                    </span>
+                    
+                </div>
+                <div class="xinxi">
+                    <span style="display:block; margin-top:10px">电子币：<span>{$val.emenoy}</span><span>元</span> 积分：<span>{$val.smenoy}</span><span></span>　&nbsp;&nbsp;
+                        <if condition="$val.shenhe neq 2"><input type="button" value="发货" data-id="{$val.order_id}" class="tongguo btn btn-primary" onclick="return confirm('确认申请通过?');"><else/>已发货</if>
+                    </span>
+                    
+                    
+                </div>
+                <!--<div class="xinxi">-->
+<!--                                <span style="display:block; margin-top:10px">收货地址：<span><if condition="$val.type eq '2'">线下下单<else />{$val.address_name}</if> 　　　　　　　　状态：<switch name="val.status">
+                        
+                                            <case value="1">未支付</case>
+                                            <case value="2"><input type="button" class="wifahuo" value="未发货" data-id="{$val.order_id}" data-type="{$val.type}"></case>
+                                            <case value="3">已发货</case>
+                                            <case value="4">退款</case>
+                                            
+                            </switch></span><span class="span4">赠送积分：<span>{$val.integral}</span></span></span>-->
+                    
+                <!--</div>-->
+                
+<!--            <div>
+                    <div class="xq">订单详情(4件商品)</div>
+                    <div class="xq"><span>商品1(100)*2</span></div> 
+                    <div class="xq"><span>商品2(150)*2</span></div>
+<!--           </div>   -->
+<!--                <div style="display:none" id="form1">
+                    <div>　****XXXXXXX*****</div>    
+                    <div>　 -　已在线支付　-　 </div>
+                    <div>-----------------------------</div>
+                    <div>　　　---1号篮子---　　</div>
+                    <div>至尊双拼XXX　×１ 17.80</div>
+                   
+                    
+                    <div>-----------------------------</div>
+                    <div>已付　　　　　　￥16.40</div>
+                    <div>-----------------------------</div>
+                    <div>XXXXXXXXXXXXXXXX</div>
+                   
+                    <div>　****XXXXXXXX***</div>
+
+
+                </div>-->
+                <!--<input data-order_id='{$val.order_id}' type="button" value="打印预览" onClick="prn1_preview(this);">-->
+        </div>
+        </volist>
+
+        </div>
+            <div class="fena"  style="float:left">{$show}</div>
+            
+            
+      
+            
+            
+            
+            
+            
+            
+<script>
+
+	$(document).ready(function () {
+
+            $("#select").change(function(){
+                window.location.href="orderlist_s?shop_id="+$("#select").val();
+//            alert();
+            })
+            
+            
+
+                $(".stupid").click(function () {
+                   // alert($(this).data("flag"));
+                 if($(this).data("flag")=="1")
+                 {   
+                    $(this).find(".fuc").remove();                   
+                    $(this).data("flag","0");
+                    return;
+                 }
+                 else
+                 {
+                    
+                      $(this).data("flag","1");
+                  
+                 }
+                var order_id=$(this).attr("data-order_id");
+                $(".fuc").empty();
+                        $.ajax({
+                                type:"post",
+                                url:"__URL__/orderlist_ajax",
+                                dataType: "text",
+                                data:{value:order_id},
+                                success:
+                                function(data){                                
+                                    var b = "";
+                                    eval("var zhi="+data);
+                                     b+='<div class="fuc" >'+
+                                        '<div class="xq" style="width:100%;text-align:center;font-size:16px">订单详情('+zhi.length+'件商品)</div>';
+                               
+                                    for(var i=0;i<zhi.length;i++){
+                             b+='<div class="xq" style="width:100%"><table><tr><th>产品名字</th><th>条形码</th><th>数量</th><th>单价</th></tr><tr><td>'+zhi[i].item_name+'</td><td>'+ zhi[i].bar_code+'</td><td>'+
+                                     zhi[i].quantity+'</td><td>'+zhi[i].price+'.00</td></tr></table></div>';
+                                    }
+                                    b+='</div> ';
+                                    $(".position"+zhi[0].order_id).append(b);
+                                }
+                            })             
+                 })  
+                 $(".tongguo").click(function(){
+                     var order_id = $(this).attr("data-id");
+                     $.post("__URL__/dd_shenhe",{"order_id":order_id},function(data){
+//                         alert(data);
+                         if(data ==1) {
+                             alert("发货申请已通过");
+//                             prn1_preview();
+                             location.reload();
+                         } else if(data==2) {
+                             alert("该商品没有库存");
+                         } else {
+                             alert("该商品没有那么多库存了")
+                         }
+                     })
+                 })
+            $(document).ready(function () {
+        $(".wifahuo").click(function(){
+             $("#address_people").fadeIn(1000);
+             $("#item_id").val($(this).attr("data-item_id"));
+    
+             $("#order_id").val($(this).attr("data-id"));
+             $("#order_type").val($(this).attr("data-type"));
+        
+             $("#flag_id").val($("[name='qjd'] option:selected ").val())
+            
+        })
+        $("#address_d").click(function(){
+             $("#address_people").fadeOut(1000);
+            
+        })
+        
+        
+    })
+  
+        })
+</script>
+</body>
+
+</html>

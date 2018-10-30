@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="__PUBLIC__/css/tongji.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script src="__PUBLIC__/js/bianse.js"></script>
+    <style>
+        .yinhangka{
+            width:95%;
+            margin-top:20px;margin-left:20px
+        }
+        .yinhangka > span{
+            color:#0000cc;
+        }
+        .yinhangka > input{
+            width:200px;height:25px;
+        }
+        .sub{
+            width:250px;height:30px;
+            outline: none;border:0px;
+            background:#F90;color:#FFF;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <form method="post" id='form'>
+    <div>
+        <span>银行卡收款管理</span>
+    </div>
+        <div class="yinhangka">
+            <table id="neirong" border="0" cellspacing="0">
+                <tr>
+                    <th>序号</th>
+                    <th>虚拟商品名称</th>
+                    <th>虚拟商品价格</th>
+                    <th>操作</th>
+                </tr>
+                <volist name="ren" id="val" key="k">
+                <tr class="neirong">
+                    <td>{:(I('get.p'))?((I('get.p')-1)*10+$k):($k)}</td>
+                    <td>{$val.goods_name}</td>
+                    <td>{$val.price}</td>
+                    <td><input type="button" value="修改" class="yinhan_upt" data-id="{$val.goods_id}" data-open="off">
+                    <input type="button" value="禁用" class="yinhan_jinyong" data-id="{$val.goods_id}" style="display: none">
+                    <input type="button" value="启用" class="yinhan_qiyong" data-id="{$val.goods_id}" style="display: none"></td>
+                    <input type="hidden" value="{$val.zhuangtai}" class="zhuangtai">
+                </tr>
+                </volist>
+            </table>
+        </div>
+    </form>
+    <script>
+        $(document).ready(function(){
+            var li = $(".zhuangtai");
+            for(var i=0;i<li.length;i++){
+                if(li.eq(i).val()=="0"){
+                    li.siblings("td").find(".yinhan_jinyong").eq(i).show();
+                    li.siblings("td").find(".yinhan_qiyong").eq(i).hide();
+                }else if(li.eq(i).val()=="1"){
+                    li.siblings("td").find(".yinhan_qiyong").eq(i).show();
+                    li.siblings("td").find(".yinhan_jinyong").eq(i).hide();
+                }
+            }
+            $(".yinhan_jinyong").click(function(){
+                var id = $(this).attr("data-id");
+                if(confirm('确定禁用此商品吗？')){
+                    var frm = document.getElementById('form');
+                        frm.action='__URL__/jinyong/id/'+id;
+                        frm.submit();
+                }
+            })
+            $(".yinhan_qiyong").click(function(){
+                var id = $(this).attr("data-id");
+                if(confirm('确定启用此商品吗？')){
+                    var frm = document.getElementById('form');
+                        frm.action='__URL__/qiyong/id/'+id;
+                        frm.submit();
+                }
+            })
+            $(".yinhan_upt").click(function(){
+                if($(this).attr("data-open")=="off"){
+                    var name = $(this).parent("td").siblings("td").eq(1).text();
+                    var ka = $(this).parent("td").siblings("td").eq(2).text();
+                    $(this).parent("td").siblings("td").eq(1).html("<input type='text' value='"+name+"' name='name_upt'>");
+                    $(this).parent("td").siblings("td").eq(2).html("<input type='text' value='"+ka+"' name='ka_upt'>");
+                    $(this).attr("data-open","on");
+                    $(this).val("确定");
+                }else if($(this).attr("data-open")=="on"){
+                    var id = $(this).attr("data-id");
+                    var frm = document.getElementById('form');
+                        frm.action='__URL__/uptchanpin/id/'+id;
+                        frm.submit();
+                }
+            })
+        })
+    </script>
+</body>
+</html>

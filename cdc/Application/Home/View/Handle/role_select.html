@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="__PUBLIC__/css/tongji.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script src="__PUBLIC__/js/bianse.js"></script>
+    <style>
+        .quanxian_sel{
+            width: 200px;
+        }
+        .dbl{
+            list-style: none;border: 0px;width: 500px;
+            margin: 0px;
+        }
+    </style>
+</head>
+<body>
+    <!--<form method="post" id="form" action="__URL__/addquanxian" onsubmit="return yan()">-->
+    <div>
+        <!--<span>权限分配</span><br><br>-->
+        <!--<span>选择用户</span>-->
+<!--        <select style="width: 200px" name="username" id="username">
+            <option value="0">请选择</option>
+            <volist name="user" id="val">
+                <option value="{$val.username}">{$val.username}</option>
+            </volist>
+        --><br>
+        <span>角色名称：{$Think.get.role_n}</span>
+        <br><br>
+        <span>所含权限：</span>
+<!--        <select style="width:200px" id="yiji">
+            <option value="0">请选择</option>
+            <option value="1">会员信息管理</option>
+            <option value="2">资质信息管理</option>
+            <option value="3">电子币管理</option>
+            <option value="4">权限管理</option>
+            <option value="5">统计分析</option>
+        </select><br><br>-->
+<!--        <input type="button" value="全选" id="all" style="width: 60px">
+        <input type="button" value="全不选" id="noall" style="width: 60px">
+        --><br><br>
+        <!--<>-->
+            <volist name="admin_m" id="vell" key='k'>
+                <div style="width: 200px">({$k})　{$vell.module_name}</div>
+            </volist>
+        <!--</ul>-->
+  
+        <div>
+                  <br><br>
+        <!--<input type="submit" value="分配" style="width: 150px;margin-left: 45px">-->
+    </div>
+        <script>
+//           $("#username").change(function(){
+//               var value = $(this).val();
+//               $.ajax({
+//                    type:"post",
+//                    url:"__URL__/userqx_sel",
+//                    dataType: "text",
+//                    data:{value:value},
+//                    success:
+//                    function(data){
+//                        var li = $("input[name='check[]']");
+//                        eval("var obj="+data);
+//                        if(obj!=""){
+//                            for(var i=0;i<li.length;i++){
+//                                for(var a=0;i<obj.length;a++){
+//                                    if(obj[a]==li.eq(i).val()){
+//                                        li.eq(i).attr("checked","checked");
+//                                    }else{
+//                                        li.eq(i).removeAttr("checked");
+//                                    }  
+//                                }
+//                            }        
+//                        }else{
+//                            for(var i=0;i<li.length;i++){
+//                                li.eq(i).removeAttr("checked");
+//                            }
+//                        }
+//                    }
+//            })
+//           })
+//           function yan(){
+//               if($("#username").val()==""){
+//                   alert("请输入用户!");
+//                   return false;
+//               }
+//               if($("#role_name").val()=="0"){
+//                   alert("请选择角色!");
+//                   return false;
+//               }
+//           }
+//           $(function(){
+//               $("#all").click(function(){
+//                  var box = $("input[name='check[]']");
+//                  for(var i=0;i<box.length;i++){
+//                    box.eq(i).attr("checked","checked");   
+//                  }
+//               })
+//               $("#noall").click(function(){
+//                   var box = $("input[name='check[]']");
+//                    for(var i=0;i<box.length;i++){
+//                      box.eq(i).removeAttr("checked");   
+//                    }
+//               })
+//               $("#fan").click(function(){
+//                   var box = $("input[name='check[]']");
+//                   for(var i=0;i<box.length;i++){
+//                       if(box.eq(i).attr("checked")=="checked"){
+//                           box.eq(i).removeAttr("checked");
+//                       }else{
+//                           box.eq(i).attr("checked","checked");
+//                       }
+//                   }
+//               })
+//           })
+//        </script>
+    </form>
+</body>
+</html>

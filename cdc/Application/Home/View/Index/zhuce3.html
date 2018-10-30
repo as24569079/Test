@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>注册成功</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.2.min.js"></script> 
+        <script type="text/javascript" src="__PUBLIC__/jq/index.js"></script>
+        <link rel="shortcut icon" href="__PUBLIC__/image/favicon.ico" type="image/x-icon">
+        <link href="__PUBLIC__/css/zhuce.css" rel="stylesheet">
+        <!--<link href="__PUBLIC__/css/login.css" rel="stylesheet">-->
+        <link href="__PUBLIC__/css/style-min.css" rel="stylesheet">
+        <link href="__PUBLIC__/css/style-person.css" rel="stylesheet">
+        <link href="__PUBLIC__/css/siler.css" rel="stylesheet">
+        <link rel="stylesheet" href="__PUBLIC__/css/index.css">
+    </head>
+    <body>
+        <div class="ng-toolbar">
+            <div class="ng-toolbar-con wrapper">
+                <div class="ng-toolbar-left">
+                    <a class="ng-bar-node ng-bar-node-backhome">
+                        <i class="ng-iconfont ng-backhome"></i>
+                        <span>返回首页</span>
+                        <i class="ng-line ng-iconfont ml10"></i>
+                    </a>
+                    <div class="ng-bar-node-box ng-site-nav-box">
+                        <a class="ng-bar-node ng-bar-node-site">
+                            <span>网站导航</span>
+                            <em class="ng-iconfont down"></em>
+                        </a>
+                    </div>
+                    <div class="ng-bar-node-box shop-handle">
+                        <a class="ng-bar-node ng-bar-node-pr5 ng-bar-node-shop touch-href">
+                            <span>商家入驻</span>
+                            <em class="ng-iconfont down"></em>
+                        </a>
+                    </div>
+                </div>
+                <div class="ng-toolbar-right">
+                    <a class="ng-bar-node username-bar-node username-bar-node-showside">
+                        <span></span>
+                        <em class="hasmsg ng-iconfont"></em>
+                    </a>
+                    <div class="ng-bar-node-box username-handle" style="display: none;" id="username-node-slide">
+                        <a class="ng-bar-node username-bar-node username-bar-node-noside">
+                            <span id="usernameHtml02"></span>
+                            <em class="hasmsg ng-iconfont"></em>
+                            <em class="ng-iconfont down"></em>
+                        </a>
+                        <div class="ng-d-box ng-down-box ng-username-slide" style="display: none" id="guanli">
+                            <a class="ng-vip-union">账号管理</a>
+                            <a href="__URL__/tuichu">退出登录</a>
+                        </div>
+                    </div>
+                    <div class="ng-bar-node reg-bar-node" id="username-node">
+                        <a class="login" href="__URL__/login">登录</a>
+                        <a class="login reg-bbb" href="__URL__/zhuce" target="_blank">注册</a>
+                    </div>
+                    <div class="ng-bar-node-box myorder-handle">
+                        <a class="ng-bar-node ng-bar-node-fix touch-href ng-bar-node-pr5">
+                            <span>我的订单</span>
+                            <em class="ng-iconfont down"></em>
+                        </a>
+                        <div class="ng-down-box ng-d-box myorder-child" style="display: none">
+                            <a>待支付</a>
+                            <a>待收货</a>
+                            <a>待评价</a>
+                            <a>修改订单</a>
+                        </div>
+                    </div>
+                    <div class="ng-bar-node-box mysuning-handle">
+                        <a class="ng-bar-node ng-bar-node-fix touch-href ng-bar-node-pr5">
+                            <span>我的易购</span>
+                        </a>
+                        <div class="ng-down-box ng-d-box mysuning-child" style="display: none">
+                            <div class="mysuning-infor clearfix">
+                                <a class="headimg">
+                                    <img src="__PUBLIC__/images/0000000000_01_60x60.jpg">
+                                </a>
+                                <div class="mysuning-detail">
+                                    <a class="login" href="__URL__/login">请登录</a>
+                                    <a class="username"></a>
+                                    <a class="daka">点击打卡</a>
+                                </div>
+                            </div>
+                            <a>我的二手</a>
+                            <a>我的收藏</a>
+                            <a>我的金融</a>
+                            <a>会员联盟</a>
+                            <a>我的任性付</a>
+                            <a>我的优惠券</a>
+                        </div>
+                    </div>
+                    <a class="ng-bar-node ng-bar-node-mini-cart">
+                        <span>购物车</span>
+                        <em class="ng-iconfont cart"></em>
+                        <span class="total-num-box">
+                            <b class="total-num J_cart_total_num">0</b>
+                            <span class="total-num-bg-box">
+                                <em></em>
+                                <i></i>
+                            </span>
+                        </span>
+                    </a>
+                    <div class="ng-bar-node-box app-down-box">
+                        <a class="ng-bar-node mb-suning touch-href">
+                            <em class="ng-iconfont mb"></em>
+                            <span>手机端</span>
+                            <em class="ng-iconfont down"></em>
+                        </a>
+                        <div class="ng-mb-box ng-d-box mb-down-child" style="display: none">
+                            <ul class="ng-app-code">
+                                <li>
+                                    <img class="top-code" src="__PUBLIC__/images/sn-top-code.png">
+                                    <p>下载APP</p>
+                                    <img class="aoyun-text" src="__PUBLIC__/images/aoyun-text.jpg">
+                                </li>
+                                <li>
+                                    <img class="top-code" src="__PUBLIC__/images/yfb-top-code.png">
+                                    <p>扫一扫</p>
+                                    <p>下载APP</p>
+                                </li>
+                            </ul>
+                            <div class="line"></div>
+                        </div>
+                    </div>
+                    <a class="ng-bar-node ng-bar-node-pr5">
+                        <span>易付宝</span>
+                    </a>
+                    <a class="ng-bar-node ng-bar-node-pr5">
+                        <span>政企采购</span>
+                    </a>
+                    <div class="ng-bar-node-box service-handle" style="display: none;cursor: pointer" id="hguanli">
+                        <a class="ng-bar-node ng-bar-node-service ng-bar-node-fix touch-href ng-bar-node-pr5" href="__URL__/system" target="_blank">
+                            <span>后台管理</span>
+                            <em class="ng-iconfont down"></em>
+                        </a>
+                        <!--<div class="ng-down-box ng-d-box service-center-child ng-ser-list"></div>-->
+                    </div>
+                </div>
+                <div class="ng-minicart-slide-box"></div>
+            </div>
+        </div>
+        <div class="wrapper">
+            <!--头部内容-->
+            <div class="simple-header">
+                <div class="clearfix">
+                    <a href="__URL__/index" target="_blank">
+                        <img src="__PUBLIC__/images/logo.png" height="60" width="190">
+                    </a>
+                    <span class="channel l reglogo"></span>
+                    <p class="login-bor">
+                    </p>
+                </div>
+            </div>
+            <div class="main-box reg mart reg-bor-top mt24">
+                <div class="tab-cont cont-marg clearfix">
+                    <div class="reg-main">
+                        <div class="reg-suc">
+                            <i class="logo"></i>
+                            <p class="tip">
+                                恭喜您，<span class="reg-phone-num"></span>账号注册成功！
+                            </p>
+                            <div class="btn-reg mt50">
+                                <a class="reg-submit">快去完善个人信息</a>
+                            </div>
+                            <p class="reg-back">
+                                <a href="__URL__/index">不，我想先逛逛 ></a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="reg-ad-wrapper">
+                        <ul>
+                            <li>
+                                <a>
+                                    <img src="__PUBLIC__/images/145154591847086332.jpg">
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <img src="__PUBLIC__/images/144731570126632727.jpg">
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <img src="__PUBLIC__/images/145706220272647051.jpg">
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <img src="__PUBLIC__/images/144731573946731311.jpg">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function(e){
+                $.ajax({
+                    type:"post",
+                    url:"__URL__/cook",
+                    dataType: "text",
+                    data:null,
+                    success:
+                    function(data){
+                      eval("var obj="+data);
+                        if(data!=""){
+                            $("#username-node-slide").show();
+                            $("#username-node").hide();
+                            $("#usernameHtml02").text(obj.username);
+                            $(".reg-phone-num").text(obj.username);
+                            if(obj.touxiang=="null"){
+                                $(".headimg > img").attr("src","/ShoppingSite/"+obj.touxiang);
+                            }else{
+                                 $(".headimg > img").attr("src","__PUBLIC__/images/0000000000_01_60x60.jpg");
+                            }
+                            $(".mysuning-detail > .login").hide();
+                            $(".mysuning-detail > .username").css("display","block");
+                            $(".mysuning-detail > .username").text(obj.username);
+                            $(".pls-login").hide();
+                            $("#zujing").show();
+                            $("#zujing > a").eq(0).text(obj.username);
+                            $("#zujing_img").attr("src","/ShoppingSite/"+obj.touxiang);
+                            $(".desc").empty().append("按下键盘上的<i>G</i>即可快速打开/关闭购物车功能");
+                            if(obj.quanxian=="超级管理员"||obj.quanxian=="管理员"){
+                                $("#hguanli").show();
+                            }else{
+                                $("#hguanli").hide();
+                            }
+                        }
+                    }
+                })
+                var num = 0;
+                $(document).keydown(function(event){
+                    if(event.keyCode == 71){ 
+                        if(num %2==0){
+                            $(".sn-sidebar-contents").attr("class","sn-sidebar-contents sn-sidebar-contents-show");
+                            $(".sn-sidebar-contents").animate({right : '35px'},"slow"); 
+                            $(".sn-sidebar-cart").show();
+                        }else{
+                            $(".sn-sidebar-contents").attr("class","sn-sidebar-contents");
+                            $(".sn-sidebar-contents").animate({right : '-400px'},"slow"); 
+                            $(".sn-sidebar-cart").hide();
+                        }
+                    }
+                    num++;
+                }); 
+            })
+            $(document).ready(function(){
+    $('html').bind("selectstart", function () { return false; });
+})
+        </script>
+    </body>
+</html>

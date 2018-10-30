@@ -1,0 +1,157 @@
+
+.fena >div{
+    text-align: center;height: 30px;
+    line-height: 30px;
+}
+.fena >div> span{
+    width: 50px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+}
+.fena >div> a{
+    width: 50px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+    text-decoration: none;
+}
+.fena >div> li{
+    list-style: none;
+    width: 200px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+    text-decoration: none;
+}
+.fena >div> a:hover{
+    text-decoration: none;
+}
+﻿tr{
+    height: 50px;
+    /*background: #fff;*/
+}
+.neirong{
+    height: 50px;
+    background: #fff;
+}
+.neirong > td{
+    border-top:1px solid grey;
+    border-bottom:1px solid grey;
+}
+.chanpin_neirong{
+    height: 50px;
+    background: #fff;
+}
+.chanpin_neirong > td{
+    border-top:1px solid grey;
+    border-bottom:1px solid grey;
+}
+.mingcheng{
+    width: 400px;
+}
+.jieguo{
+    height: 50px;
+    background: #fff;
+}
+.jieguo > td{
+    border-top:1px solid grey;
+    border-bottom:1px solid grey;
+}
+.chanpin_jieguo{
+    height: 50px;
+    background: #fff;
+}
+.chanpin_jieguo > td{
+    border-top:1px solid grey;
+    border-bottom:1px solid grey;
+}
+th{
+    cursor: pointer;
+}
+.tou{
+    background: #EFEFEF;
+}
+.table{
+    text-align: center;
+    color: #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+}
+input{
+    outline: none;
+}
+.ng1_chanbut{
+    font-family:microsoft yahei;
+    border-radius: 4px;
+    background-image: url(../image/sp-ico.png);
+    background-repeat: no-repeat;
+    background-position: -45px 0;
+    width: 20px;
+    height: 20px;
+}
+.ng1_table{
+    width: 400px;height: 300px;
+    position: fixed;
+    top:200px;display: none;
+    left:450px;
+    background: #fff;
+    border:5px solid #ccc;
+    z-index: 1001097;
+}
+.ng1_table_top{
+    width: 400px;height: 30px;
+}
+.disa{
+    background: #eee!important;
+}
+.ng1_uptguan{
+    position: absolute;top:-10px;
+    text-decoration: none;
+    right:0px;
+    font-size:32px;
+    cursor: pointer;
+    color:#000;
+}
+.ng1_uptguan:hover{
+    text-decoration: none;
+    color:#000; 
+}
+.ng1_table_bot > input{
+    background: #fff;width: 240px;
+}
+.ng1_table_bot{
+    width: 400px;height: 270px;
+    padding-left: 40px;
+}
+.upt{
+    width: 155px;height: 32px;
+    margin-left: 70px;
+    color:#333;
+}
+.fenye{
+    text-align: center;height: 30px;
+    line-height: 30px;
+}
+.fenye > *{
+    width: 90px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+}
+.fenye > a:hover{
+    text-decoration: none;
+}
+

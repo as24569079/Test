@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>月度业绩统计</title>
+    <link href="__PUBLIC__/css/tongji_xin.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script src="__PUBLIC__/js/bianse.js"></script>
+    <script src="__PUBLIC__/js/jquery.table2excel.js"></script>
+    <link href="__PUBLIC__/css2/bootstrap.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/css2/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="all" href="__PUBLIC__/css2/daterangepicker-bs3.css" />
+</head>
+<body style="margin-left:5px">
+    <form method="post" action="__URL__/tongji_yeji" id="form">
+    <if condition='$start neq ""'>
+            <input type="date" name="daterangepicker_start" class="btn" style="border:1px solid #ccc;cursor: pointer;height:32px" value='{$start}'>
+            <else/>
+            <input type="date" name="daterangepicker_start" class="btn" style="border:1px solid #ccc;cursor: pointer;height:32px">
+        </if>
+        <if condition="$end neq ''">
+            <input type="date" name="daterangepicker_end" class="btn" style="border:1px solid #ccc;cursor: pointer;height:32px" value='{$end}'>
+            <else/>
+            <input type="date" name="daterangepicker_end" class="btn" style="border:1px solid #ccc;cursor: pointer;height:32px">
+        </if>
+        <input type="submit" value="搜索"  class="btn btn-primary" style="width:100px">
+        <input type="button" value="导出表" class="btn btn-primary" id="daochu" style="width:100px">
+        <table id="biao" border="1" cellspacing="0" style="margin-top:10px">
+            <tr>
+                <td colspan="33">
+                    诚兑城统计报表<span id='time'><if condition="$start neq '' && $end neq ''">({$start}至{$end})</if></span>
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="3">招商经理</td>
+                <td rowspan="3">业绩</td>
+                <td rowspan="3">新增资质数</td>
+                <td rowspan="3">新增会员人数</td>
+                <td colspan="21">资质占比</td>
+            </tr>
+            <tr>
+                <td colspan="3"><if condition="$pan eq 2016">2900<else/>3200</if></td>
+                <td colspan="3"><if condition="$pan eq 2016">29000<else/>32000</if></td>
+                <td colspan="3"><if condition="$pan eq 2016">290000<else/>320000</if></td>
+                <td colspan="4">99000</td>
+                <td colspan="4">149000</td>
+                <td colspan="4">199000</td>
+            </tr>
+            <tr>
+                <td>个数</td>
+                <td>金额</td>
+                <td>占比</td>
+                <td>个数</td>
+                <td>金额</td>
+                <td>占比</td>
+                <td>个数</td>
+                <td>金额</td>
+                <td>占比</td>
+                <td>个数</td>
+                <td>金额</td>
+                <td>主材券</td>
+                <td>占比</td>
+                <td>个数</td>
+                <td>金额</td>
+                <td>主材券</td>
+                <td>占比</td>
+                <td>个数</td>
+                <td>金额</td>
+                <td>主材券</td>
+                <td>占比</td>
+            </tr>
+            <volist name='tongji' id='val'>
+            <tr>
+                <td>{$val.manager_name}</td>
+                <if condition='$val.yeji gt 0'>
+                    <td>{$val.yeji}</td>
+                    <else/>
+                    <td>0</td>
+                </if>
+                <if condition='$val.count gt 0'>
+                    <td>{$val.count}</td>
+                    <else/>
+                    <td>0</td>
+                </if>
+                <if condition='$val.people gt 0'>
+                    <td>{$val.people}</td>
+                    <else/>
+                    <td>0</td>
+                </if>
+                <if condition='$val.2900 gt 0'>
+                    <td>{$val.2900}</td>
+                    <else/>
+                    <td>0</td>
+                </if>
+                <if condition='$val.2900_yeji gt 0'>
+                    <td>{$val.2900_yeji}</td>
+                    <else/>
+                    <td>0</td>
+                </if>
+                <if condition='$val.2900 gt 0'>
+                    <td>{$val.2900_zhanbi}%</td>
+                    <else/>
+                    <td>0%</td>
+                </if>
+                <if condition='$val.29000 gt 0'>
+                    <td>{$val.29000}</td>
+                    <else/>
+                    <td>0</td>
+                </if>
+                <if condition='$val.29000_yeji gt 0'>
+                    <td>{$val.29000_yeji}</td>
+                    <else/>
+                    <td>0</td>
+                </if>
+                <if condition='$val.29000 gt 0'>
+                    <td>{$val.29000_zhanbi}%</td>
+                    <else/>
+                    <td>0%</td>
+                </if>
+                <if condition='$val.290000 gt 0'>
+                    <td>{$val.290000}</td>
+                    <else/>
+                    <td>0</td>
+                </if>
+                <if condition='$val.290000_yeji gt 0'>
+                    <td>{$val.290000_yeji}</td>
+                    <else/>
+                    <td>0</td>
+                </if>
+                <if condition='$val.290000 gt 0'>
+                    <td>{$val.290000_zhanbi}%</td>
+                    <else/>
+                    <td>0%</td>
+                </if>
+                <if condition='$val.99000 gt 0'>
+                    <td>{$val.99000}</td>
+                    <else/>
+                    <td>0</td>
+                </if>
+                <if condition='$val.99000_yeji gt 0'>
+                    <td>{$val.99000_yeji}</td>
+                    <else/>
+                    <td>0</td>
+                </if>
+                <if condition='$val.99_zhucai gt 0'>
+                    <td>{$val.99_zhucai}</td>
+                    <else/>
+                    <td>0</td>
+                </if>
+                <if condition='$val.99000 gt 0'>
+                    <td>{$val.99000_zhanbi}%</td>
+                    <else/>
+                    <td>0%</td>
+                </if>
+                <if condition='$val.149000 gt 0'>
+                    <td>{$val.149000}</td>
+                    <else/>
+                    <td>0</td>
+                </if>
+                <if condition='$val.149000_yeji gt 0'>
+                    <td>{$val.149000_yeji}</td>
+                    <else/>
+                    <td>0</td>
+                </if>
+                <if condition='$val.14_zhucai gt 0'>
+                    <td>{$val.14_zhucai}</td>
+                    <else/>
+                    <td>0</td>
+                </if>
+                <if condition='$val.149000 gt 0'>
+                    <td>{$val.149000_zhanbi}%</td>
+                    <else/>
+                    <td>0%</td>
+                </if>
+                <if condition='$val.199000 gt 0'>
+                    <td>{$val.199000}</td>
+                    <else/>
+                    <td>0</td>
+                </if>
+                <if condition='$val.199000_yeji gt 0'>
+                    <td>{$val.199000_yeji}</td>
+                    <else/>
+                    <td>0</td>
+                </if>
+                <if condition='$val.19_zhucai gt 0'>
+                    <td>{$val.19_zhucai}</td>
+                    <else/>
+                    <td>0</td>
+                </if>
+                <if condition='$val.199000 gt 0'>
+                    <td>{$val.199000_zhanbi}%</td>
+                    <else/>
+                    <td>0%</td>
+                </if>
+            </tr>
+            </volist>
+            <tr>
+                <td colspan="27">提现统计</td>
+            </tr>
+            <tr>
+                <td>申请人数</td>
+                <td colspan="2">总金额</td>
+                <td colspan="1">提现人数</td>
+                <td colspan="7">金额</td>
+                <td colspan="7">未提人数</td>
+                <td colspan="7">金额</td>
+            </tr>
+            <tr>
+                <td>{$zong_count}</td>
+                <td colspan="2">{$zong}</td>
+                <td colspan="1">{$tixian_count}</td>
+                <td colspan="7">{$tixian_zong}</td>
+                <td colspan="7">{$weiti_count}</td>
+                <td colspan="7">{$weiti_zong}</td>
+            </tr>
+        </table>
+    <script>
+        $(function(){
+            var myDate = new Date();   
+            var time = $("#time").text();
+            $("#daochu").click(function(){
+                $("#biao").table2excel({
+                        exclude: ".noExl",
+                        name: "Excel Document Name",
+                        filename: "诚兑城统计报表("+time+")",
+                });
+            });
+        })
+    </script>
+    </form>
+</body>
+</html>
+

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>欢迎注册</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="__PUBLIC__/shopping/js/jquery-1.8.2.min.js"></script> 
+        <script type="text/javascript" src="__PUBLIC__/shopping/jq/zhuce.js"></script> 
+        <link rel="shortcut icon" href="__PUBLIC__/images/bitbug_favicon.ico" type="image/x-icon">
+        <link href="__PUBLIC__/shopping/css/zhuce.css" rel="stylesheet">
+        <link href="__PUBLIC__/shopping/css/login.css" rel="stylesheet">
+        <link href="__PUBLIC__/shopping/css/style-min.css" rel="stylesheet">
+        <link href="__PUBLIC__/shopping/css/siler.css" rel="stylesheet">
+    </head>
+    <body>
+        <form method="post" id="form">
+        <div class="wrapper">
+            <!--头部内容-->
+            <div class="simple-header">
+                <div class="clearfix">
+                    <a href="__URL__/index" target="_blank">
+                        <img src="__PUBLIC__/images/chengcuicheng.png" style="width:248px;height:74px;margin-top:10px">
+                    </a>
+                    <span class="channel l reglogo"></span>
+                    <p class="login-bor">
+                        我已经注册，马上<a href="__URL__/login">登录></a>
+                    </p>
+                </div>
+            </div>
+            <!--注册表单-->
+            <div class="main-box reg mart reg-bor-top">
+                <form method="post">
+                    <div class="tab-cont cont-marg">
+                        <div class="reg-nav">
+                            <ul class="reg-step clearfix" style="text-align:center">
+                                <li class="current" style="">
+                                    <i class="icon-1"></i>设置登录名
+                                </li>
+                                <li>
+                                    <i class="icon-2"></i>设置账户信息
+                                </li>
+                                <li class="mr0">
+                                    <i class="icon-3"></i>注册成功
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="reg-main">
+                            <div class="error-wrap gift-wrap">
+                                <div class="error-box mt70">
+                                    <i class="error"></i><span>请完成注册~
+						</span>
+                                </div>
+                            </div>
+                            <div class="reg-form pb85">
+                                <div class="reg-txtbox">
+                                    <label class="input-label">请输入您的手机号码</label>
+                                    <i class="ico-usename"></i>
+                                    <input class="txt-input text-email" type="text" name="username" value="" maxlength="18" tabindex="1" id="username">
+                                </div>
+                                <div class="input-tip per-input-tip" id="tishi"></div>
+                                <div class="input-tip  per-input-tip tip-error-color imgCodeDiv"></div>
+                                <div class="reg-tip">
+                                    <div class="auto-label">
+                                        <input type="checkbox" id="protocol" name="Preg_index_none_check" checked="checked"> 同意
+                                        <a href="__URL__/xieyi">《诚兑城服务协议》</a>
+                                    </div>
+                                </div>
+                                <div class="input-tip  per-input-tip red"></div>
+                                <div class="btn-reg">
+                                    <a class="reg-submit" id="sub" style="background:#0074cc">同意协议并注册</a>
+                                </div>
+                                <p class="bottom-tip mt10"></p>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-cont cont-marg"></div>
+                </form>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <!--版权区域-->
+        <div class="ng-footer">
+                <div class="ng-s-footer">
+                    <div class="ng-s-f-con">
+                        <p class="ng-url-list">
+                            <a href="__URL__/qiye.html" target="_blank" >企业联盟</a>
+                                <span>|</span>
+                                <a href="__URL__/qiye.html" target="_blank">加入我们</a>
+                                <span>|</span>
+                                <a href="__URL__/kefuzhongxin.html" target="_blank">客服中心</a>
+                                <span>|</span>
+                                <a href="__URL__/xinwenzhongxin.html" target="_blank">新闻中心</a>
+                                <span>|</span>
+                                <a href="__URL__/guanyu.html" target="_blank">关于我们</a>
+                                <span>|</span>
+                                <a href="__URL__/gonggao.html" target="_blank">公告</a>
+                                </p>
+                                <p class="ng-copyright ng-copyright-2">
+                        备案号:<a href="http://www.miitbeian.gov.cn/" style="color:#000">津ICP备16004932号-2</a>
+                    </p>
+                        <div class="ng-authentication">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="ng-fix-bar"></div>
+            </div>
+        </form>
+        <script>
+$(function(){
+        var number = 0;
+        $("#username").focus(function(){
+            $(".input-label").hide();
+            $("#tishi").attr("class","input-tip per-input-tip");
+            $(".reg-txtbox").attr("class","reg-txtbox");
+            $("#tishi").text("");
+        }).blur(function(){
+            var value = $(this).val();
+            value = $.trim(value);
+            if(value==""){
+                $(".input-label").show();
+                $("#tishi").attr("class","input-tip per-input-tip");
+                $(".reg-txtbox").attr("class","reg-txtbox");
+                $("#tishi").text("");
+            }else if(value.length<6||value.length>18){
+                $("#tishi").attr("class","input-tip per-input-tip tip-error-color");
+                $(".reg-txtbox").attr("class","reg-txtbox error-border");
+                $("#tishi").text("请输入6-18位的登录名");
+            }else if(/^([\u4e00-\u9fa5])*$/.test(value)){
+                $("#tishi").attr("class","input-tip per-input-tip tip-error-color");
+                $(".reg-txtbox").attr("class","reg-txtbox error-border");
+                $("#tishi").text("登录名不能为中文");
+            }else if(!/^([a-z]|[A-Z]|[0-9])*$/.test(value)){
+                $("#tishi").attr("class","input-tip per-input-tip tip-error-color");
+                $(".reg-txtbox").attr("class","reg-txtbox error-border");
+                $("#tishi").text("登录名不能包含特殊符号");
+            }else{
+                number = 1;
+            }
+        })
+        $("#sub").click(function(){
+            var value = $("#username").val();
+            var url ="__URL__/zhuceajax";
+            if(value == ""){
+                $("#tishi").attr("class","input-tip per-input-tip tip-error-color");
+                $(".reg-txtbox").attr("class","reg-txtbox error-border");
+                $("#tishi").text("请输入登录名!");
+            }else if(!$("#protocol").is(':checked')){
+                $("#tishi").attr("class","input-tip per-input-tip tip-error-color");
+                $(".reg-txtbox").attr("class","reg-txtbox error-border");
+                $("#tishi").text("您必须同意服务条款后，才能提交注册!");
+            }else if(number == 1){
+                $.ajax({
+                    type:"post",
+                    url:url,
+                    dataType: "text",
+                    data:"user="+ value,
+                    success:
+                    function(data){
+                        if(data==1){
+                            $("#tishi").attr("class","input-tip per-input-tip tip-error-color");
+                            $(".reg-txtbox").attr("class","reg-txtbox error-border");
+                            $("#tishi").text("登录名已存在,请更换!");
+                        }else{
+                            var frm = document.getElementById('form');
+                                frm.action='__URL__/register2/';
+                                frm.submit();
+                        }
+                    }
+                })
+            }
+        })
+})
+$(document).ready(function(){
+    $('html').bind("selectstart", function () { return false; });
+})
+        </script>
+    </body>
+</html>

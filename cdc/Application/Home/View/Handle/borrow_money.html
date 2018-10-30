@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="__PUBLIC__/css/tongji.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script src="__PUBLIC__/js/bianse.js"></script>
+</head>
+<body>
+    <form method="post" action="__URL__/borrow_moneyU" onsubmit="return sub()">
+    <div>
+        <br>
+        <span>借币用户：</span>
+        <input type="text" class="search" name="tel" maxlength="11" id="tel_set">　<span id="tel_get"></span>
+        <br>      <br>
+        <span>借币金额：</span>
+        <input type="text" class="search" name="money" style="display: none" id="money_set">
+        <br>      <br>
+        <span>借币备注：</span>
+        <input type="text"  name="beizhu" id="beizhu" style='width:204px;height:41px'>
+        <br>      <br>
+        <input type="submit" value="确定" class="search_sub">
+      
+    </div>
+        <table>
+            <tr>
+                <th>序号</th>
+                <th>借币金额</th>
+                <th>借币用户</th>
+                <th>操作人员</th>
+                <th>操作时间</th>
+            </tr>
+            <volist name="money" id="val" key="k">
+            <tr>
+                <td>{:(I('get.p'))?((I('get.p')-1)*12+$k):($k)}</td>
+                <td>{$val.money}</td>
+                <td>{$val.name}</td>
+                <td>{$val.username}</td>
+                <td>{$val.time}</td>
+            </tr>
+            </volist>
+        </table>
+    </form>
+    <script>
+        function sub(){
+            if($("#tel_set").val()==""){
+                alert("请输入借币用户手机号！");
+                return false;
+            }
+            if($("#money_set").val()==""){
+                alert("请输入借币金额！");
+                return false;
+                
+            }else if(isNaN($("#money_set").val())){
+                    alert("请输入正确格式！");
+                      return false;
+                }else if($("#beizhu").val() == ''){
+                    alert("请输入备注");
+                    return false;
+                }
+           
+        }
+        $(document).ready(function(){
+            $("#tel_set").change(function(){
+
+               var data={
+                tel:$(this).val(),
+            }
+
+            $.ajax({
+                type:"post",
+                url:"__URL__/borrow_moneyAj",
+                dataType: "text",
+                data:JSON.stringify(data),
+                success:
+                function(data){
+                    if(data == 1){
+                        $("#tel_get").text("用户不存在！");
+                    }else{
+                        eval("obj="+data);
+                        $("#tel_get").text(obj.real_name);
+                        $("#money_set").show();
+                    }
+                }
+            })
+        })  
+     })
+    </script>
+</body>
+</html>

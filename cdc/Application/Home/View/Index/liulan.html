@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html>
+<head id="head">
+<title></title>
+<meta charset="UTF-8"> 
+<!--<meta http-equiv="refresh" >-->
+<link rel="stylesheet" href="__PUBLIC__/css/reset.css">
+<link rel="stylesheet" href="__PUBLIC__/css/footer.css">
+<script src="__PUBLIC__/js/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/js/myjs.js" type="text/javascript"></script> 
+<link href="__PUBLIC__/css/index.css" type="text/css" rel="stylesheet" media="screen"> 
+<link href="__PUBLIC__/css/kefu.css" type="text/css" rel="stylesheet" media="screen"> 
+<link href="__PUBLIC__/css/shopping-cart.css" type="text/css" rel="stylesheet" media="screen"> 
+<link href="__PUBLIC__/css/shoppingcart3.css" type="text/css" rel="stylesheet" media="screen"> 
+<style>
+    .i-check{color: red;margin-left: 20px}
+    .i-checked{margin-left:20px;border:1px solid #CCC}
+    </style>
+</head>
+<body class="LTR Safari Chrome Safari42 Chrome42 ZHCN PCDevice ContentBody">
+<form method="post" action="__URL__/zhifu" onsubmit="javascript:return WebForm_OnSubmit();" id="form">
+<div class="aspNetHidden">
+<input type="hidden" name="" id="manScript_HiddenField" value="">
+<input type="hidden" name="" id="__EVENTTARGET" value="">
+<input type="hidden" name="" id="__EVENTARGUMENT" value="">
+<input type="hidden" name="" id="p_lt_ctl01_pageplaceholder_p_lt_ctl01_pageplaceholder_p_lt_ctl01_OrderNote_txtOrderNode_POSITION" value="0">
+<input type="hidden" name="" id="__LASTFOCUS" value="">
+</div>
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="A5343185">
+	<input type="hidden" name="__SCROLLPOSITIONX" id="__SCROLLPOSITIONX" value="0">
+	<input type="hidden" name="__SCROLLPOSITIONY" id="__SCROLLPOSITIONY" value="0">
+</div>
+    <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('manScript', 'form', ['tctxM',''], [], [], 90, '');
+//]]>
+</script>
+
+    <div id="ctxM">
+
+</div>
+    <div style="display:none">
+
+<a id="p_lt_ctl00_TopSignOutButton_btnSignOutLink" class="signoutLink" href="javascript:__doPostBack('p$lt$ctl00$TopSignOutButton$btnSignOutLink','')">注销</a></div>
+<!--顶部-->
+    <div id="header">
+        <div class="w">
+           <ul class="fl">
+              <li><a style="color:#b1191a;" href="/PCmaster/Index">诚兑城商城首页</a></li>
+                <li class="login"></li><li class="spacer"></li>&nbsp;&nbsp;<a href="javascript:__doPostBack('p$lt$ctl00$TopSignOutButton$btnSignOutLink','')">退出</a>
+           </ul>
+            <ul class="fr">
+                <li class="fore1 dorpdown dd" id="li-myjd">
+                    <div class="dt">
+                        <i></i>
+                        <a href="" style="color:#b1191a;font-weight:600;padding-left: 18px;">会员中心</a><span class="icon"></span>
+                    </div>
+                    <div class="dorpdown-layer">
+                        <div class="dd-spacer"></div>
+                       
+                        <div class="user-info">                        
+                             <div class="u-pic">                            
+                              <a href=""><img src="" alt=""></a>  
+                              </div>
+                            <div class="u-name">
+                           <a href="">123</a>
+                        </div>
+                        </div>
+                        <div class="otherlist">
+                            <div class="fore1">
+                                <div class="item"><a href="">基本资料</a></div>
+                                <div class="item"><a href=""> 实名认证</a></div>
+                                <div class="item"><a href="">密码修改</a></div>
+                                <div class="item"><a href="">签署协议</a></div>
+                                <div class="item"><a href="">子账户管理</a></div>
+                            </div>
+                            <div class="fore2">
+                                <div class="item"><a href="">银行卡管理</a></div>
+                                <div class="item"><a href="">提现管理</a></div>
+                                <div class="item"><a href="">电子币线下充值</a></div>
+                                <div class="item"><a href="">电子币网银充值</a></div>
+                                <div class="item"><a href="">电子币转账</a></div>
+                            </div>
+                            <div class="fore3">
+                                <div class="item"><a href="">购买积分</a></div>
+                                <div class="item"><a href="">奖金记录</a></div>
+                                <div class="item"><a href="">财务流水</a></div>
+                                <div class="item"><a href="">订单信息</a></div>
+                                <div class="item"><a href="">收货地址</a></div>
+                            </div>
+                        </div>
+                        <!--otherlist-->
+                      
+                    </div>
+                    <!--dorpdown-layer-->
+                </li>
+                <li class="spacer"></li>
+                <li class="fore"><div class="dt"><a href="" target="_blank">诚兑城官网</a></div></li>
+                <li class="spacer"></li>
+                <li class="fore dorpdown dd" id="li-serv">
+                    <div class="dt">
+                        <a href="#">客户服务</a><span class="icon"></span>
+                    </div>
+                    <div class="dorpdown-layer">
+                        <div class="dd-spacer"></div>
+                        <div class="serv-item"><a href="">帮助中心</a></div>
+                        <div class="serv-item"><a href="">在线客服</a></div>
+                        <div class="serv-item"><a href="">留言建议</a></div>
+                    </div>
+                </li>
+
+            </ul>
+            <span class="clr"></span>
+        </div>
+    </div>
+    <!--顶部end-->
+<div id="global-sidebar">
+  <div class="relative-div">
+    <div class="cart-im-panel">
+      <div id="jl-active-enter">
+        <ul style="display: block;" class="jl-active-items">
+        </ul>
+      </div>
+      <div class="cart-im-box-wrap">
+        <div class="cart-im-box">
+			<a id="side-cart" class="side-button log-send" target="_blank" href=""><em class="red-cart"></em><em class="white-cart"></em>
+               <div class="vertical-font">购物车</div>
+            </a>
+            <a id="side-im" class="side-button openIM log-send" href=""><em class="red-im"></em><em class="white-im"></em>
+               <div class="vertical-font">联系客服</div>
+            </a>
+		</div>
+      </div>
+    </div>
+    <div class="side-other slide-out">
+          <div class="empty-block-before"></div>
+          <div class="side-other-all">
+	     	  <a id="side-coupon" class="side-button log-send" target="_blank" href=""><em class="red-coupon"></em> <em class="white-coupon"></em>
+                <div class="tip"> 会员中心<em class="black-triangle"></em></div>
+              </a>
+	     	  <a id="side-like" class="side-button log-send" target="_blank" href=""><em class="red-like"></em><em class="white-like"></em>
+                <div class="tip"> 大众商城 <em class="black-triangle"></em></div>
+              </a>
+	      </div>
+      <div class="empty-block-after"></div>
+    </div>
+    <div class="side-go2top-panel">
+      <div id="go2top"> <em class="red-up-arrow"></em>
+        <div><a href="javascript:scroll(0,0)">返回顶部</a>&gt;</div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+	$(function(){
+	   $("#global-sidebar").hover(function(){
+		   $(".side-other").removeClass("slide-out").addClass("slide-in");
+	   },function(){
+		   $(".side-other").removeClass("slide-in").addClass("slide-out");
+	   });
+	});
+</script>
+
+<!--logo and search-->
+<div class="w">
+    <div id="logo">
+    
+    </div>
+  <div class="checkout-nav">
+    <ul>
+        <li><span class="selected1"></span>购物车</li>
+        <!--<li><span class="progress-number1"></span>账单&amp;配送</li>-->
+        <li><span class="selected"></span>订单确认</li>
+        <li> <span class="progress-number3"></span>支付</li>
+    </ul>
+</div>
+        <span class="clr"></span>
+    </div>
+    <!--logo and search end-->
+<div class="container">
+  <div class="cart">
+    <div class="row">
+    </div>  
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-12">
+      <div class="form-box">
+      
+            <div style="width: 100%; height: 50px; border:solid 0px red">
+               <h2 style="float:left">收货人信息</h2>
+           <h2 id="address_add" style="float:right;margin-right: 30px;">新增收货地址</h2>
+                <!--<div style="float: right; width: 100px; height:30px;">-->
+<!--                    <a href="#none" id="address_add" style="border:1px solid #CCC">新增收货地址</a>-->
+                    <input type="hidden" id="del_consignee_type" value="1">
+                <!--</div>-->
+            </div>
+              
+            <div id="addre" style="min-height: 100px; border: 0px solid red">
+                <!--<volist name="arr" id="vale">-->
+<!--                <div style="float:left;width:70%; height:40px; text-align:left; line-height:40px; margin-left: 40px">
+                     <span>{$vale.address_people}</span>
+                     <span>{$vale.address_tel} {$vale.address_provinces} </span>
+                     <span>{$vale.address_details}</span>
+                     <if condition="$vale.status eq 1"> <span style="color: red;margin-left: 20px"><b>默认地址</b></span><else />
+                     <span style="margin-left: 20px"><b>设为默认</b></span></if>
+                </div>
+                <div style="float:right;width:20%; height:40px; text-align:center; line-height:40px">
+                    <a href="#none" class="ftx-05 edit-consignee">编辑</a>
+                    <a href="#none" class="ftx-05 del-consignee">删除</a>
+                </div>-->
+                    <!--</volist>-->
+<!--         
+<div style="width: 100%; height: 30px; border:0px solid blue; float:left " id="" onclick="">
+                	<span>更多地址</span>                
+            	  </div>-->
+                <!---->
+                
+<!--                    <li style="width:400px;text-align:center; line-height:30px; height:30px;border:0px solid blue; float:left; list-style-type:none;" id="">
+                        
+                        <div style="width:100%; height:30px; float:left; ">
+                              <span class="addr-name" limit="6" title="">薛冰</span>
+                              <span class="addr-info" limit="45" title="">天津 红桥区 全境 丁字沽二号路与五爱道交口衔睿科技园</span>
+                        </div>
+                        
+                    </li>-->
+                    
+                </ul>
+            </div>
+<!--            <div  style=" " id="" onclick="">
+                <span>收起地址</span><b></b>
+            </div>-->
+          
+          
+          <div style="width: 550px; height:250px; position: absolute; z-index: 10000; display: block; overflow: hidden; top: 225px; left: 450px; border:1px  solid red; background:#FFF;display: none" id="address_people">
+              
+               
+          	<div style="margin:20px 20px">
+            	<div>
+                <span><span style="color:red">&nbsp;&nbsp;&nbsp;&nbsp;*</span>收货人：</span>
+                    <input type="text" style="width:200px; height:20px;" id="address_peopl"> <input type="button" value="x" style="left: 500px;top: 20px; position: absolute;" id="address_d">
+                </div>
+                    
+            </div>
+             <div style="margin:20px 20px">
+            	<div>
+                	<span><span style="color:red">*</span>&nbsp;手机号码：</span>
+                    <input type="text" style="width:200px; height:20px;" id="address_tel">
+                </div>
+            </div>
+<!--            <div style="margin:20px 20px">
+            	<div>
+                	<span><span style="color:red">*</span>&nbsp;所在地区：</span>
+                        <span id="province2"></span>
+                </div>
+            </div>-->
+            <div style="margin:20px 20px">
+            	<div>
+                	<span><span style="color:red">*</span>&nbsp;详细地址：</span>
+                    <input type="text" style="width:300px; height:20px;" id="address_details">
+                </div>
+            </div>
+            
+            <div style="width:100%; margin-left:20px;"><a style=" margin-left:20px; background:#CCC; border:#CCC 1px solid; border-radius:3px;" id="address_save">保存个人信息</a></div>
+          </div>
+          
+           
+<!--display: none-->
+  <div style="width: 550px; height:150px; position: absolute; z-index: 10000; display: block; overflow: hidden; top: 500px; left: 450px; border:1px  solid red; background:#FFF;display: block; border-radius: 5px;display: none" id="liulan_pay">
+              
+               
+          	<div style="margin:40px 20px">
+                    <div> 
+                <span><span style="color:red">&nbsp;&nbsp;&nbsp;&nbsp;*</span>请输入密码：</span>
+                <input type="password" style="width:150px; height:20px;"  maxlength="40" value="" id="liulan_mima"><span id="liulan_shibai"></span>
+                 <br><br>
+                    　　　　<input type="button" style="width:200px; height:20px;" value="确定" id="liulan_z">
+                    <input type="button" value="x" style="left: 500px;top: 20px; position: absolute; " id="liulan_no">
+                    </form>
+                </div>                  
+            </div>
+             
+          </div>
+           
+
+
+
+
+
+
+
+
+
+
+
+<hr class="first-separator">
+<div id="p_lt_ctl01_pageplaceholder_p_lt_ctl01_pageplaceholder_p_lt_ctl01_ShoppingCartContent_pnlCartContent" class="CartContent">
+<h2>订单详情 <input type="hidden" id="order_id" value="{$val.0.order_id}"></h2>
+
+
+<!--<--商品-->
+<volist name="val" id="arr">
+   
+<div class="row">
+<hr class="first-separator">
+<div class="row">
+  <div class="col-md-10">   
+    <div class="cart-item-image">    
+      <a href=""><img src="{$arr.img_url}"></a>
+    </div>
+    <div class="cart-item-info">
+      <a href="">{$arr.item_name}</a> 
+      <div class="haorn">
+            <span class="bold green">(有货)</span>
+        </div>
+       
+    </div>
+    <div class="cart-item-amount">
+      <span>数量：</span>      
+        <div id="" onkeypress="">
+		
+    <div id="" disabled="disabled" class="aspNetDisabled">
+			<div class="UnitCountControl"><input  type="text" value="{$arr['quantity']}" id="" class="aspNetDisabled form-control shop-number" disabled="true" data-id="1">
+</div>
+		</div>
+	</div>
+    </div>
+  </div>   
+ 
+  <div class="col-md-2 cart-item-subtotal">
+      <span class="bold red">￥<span class="bule">{$arr['quantity']*$arr['s_xj_price']+$arr['quantity']*$arr['g_xj_price']}</span></span>  
+  </div>
+  
+    <div class="col-md-2 cart-item-subtotal" style="font-size:14px;color:#666;font-weight:normal;">
+        {$arr.mall_name}
+    </div>
+  
+</div>
+
+    <div class="clear"></div>
+
+</div>
+</volist>
+    
+    
+    
+<hr class="last-separator">
+<div class="orderNotes">
+<h2>备注</h2>
+	<textarea name="" rows="2" cols="20" id="p_lt_ctl01_pageplaceholder_p_lt_ctl01_pageplaceholder_p_lt_ctl01_OrderNote_txtOrderNode" class="form-control"></textarea>
+</div>
+</div>
+
+
+
+
+
+
+</div>
+      </div>  
+      <div class="col-md-12">
+        <div>
+        <div class="col-md-2">
+<!--        <div id="p_lt_ctl01_pageplaceholder_p_lt_ctl01_pageplaceholder_p_lt_ctl02_ColumnLayout_BootstrapPrice_ColumnLayout_BootstrapPrice_1_ProductsTotal_totalViewer" class="TotalViewer">
+    <div class="Label">
+        <span id="p_lt_ctl01_pageplaceholder_p_lt_ctl01_pageplaceholder_p_lt_ctl02_ColumnLayout_BootstrapPrice_ColumnLayout_BootstrapPrice_1_ProductsTotal_lblLabel">小计：</span>
+    </div>
+    <div class="Value">
+        <span id="p_lt_ctl01_pageplaceholder_p_lt_ctl01_pageplaceholder_p_lt_ctl02_ColumnLayout_BootstrapPrice_ColumnLayout_BootstrapPrice_1_ProductsTotal_lblValue" class='sum_moey'></span>
+    </div>
+</div>-->
+</div>
+<div class="col-md-2">
+<div id="p_lt_ctl01_pageplaceholder_p_lt_ctl01_pageplaceholder_p_lt_ctl02_ColumnLayout_BootstrapPrice_ColumnLayout_BootstrapPrice_2_TaxTotal_totalViewer" class="TotalViewer">
+
+</div>
+</div>
+<div class="col-md-2">
+<div id="p_lt_ctl01_pageplaceholder_p_lt_ctl01_pageplaceholder_p_lt_ctl02_ColumnLayout_BootstrapPrice_ColumnLayout_BootstrapPrice_3_ShippingTotals_totalViewer" class="TotalViewer">
+    <div class="Label">
+        <span id="p_lt_ctl01_pageplaceholder_p_lt_ctl01_pageplaceholder_p_lt_ctl02_ColumnLayout_BootstrapPrice_ColumnLayout_BootstrapPrice_3_ShippingTotals_lblLabel">e豆：</span>
+    </div>
+    <div class="Value">
+        <span class="bean">{$arry.bean}</span>
+    </div>
+</div>
+</div>
+<div class="col-md-2">
+<div id="" class="TotalViewer">
+    <div class="Label">
+        <span id="zongji">总计：</span>
+    </div>
+    <div class="Value">
+        <span id="sum_sum"></span>
+    </div>
+</div>
+    
+</div>
+<div class="col-md-4">
+</div>
+<div style="clear: both;"></div>
+</div>
+<div class="Panelheader"><div>
+<div class="col-md-4">
+    <div style="display:none;">
+    	<label class="delivery-label">选择您的支付方式?&nbsp;*</label>
+        <div id="" class="PanelPayment">
+            <div class="SelectorClass">
+                <div id="">
+                    <div class="control-group-inline">
+                        <select name="" onchange="" id="" class="DropDownField form-control">
+                        <option value="0" data-hash="">(请选择)</option>
+                        <option selected="selected" value="AbcGateway" data-hash="" class="DropDownItemEnabled">农行</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="" id="">
+                    <input type="hidden" name="" id="" value="">
+                    <input type="hidden" name="" id="">
+                    <input type="hidden" name="" id="">
+                    <input type="hidden" name="" id="" value="">
+                    <input type="hidden" name="" id="" value="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-4">
+    <div style="display:none;">
+        <div id="">
+            <span id="" class="radio radio-list-vertical">
+                <input id="" type="radio" name="" value="0" checked="checked">
+                <label for="">积分</label>
+            </span>
+        </div>
+    </div>
+</div>
+<div class="col-md-4">
+    <div class="xieyi">
+        <div id="" class="CofirmationCheckbox">
+            <span class="checkbox">
+                <input id="checked_liulan" type="checkbox" name="" checked="checked">
+                <label for="">我已经阅读并接受 <a class="termsAndConditionsLink" data-role="none" href="#" rel="external" title="众赢时代服务协议"> 诚兑城服务协议</a>.</label>
+            </span> 
+        </div>
+        </div>
+    </div>
+<div style="clear: both;"></div>
+</div>
+</div>
+<div class="options-box clearfix">
+	<div class="operation">
+        <a id="" class="checkout-back-link" onclick="" href="__URL__/shop_index">
+        	<span id="">&lt;返回诚兑城商城</span>
+        </a>
+	</div>
+<div class="btn-area">
+    <input type="button" name="" value="立即支付"  id="shop_buy" class="btn-primary checkout-button btn btn-default">
+</div>
+<div style="clear:both"></div>
+		</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--footer-->
+<div id="footer">
+<div class="container">
+<!--<div class="footer_list">
+<ul id="Footer">
+	<li><a href="" style="margin-bottom: 10px;display: block;">买家帮助</a>
+	<ul>
+		<li class="footertitle"><a href="">操作指南</a></li>
+		<li class="footertitle"><a href="">常见问题</a></li>
+		<li class="footertitle"><a href="">登陆帮助</a></li>
+	</ul>
+	</li>
+	<li><a href="" style="margin-bottom: 10px;display: block;">支付方式</a>
+	<ul>
+		<li class="footertitle"><a href="">网银支付</a></li>
+		<li class="footertitle"><a href="">支付宝支付</a></li>
+		<li class="footertitle"><a href="">货到付款</a></li>
+		<li class="footertitle"><a href="">线下支付</a></li>
+		<li class="footertitle"><a href="">公司转账</a></li>
+	</ul>
+	</li>
+	<li><a href="" style="margin-bottom: 10px;display: block;">配送方式</a>
+	<ul>
+		<li class="footertitle"><a href="">配送范围及运费</a></li>
+		<li class="footertitle" style="1"><a href="" style="1">验货与签收</a></li>
+	</ul>
+	</li>
+	<li><a href="" style="margin-bottom: 10px;display: block;">售后服务</a>
+	<ul>
+		<li class="footertitle"><a href="">退货政策</a></li>
+		<li class="footertitle" style="1"><a href="" style="1">退货流程</a></li>
+		<li class="footertitle"><a href="">退款方式和时效</a></li>
+	</ul>
+	</li>
+	<li><a href="" style="margin-bottom: 10px;display: block;">关于我们</a>
+	<ul>
+		<li class="footertitle" style="1"><a href="" style="1">关于诚兑城</a></li>
+		<li class="footertitle" style="1"><a href="" style="1">联系我们</a></li>
+	</ul>
+	</li>
+	<li><a href="" style="margin-bottom: 10px;display: block;">合作商帮助</a>
+	<ul>
+		<li class="footertitle" style="1"><a href="" style="1">合作微商方案</a></li>
+		<li class="footertitle" style="1"><a href="" style="1">O2O经销商合作协议</a></li>
+		<li class="footertitle" style="1"><a href="" style="1">招商加盟</a></li>
+	</ul>
+	</li>
+</ul>
+</div>-->
+	<div style="display: block;overflow: hidden;clear: both;height: 0;line-height: 0;font-size: 0;">&nbsp;</div>
+	<div class="footpc"></div>
+</div>
+</div>
+<!--footer end-->
+  </form>
+ <div>
+               
+                <script type="text/javascript" src="__PUBLIC__/js/city.js"></script>
+                <script type="text/javascript" src="__PUBLIC__/js/provincesData.js"></script>
+             
+              
+
+            </div>
+    
+    <script>
+         $(document).ready(function(){
+              $("#province2").city();
+             $("#address_add").click(function(){
+                 $("#address_people").fadeIn(1000);    
+              })
+              
+               $("#address_d").click(function(){
+                 $("#address_people").fadeOut();  
+                 
+              })
+              
+               $("#liulan_z").click(function(){
+//                         alert("!");
+                         var value=$("#liulan_mima").val();
+    
+                          $.ajax({
+                                      type:"post",
+                                      url:"__URL__/pay_ajax",
+                                      dataType: "text",
+                                      data:{value:value},
+                                    //   dataType: 'content', //这里修改为content
+                                    success: function (res) {
+//                                        alert(res);
+                                          if(res==1){
+                                              $("#liulan_shibai").text(" 密码不正确！")
+                                              return;
+                                          }else{
+                                               var order_id=$("#order_id").val();
+                                                var madress=$("#madress").attr("data-id"); 
+                                                var data={
+                                                    order_id:order_id,
+                                                    madress:madress,
+
+                                                }
+                            //                    alert(JSON.stringify(data));return;
+                                                $.ajax({
+                                                url: "__URL__/pay_updatex",
+                                                type: "post",
+                                                data: JSON.stringify(data),
+                                                contentType: "application/json; charset=UTF-8",
+                                                //   dataType: 'content', //这里修改为content
+                                                success: function (res) {
+//                                                    alert(res);return;
+//                                                    alert(res);
+                                                      if(res==1){
+                                                          
+                            //                              var frm = document.getElementById('form');
+                                                          window.location.href="__URL__/zhifu";
+                            //                              frm.submit();window.location.href='List.aspx';
+                                                      }else if(res==2){
+                                                        alert("您的余额不足不能支付！")
+                                                      }else if(res==3){
+                                                          alert("建材电子币余额不足!");
+                                                      }
+                                                  }
+                                             });
+                                              
+                                              
+                                          }
+                                       }
+                               });
+                               
+                   
+                               
+                               
+                               
+                               
+                     })
+            
+                 $(".btn-default").click(function(){
+                  
+                    var madress=$("#madress").attr("data-id"); 
+//                    alert($("#madress").attr("data-id"));
+                    if(madress==undefined){
+                        alert("请新增默认地址！");
+                        return;
+                    }
+                    if($("#checked_liulan").is(':checked')==false){
+                         alert("请同意协议！");
+                        return;
+                    }
+                    $("#liulan_pay").show();
+                      $("#liulan_no").click(function(){
+                         $("#liulan_pay").fadeOut();    
+                     })
+                     
+                     
+                     
+                     
+//            return;
+                  
+
+              })
+         })
+        
+     </script>
+
+     <script>
+
+    ///获取我的地址信息
+    function getmyaddress()
+    {
+        $.ajax({
+            url: "GetMyAddress",
+            type: "post",
+            data: null,
+            contentType: "application/json; charset=UTF-8",
+            //   dataType: 'content', //这里修改为content
+            success: function (res) {
+                eval("obj="+res);
+//                alert(res);
+                $("#address_people").hide();
+                var item="";
+                $("#addre").empty();
+                for(var i=0;i<obj.length;i++) {
+                    item+='<div style="float:left;width:70%; height:40px; text-align:left; line-height:40px; margin-left: 40px ">'+
+                     '<span>'+obj[i].address_people+" "+'</span>'+
+                     '<span>'+obj[i].address_tel+" "+'</span>'+
+                     '<span>'+obj[i].address_details+'</span>'
+
+                    if(obj[i].status==1) {
+                        item+= '<span class="i-check" data-id="'+obj[i].address_id+'" id="madress"><b>默认地址</b></span>' ;
+                    }
+                    else{
+                        item+='<span class="i-checked" data-id="'+obj[i].address_id+'" id="setdefault"><b>设为默认</b></span>';
+//                    }{
+//                        item+=' <span style="color: red;margin-left: 20px"  data-id="'+obj[i].address_id+'"><b>默认地址</b></span>';
+                    }
+                    item+='</div>';
+                    item+='<div style="float:right;width:20%; height:40px; text-align:center; line-height:40px">'+
+//                    '<a href="#none" class="ftx-05 edit-consignee" data-id="'+obj[i].address_id+'">编辑</a>'+"　　"+
+                    '<a href="#none" class="ftx-05 del-consignee" data-id="'+obj[i].address_id+'">删除</a>'+
+                 ' </div>';
+                  
+//                    item+= '<span class="c666 f12 icon-left i-edit" data-id="'+obj[i].Address_id+'">编辑</span>';
+
+//                   
+                }
+//                alert(item);
+                $("#addre").append(item);
+//                $(".addaddress").addClass('hide');
+//                $(".modal-backdrop").addClass('hide');
+
+
+
+            }
+
+        });
+    }
+ function  addmyaddress()
+    {
+
+        var data={
+            address_peopl:$("#address_peopl").val(),
+//            name:$("#name").val(),
+            address_tel:$("#address_tel").val(),
+            address_details:$("#address_details").val(),
+            address_provinces:$("#city").val() +','+$("#cityse").val()+','+$("#cityser").val(),
+        };
+//        alert(JSON.stringify(data));
+//        return;
+        $.ajax({
+            url: "addAddress",
+            type: "post",
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=UTF-8",
+            //   dataType: 'content', //这里修改为content
+            success: function (res) {
+                getmyaddress();
+            }
+        });
+
+    }
+    
+    function  editmyaddress() {
+
+        var data={
+            address_id:$("#into").attr("data-id"),
+            name:$("#name").val(),
+            tel:$("#tel").val(),
+            address:$("#adress").val()
+        };
+        //alert(JSON.stringify(data));
+        // return;
+        $.ajax({
+            url: "editAddress",
+            type: "post",
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=UTF-8",
+            //   dataType: 'content', //这里修改为content
+            success: function (res) {
+
+                getmyaddress();
+            }
+        });
+    }
+    $(document).ready(function(){
+        $("#into").attr("data-edit","0");
+        getmyaddress();
+    }).on('click', '#address_save', function () {
+        //判断添加还是编辑
+      
+            //添加地址信息
+            addmyaddress()();
+        
+
+    }).on('click', '#btnsearch', function () {
+    }).on('click', '.i-edit', function () {
+        var name,address,tel;
+        var addrerss_id=$(this).attr("data-id");
+        var data={
+            address_id:addrerss_id
+        };
+
+        $("#addaddressbox").modal('show');
+        $(".addaddress").removeClass('hide');
+        $(".modal-backdrop").removeClass('hide');
+        $("#into").attr("data-edit","1");
+        name=$(this).parent().parent().parent().find(".name").text();
+        tel=$(this).parent().parent().parent().find(".tel").text();
+        address=$(this).parent().parent().parent().find(".address").text();
+        $("#name").val(name);
+        $("#tel").val(tel);
+        $("#adress").val(address);
+        $("#into").attr("data-id",$(this).attr("data-id"));
+    }).on('click', '.del-consignee', function () {
+        var addrerss_id=$(this).attr("data-id");
+        var  result =confirm('您确认删除该地址吗？');
+        if(result)
+        {
+            var data={address_id:addrerss_id};
+//            alert(JSON.stringify(data));
+            $.ajax({
+                url: "delete_address",
+                type: "post",
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=UTF-8",
+                success: function (res) {
+                    getmyaddress();
+                }});
+        }
+
+    }).on('click', '#setdefault', function () {
+        var addrerss_id=$(this).attr("data-id");
+        //     var  result =confirm('您确认编辑该地址吗？');
+        var data={address_id:addrerss_id};
+//        alert(JSON.stringify(data));
+        $.ajax({
+            url: "setDefaultAddress",
+            type: "post",
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=UTF-8",
+            success: function (res) {
+//                alert(res);
+                $(this).removeClass('i-check');
+                $(this).addClass('i-checked');
+                getmyaddress();
+            }});
+    }).on('click', '#addaddress', function () {
+        $(".addaddress").removeClass('hide');
+        $(".modal-backdrop").removeClass('hide');
+        $("#name").val('');
+        $("#tel").val('');
+        $("#adress").val('');
+        $("#into").attr("data-edit","0");
+    }).on('click', '.i-check', function () {
+        var address_id=$(this).attr("data-id");
+        
+        // alert(address_id);
+//        document.location.href=' ConfirmOrder?address_id='+address_id+'&userid='+$("#userid").val()+'&Groupon_ID='+$("#Groupon_ID").val();
+
+    });
+</script>
+<script>
+        $(document).ready(function(){
+    $.ajax({
+        type:"post",
+        url:"__URL__/cookSelect",
+        dataType: "text",
+        data:null,
+        success:
+        function(data){
+            if(data != ""){
+                eval("var obj="+data);
+                var str = obj.tel.substring(0,3);
+                var str2 = obj.tel.substring(7);
+                $(".login").html("你好,"+obj.real_name);
+                $(".u-name > a").html(obj.real_name);
+                $("#tui").show();
+                if(obj.head_portrait!=null){
+                    $(".u-pic>a > img").attr("src","/cdc/"+obj.head_portrait);
+                }else{
+                    $(".u-pic >a > img").attr("src","__PUBLIC__/images/1.jpg");
+                }
+            }else{
+                $("#li-myjd").hide();
+                $(".login").html("<a href='__URL__/login'>请登录</a>");
+            }
+        }
+    })
+})
+
+
+
+    </script>
+    <script>
+        function price2(){
+        var change=0;
+          $(".bule").each(function(){       
+              change+= parseInt($(this).text());
+//              alert($(this).text());
+//               alert();
+//               $(".bold").text('￥'+$(this).text());
+//            $("#zongji").text($(".bold").length);
+        });
+       $(".sum_moey").text("￥"+change);
+       var bean=$(".bean").text();
+       var sum_sum=change-bean;
+  
+         $("#sum_sum").text("￥"+sum_sum);
+
+       
+    }
+    $(document).ready(function(){
+        price2();
+            
+    });
+    </script>
+</body></html>

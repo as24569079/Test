@@ -1,0 +1,98 @@
+@charset "utf-8";
+div{width:100%;
+height:100%;
+}
+span{ 
+font-size:12px;
+color:#666;
+
+}
+input{border-radius:3px;
+padding: 6px 12px;
+font-size:14px;
+}
+.name{width:270px;
+height:15px;
+margin-left:2px;
+line-height:35px;
+font-weight:200;
+border: 1px solid #ccc;
+}
+.sp_qian{ width:100px;
+height:35px;
+line-height:35px;
+font-weight:200;
+background-color: #F1F1F4;
+}
+.sp_hou{ width:100px;
+height:35px;
+line-height:35px;
+font-weight:200;
+background-color: #F1F1F4;
+}
+.price{
+	/*width:150px;
+line-height:35px;
+font-weight:200;
+height:35px;
+background-color: #F1F1F4;
+*/
+}
+.Specifications{ width:150px;
+line-height:35px;
+font-weight:200;
+height:35px;
+background-color: #F1F1F4;
+}
+.remark{width: 270px;
+height: 15px;
+margin-left: 2px;
+line-height: 35px;
+font-weight: 200;
+border: 1px solid #ccc;
+}
+.discount{width:150px;
+line-height:35px;
+font-weight:200;
+height:35px;
+}
+.Stock{width:150px;
+line-height:35px;
+font-weight:200;
+height:35px;
+background-color: #F1F1F4;
+}
+.account{width:150px;
+line-height:35px;
+font-weight:200;
+height:35px;
+background-color: #F1F1F4;
+color: #f50;
+}
+.add1{margin-left: 20px;
+margin-top:5px;
+width:150px;
+height:50px;
+float:left;
+}
+.Checkout{margin-top:5px;
+margin-right: 80px;
+width:150px;
+height:50px;
+float:right;
+}
+.price2{ width:150px;
+line-height:35px;
+font-weight:200;
+height:35px;
+margin-left:65px;
+background-color: #F1F1F4;
+}
+.childen{ float:left; width:550px; height:100%; }
+.total{width:150px;
+line-height:35px;
+font-weight:200;
+height:35px;
+background-color: #F1F1F4;
+color: #f50;
+}

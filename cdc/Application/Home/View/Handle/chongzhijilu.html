@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="__PUBLIC__/css/tongji.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script src="__PUBLIC__/js/bianse.js"></script>
+</head>
+<body>
+    <form method="post" action="__URL__/chongzhijilu">
+    <div>
+        <span>电子币充值记录</span>
+        <input type="text" class="search" name="sea">
+        <input type="submit" value="搜索" class="search_sub">
+        <table id="neirong" border='0' cellspacing='0'>
+            <tr>
+                <td>序号</td>
+                <td>用户名</td>
+                <td>姓名</td>
+                <td>收款银行卡</td>
+                <td>充值金额</td>
+                <td>说明</td>
+                <td>充值时间</td>
+                <!--<td>待处理</td>-->
+            </tr>
+            <volist name='ren' id='val' key="k">
+            <tr class="neirong">
+                <td>{:(I('get.p'))?((I('get.p')-1)*12+$k):($k)}</td>
+                <td>{$val.tel}</td>
+                <td>{$val.name}</td>
+                <td>{$val.payee}</td>
+                <td>{$val.money}</td>
+                <td>{$val.beizhu}</td>
+                <td>{$val.time}</td>
+                <!--<td><input type="button" value="通过" onclick="chong('{$val.list_id}','{$val.tel}','{$val.money}')"></td>-->
+            </tr>
+            </volist>
+        </table>
+        <div class="fena">
+            {$show}
+        </div>
+    </div>
+        <script>
+            
+        </script>
+    </form>
+</body>
+</html>

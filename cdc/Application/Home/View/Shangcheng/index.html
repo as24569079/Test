@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <title>管理系统</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="__PUBLIC__/css/orange-blue.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/bootstrap-min.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/font-awesome.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/system-min.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/houtai.css">
+    <link rel="shortcut icon" href="__PUBLIC__/images/favicon.ico" type="image/x-icon">
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.2.min.js"></script> 
+    <script type="text/javascript" src="__PUBLIC__/js/system.js"></script> 
+    <script type="text/javascript" src="__PUBLIC__/js/admin2.js"></script> 
+    <link href="__PUBLIC__/css/admin-manage.css" rel="stylesheet" />
+</head>
+<body class=" undefined pace-done">
+   <div style="width: 100%">
+        <a id="totop" href="#" style="display: none;"><i class="fa fa-angle-up"></i></a>
+        <div id="header-topbar-option-demo" class="page-header-topbar">
+            <nav id="topbar" role="navigation" style="margin-bottom: 0; z-index: 2;" class="navbar navbar-default navbar-static-top">
+                <div class="navbar-header">
+                    <a id="logo" href="" class="navbar-brand"><span class="fa fa-rocket"></span><span class="logo-text">商城后台管理系统</span><span style="display: none" class="logo-text-icon">µ</span></a>
+                </div>
+                <div class="topbar-main">
+                    <ul class="nav navbar navbar-top-links navbar-right mbn">
+                        <li class="dropdown">
+                            <a data-hover="dropdown" class="dropdown-toggle" href="" target="_blank"><span class="badge badge-orange"></span></a>
+                        </li>
+                        <li class="dropdown topbar-user">
+                            <a data-hover="dropdown" class="dropdown-toggle" href="__URL__/signOut"><span class="hidden-xs">退出</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!--END TOPBAR-->
+        <div id="wrapper">
+            <nav id="sidebar" role="navigation" class="navbar-default navbar-static-side" style="min-height: 763px;">
+                <div class="sidebar-collapse menu-scroll" style="height: auto;">
+                    <ul id="side-menu" class="nav">
+                        <li class="user-panel">
+                            <div class="info">
+                                <p class="guanli"></p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+                        <!--<li><a href="" target="_blank"><span class="menu-title">返回首页</span></a>-->
+                        <!--</li>-->
+<!--                        <li class="active"><a href=""><span class="menu-title">统计面板</span></a>
+                        </li>-->
+                        <li><a href="#"><span class="menu-title">商品信息</span><span class="label label-yellow"></span></a>
+                            <ul class="nav nav-second-level collapse">
+                                <li><a href="__URL__/shangpin" target="main"><span class="submenu-title">新增商品</span></a></li>
+                                <li><a href="__URL__/fenlei" target="main"><span class="submenu-title">分类管理</span></a></li>
+                                <li><a href="__URL__/gongyingshang" target="main"><span class="submenu-title">供应商管理</span></a></li>
+<!--                                <li><a href=""><span class="submenu-title">下架列表</span></a></li>
+                                <li><a href=""><span class="submenu-title">商品分类</span></a></li>
+                                <li><a href=""><span class="submenu-title">分类维护</span></a></li>
+                                <li><a href=""><span class="submenu-title">商品属性</span></a></li>
+                                <li><a href=""><span class="submenu-title">商品维护</span></a></li>-->
+                            </ul>
+                        </li>
+<!--                        <li><a href="#"><i class="fa fa-desktop fa-fw"><div class="icon-bg bg-pink"></div></i><span class="menu-title">订单管理</span><span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse">
+                                <li><a href=""><i class="fa fa-align-left"></i><span class="submenu-title">订单列表</span></a>
+                                </li>
+                                <li><a href=""><i class="fa fa-angle-double-left"></i><span class="submenu-title">配送发货</span></a>
+                                </li>
+                                <li><a href=""><i class="fa fa-align-right"></i><span class="submenu-title">订单审核</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><i class="fa fa-send-o fa-fw"><div class="icon-bg bg-green"></div></i><span class="menu-title">库存管理</span><span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse">
+                                <li><a href=""><i class="fa fa-briefcase"></i><span class="submenu-title">入库管理</span></a>
+                                </li>
+                                <li><a href=""><i class="fa fa-briefcase"></i><span class="submenu-title">新增入库</span></a>
+                                </li>
+                                <li><a href=""><i class="fa fa-briefcase"></i><span class="submenu-title">仓库管理</span></a>
+                                </li>
+                                <li><a href=""><i class="fa fa-instagram"></i><span class="submenu-title">入库审核</span></a>
+                                </li>
+                                <li><a href=""><i class="fa fa-instagram"></i><span class="submenu-title">新增盘点</span></a>
+                                </li>
+                                <li><a href=""><i class="fa fa-instagram"></i><span class="submenu-title">库存盘点</span></a>
+                                </li>
+                                <li><a href=""><i class="fa fa-hand-o-up"></i><span class="submenu-title">操作日志</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><i class="fa fa-rocket fa-fw"><div class="icon-bg bg-green"></div></i><span class="menu-title">人员信息</span><span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse">
+                                <li><a href=""><i class="fa fa-spinner"></i><span class="submenu-title">权限管理</span></a>
+                                </li>
+                                <li><a href=""><i class="fa fa-edit"></i><span class="submenu-title">人员列表</span></a>
+                                </li>
+                                <li><a href=""><i class="fa fa-list-ol"></i><span class="submenu-title">资金管理</span></a>
+                                </li>
+                            </ul>
+                        </li>-->
+                    </ul>
+                </div>
+            </nav>
+            <div id="page-wrapper">
+                <!--BEGIN TITLE & BREADCRUMB PAGE-->
+                <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
+<!--                    <div class="page-header pull-left">
+                        <div class="page-title">商品信息</div>
+                    </div>-->
+<!--                    <ol class="breadcrumb page-breadcrumb pull-left">
+                        <li>&nbsp;<a href="/ShoppingSite/index.php/Index/system">主页</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                        <li class="hidden"><a href="#">统计</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+                        <li class="active">商品上架</li>
+                    </ol>-->
+                    <div class="btn btn-blue reportrange">
+                        <span id="show"></span>
+                        <script type="text/javascript">
+                        window.onload = function() {
+                         var show = document.getElementById("show");
+                         setInterval(function() {
+                          var time = new Date();
+                          var m = time.getMonth() + 1;
+                          var t = time.getFullYear() + "-" + m + "-"
+                            + time.getDate() + " " + time.getHours() + ":"
+                            + time.getMinutes() + ":" + time.getSeconds();
+                          show.innerHTML = t;
+                         }, 1000);
+                        };
+                       </script>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+               <div class="page-content" style="height:5000px">
+                   <iframe class="main" id="main" name="main" src="__URL__/shangpin"></iframe>
+                </div>
+    <div id="footer">
+        <div class="copyright"></div>
+    </div>
+    </div>
+    </div>
+</body>
+</html>

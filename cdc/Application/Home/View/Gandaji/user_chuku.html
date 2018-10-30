@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>出库过申</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="__PUBLIC__/css/tongji.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script src="__PUBLIC__/js/bianse.js"></script>
+    <script src="__PUBLIC__/js/jquery.table2excel.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/boot.css"/>
+    </head>
+    <body>
+        <table  cellpadding="0" style="text-align: center">
+               <tr class="neirong ">
+                    <td>序号</td>
+                    <td>商品名称</td>
+                    <td>商品条码</td>
+                    <td>数量</td>
+                    <td>旗舰店</td>
+                    <td>申请时间</td>
+                    <td>申请人</td>
+                    <td>所属商城</td>   
+                    <td>操作</td>  
+                </tr>
+                
+                    <volist name="arr" id="val">
+                        <tr class="neirong">
+                        <td>{$val.xuhao}</td>
+                        <td>{$val.item_name}</td>
+                        <td>{$val.bar_code}</td>
+                        <td>{$val.number}</td>
+                        <td>{$val.shop_name}</td>
+                        <td>{$val.sq_time}</td>
+                        <td>{$val.sqren}</td>
+                        <td>{$val.mall_name}</td>     
+                        <td><if condition="$val.status eq 1"><input type="button" value="通过" class="bianji" data-id="{$val.chuku_id}">
+                            <else/>
+                            已审核
+                        </if></td>
+                        </tr>
+                    </volist>
+        
+            </table>
+        <div>
+            {$show}
+        </div>
+        <script>
+            $(function(){
+                $(".bianji").click(function(){
+                    var id = $(this).attr("data-id");
+                    if(confirm('确认通过？')){
+                    $.post("__URL__/tongguo_chuku",{"id":id},function(data){
+                        alert(data);
+                        if(data==1){
+                            alert("库存数量不足");     
+                        } else if(data==2){
+                            alert("该商品没用库存");
+                        }else if(data==3){
+                            alert("已通过");
+                            location.reload();
+                        }
+                    })
+                    }
+                })
+            })
+        </script>
+    </body>
+</html>

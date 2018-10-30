@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link href="__PUBLIC__/css/goods.css" rel="stylesheet" />
+    <link href="__PUBLIC__/css/on.css" rel="stylesheet" />
+    <link href="__PUBLIC__/css/fbox.css" rel="stylesheet" />
+    <link href="__PUBLIC__/css/main1.css" rel="stylesheet" />
+    <link href="__PUBLIC__/css/boot.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+    <form method="post" id="form" action="__URL__/addzifenlei">
+    <div id="maincontentlwj">
+        <div class="smallcont" style="display: block;">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%" height="36px" style="overflow:hidden">
+                <tbody>
+                    <tr>
+                        <td width="180px" valign="top" style="padding-top:4px;">
+                            <span class="btn btn-primary" id="add_class" data-open="off"><i class="icon-plus icon-white"></i> 增加小分类</span>
+                            <span class="btn btn-info showSortInput" style="margin-left: 10px;">返回</span>
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td width="300" valign="top" colspan="2" style="color: #999; font-size: 12px;">
+                            <!--<font color="red">*</font> 点击分类名，可以查看该分类的子分类-->
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table id="sk_flxx" cellpadding="0" cellspacing="0" border="0" style="width: 100%;" class="sk_bcg">
+                <tbody>
+                    <volist name="fenlei" id="val">
+                    <tr>
+<!--                        <td width="50px">
+                           <div class="sk_jias" title="新增小分类" onclick="" style="*margin-top:0;"></div>
+                        </td>-->
+                        <td>
+                            <div class=" MaxClass" style='width: 200px'>
+                                <div class="minc ClassContent" style="padding-right:0px;width: 200px">
+                                    <span name="class_maxc"  class="ClassTitle" title="{$val.category_name}" data-id="{$val.category_id}">{$val.category_name}</span>
+                                    <!--<span class="ClassCount" title="该分类当前有0种商品"></span>-->        
+                                </div>
+                                <div class="edit-ico maxedit  updateIco upt" style="" title="编辑此小分类"></div>
+                                <div class="mcdel updateIco del" style="" title="删除此小分类"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    </volist>
+                </tbody>
+            </table>
+            <table id="lala" class="sk_bcg" width="100%">
+            </table>
+             </form>
+            <script>
+                $(function(){
+                    $(".sk_jias").click(function(){
+                        var id = $(this).parent("td").siblings("td").find(".ClassTitle").attr("data-id");
+                        $(this).parent("td").siblings("td").children(".MicClass").append("<input type='text' name='fenlei' style='width:60px'><input type='hidden' name='fenlei_id' value='"+id+"'>")
+                    })
+                    $(".upt").click(function(){
+                        var value = $(this).siblings(".ClassContent").children(".ClassTitle").text();
+                        var id = $(this).siblings(".ClassContent").children(".ClassTitle").attr("data-id");
+                        $(this).siblings(".ClassContent").html("<input type='text' value='"+value+"' style='width:70px' name='upt'><input type='hidden' value='"+id+"' name='upt_id'>")
+                    })
+                    $(".del").click(function(){
+                        var tid = $(this).siblings(".ClassContent").children(".ClassTitle").attr("data-id");
+                        var frm = document.getElementById('form');
+                            frm.action='__URL__/addzifenlei/tid/'+tid;
+                            frm.submit()
+                    })
+                    $("#add_class").click(function(){
+                        if($(this).attr("data-open")=="off"){
+                            $("#lala").append("\n\
+                            <tr><td width='100%'><input type='text' placeholder='按回车保存' id='addClass' name='addclass'></td></tr>")
+                            $(this).attr("data-open","on");
+                        }
+                    })
+                    $("#addClass").live("blur",function(){
+                        if($(this).val()==""){
+                            $("#lala > tr").detach();
+                            $("#add_class").attr("data-open","off");
+                        }
+                    })
+                    $(".showSortInput").click(function(){
+                        window.location.href='__URL__/fenlei';
+                    })
+                })
+            </script>
+        </div>
+    </div>
+</body>
+</html>

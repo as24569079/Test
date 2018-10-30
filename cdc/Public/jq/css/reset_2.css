@@ -1,0 +1,240 @@
+/* jdf-1.0.0/ ui-base.css Date:2015-09-25 09:37:09 */
+@font-face {
+  font-family: 'iconfont';
+  src: url('//at.alicdn.com/t/font_1465024165_6337628.eot'); /* IE9*/
+  src: url('//at.alicdn.com/t/font_1465024165_6337628.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//at.alicdn.com/t/font_1465024165_6337628.woff') format('woff'), /* chrome、firefox */
+  url('//at.alicdn.com/t/font_1465024165_6337628.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('//at.alicdn.com/t/font_1465024165_6337628.svg#iconfont') format('svg'); /* iOS 4.1- */
+}                             
+.iconfont{font-family:"iconfont";font-size:16px;font-style:normal;}
+.checkout-button{margin-top:6px;background:#b1191a;color:#fff;}
+a,
+address,
+b,
+big,
+blockquote,
+body,
+center,
+cite,
+code,
+dd,
+del,
+div,
+dl,
+dt,
+em,
+fieldset,
+font,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+html,
+i,
+iframe,
+img,
+ins,
+label,
+legend,
+li,
+ol,
+p,
+pre,
+small,
+span,
+strong,
+u,
+ul,
+var {
+    margin: 0;
+    padding: 0;
+}
+h2, h3 {
+    font-family: "microsoft yahei";
+    font-weight: 400;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+    display: block;
+}
+
+hr {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0;
+}
+
+button,
+html input[type=button],
+input[type=submit] {
+    -webkit-apperance: button;
+    cursor: pointer;
+}
+
+button[disabled],
+html input[disabled] {
+    cursor: default;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+img {
+    border: 0;
+    vertical-align: middle;
+}
+
+em,
+i,
+u {
+    font-style: normal;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.al {
+    text-align: left;
+}
+
+.ac {
+    text-align: center;
+}
+
+.ar {
+    text-align: right;
+}
+
+.hide {
+    display: none;
+}
+
+.clear,
+.clr {
+    display: block;
+    overflow: hidden;
+    clear: both;
+    height: 0;
+    line-height: 0;
+    font-size: 0;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clearfix {
+    *zoom: 1;
+  overflow:hidden;
+}
+
+.dorpdown {
+    position: relative;
+}
+
+.dorpdown-layer {
+    display: none;
+    position: absolute;
+}
+.dorpdown:hover .dorpdown-layer,
+.hover .dorpdown-layer {
+    display: block;
+}
+
+.cw-icon {
+    position: relative;
+    cursor: default;
+    zoom: 1;
+}
+
+.cw-icon .i,
+.cw-icon i {
+    display: block;
+    position: absolute;
+    overflow: hidden;
+}
+
+.w {
+    width: 1210px;
+    margin: 0 auto;
+}
+
+body {
+    font: 12px/150% Arial, Verdana, "\5b8b\4f53";
+    color: #666;
+    background: #fff;
+  font-family: "microsoft yahei";
+}
+
+a {
+    color: #666;
+    text-decoration: none;
+}
+
+a:hover,.style-red {
+    color: #C81623;
+}
+
+.m,
+.mb,
+.mc,
+.mt,
+.p-detail,
+.p-img,
+.p-market,
+.p-name,
+.p-price,
+.sm,
+.smb,
+.smc,
+.smt {
+    overflow: hidden;
+}
+
+.img-error {
+    background: url(//misc.360buyimg.com/lib/skin/e/i/error-jd.gif) no-repeat 50% 50%;
+}
+#p_lt_ctl01_pageplaceholder_p_lt_ctl01_pageplaceholder_p_lt_ctl02_CheckoutButton_btn_hyperLink{cursor: pointer;}
+
+.sl-v-list .item a{
+cursor: pointer; }
+/*#混合购买提示#*/
+.box-yhq{
+    display: inline-block;
+    line-height: 2.5;
+}
+.ErrorLabel {
+    font-size: 18px;
+    color: #B1191A;
+    font-weight: 600;
+    margin: -10px 0 5px 0;
+    display: block;
+}
+/*#手机二维码#*/
+.MobileQrCode{width:35%!important;margin:0 5px 5px 5px;}
+.CartContent .row{overflow: hidden;}

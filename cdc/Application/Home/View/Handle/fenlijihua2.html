@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="__PUBLIC__/css/tongji.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script src="__PUBLIC__/js/bianse.js"></script>
+    <style>
+.fena >div{
+    text-align: center;height: 30px;
+    line-height: 30px;
+}
+.fena >div> span{
+    width: 50px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+}
+.fena >div> a{
+    width: 50px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+    text-decoration: none;
+}
+.fena >div> li{
+    list-style: none;
+    width: 200px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+    text-decoration: none;
+}
+.fena >div> a:hover{
+    text-decoration: none;
+}
+    </style>
+</head>
+<body>
+    <form method="post" action="__URL__/fenlijihua2">
+    <div>
+        <span></span>
+         <input type="date" name="date" value="{$Think.cookie.value_date}">
+        <input type="submit" value="查询"  style="display: none">
+        
+        <input type="text" class="search" name="sea" style="height:20px" value="{$Think.cookie.sea}">
+        <!--<input type="text" class="search" name="sea">-->
+         <input type="submit" value="搜索" class="search_sub" style="height:25px">
+        <a href="__URL__/furl?url=fenlijihua2"><input type="button" value="显示全部"  style="height:25px"  class="search_sub"></a>
+        <table id="neirong" border="0" cellspacing="0">
+            <tr>
+                <!--<td>选择</td>-->
+                <td>序号</td>
+                <td>用户名</td>
+                <td>商品</td>
+                <td>电子币</td>
+                <td>积分</td>
+                <td>管理费</td>
+                <td>期限</td>
+                <td>状态</td>
+                <td>分利时间</td>
+            </tr>
+            <volist name="ren" id="val" key="k">
+            <tr class="neirong">
+                <!--<td><input type="checkbox" name="check[]" checked="checked" value="{$val.f_id}"></td>-->
+                <td>{:(I('get.p'))?((I('get.p')-1)*12+$k):($k)}</td>
+                <td>{$val.name}</td>
+                <td><if condition="$val.chanpin eq 2900">3200<elseif condition="$val.chanpin eq 29000"/>32000<elseif condition="$val.chanpin eq 290000"/>320000<else/>{$val.chanpin}</if></td>
+                <td>{$val.emoney}</td>
+                <td>{$val.smoney}</td>
+                <td>{$val.guanlifei}</td>
+                <td>{$val.qixian}</td>
+                <td>已分利</td>
+                <td>{$val.fenlitime}</td>
+            </tr>
+            </volist>
+        </table>
+        <div class="fena">{$show}</div>
+        <!--<input type="button" value="全选" style="margin-top: 10px;margin-left: 10px;width:100px;background: #f90;color:#FFF;outline: none;border:0px;cursor: pointer;height:35px" id="all">-->
+        <!--<input type="submit" value="分利" id="sub" style="margin-top: 10px;margin-left: 10px;width:100px;background: #f90;color:#FFF;outline: none;border:0px;cursor: pointer;height:35px">-->
+    </div>
+    </form>
+    <script>
+//        $(document).ready(function(){
+//           $(".search_sub").click(function(){
+//                var frm = document.getElementById('form');
+//                    frm.action='__URL__/fenlijihua2';
+//                    frm.submit();
+//            })
+//        })
+    </script>
+</body>
+</html>

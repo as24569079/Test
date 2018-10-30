@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="__PUBLIC__/css/bootstrap-min.css">
+        <script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.2.min.js"></script> 
+        <script type="text/javascript" src="__PUBLIC__/js/bootstrap.js"></script> 
+        <script type="text/javascript" src="__PUBLIC__/js/jquery.jqprint-0.3.js"></script> 
+    </head>
+    <style>
+        table .juz td{
+            text-align: center;
+        }
+        /*input {outline:none;}*/
+       input {border:none;outline:none;background: none/*去除蓝色边框*/}
+    </style>
+    <body>
+        <!--新增新闻按钮开始-->
+        
+         <!--新增新闻按钮结束-->
+          <!--新闻list页面开始-->
+          <form method="post" id="form1" >
+              <input type="hidden" name="users" value="{$user}" id="user">
+              <input type="hidden" name="brand_id" value="{$brand_id}" >
+              <input type="hidden" name="bianma_id" value="{$bianmaid}" id="bianma_id">
+          <input type="button" value="打印" id="dayin" data-on="on" class="btn btn-primary">
+          <!--<input type="button" value="保存" class="btn btn-primary" id="baocun">-->
+          <div style="margin:60px;" id="content">
+<!--          <div style="width:800px;height:50px;float:left;line-height: 50px">
+              <div style="width: 500px;float: left;"></div>
+              <div style="width: 800px;float: left;text-align: right">天津诚兑城电子商务控股有限公司
+              </div>
+          </div>    -->
+          <div style="width:800px;height:50px;float:left;line-height: 50px">
+              <div style="width: 500px;float: left;text-align: center">{$brand.brand_name} {$fenlei_name.category_name}诚兑城公司订货单</div>
+              <div style="width: 300px;float: left;text-align: right" id="xiala">ERP客户编码:
+                  <if condition="$you eq 1">
+                      <input type="hidden" name='save' value='1' id="save">
+                      <input type="hidden" value="{$moren.surpasses_id}" id="hetonghao">
+                      <select name="danhao" id="dd">
+                            <!--<option selected value="0">请选择</option>-->
+                            <volist name="dan" id="val">
+                                <if condition="$val.surpasses_id eq $moren.surpasses_id">
+                                     <option value="{$val.surpasses_id}" selected>{$val.danhao}</option>
+                                    <else/>
+                                     <option value="{$val.surpasses_id}">{$val.danhao}</option>
+                                </if>
+                               
+                            </volist>
+                        </select>
+                      <input type="hidden" value="{$dan.surpasses_id}" id="hetonghao">
+                      <else/>
+                       <select name="danhao" id="dd">
+                            <option selected value="0">请选择</option>
+                            <volist name="dan" id="val">
+                                <option value="{$val.surpasses_id}">{$val.danhao}</option>
+                            </volist>
+                        </select>
+                  </if>
+              </div>
+          </div>
+    <div style="width:800px;height:50px;float:left;line-height: 50px">
+        <div style="width: 300px;float: left;">客户姓名: <span id="kehu_name">{$sss.kehu_name}</span></div>
+        <div style="width: 500px;float: left;text-align: right">主材编码:<span id="bianma">{$bianmaid}</span></div>  
+          </div>
+            <table class="table table-condensed" cellpadding="0" cellspacing="0" border="1" style="width:800px">
+                <tr class="juz">
+                <input type="hidden" id="zbianma" name="zbianma" value="{$bianmaid}">
+                <td colspan="2">所属店面</td>
+                <td colspan="7" class="shuangji"><input type="text" name="dianmian" id="dianmian" value="{$fei.dianmian}" style="width:500px;display: none"  class="shijiao"><span>{$fei.dianmian}</span></td>
+                </tr>
+                <tr class="juz">
+                    <td colspan="2">签单日期</td>
+                    <td  class="shuangji" colspan="2"><input type="text" name="time" value="{$fei.time}" class="shijiao" style="display:none"><span>{$fei.time}</span></td>
+                     <td colspan="2">联系方式</td>
+                     <td  id="kehu_tel">{$sss.kehu_tel}</td>
+                     <!--<td ></td>-->
+                </tr>
+                <tr class="juz">
+<!--                    <td colspan="2">客户姓名</td>
+                    <td id="kehu_name">{$sss.kehu_name}</td>-->
+                    <td colspan="2">工程地址</td>
+                    <td colspan="5" class="shuangji"><input type="text" name="address" value="{$fei.address}" style="width:500px;display: none" class="shijiao"><span>{$fei.address}</span></td>     
+                    <!--<td ></td>-->
+                </tr>
+                <tr class="juz">
+<!--                    <td colspan="2">设计师</td>
+                    <td id="sheji_name">{$sss.sheji_name}</td>
+                   
+                    <td id="sheji_tel" colspan="2">{$sss.sheji_tel}</td>-->
+                    <td>订单号</td>
+                    <td colspan="6">{$danhao.order_no}<input type="hidden" name="ddhao" value="{$danhao.order_no}" id="ddhaos"></td>
+                </tr>
+<!--                <tr class="juz">
+                    <td colspan="2">客户经理</td>
+                   
+                     <td  id="jl_name">{$sss.jl_name}</td>
+                     <td  id="jl_tel" colspan="2">{$sss.jl_tel}</td>
+                    <td colspan="4"></td>
+                </tr>-->
+                <tr class="juz">
+                    <td>型号</td>
+                    <td>规格</td>
+                    <td>使用位置</td>
+                    <td>净面积</td>
+                    <td>单位</td>
+                    <td>数量</td>
+<!--                    <td>单价</td>
+                    <td>合计</td>-->
+                    <td>备注</td>
+                </tr>
+                
+                <volist name="sp" id="val">
+                    <if condition="$val.item_name neq ''">
+                        <tr class='trr juz'>
+                        <input type="hidden" name="item[]" value="{$val.item_id}"> 
+                            <td style="width:150px">{$val.item_name}</td>
+                            <td>{$val.guige}</td>
+                            <td class="shuangji"><input type="text" name="weizhi[]" value="{$val.sywz}" style="width:50px;display: none" class="shijiao"><span>{$val.sywz}</span></td>
+                            <td class="shuangji"><input type="text"  name="mianji[]" value="{$val.mianji}" style="width:50px;display: none" class="shijiao"><span>{$val.mianji}</span></td>
+                            <td >{$val.unit_name}</td>
+                            <td>{$val.quantity}</td>
+                            <!--<td>{$val.eMoney}</td>-->
+                            <!--<td class="money">{$val['price']*$val['quantity']}</td>-->
+                            <td class="shuangji"><input type="text" name="beizhu[]" value="{$val.beizhu}" class="shijiao" style="display:none">{$val.beizhu}</td>
+                        </tr>
+                    </if>
+                </volist>
+<!--                 <tr>
+                    <td>合计</td>
+                    <td colspan='8' id="heji"></td>
+                </tr>
+                <tr>
+                    <td>其他</td>
+                    <td colspan='8' class="shuangji"><input type="text" name="qita" value="{$fei.qita}" style="width:500px;display:none" class="shijiao"><span>{$fei.qita}</span></td>
+                </tr>
+                <tr>
+                    <td colspan='9'>请选择主材验收方式:
+                <if condition="$fei.type eq 0 || $fei.type eq ''">
+                     <input type='radio' name='type' checked="" value="0">工长验收&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type='radio' name='type' value="1">客户亲自验收</td>
+                     <else/>
+                      <input type='radio' name='type' value="0">工长验收&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type='radio' name='type' value="1"  checked="">客户亲自验收</td>
+                </if>
+                       
+                </tr>
+                 <tr>
+                     <td>远程费</td>
+                     <td colspan='2' class="shuangji">
+                 <if condition="$fei.yuan_fei eq ''">
+                     <input type='text' name="yc_fei" id="yc_fei" onblur="suan()" class="shijiao" style="outline:medium;"> 
+                     <else/>
+                     {$fei.yuan_fei}
+                     <input type='hidden' name="yc_fei" id="yc_fei" onblur="suan()" value="{$fei.yuan_fei}"> 
+                 </if>
+            </td>
+             <td>加工费</td>
+                 <td colspan="2" class="shuangji">
+                       
+                <if condition="$fei.jia_fei eq ''">
+                     <input type='text' name="jg_fei" id="jg_fei" onblur="suan()" class="shijiao" style="outline:medium;">
+                     <else/>
+                     {$fei.jia_fei}
+                     <input type='hidden' name="jg_fei" id="jg_fei" onblur="suan()" value="{$fei.jia_fei}">
+                 </if>
+                 </td>
+                 <td>安装费</td>
+                 <td colspan="2" class="shuangji">
+                        
+                          <if condition="$fei.an_fei eq ''">
+                    <input type='text' name="an_fei" id="an_fei" onblur="suan()" class="shijiao" style="outline:medium;">
+                     <else/>
+                    {$fei.an_fei}
+                    <input type='hidden' name="an_fei" id="an_fei" onblur="suan()" value="{$fei.an_fei}">
+
+                 </if>
+                         </td>
+                </tr>
+                 <tr>
+                    <td colspan='9' id="ddheji">定单总计:</td>
+                </tr>
+                 <tr>
+                     <td>收款:</td>
+                    <td colspan='8' class="shuangji"><input type='text' name="shoukuan" value="{$fei.shoukuan}" class="shijiao" style="display:none"><span>{$fei.shoukuan}</span></td>
+                </tr>-->
+            </table>
+<!--              <div>温馨提示</div>
+              <div>1：超出外环根据实际请款加收远程费，科艺隆客户享受瓷砖免费上楼服务，有楼霸除外</div>
+              <div>2：特殊费用不享受任何费用（如：厂家清货、小色号产品、远程费、加工费、上楼费、配件费等）</div>
+              <div>3：实际送货前所定产品如发生新优惠变更科艺隆将及时通知客户，客户可选择调整优惠</div>
+              <div>4：加工砖需提前七天确定，所有加工产品确认订单后不可退换</div>
+              <div>5：下定后需交齐全款，补货产品交齐补款后方能送货！</div>
+              <div style='width:800px;text-align:right' class="shuangji">
+                  <if condition="$fei.qianzi eq 0">
+                      客户签字：<input type='text' name="kehu_qz" class="shijiao" style="outline:medium;">
+                      <else/>
+                      客户签字：<input type='text' name="kehu_qz" value="{$sss.kehu_name}" class="shijiao"style="outline:medium;">
+                  </if>
+              </div>
+              <div style='width:800px;text-align:right' class="shuangji">
+                  日期：<input type='text' name="times" value="{$fei.times}" class="shijiao Inpt">
+              </div>
+              <div style='width:800px;text-align:right'>
+               天津诚兑城电子商务控股有限公司
+              </div>
+            --></div>
+            <input type="hidden" name="user" id="user">
+            <!--<input type="submit" value="保存" class="btn btn-primary" >-->
+          </form>
+<!--           <div style="width: 550px; height:150px; position: absolute; z-index: 10000; display: block; overflow: hidden; top: 300px; left: 150px; border:1px  solid red; background:#FFF;display: block; border-radius: 5px;display: none" id="liulan_pay">
+              
+               
+          	<div style="margin:40px 20px">
+                    <div> 
+                <span><span style="color:red">&nbsp;&nbsp;&nbsp;&nbsp;*</span>请输入密码：</span>
+                <input type="password" style="width:150px; height:20px;"  maxlength="40" value="" id="liulan_mima"><span id="liulan_shibai"></span>
+                 <br><br>
+                    　　　　<input type="button" style="width:200px; height:20px;" value="确定" id="liulan_z">
+                    <input type="button" value="x" style="left: 500px;top: 20px; position: absolute; " id="liulan_no">
+                    </form>
+                </div>                  
+            </div>
+             
+          </div>-->
+          <script>
+              $(function(){
+//                 if($("#hetonghao").val() !== 'undefined') {
+//                     var dan = $("#hetonghao").val();
+//                        $.post("/index.php/shop/ht_xinxi",{"dan":dan},function(data){
+//                            if(data){
+//                                    $("#zbianma").val(obj['bianma']);
+//                                    $("#kehu_name").text(obj['kehu_name']);
+//                                eval("var obj="+data);
+//                                if(obj['kehu_name'] !== null){
+//                                    $("#bianma").text(obj['bianma']);
+//                                    $("#kehu_tel").text('联系方式:'+obj['kehu_tel']);
+//                                    $("#sheji_name").text(obj['sheji_name']);
+//                                    $("#sheji_tel").text(obj['sheji_tel']);
+//                                    $("#jl_name").text(obj['jl_name']);
+//                                    $("#jl_tel").text(obj['jl_tel']);
+////                                    $("#user").val(obj['user_id']);
+//                                } else {
+//                                     $("#bianma").text('');
+//                                    $("#kehu_name").text('');
+//                                    $("#zbianma").val('');
+//                                    $("#kehu_tel").text('');
+//                                    $("#sheji_name").text('');
+//                                    $("#sheji_tel").text('');
+//                                    $("#jl_name").text('');
+//                                    $("#jl_tel").text('');
+//                                }
+//                            }
+//                        })
+//                 }
+                  var sum =0;
+                  for(var z=0;z<$(".money").length;z++){
+                      sum += ($(".money").eq(z).text())*1;
+                  }
+                  $("#heji").text(sum);
+//                  var cd = $(".trr").length;
+                   suan()
+//                  for(var i=0; i< 12 - cd*1;i++){
+////                      alert(11)
+//                      var html = '';
+//                        html+= '<tr style="height:31px" class="juz">';
+//                        html+='<td style="width:150px">';
+//                        html+='</td>';
+//                        html+='<td>';
+//                        html+='</td>';
+//                        html+='<td>';
+//                        html+='</td>';
+//                        html+='<td>';
+//                        html+='</td>';
+//                        html+='<td>';
+//                        html+='</td>';
+//                        html+='<td>';
+//                        html+='</td>';
+//                        html+='<td>';
+//                        html+='</td>';
+//                        html+='<td>';
+//                        html+='</td>';
+//                        html+='<td>';
+//                        html+='</td>';
+//                        html += '</tr>';
+//                        $(".trr:last").after(html);
+//                  }
+                  $("#dayin").click(function(){
+                      var dan = $("[name='danhao'] option:selected").val()
+//                      alert(dan)
+                      if(dan == 0){
+                          alert("请选择合同单号");
+                      } else if ($("#dianmian").val() == '') {
+                          alert("请输入所属店面");
+                      } else {
+                          $("#content").jqprint();
+                      }
+                    
+                  })
+                  $("#dd").change(function(){
+                    var dan = $("[name='danhao'] option:selected").val();
+                    var xuanz = $("[name='danhao'] option:selected").text();
+                    var thise =$(this);
+                   var hao = $("#bianma_id").val();
+                    if(dan !== 0) {
+                       $("#dd").hide();
+                       var str = '';
+                            str +="<span>"+xuanz+"</span>"; 
+                       thise.after(str);
+                        $.post("__URL__/ht_dinghuo",{"dan":dan,"hao":hao},function(data){
+//                            alert(data);
+                            if(data){
+                                eval("var obj="+data);
+                                if(obj['kehu_name'] !== null){
+                                    $("#bianma").text(obj['bianma']);
+                                    $("#zbianma").val(obj['bianma']);
+                                    $("#kehu_name").text(obj['kehu_name']);
+                                    $("#kehu_tel").text(obj['kehu_tel']);
+                                    $("#sheji_name").text(obj['sheji_name']);
+                                    $("#sheji_tel").text(obj['sheji_tel']);
+                                    $("#jl_name").text(obj['jl_name']);
+                                    $("#jl_tel").text(obj['jl_tel']);
+//                                    $("#user").val(obj['user_id']);
+                                } else {
+                                     $("#bianma").text('');
+                                    $("#kehu_name").text('');
+                                    $("#zbianma").val('');
+                                    $("#kehu_tel").text('');
+                                    $("#sheji_name").text('');
+                                    $("#sheji_tel").text('');
+                                    $("#jl_name").text('');
+                                    $("#jl_tel").text('');
+                                }
+                            }
+                        })
+                    }
+                  })
+                  $("#baocun").click(function() {
+                     var dan = $("[name='danhao'] option:selected").val();
+                     if(dan !== '0'){
+//                        if( $("#save").val() !== '1'){
+//
+//                            $("#liulan_pay").show();
+//                        } else{
+//                            $("#liulan_pay").hide();
+                          $.post("__URL__/dinghuo_baocun",$("#form1").serialize(),function(data){
+                              alert(data);
+                              if(data==1){
+                                  alert("保存成功！");
+                                  location.reload();
+                              }else if(data ==2){
+                                  alert("修改成功！");
+                                  location.reload();
+                              }
+                          })
+//                      }
+                    }else{
+                        alert("请选择合同")
+                    }
+                  })
+                  $("#liulan_no").click(function(){
+                      $("#liulan_pay").hide();
+                  })
+                  $("#liulan_z").click(function() {
+                      var ps = $("#liulan_mima").val();
+                      var user = $("#user").val();
+                      var nums = 0;
+                          nums +=($("#yc_fei").val())*1;
+                          nums +=($("#jg_fei").val())*1;
+                          nums +=($("#an_fei").val())*1;
+                      if(ps !== ''){
+                          $.post("__URL__/hetong_kou",{"ps":ps,"user":user,"fei":nums},function(data){
+                              if(data ==1) {
+                                  alert("已扣除电子币"+nums);
+                                    $.post("/index.php/shop/ht_baocun",$("#form1").serialize(),function(data){
+//                                        alert(data);
+                                        if(data==1){
+                                            alert("保存成功！");
+                                            location.reload();
+                                        }else if(data ==2){
+                                            alert("修改成功！");
+                                        }
+                                    })
+                              }else{
+                                  alert("安全密码不正确");
+                              }
+                          })
+                      }
+                  })
+                  $(".shijiao").blur(function(){
+//                      alert($(this).attr("type"));
+                      $(this).attr("style","display:none");
+//                      alert($(this).attr("type"))
+                      var html = '';
+                          html += '<span>' + $(this).val()+ '</span>';
+                          $(this).after(html);
+//                      $(this).parent().html($(this).val())
+                  })
+                  $(".shuangji").dblclick(function(){
+//                      var zhi = $(this).find("input").val();
+                   $(this).find("input").attr("style","display:block");
+                    $(this).find("span").remove();
+                  
+                      
+                  })
+                  $("#xiala").dblclick(function(){
+                      $("#dd").show();
+                      $(this).find("span").remove();
+                  })
+               
+              })
+              function suan() {
+                  var zong = 0;
+                   zong += ($("#heji").text())*1;  
+                  zong +=($("#yc_fei").val())*1;
+                  zong += ($("#an_fei").val())*1;
+                  zong+= ($("#jg_fei").val())*1;
+                  $("#ddheji").text("定单总计:   "+zong);
+              }
+          </script>
+    </body>
+</html>

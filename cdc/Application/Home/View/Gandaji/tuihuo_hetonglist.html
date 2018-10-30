@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="__PUBLIC__/css/bootstrap-min.css">
+        <script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.2.min.js"></script> 
+        <script type="text/javascript" src="__PUBLIC__/js/bootstrap.js"></script> 
+    </head>
+    <body>
+        <!--新增新闻按钮开始-->
+        
+         <!--新增新闻按钮结束-->
+          <!--新闻list页面开始-->
+          <div style="margin: 15px;">
+            <a href="__URL__/tuihuo_add/id/{$order_id}/brand/{$brand_id}"  class="btn btn-primary">新增退货</a>
+          </div>
+            <table class="table table-condensed" cellpadding="0" cellspacing="0" border="1" style="text-align: center">
+                <tr>
+                    <th style="text-align: center">合同名字</th>
+                    <th style="text-align: center">时间</th>
+                    <th style="text-align: center">操作</th>
+                    <!--<th style="text-align: center">新闻操作</th>-->
+                </tr>
+                <volist name="hetong" id="val">
+                    <tr>
+                        <td>{$val.bianma}</td>
+                        <td>{$val.time}</td>
+                        <td>
+                            <center>
+                                <a href="__URL__/chakan_hetong/ddhao/{$val.order_no}/brand/{$val.brand_id}/bianma/{$val.bianma_id}" class="btn btn-primary" target="main">客户退货单</a>   
+                                <a href="__URL__/chakan_hetong_tuihuo/ddhao/{$val.order_no}/brand/{$val.brand_id}/bianma/{$val.bianma_id}" class="btn btn-primary" target="main">供应商退货单</a>   
+                            </center>
+                        </td>
+                    </tr>
+                </volist>
+            </table>
+            <!--新闻list页面结束-->
+    </body>
+</html>

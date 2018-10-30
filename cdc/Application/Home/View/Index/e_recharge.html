@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+    <link href="__PUBLIC__/css/jquery-confirm.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+
+    <link href="__PUBLIC__/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/mobilemain.css" type="text/css" rel="stylesheet">
+    <link href="__PUBLIC__/css/main.css" type="text/css" rel="stylesheet">
+
+</head>
+<body>
+
+    <div class="container body-content">
+
+        <div class="fanhuian"><a class="ui-button fleft" href="__URL__/E_list">充值</a></div>
+        <table class="table">
+            <tbody>
+                <tr class="fir-tr">
+                    <th>帐号</th>
+                    <th>姓名</th>
+                    <th>充值金额</th>
+                    <th>充值时间</th>
+                    <th>充值卡号</th>
+                    <th>说明</th>
+                    <th>审核状态</th>
+                    <th>审核备注</th>
+                </tr>
+            <volist name="Name" id="val">
+                <tr style="text-align: center">
+                    <td>{$val.tel}</td>
+                    <td>{$val.name}</td>
+                    <td>{$val.money}</td>
+                    <td>{$val.time}</td>
+                    <td>{$val.payee}</td>
+                    <td>{$val.explain}</td>
+                    <td class="else"></td>
+                    <input type="hidden" class="if" value="{$val.status}">
+                    <td></td>
+                </tr>
+            </volist>
+            </tbody>
+        </table>
+        <div class="pagination-container page_new">
+            <div class="pagination-container"><ul class="pagination"><li class="disabled PagedList-skipToPrevious"><a rel="prev">«</a></li><li class="disabled PagedList-skipToNext"><a rel="next">»</a></li></ul></div>
+        </div>
+
+
+    </div>
+    <script src="__PUBLIC__/js/jquery-1.10.2.js"></script>
+
+    <script src="__PUBLIC__/js/bootstrap.js"></script>
+
+    <script src="__PUBLIC__/js/jquery-confirm.min.js"></script>
+
+    <script src="__PUBLIC__/js/jquery.validate.js"></script>
+    <script src="__PUBLIC__/js/jquery.validate.unobtrusive.js"></script>
+
+    <script src="__PUBLIC__/js/jquery.unobtrusive-ajax.js"></script>
+
+
+    <script src="__PUBLIC__/js/bootstrap-datetimepicker.js"></script>
+    <script src="__PUBLIC__/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+
+<script>window.parent.scrollTo(0, 0);</script>
+<script>
+    $(document).ready(function(){
+        var td = $(".if");
+        var tr = $(".else");
+        for(var i=0;i<td.length;i++){
+            if(td.eq(i).val()==0){
+                tr.eq(i).text("审核中");
+            }else if(td.eq(i).val()==1){
+                tr.eq(i).text("已审核");
+            }
+        }
+    })
+</script>
+</body>
+</html>

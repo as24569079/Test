@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="__PUBLIC__/css/tongji.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script src="__PUBLIC__/js/bianse.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/boot.css"/>
+</head>
+<body>
+
+    <div>
+        <div>
+<!--            <div style="background:orange; width:100px; float:left;text-align:center; border-radius:5px"><a href="__URL__/addgongying">新增供应商</a></div>-->
+<br>
+   <form action="__URL__/mall_add" method="post" onsubmit="return sub()"> 
+                <input type="text" name="name" style="margin-bottom: 0px;height:26px" id="brand_name"> <input type="submit" value="新增商城" class="btn btn-primary">            
+                </form>
+            <div style="width:400px; float:right; background:#eae1e1; border-radius:5px; text-align:center">
+            </div>
+            <table id="neirong" cellspacing='0'>
+                <tr class="neirong">
+                    <td>序号</td>
+                    <td>商城名称</td>
+                    <td>商城命名规则</td>
+                    <td>操作</td>
+                </tr>
+                <volist name="arr" id="vo" key="k">
+                    <tr class="neirong">
+                        <td>{$k}</td>
+                        <td class="save" data-id="{$vo.mall_id}">{$vo.mall_name}</td>
+                        <td class="gai" data-id="{$vo.mall_id}">{$vo.guize}</td>
+                        <td>
+                            <input type='button' value='编辑名字' class='sup_del btn btn-primary'>　
+                            <a href="__URL__/save_guize/id/{$vo.mall_id}"><input type='button' value='修改规则' class='sup_del btn btn-primary'></a>
+                            <a href="__URL__/mall_delete/id/{$vo.mall_id}" onclick="return confirm('确定删除吗？')"><input type="button" value="删除" class="btn btn-danger"></td>                   
+                    </tr>
+                    </volist>
+            </table>
+<!--            <div class="fena">-->
+      {$page}
+            <!--</div>-->
+   
+        </div>
+    </div>
+    <script>
+        function sub(){
+         if($("#brand_name").val()==""){
+             alert("请输入商城名");
+             return false;
+         }   
+        }
+        $(function(){
+            $(".sup_del").click(function(){
+                $(this).parent().prev().prev().attr("contenteditable",true);
+            })
+            $(".save").keyup(function(e){
+                if(event.keyCode == 13){
+                    //这里写你要执行的事件
+                    var id = $(this).attr("data-id");
+                    var zhi = $(this).text(); 
+                    $.post("__URL__/save_mall",{"id":id,"zhi":zhi},function(data){
+                        if(data == 1){
+                            alert("修改成功！");
+                            location.reload();
+                        }else{
+                            alert("系统忙，请稍后")
+                        }
+                    })
+                }
+            });
+        })
+        </script>
+ 
+</body>
+
+</html>

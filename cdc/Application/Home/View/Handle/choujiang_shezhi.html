@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>抽奖设置</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="__PUBLIC__/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    </head>
+    <body style="margin-left:10px">
+        <form method="post" action="__URL__/choujiang_fa" id='form'>
+         <div class='group' style="width: 50%;float:left">
+            <div class="form-group" style="margin: 0">&nbsp;</div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">一等奖中奖人数</label>
+                <input type="text" class="form-control" id="yi" style="width:50%;"  name="yi" data-kai="off" value="{$shezhi.0.shezhi_num}">
+            </div>
+            <input type='hidden' id='tel_code' value='false'>
+            <div class="form-group" id='tel_tishi' style='color:red'></div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">二等奖中奖人数</label>
+                <input type="text" class="form-control" id="er" style="width:50%;" name="er" data-kai="off" value="{$shezhi.1.shezhi_num}">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">三等奖中奖人数</label>
+                <input type="text" class="form-control" id="san" style="width:50%;" name="san" data-kai="off" value="{$shezhi.2.shezhi_num}">
+<!--                <input type="text"  id="money" style="width:50%;" name="money">-->
+            </div>
+            <input type='submit' value='设置' class='btn btn-primary' style='width:50%'><br><br>
+            <input type='button' value='初始化数据' class='btn btn-primary' style='width:50%' id='chu'>
+         </div>
+        </form>
+    <script>
+        $("#form").submit(function(){
+            if($("#yi").val()==""||$("#er").val()==""||$("#san").val()==""){
+                alert("请输入中奖人数!");
+                return false;
+            }else if(isNaN($("#yi").val())||isNaN($("#er").val())||isNaN($("#san").val())){
+                alert("请输入数字!");
+                return false;
+            }
+        })
+        $("#chu").click(function(){
+            $.post("__URL__/chushihua",{},function(res){
+                if(res == 1){
+                    alert("初始化成功");
+                }else{
+                    alert("初始化失败");
+                }
+            },"text")
+        })
+    </script>
+        <script type="text/javascript">
+   jQuery(window).load(function() {
+    jQuery("#load").fadeOut(500);
+});
+  </script>
+	<!-- END JAVASCRIPTS -->
+        <div style="position: absolute;display:block;width:100%;top:25%" id="load">
+            <center><img src='/Public/images/wait.gif' style="width:70px;height:70px"></center>
+        </div>
+    </body>
+</html>

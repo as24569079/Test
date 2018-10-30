@@ -1,0 +1,391 @@
+.search{
+    height:35px;width: 200px;
+}
+.search_sub{
+    height:40px;width:100px;
+}
+.fena >div{
+    text-align: center;height: 30px;
+    line-height: 30px;
+}
+.fena >div> span{
+    width: 50px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+}
+.fena >div> a{
+    width: 50px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+    text-decoration: none;
+}
+.fena >div> li{
+    list-style: none;
+    width: 200px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+    text-decoration: none;
+}
+.fena >div> a:link,a:visited { 
+                color:#999999; 
+            text-decoration:underline; 
+            } 
+            a:hover,a:active { 
+                color:#999999; 
+            text-decoration:none; 
+            } 
+       
+﻿tr{
+    height: 50px;
+    /*background: #fff;*/
+}
+.neirong{
+    height: 50px;
+    background: #fff;
+}
+.neirong > td{
+    border-top:1px solid grey;
+    border-bottom:1px solid grey;
+}
+.chanpin_neirong{
+    height: 50px;
+    background: #fff;
+}
+.chanpin_neirong > td{
+    border-top:1px solid grey;
+    border-bottom:1px solid grey;
+}
+.mingcheng{
+    width: 400px;
+}
+.jieguo{
+    height: 50px;
+    background: #fff;
+}
+.jieguo > td{
+    border-top:1px solid grey;
+    border-bottom:1px solid grey;
+}
+.chanpin_jieguo{
+    height: 50px;
+    background: #fff;
+}
+.chanpin_jieguo > td{
+    border-top:1px solid grey;
+    border-bottom:1px solid grey;
+}
+th{
+    cursor: pointer;
+}
+.tou{
+    background: #EFEFEF;
+}
+.table{
+    text-align: center;
+    color: #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+}
+input{
+    outline: none;
+}
+.ng1_chanbut{
+    font-family:microsoft yahei;
+    border-radius: 4px;
+    background-image: url(../image/sp-ico.png);
+    background-repeat: no-repeat;
+    background-position: -45px 0;
+    width: 20px;
+    height: 20px;
+}
+.ng1_table{
+    width: 400px;height: 300px;
+    position: fixed;
+    top:200px;display: none;
+    left:450px;
+    background: #fff;
+    border:5px solid #ccc;
+    z-index: 1001097;
+}
+.ng1_table_top{
+    width: 400px;height: 30px;
+}
+.disa{
+    background: #eee!important;
+}
+.ng1_uptguan{
+    position: absolute;top:-10px;
+    text-decoration: none;
+    right:0px;
+    font-size:32px;
+    cursor: pointer;
+    color:#000;
+}
+.ng1_uptguan:hover{
+    text-decoration: none;
+    color:#000; 
+}
+.ng1_table_bot > input{
+    background: #fff;width: 240px;
+}
+.ng1_table_bot{
+    width: 400px;height: 270px;
+    padding-left: 40px;
+}
+.upt{
+    width: 155px;height: 32px;
+    margin-left: 70px;
+    color:#333;
+}
+.fenye{
+    text-align: center;height: 30px;
+    line-height: 30px;
+}
+.fenye > *{
+    width: 90px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+}
+.fenye > a:hover{
+    text-decoration: none;
+}
+.sea{
+    width:400px;height: 40px;
+    outline: none;outline-color: #fff;
+    margin: 10px;
+}
+.jiage{
+    text-align: center;
+}
+.sc{
+    width:100px;height:100px;
+    margin: 2px;cursor: pointer;
+    border: 1px solid #eee;
+}
+.cpclass{
+    width: 380px;background: #fff;
+    height:35px;text-align: center;
+}
+.ng1_lei{
+    background: none repeat scroll 0 0 #00B7EE;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    height: 36px;
+    width: 5%;
+    min-width:120px;
+    overflow: hidden;
+    transition: background 0.2s;
+    -moz-transition: background 0.2s;
+    -webkit-transition: background 0.2s;
+    -o-transition: background 0.2s;
+    border:0px;
+}
+.ng1_lei:hover{
+    background: none repeat scroll 0 0 #00A2D4;
+}
+.ng1_ruku{
+    background: none repeat scroll 0 0 #00B7EE;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    height: 36px;
+    width: 35%;
+    min-width:120px;
+    overflow: hidden;
+    transition: background 0.2s;
+    -moz-transition: background 0.2s;
+    -webkit-transition: background 0.2s;
+    -o-transition: background 0.2s;
+    border:0px;
+}
+.ng1_ruku:hover{
+    background: none repeat scroll 0 0 #00A2D4;
+}
+h3{
+    font-weight: 800;color:#333;
+}
+.title{
+    text-align: left;padding-left: 200px;
+}
+.sel{
+    width: 500px;height:40px;
+    margin: auto;border:1px solid #ccc;
+    background: #fff;position: relative;
+    cursor: pointer;
+}
+option{
+    background: #fff;
+}
+.xia {
+    position: absolute;right:0;
+    background-image: url(../images/lion-cart.png);
+    background-repeat: no-repeat;
+    background-size: 420px;
+    background-position: -15px -235px;
+    width: 40px;height: 40px;
+}
+.shang {
+    position: absolute;right:0;
+    background-image: url(../images/lion-cart.png);
+    background-repeat: no-repeat;
+    background-size: 420px;
+    background-position: 10px -235px;
+    width: 30px;height: 40px;
+    margin-right: 15px;
+}
+.option{
+    position: absolute;top:40px;
+    z-index: 100;background: #fff;
+    width: 499px;height: auto;
+    border:1px solid #ccc;
+    display: none;
+}
+.option > ul{
+    list-style: none;margin-left: -40px;
+    margin-bottom: 0px;
+}
+.option > ul > li{
+    height: 30px;line-height: 30px;
+    text-align: left; padding-left: 20px;
+    cursor: pointer;
+}
+.option > ul > li:hover{
+    background: none repeat scroll 0 0 #00B7EE;
+    color:#fff;
+}
+.font{
+    position: absolute;top:0px;
+    left:0;height: 40px;
+    line-height: 40px;padding-left: 20px;
+}
+.font > span{
+    color:#ccc;
+}
+.ng1_leidiv{
+    position: absolute;top:60px;
+    left:30%;
+    border:5px solid #ccc;
+    width: 600px;height: 400px;
+    background: #f0f2f5;
+    display: none;
+    z-index: 1000197;
+    overflow: auto;
+}
+.leidiv_top{
+    width: 590px;height: 40px;
+    text-align: right;
+    font-size: 25px;font-weight: 800
+}
+.leidiv_top >span{
+    cursor: pointer;
+}
+.leidiv_bot{
+    width:590px;height: 350px;
+    overflow: auto;
+}
+.leidiv_bot >table{
+    width: 100%;
+    text-align: center;
+}
+.leidiv_bot >table>tr{
+    /*background: #fff;*/
+}
+.xuanze{
+    background: none repeat scroll 0 0 #00B7EE;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    width: 50px;
+    overflow: hidden;
+    transition: background 0.2s;
+    -moz-transition: background 0.2s;
+    -webkit-transition: background 0.2s;
+    -o-transition: background 0.2s;
+    border:0px;
+}
+.xuanze:hover{
+    background: none repeat scroll 0 0 #00A2D4;
+}
+.chengben{
+    height:35px;width:500px;
+    text-align: center;
+}
+.beizhu{
+    width: 500px;height:200px;
+}
+.biaoti{
+    text-align:center;
+    list-style-type:none;
+    height:50px;
+    font-size:larger
+}
+img{
+    width:100px;
+    height:100px;
+    margin:auto;
+}
+.imgwai{
+    width:100px;
+    height:130px;
+    float:left;
+}
+div span{
+    text-align:center;
+    width:100px;
+    height:30px
+}
+/*ul{
+    width: 100%;
+    height: 30px;
+}
+ul li{
+    float: left;
+    position: relative;
+    height: 30px;
+    color: #474e5d;
+    height: 36px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 30px;
+    list-style-type:none;
+    width:100px;
+    border:solid 1px black;
+}*/
+table{
+    border: solid 0px black;
+    width:100%;
+}
+table td{
+    /*width:130px;*/
+    height:30px;
+    /*float:left;*/
+    text-align:center;
+}
+.tou{
+    border:solid 1px black;
+}

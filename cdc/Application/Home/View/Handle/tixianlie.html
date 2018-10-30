@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="__PUBLIC__/css/tongji.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script src="__PUBLIC__/js/bianse.js"></script>
+</head>
+<body>
+    <div>
+        <form method="post" id="form" action="__URL__/tixianguanli">
+        <span>提现申请列表</span>
+        <input type="text" class="search" name="sea">
+        <input type="submit" value="搜索" class="search_sub">
+   
+        <a href="__URL__/tixianguanli_t2"><input type="button" value="查看提现记录" id="jilu" class="search_sub" style="width:200px"></a>
+        <input type="button" value="返回" id="fanhui" class="search_sub" style="width: 200px;display: none">
+        <a href="__URL__/no_audit_excelfile"><input type="button" value="导出"  class="search_sub" style="width:200px"></a>
+        <table id="neirong" border='0' cellspacing='0'>
+            <tr>
+                <td>序号</td>
+                <td>用户名</td>
+                <td>姓名</td>
+                <td>提取金额</td>
+                <td>手续费</td>
+                <td>实际提取金额</td>
+                <td>银行卡卡号</td>
+                <td>提款银行</td>
+                <td>支行名称</td>
+                <td>申请时间</td>
+            </tr>
+            <volist name='ren' id='val' key="k">
+                <if condition='$val.biaoji eq 1'>
+            <tr class="neirong" style='color:red'>
+                <td>{:(I('get.p'))?((I('get.p')-1)*12+$k):($k)}</td>
+                <td>{$val.user}</td>
+                <td>{$val.real_name}</td>
+                <td>{$val.money}</td>
+                <td>{$val.shouxu}</td>
+                <td>{$val.shiji}</td>
+                <td>{$val.yinhangka}</td>
+                <td>{$val.y_name}</td>
+                <td>{$val.zhihang}</td>
+                <td>{$val.time}</td>
+            </tr>
+            <elseif condition='$val.biao eq 1'/>
+             <tr class="neirong" style='color:#009900'>
+                <td>{:(I('get.p'))?((I('get.p')-1)*12+$k):($k)}</td>
+                <td>{$val.user}</td>
+                <td>{$val.real_name}</td>
+                <td>{$val.money}</td>
+                <td>{$val.shouxu}</td>
+                <td>{$val.shiji}</td>
+                <td>{$val.yinhangka}</td>
+                <td>{$val.y_name}</td>
+                <td>{$val.zhihang}</td>
+                <td>{$val.time}</td>
+            </tr>    
+            <else/>
+            <tr class="neirong">
+                <td>{:(I('get.p'))?((I('get.p')-1)*12+$k):($k)}</td>
+                <td>{$val.user}</td>
+                <td>{$val.real_name}</td>
+                <td>{$val.money}</td>
+                <td>{$val.shouxu}</td>
+                <td>{$val.shiji}</td>
+                <td>{$val.yinhangka}</td>
+                <td>{$val.y_name}</td>
+                <td>{$val.zhihang}</td>
+                <td>{$val.time}</td>
+            </tr>
+                </if>
+            </volist>
+        </table>
+        <div class="fena" id="show1">{$show}</div>
+        <table id="tixianjilu" border="0" cellspacing="0" style="display: none">
+            <tr>
+                <td>序号</td>
+                <td>用户名</td>
+                <td>姓名</td>
+                <td>提取金额</td>
+                <td>手续费</td>
+                <td>实际提取金额</td>
+                <td>银行卡卡号</td>
+                <td>提款银行</td>
+                <td>支行名称</td>
+                <td>提现时间</td>
+            </tr>
+            <volist name='jilu' id='value' key="k2">
+            <tr class="neirong">
+                <td>{:(I('get.p'))?((I('get.p')-1)*12+$k2):($k2)}</td>
+                <td>{$value.user}</td>
+                <td>{$value.real_name}</td>
+                <td>{$value.money}</td>
+                <td>{$value.shouxu}</td>
+                <td>{$value.shiji}</td>
+                <td>{$value.yinhangka}</td>
+                <td>{$value.y_name}</td>
+                <td>{$value.zhihang}</td>
+                <td>{$value.time}</td>
+            </tr>
+            </volist>
+        </table>
+        <div class="fena" style="display: none" id="show2">{$show2}</div>
+    </div>
+    </form>
+</body>
+</html>

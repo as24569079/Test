@@ -1,0 +1,796 @@
+/*CSS document*/
+@charset "utf-8";
+/*页面头部区域样式*/
+.header{padding: 0.40625rem 0.9375rem 0.40625rem 0.9375rem; line-height: 1.125rem;}
+.headera{padding: 0.40625rem 0.9375rem 0rem 0.9375rem; line-height: 1.125rem;}
+.header-new{padding: 0.48rem 0.9375rem 0.48rem 0.9375rem;}
+/*.header{padding:20px 0 20px 30px}*/
+.header .basicAttention{
+    background-image: url("../img/icon_attention.png");
+    background-repeat: no-repeat;
+    background-position: 0%;
+    background-size: 0.6rem;
+    padding-left: 1rem;
+}
+.idcrdInfo{line-height:3.4375rem;height:3.4375rem;background:#617e97; color:#FFFFFF;padding: 0 0.9375rem;}
+.idcrdInfo .perName{margin-right: 1.65rem;}
+.idcrdInfo .idcardNm{float: right}
+.top{margin-top: 1rem;}
+/*名字和身份证样式*/
+.nameAndId{padding: 0rem 0 0 0.9375rem;}
+.nameAndId .nameAndId1{height: 4.375rem;display: -webkit-box;}
+.nameAndId .nameAndId1 .username{display: block;-webkit-box-flex: 1;}
+.nameAndId1 span{margin-right: 1.998rem;display: block;width: 3rem;}
+.userIput{bottom:20%;width:100%}
+.infonotic{ top:15%;left: 0;font-size: 0.75rem;line-height: 1rem;}/*错误提示*/
+.infonotic2{top:15%;left:0.6rem;font-size: 0.75rem;line-height: 1rem;}
+.cardCode{  right: 0;top: 0;padding-left: 0.6rem;}
+.personName{padding: 1rem 0;}
+.userNameIn{margin-bottom: 0.5rem}
+.selectInp{margin-top: 0.5rem;}
+/*中间区域样式*/
+.middleArea{padding: 1.25rem 0 0.625rem 1.25rem;}
+/*文字段落样式*/
+.textcont{font-size: 0.8125rem;}
+.lineHeight{line-height: 1.125rem}
+/*常用地址样式*/
+.detailInformation{padding: 0 0 2.7rem 1.25rem;}
+.detailInformation .detailcommon{height: 2.78rem;line-height: 2.78rem;}
+.detailInformation .detailcommon span{display:block;width: 4rem;background: #fff;padding-right: 0.998rem;}
+.detailInformation .detailcommon .rightSelect{top: 44%;right: 1.25rem;}
+/****** Page填写基本信息 ******/
+/*margin值*/
+.marginAuto{ margin:0.53125rem auto 0;}
+/*select area style*/
+.selectcardInput{color: #999;height: 2.8rem; display:block; line-height: 2.8rem \9;border: none;outline: none;top: -7%;}
+
+/****** Page支持储蓄卡和信用卡******/
+/*头部样式*/
+.header1{padding: 0.6rem 0.8rem 0.6rem 1.2rem;}
+.header1 p{background: url("../img/icon_attention.png") no-repeat 0 38%/0.625rem;padding-left: 1.1rem;}
+.header1 .headerContent{height: 1.5rem;}
+.header1 .headerContent img{top: 22%;}
+.header1 .headerContent p{height: 1rem;line-height: 1rem;left: 1.3rem;top: 20%;
+}
+.footword{margin-top: 0.75rem; padding: 0 1rem ;font-size: 0.6rem; color: #e93c3c;}
+
+/********Page banklist********/
+.personInfo{padding-left: 2.2rem;}
+.bankIcon{top:0.95rem;left:-0.55rem;width: 2.5rem;height: 2.5rem;}
+.infonotic .personNm{margin-right: 0.65rem;font-weight: normal;}
+.infocon .personNm{margin-right: 0.65rem;font-weight: normal;}
+
+/*******选择银行卡类型发卡行浮层********/
+.remindBox {
+    background-color: #000;
+    padding: 0 10%;
+    opacity: 0.8;
+    z-index: 1000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    color: #fff;
+    overflow: auto;
+}
+.remindBox .title1 {
+    margin-top: 1.25rem;
+    height: 2rem;
+    text-align: center;
+    border-bottom: 1px solid #fff;
+    font-size: 1.43rem;
+}
+.remindBox .remindword {
+    margin-top: 2rem;
+    font-size: 1rem;
+}
+.remindBox .closeBtn1 {
+    width: 3rem;
+    height: 3rem;
+    margin: 1.5rem auto;
+    display: block;
+}
+.selectCardtype{
+    z-index: 100;
+    transition: left 0.5s;
+    -webkit-transition: left 0.5s linear;
+    height: 80%;
+    width: 90%;
+    z-index: 1001;
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+.title2{
+    line-height: 3.4rem;
+    background: #f4f4f4;
+}
+.left-arrow{
+    top:1%;
+    left: 3%;
+    width: 1.2rem;
+    height: 1.2rem;
+
+}
+.typeList{  height: 100%;  overflow: hidden;  }
+.typeList ul{ padding:0  1.2rem;  }
+.namelist li{ line-height:3rem;height: 3rem;  }
+.bg-right{ background: url("http://mjr.jd.com/spe/smrz/img/right-arrow.png") no-repeat center right;background-size: 0.7rem;}
+/****** Page list******/
+.part_list{border-bottom: 1px solid #c8c8c8;}
+.lists{padding-left: 1.2rem;width: 100%;height: 2.875rem;line-height: 2.875rem; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; -ms-box-sizing:border-box; -o-box-sizing:border-box;}
+.lists .spiltLine{bottom: 0;width: 95%;right: 0;border-bottom: 1px solid #eeeeee;}
+.lists .selected{top: 1.3rem;right: 1.3rem;}
+.lists .selected s{height: 0.875rem;width: 0.715rem;background: url("http://mjr.jd.com/spe/smrz/img/icon_selected.png") no-repeat;background-size: contain;}
+.tip{height: 2rem;line-height: 2rem;padding-top: 0.5rem;}
+/****** Page list******/
+
+/****** Active Page ******/
+.activePage .logo img{width: 160px;margin: 0 auto;height: 145px;display: block;}
+.activePage .tip .success{height: 4rem;margin: 0 auto;width: 90%;}
+.activePage .btn{margin: 7.28rem auto 0;}
+/****** Active Page ******/
+
+/*select area*/
+.unitlist{ width:80%; height:80%; overflow-y: auto; overflow-x: hidden; opacity:0; position: absolute; top: 10%; left: 100%; background: #fff; z-index: 1001; border-top: none;}
+.anicell{opacity: 1;left: 10%;z-index: 1001;background: #efeff4;animation: cellanimate .4s ease;-webkit-animation: cellanimate .4s ease;-moz-animation: cellanimate .4s ease;-ms-animation: cellanimate .4s ease;-o-animation: cellanimate .4s ease;}
+.overf-auto{ max-height: 20rem;overflow: auto; }
+.anicellr{
+    opacity: 1;
+    left: 100%;
+    animation: cellanimater .4s ease;
+    -webkit-animation: cellanimater .4s ease;
+    -moz-animation: cellanimater .4s ease;
+    -ms-animation: cellanimater .4s ease;
+    -o-animation: cellanimater .4s ease;
+}
+/*****serverPro******/
+.servPro{
+    background: white;
+    padding: 1.25rem 1rem;
+}
+.sevrTile{
+    font-size: 1.125rem;
+    line-height: 0.94rem;
+    margin-bottom:0.94rem;
+}
+.servPro p{
+    line-height:1.625rem;
+    margin-bottom:0.94rem;
+    font-size:1rem;
+    /*text-indent:1rem;*/
+}
+/******seccuss Page*****/
+.top_bg{
+    background:#359df5;
+    background-size: 100% 100%;
+}
+.headPic{
+    width:4.2rem;
+    height: 4.2rem;
+    border-radius: 4rem;
+    top:25%;
+    left: 50%;
+}
+.posiRight{right: 5%;top:0;}
+.successTxt{bottom: 0.78rem;font-size: 0.875rem;color: #ffffff;}
+@keyframes cellanimate
+{
+    from {left: 100%;}
+    to {left: 10%; z-index: 1001;}
+}
+
+@-webkit-keyframes cellanimate /* Firefox */
+{
+    from {left: 100%;}
+    to {left: 10%; z-index: 1001;}
+}
+@-moz-keyframes cellanimate /* Firefox */
+{
+    from {left: 100%;}
+    to {left: 0; z-index: 1001;}
+}
+@-ms-keyframes cellanimate /* Firefox */
+{
+    from {left: 100%;}
+    to {left: 0; z-index: 1001;}
+}
+@-o-keyframes cellanimate /* Firefox */
+{
+    from {left: 100%;}
+    to {left: 0; z-index: 1001;}
+}
+
+
+@keyframes cellanimater
+{
+    from {left: 10%;}
+    to {left: 100%;}
+}
+
+@-webkit-keyframes cellanimater /* Firefox */
+{
+    from {left: 10%;}
+    to {left: 100%;}
+}
+@-moz-keyframes cellanimater /* Firefox */
+{
+    from {left: 10%;}
+    to {left: 100%;}
+}
+@-ms-keyframes cellanimater /* Firefox */
+{
+    from {left: 10%;}
+    to {left: 100%;}
+}
+@-o-keyframes cellanimater /* Firefox */
+{
+    from {left: 10%;}
+    to {left: 100%;}
+}
+
+
+/* activefailure Page*/
+.activefailure .square img{ width: 160px;margin: 0 auto;height: 145px;}
+.activefailure .tip{margin-top: 1.8rem;font-size: 0.9rem;text-align: center;}
+.activefailure .finishBtn{margin: 2rem auto 0;}
+.activefailure .giveupactive{position: absolute;bottom: 1rem;text-align: center;width: 100%;font-size: 0.8rem;color: #9ec2ed;}
+/* activefailure Page*/
+
+
+
+/***** fail Page*****/
+.fail .logo img {width: 160px;margin: 0 auto 1rem;height: 145px;display: block;}
+.fail .tip .content .sorryTip {font-size: 1.1rem;text-align: center;color: #ffa302;margin-bottom: 1.5rem;}
+.fail .tip .content .commonTip {font-size: 0.5rem;color: #999999;line-height: 1.1rem;width: 90%;margin: 0 auto;}
+.fail .btn{margin: 5.28rem auto 0;}
+
+/***** fail Page*****/
+
+
+/******* reduceFail Page *******/
+.reduceFail .content1 .btn1{border: 1px solid black;text-align: center;height: 3rem;width: 90%;line-height: 3rem;font-size: 1.125rem;margin: 0.8rem auto 0.5rem;background: #ffffff;}
+.reduceFail .content1 {margin: 1rem;border: 1px solid white;position: absolute;height: 70%;}
+.reduceFail .content1 p{width: 90%;margin: 1rem auto 2rem;font-size: 0.8rem;}
+
+/***** specialPage *****/
+.specialPage .sp_content{padding: 1.875rem 0;width: 90%;margin: 0 auto;}
+.specialPage .sp_content .contentBody{background: url("http://mjr.jd.com/spe/smrz/img/icon_warming.png") no-repeat;background-size: 2.5rem;padding-left: 3.725rem;height: 2.5rem;}
+.specialPage .icon_success{padding:0 5rem 0.625rem 5rem;}
+.specialPage .successtip{padding-bottom: 2.375rem;}
+.specialPage .importantTip{width: 90%;margin: 1.8rem auto;}
+.specialPage .importantTip .list_logo p{margin:0 auto;width: 60%;background: url("http://mjr.jd.com/spe/smrz/img/list_logo_jr.png") no-repeat 0 50%/24px;text-align: left;padding-left: 34px;}
+.specialPage .importantTip .hig{height: 39px;line-height: 39px;}
+.specialPage .height1{height: 30px;}
+
+/***** bankCardType *****/
+.bankCardType .lists .noUse{display: block;background: url("http://mjr.jd.com/spe/smrz/img/icon_help.png") no-repeat 100% 50%/1rem;background-size: contain;line-height: 1rem;height: 1rem;width: 4.2rem;color: #c8c8c8;text-decoration: none;}
+.bankCardType .lists .doUse{background: url("http://mjr.jd.com/spe/smrz/img/right-arrow.png") no-repeat;height: 0.875rem;width: 0.715rem;background-size: contain;}
+
+/***** 过渡页面　*****/
+.whitenoteEntrance .guoduPage {height: 100%; width: 100%;}
+.whitenoteEntrance #Guodu{height: 100%;width: 100%;}
+.whitenoteEntrance .zIndex{z-index: 10;position: absolute;bottom: 4rem;left: 0;right: 0;}
+.bankCardType .lists .doUse{background: url("http://mjr.jd.com/spe/smrz/img/right-arrow.png") no-repeat;height: 0.875rem;width: 0.715rem;background-size: contain;}
+
+/****phone verify code ****/
+.mask { background-color: rgba(0,0,0,0.6);z-index: 1000; position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: auto; }
+.maskalpha { background-color: #fff; opacity: 0; z-index: 10000; position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: auto; }
+.abMid { position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: auto; }
+
+
+.alertBox { width: 17.5rem; background-color: #fff; border-radius: 0.1rem; -webkit-border-radius:0.1rem; z-index: 1001; height: 14rem; overflow: hidden; }
+.alertBox .alert-title { width: 100%; height: 3.125rem; text-align: center; line-height:3.125rem; color: #232326;position: relative;font-size: 0.9375rem;}
+.abMid {  position: absolute;top: 0;left: 0;right: 0;bottom: 0;margin: auto;}
+.box_foot_hasTxt{font-size: 0.875rem; color: #686868; padding: 1.25rem 0 0.625rem 0; box-sizing:border-box; -webkit-box-sizing:border-box; text-align: left; width: 100%; margin: 0 auto;padding-left: 0.9375rem;}
+.alertBox .alert-cont { width: 100%;padding: 0 0 1.2rem;position: relative}
+.messageBox { width: 100%; margin: 0 auto; display: -webkit-box; padding:0 0.975rem; box-sizing:border-box; -webkit-box-sizing:border-box;}
+.messageBox .grid{ -webkit-box-flex:1; width: 3rem; height: 3.75rem; line-height: 3.75rem;border-radius: 0.1rem;text-align: right;padding: 0 0.1rem;}
+.messageBox .grid1{ box-sizing: border-box; width: 8rem; height: 3.75rem; line-height: 3.75rem;border-radius: 0.1rem;text-align: right;padding: 0 0.1rem;}
+.messageBox .grid2{ box-sizing: border-box; width: 7.1875rem; height: 3.2rem; line-height: 3.2rem;border-radius: 0.1rem;text-align: right;padding: 0 0.1rem;}
+.messageBox .inputHolder input{ text-indent: 0.5rem; width:95%; height: 1.4rem; line-height: 1.4rem;font-size: 0.8125rem;position: relative; color: #bfbfbf;}
+.messageBox .sendBtn { margin-left: 0.2rem; text-align: center;font-size: 0.875rem;}
+.messageBox .sendBtnon{ background-color:#e5e5e5; colfvor: #999;}
+
+.messageBox .sending { background-color: #e5e5e5; color: #959595; }
+.alertBox .alert-btn { border-radius: 0px 0px 10px 10px;width: 100%;display: -webkit-box;}
+.alertBox .alert-btn .btnn{ -webkit-box-flex: 1; height: 3.125rem; text-align: center; line-height: 3.125rem;font-size: 0.9375rem;}
+.alertBox .alert-btn .cancelBtn {position: relative; color: #bfbfbf }
+.alertBox .alert-btn .cancelBtn:active { background-color: #f6f6f6 }
+.alertBox .alert-btn .confirmBtn { color: #848689;}
+.alertBox .alert-btn .confirmBtnon{ background-color:#F23030; color: #fff;}
+.alertBox .alert-btn .confirmBtn:active { background-color:#CE2525;  color: #fff; }
+.inputHolder s {
+    position: absolute;
+    width: 1.5rem;
+    height: 2rem;
+    right: .5rem;
+    top: 43%;
+    margin-top: -0.8rem;
+    background: #fff url('http://mjr.jd.com/spe/smrz/img/clear.png') no-repeat center center;
+    background-size: 0.7rem 0.7rem;
+}
+/***** 提示层*****/
+/*.remindBox{  background-color: #000; padding:0 10%; opacity: 0.8; z-index: 1000; position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: auto; color: #fff;overflow: auto;}
+.remindBox .title1{ margin-top: 4rem;height: 2rem;text-align: center;;font-size: 1.43rem; }
+.remindBox .remindImg{width: 100%;}
+.remindBox .remindword{ margin-top: 2rem;font-size: 1rem; margin-left: 1.5rem}
+.remindBox .closeBtn1{ width: 3rem; height: 3rem;margin:1.5rem auto;display: block;}*/
+.specialPage .ntipsv{ height:40px; float: left; display: -webkit-box;-webkit-box-orient: horizontal;-webkit-box-pack: center;-webkit-box-align: center;}
+
+.rightCancel {
+    width: 0.9rem;
+    height: 50%;
+    right: 0.4375rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    /*border: 1px solid;*/
+    top: 25%;
+}
+
+.rightCancel img {
+    width: 0.9rem;
+    height: 0.9rem;
+    top: 30%;
+}
+.right-arrow{
+    width: 0.5rem;
+    height: 0.65rem;
+    right: 0.9375rem;
+    top:39%;
+}
+.right-arrow img{
+    width: 100%;
+}
+
+.lists1{height: 100%;overflow: auto;border-radius:0 0 0.3rem 0.3rem;}
+.list{margin-left: 1.25rem;}
+.listName{
+    height: 51px;
+    /*line-height: 51px;*/
+    margin-right: 25px;
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    /* -webkit-box-pack: center; */
+    -webkit-box-align: center;
+    padding-right: 25px;
+}
+.selectList{
+    /*transition:all 0.25s;-webkit-transition:all 0.25s linear;*/
+    border-top: 3.5rem solid #f8f8f8;
+    height:0;
+    width:0;
+    z-index: 1001;
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    border-radius: 0.3rem 0.3rem 0 0;
+}
+.slectData{
+    border: none;
+    outline: none;
+    -webkit-appearance:none;
+    appearance:none;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+}
+.select-list select{
+    color:#999999;
+    font-size:0.85rem;
+}
+
+.title{position: absolute;
+    left: 0;
+    width: 100%;
+    background: #f8f8f8;
+    text-align: left;
+    height: 3.5rem;
+    line-height: 3.5rem;
+    text-indent: 1.25rem;
+    font-size: 17px;
+    color: #359df5;
+    border-radius: 0.3rem 0.3rem 0 0;
+    z-index: 1002;
+    top: -3.5rem;
+}
+.closeBtn{right: 22px;top: 35%;width: 1.2rem;height: 1.2rem;}
+.closeBtn img{width: 100%;position: absolute;}
+.rightSelect{width: 0.8rem;height: 0.8rem;right: 26px;top: 40%;}
+.rightSelect img{width: 100%;position: absolute;}
+.hasFill{background:#fff;width:100%;opacity: 0;position: absolute}
+.sizeS{
+    height: 80%;
+    width: 90%;
+    /*transition: height 0.25s;
+    -webkit-transition: height 0.25s linear;*/
+}
+
+.addrS{
+    overflow: hidden;direction: rtl;white-space: nowrap;color: #333333;
+}
+/******支持的银行卡*****/
+.tab_bank{
+    height:3.125rem;
+    line-height: 3.125rem;
+    width: 100%;
+    background: #ffffff;
+}
+.tab_bank span{
+    width: 50%;
+    text-align: center;
+    float: left;
+    font-size: 1rem;
+    color: #666;
+}
+.tab_bank span.curr{
+    border-bottom:2px solid #359df5;
+    color:#359df5;
+    height:98%;
+}
+.cardList{
+    height:3.5rem;
+    line-height: 3.5rem;
+}
+.cardName{
+    margin-left:2.375rem
+}
+.bankIC{
+    top: 0rem;
+    left: 0rem;
+    width: 1.375rem;
+    height: 1.375rem;
+}
+.uiList{
+    height:3.625rem;
+    line-height: 3.625rem;
+}
+.uiWarp{
+    margin-top: 0.65rem;
+}
+.right-icon{
+    width: 0.65rem;
+    height: 0.65rem;
+    right: 1rem;
+    top: 35%
+}
+.text{
+    line-height: 1.25rem;
+    margin: 0.35rem auto 0;
+}
+.addWarp{position: relative;width: 100%; overflow:hidden}
+.swipe{overflow: hidden;visibility: hidden;position:relative;}
+.swipe-wrap{overflow:hidden;position:relative;padding: 0rem 0 0 1rem;background:#FFFFFF}
+.swipe-wrap li{float:left;position:relative;}
+/**改动新加的样式***/
+.topInfo{
+    line-height:14px;
+}
+.userbIcon{
+    padding: 0rem 0 0 0.9375rem;
+    /*height: 4.375rem;*/
+}
+.preWarp{
+    height:100%;
+    position: relative;
+}
+.preWarp:first-child{
+    border:none;
+}
+.preWarp:last-child{
+    border:none;
+}
+.border-b::before{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right:0;
+    border-bottom: 1px solid #ddd;
+    -webkit-transform: scaleY(0.25);
+    -ms-transform: scaleY(0.25);
+    transform: scaleY(0.25);
+    width:100%;
+}
+.border-t::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left:0;
+    border-top: 1px solid #ddd;
+    -webkit-transform: scaleY(0.25);
+    -ms-transform: scaleY(0.25);
+    transform: scaleY(0.25);
+    width:100%;
+}
+.border-l::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left:0;
+    border-left: 1px solid #ddd;
+    -webkit-transform: scaleX(0.5);
+    -ms-transform: scaleX(0.5);
+    transform: scaleX(0.5);
+    height:100%;
+}
+.border-r::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left:0;
+    border-right: 1px solid #ddd;
+    -webkit-transform: scaleX(0.25);
+    -ms-transform: scaleX(0.25);
+    transform: scaleX(0.25);
+    height:100%;
+}
+
+.userbIcon .bankIcon{
+    /*padding-top: 0.15625rem;*/
+    width: 1.9375rem;
+    height: 1.9375rem;
+}
+.userbIcon .bankListName{
+    margin-bottom: 0.25rem;
+    font-size: 1rem;
+}
+.userbIcon .userBankInfo{
+    margin-top: -0.4125rem;
+    padding-left: 2.5625rem;
+    height: 2.25rem;
+}
+.userbIcon .infocon{
+    font-size: 0.75rem;
+}
+.userbIcon .infocon strong{
+    font-weight: normal;
+}
+.blank{
+    margin-top: 0.875rem;
+    padding-right: 0.9375rem;
+    line-height:14px;
+}
+.smrzInfo{
+    padding:0.9375rem 0 0.9375rem 0.9375rem;
+}
+.smrzInfo p{
+    line-height:0.875rem;
+}
+
+/*****input动画效果*****/
+.ui-form-item{
+    height: 4.375rem;
+    overflow: hidden;
+}
+.pl30{
+    padding-left:0.9375rem;
+}
+.anim-input{
+    background: none;
+    display: inline-block;
+    margin: 0;
+    padding-top: 2.3125rem;
+    padding-bottom: 1.125rem;
+    width: 100%;
+    text-align: left;
+    height: auto;
+    color: #232326;
+}
+.ui-form-lable {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 2.3125rem;
+    width: 100%;
+    color: #ccc;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: left;
+    pointer-events: none;
+    font-size: 0.9375rem;
+}
+
+.ui-textfield .ui-form-lable {
+    color: #666;
+    font-size: 0.8125rem;
+    top: 0.655rem;
+    visibility: visible
+}
+
+.ui-textfield .ui-form-lable {
+    /*-moz-transition-duration: .2s;
+    -o-transition-duration: .2s;
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
+    -moz-transition-timing-function: cubic-bezier(0.4,0,.2,1);
+    -o-transition-timing-function: cubic-bezier(0.4,0,.2,1);
+    -webkit-transition-timing-function: cubic-bezier(0.4,0,.2,1);
+    transition-timing-function: cubic-bezier(0.4,0,.2,1)*/
+}
+.makeSurebtn{
+    border-radius: 0.093rem;
+    text-align: center;
+    height: 3.125rem;
+    width: 90%;
+    line-height: 3.125rem;
+    font-size: 1.25rem;
+    margin: 1.25rem auto 0;
+    color: #ffffff;
+}
+.margin40{
+    margin-top: 1.21875rem;
+    /*line-height: 1.275rem;*/
+    width: 95.5%;
+    text-align: right;
+}
+.marginauto{
+    margin: 0.5rem auto;
+    line-height: 1.275rem;
+    width: 90%;
+}
+.magin20{
+    margin:0.625rem auto 0;
+}
+.sec-input{
+    height: 3.4375rem;
+    line-height: 3.4375rem;
+}
+/*--解决ipone 1像素边框变2像素问题：--*/
+.border-1px { position: relative; }
+.border-1px:before { display: block; content: ''; overflow: auto; position: absolute;top: 0; right: 0; bottom: 0; left: 0; z-index: 0; -webkit-transform-origin: 0 0; -webkit-transform: scale(1); pointer-events: none; }
+
+.border-ll:before { display: block; content: ''; overflow: auto; position: absolute;top: 0; right: 0; bottom: 0; left: 0; z-index: 0; -webkit-transform-origin: 0 0; -webkit-transform: scale(1); pointer-events: none; }
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+    .border-1px:before { right: -100%; bottom: -100%; -webkit-transform: scale(0.5);}
+}
+.border-ll:before { display: block; content: ''; overflow: auto; position: absolute;top: 0; right: 0; bottom: 0; left: 0; z-index: 0; -webkit-transform-origin: 0 0; -webkit-transform: scale(1); pointer-events: none; }
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+    .border-ll:before { right: -100%; bottom: -100%; -webkit-transform: scale(0.5);}
+}
+.border-1px.border-all:before { border: 1px solid #ddd;border-radius:0.1rem}
+.border-1px.border-all-c3a:before { border: 1px solid #C3A465; }
+.border-1px.border-top:before { border-top: 1px solid #ddd;}
+.border-1px.border-bottom:before { border-bottom: 1px solid #ddd;}
+.border-ll.border-left:before { border-left: 1px solid #ddd;}
+.border-1px.border-left:before { border-left: 1px solid #ddd;}
+.border-1px.border-right:before { border-right: 1px solid #ddd;}
+/* 信息对话框*/
+.alertInfo{
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    width:100%;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0
+}
+.info-box{
+    background-color: #f7f8f7;
+    width: 16.375rem;
+    left: 50%;
+    margin-left: -8.19rem;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.alert-p{
+    padding: 1.5rem 1rem;
+}
+.alert-p p{
+    line-height:1.6rem;
+}
+.info-btn{
+    height: 2.75rem;
+    line-height: 2.75rem;
+}
+._tips{
+    max-width: 80%;
+    margin: 0 auto;
+    background: #000000;
+    padding: 1rem .5rem;
+    border-radius: 0.25rem;
+    color: #fff;
+    font-size: 0.8rem;
+    display: inline-block;
+    word-break: break-all;
+}
+.time-btn-reset{
+    background-color: #FFFFFF !important;
+    color: #f23030 !important;
+}
+.sportCard {
+    width: 0.9rem;
+    height: 0.9rem;
+    right:0.9375rem;
+    padding-bottom: .5rem;
+    padding-right: .5rem;
+    top: 39%;
+}
+.sportCard img {
+    width: 100%;
+}
+.card_icon{
+    width: 0.875rem;
+    height: 0.875rem;
+}
+.card_icon_bg{
+    background:url("http://m.jr.jd.com/spe/smrz/img/infoIcon.png") no-repeat center;
+    background-size: cover;
+}
+.card_icon_Tap_bg{
+    background:url("http://m.jr.jd.com/spe/smrz/img/infoIconTap.png") no-repeat center;
+    background-size: cover;
+}
+.card_icon{
+    width: 0.875rem;
+    height: 0.875rem;
+}
+.card_icon_bg{
+    background:url("http://mjr.jd.com/spe/smrz/img/infoIcon.png") no-repeat center;
+    background-size: cover;
+}
+.card_icon_Tap_bg{
+    background:url("http://mjr.jd.com/spe/smrz/img/infoIconTap.png") no-repeat center;
+    background-size: cover;
+}
+
+/**银行卡添加**/
+.ver-cardList{
+    position: relative;
+    color:#333333;
+}
+.modify_phone{
+    margin: 0.5rem auto 0;
+    padding: 0 0.9375rem;
+    word-warp: break-word;
+    word-break: break-all;
+    line-height: 1.125rem;
+}
+/*.ver-cardList::before{*/
+/*content: '';*/
+/*position: absolute;*/
+/*bottom: 0;*/
+/*left: 0;*/
+/*width: 100%;*/
+/*border-bottom: 1px solid #dddddd;*/
+/*-webkit-transform: scaleY(0.25);*/
+/*-ms-transform: scaleY(0.25);*/
+/*transform: scaleY(0.25);*/
+/*}*/
+/*.ver-cardList:first-child{*/
+/*border:none;!important;*/
+/*}*/
+.ver-cardList:last-child{
+    border:none;!important;
+}
+.placeInput::-moz-placeholder { color: #333333;}
+.placeInput::-webkit-input-placeholder{color:#333333}
+.p-line{
+    line-height: 14px;
+}
+.bottom-tips{
+    margin-top: 0.53125rem;
+    padding-left: 0.9375rem;
+}
+.make-btn{
+    border-radius: 0.093rem;
+    text-align: center;
+    height: 3.125rem;
+    width: 90%;
+    line-height: 3.125rem;
+    font-size: 1.25rem;
+    margin: 1.0625rem auto 0;
+    color: #ffffff;
+}
+
+/*.ft-30px{font-size: 0.9375rem;}*/
+.ft-col-ccc{ color: #ccc;}
+.mg-t-40{ margin-top: 1.21875rem;}
+.lh{line-height: 1rem;}

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>诚兑城-抽奖</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.2.min.js"></script> 
+        <style>
+            *{margin: 0;padding: 0}
+        .title{width: 200px;height: 50px;margin: 0 auto;font-size: 20px;color: red;margin-top: 30px;font-weight: bold; padding-left: 120px;}
+        .bs{width: 200px;margin: 0 auto;}
+        .bs span{display: inline-block;width: 60px;background-color: #708098;color: #fff;height: 30px;line-height: 30px;text-align: center;margin-left: 33px;border-radius: 5px;cursor: pointer; font-family: '微软雅黑';}
+        /*.main{margin-top:240px;}*/
+        .text{width:45px;height:22px}
+        .sub{display: inline-block;width: 60px;background-color: #708098;color: #fff;height: 30px;line-height: 30px;text-align: center;border-radius: 5px;cursor: pointer; font-family: '微软雅黑';outline: none}
+        #span{font-family: '微软雅黑';font-size:18px}
+        #span2{font-family: '微软雅黑';font-size:16px}
+        #zhongjiang li{float:left;margin:10px}
+        .barrage .screen{width:100%;height:150px;position:absolute;top:0px;right:0px;}
+            .barrage .screen .s_close{z-index:2;top:20px;right:20px;position:absolute;text-decoration:none;width:40px;height:40px;border-radius:20px;text-align:center;color:#fff;background:#000;line-height:40px;display:none;}
+            .barrage .screen .mask{position:relative;width:100%;height:150px;background:#000;filter:alpha(opacity:1);z-index:1;}
+            .barrage{width:100%;height:150px;}
+            .barrage .screen .mask div{position:absolute;font-size:18px;font-weight:bold;white-space:nowrap;line-height:40px;z-index:40;}
+            .barrage .send{z-index:1;width:100%;height:55px;background:#000;position:absolute;bottom:0px;text-align:center;}
+            .barrage .send .s_text{width:600px;height:40px;line-height:10px;font-size:20px;font-family:"微软雅黑";}
+            .barrage .send .s_btn{width:105px;height:40px;background:#22B14C;color:#fff;}
+            .nickname{color:#FFF;font-size:15px;overflow: hidden;margin-bottom:10px;width:110px!important;height:20px;text-align: center}
+        </style>
+    </head>
+    <body>
+        <form method="post" action="__URL__/choujiang" id="form">
+                    <div class="barrage" style=' position:absolute;background:none'>
+            <div class="screen">
+                <div class="mask" style='background:none'>
+                <!--内容在这里显示-->
+                </div>
+                </div>
+            <!--Send End-->
+        </div>
+        <script>
+//        $(function(){
+//            $(".showBarrage,.s_close").click(function(){
+//                $(".barrage,.s_close").toggle("slow");
+//            });
+//        })
+    function req(){
+        if(window.XMLHttpRequest){
+            var request = new XMLHttpRequest();
+        } else {
+            var request = new ActiveXObject('Microsoft.XMLHTTP');
+        }
+        return request;
+    }
+    tid = "";
+        function liaotian(){
+                var ajax = req();
+                    ajax.open("post","__URL__/danmu_add",true);
+                    ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                    ajax.send(null);
+                    ajax.onreadystatechange=function(){
+                            if(ajax.readyState==4 && ajax.status == 200){
+                                var data = ajax.responseText;
+                                eval("var obj = "+data);
+                                if(obj != ""){
+                                        if(obj.barrage_id != tid){
+                                            $(document).ready(function(){
+                                                var _lable = $("<div style='right:20px;top:0px;opacity:1;color:"+getRandomColor()+";'>"+obj.barrage_text+"</div>");
+                                                $(".mask").append(_lable.show());
+                                                init_barrage();
+                                            });
+                                        }
+                                        tid = obj.barrage_id;
+                                }
+                                
+                            }   
+                        }
+        }       
+            setInterval(liaotian,10);
+        //初始化弹幕技术
+        function init_barrage(){
+            var _top = 0;
+            $(".mask div").show().each(function(){
+                var _left = $(window).width()-$(this).width();//浏览器最大宽度，作为定位left的值
+                var _height = "150px";//浏览器最大高度
+                _top +=10;
+                if(_top*1 >= _height*1){
+                    _top = 0;
+                }
+                $(this).css({left:_left,top:_top,color:getRandomColor()});
+                //定时弹出文字
+                var time = 10000;
+                if($(this).index() % 2 == 0){
+                    time = 15000;
+                }
+                $(this).animate({left:"-"+_left+"px"},time,function(){
+                    $(this).remove();
+                });
+            });
+        }
+        //获取随机颜色
+        function getRandomColor(){
+            return '#' + (function(h){
+                return new Array(7 - h.length).join("0") + h
+            }
+            )((Math.random() * 0x1000000 << 0).toString(16))
+        }
+        </script>
+            <div style=' background-image: url(__PUBLIC__/images/choujiang.jpg); background-repeat: no-repeat;background-size:100%,100%;margin:0;padding:0' id="div">
+            <center class='cen'>
+                
+                <input type="hidden" id="jiang" value="{$jiang}">
+                
+            </center>
+                   
+        <div style>
+            <div style="float:left;width:100%;margin-top:10%">
+                <div style="float:left;width:50%;margin-top:170px">
+                    <span id='span' style='color:#fff;float:right;margin-right:140px'></span>
+                </div>
+                <div class="main" style='float:left;margin-top:170px;width:50%;'>
+                    <div class="bs" style='margin-left:160px'>
+                            <span class="begin">开  始</span>
+                            <span class="stop">停  止</span>
+                    </div>  
+                </div>
+            </div>
+            <div style="width:100%;font-size:23px;font-family: '微软雅黑';float:left;">
+                <ul id="zhongjiang" style="list-style:none;color:#fff;margin:0 auto;width:720px;height:260px;overflow: hidden">
+                    <div style="float:left;width:65px;height:260px">
+                </ul>
+            </div>
+        </div>
+            <ul style='display:none' id='ul'>
+                 </ul>
+            <ul style='display:none' id='ul2'>
+            <volist name='array' id='val'>
+                
+                <li>{$val.rand_img}</li>
+               
+            </volist>
+                 </ul>
+            </div>
+        <script>
+            $(function(){
+                $("#form").submit(function(){
+                    if($("#sel").val()=="0"){
+                        alert("请选择奖项");
+                        return false;
+                    }
+                })
+                $("#div").height($(document).height());
+                var html = "";
+                var array =  new Array();
+                 var li2 = $("#ul2 li");
+                for(var i=0;i<li2.length;i++){
+                    array.push(li2.eq(i).text());
+                }  
+                for(var i=0;i<10;i++){
+                     html += "<li class='title2'></li>"
+                }
+//                alert(html);
+                $("#zhongjiang").append(html);
+                 var data =  new Array();
+                
+                timer=null
+                flag=0;
+               
+//                alert(array);
+                
+        
+function getByClass(clsName,parent){
+	var oParent=parent?document.getElementById(parent):document,
+		eles=[],
+		elements=oParent.getElementsByTagName('*');
+
+	for(var i=0;i<elements.length;i++){
+		if(elements[i].className == clsName){
+			eles.push(elements[i]);
+		}
+	}
+	return eles;
+}
+window.onload=function(){
+	var oTitle=getByClass('title2'),
+		begin=getByClass('begin')[0],
+		stop=getByClass('stop')[0];
+
+	//开始抽奖
+	begin.onclick=fnplay;
+	stop.onclick=fnstop;
+
+	//键盘事件 针对的是整个document
+	document.onkeyup=fnkey;
+
+	function fnplay(){
+	//var that=this;//这里指的是begin这个按钮 这里暂时不考虑这个。
+	//每个开始之前关闭一下定时器，不然每次按click的时候容易加快速度，以至于整个浏览器容易奔溃  
+        $.post("__URL__/selarr",{},function(res){
+            eval("obj = " + res);
+//            alert(obj.length);
+            for(var i=0;i<obj.length;i++){
+               $("#ul").append("<li data-id='"+obj[i]['rand_id']+"'><img src='/"+obj[i]['rand_img']+"'></li>");
+               data.push({rand_phone:obj[i]['rand_img'],rand_id:obj[i]['rand_id'],rand_nickname:obj[i]['rand_name']});
+            }
+        },"text") ;
+              $("#span").html("当前抽奖人数为"+li2.length+"位");
+              
+		clearInterval(timer);
+		//定义一个定时器
+		timer=setInterval(function(){
+			//Math.random()拿到的是0-1之前的数字，去乘数组的长度 再取整数可以拿到想要的数组下标
+//                        var text =  new Array();
+                       
+			 //floor去取整
+			//把拿到的数组的值写进去
+                        for(var i=0;i<array.length;i++){
+                            var random=Math.floor(Math.random()*array.length);
+                              $(".title2").eq(i).html("<img src='/"+array[random]+"' style='width:50px;height:50px'>");
+                        }
+		},50);
+		//按开始之后，让颜色改变一下
+		begin.style.background="#999";
+	}
+
+	function fnstop(){
+		clearInterval(timer);
+                
+                $(".title2").remove();
+                var html2 = "";
+                for(var i=0;i<data.length;i++){
+                     html2 += "<li class='title2'></li>"
+                     
+                }
+//                alert(html);
+                $("#zhongjiang").append(html2);
+//                alert(data);
+                for(var i=0;i<data.length;i++){
+                     $(".title2").eq(i).html("<div class='nickname'>"+data[i].rand_nickname+"</div><img src='/"+data[i].rand_phone+"' style='width:110px;height:170px'>");
+                     
+                }
+		//恢复为原来的颜色
+		begin.style.background="#708098";
+                
+                $.post("http://www.ch-d-ch.com/Handle/uptchou",{arr:data},function(res){
+//                    alert(res);
+                },"text")
+                data = new Array();
+	}
+
+	function fnkey(event){
+		console.log(event.keyCode);
+		event=event ||window.event;
+		if(event.keyCode == 13){  //当按下回车键的时候
+			//一开始是0的状态，我们改变。
+			if(flag == 0){
+				fnplay();
+				//设置为1的状态，停止改变
+				flag =1;
+			}else{
+				fnstop();
+				flag=0;
+			}
+		}
+	}
+}
+
+            })
+             
+               
+
+
+
+
+        </script>
+        </form>
+    </body>
+</html>

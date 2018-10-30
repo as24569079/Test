@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+    <link href="__PUBLIC__/css/jquery-confirm.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/mobilemain.css" type="text/css" rel="stylesheet">
+    <link href="__PUBLIC__/css/main.css" type="text/css" rel="stylesheet">
+
+</head>
+<body>
+
+    <div class="container body-content">
+
+        <div class="fanhuian mobileyc"><a class="ui-button fleft" href="__URL__/S_gm">返回列表</a></div>
+        <div id="load" style="display:none;z-index:60;">正在加载请稍后....</div>
+        <form action="__URL__/gwduihuan" id="form0" method="post" onSubmit="return confirm();" >
+            <input name="__RequestVerificationToken" value="M2AuzN0T-KfmbDfsnVS5piXwhcliGVCyg04rSeClOR19crxSWeyivrnGK4CeL4uBzSUgDkh-1bgqkeSj3quh-7zSGtdhKm4i79polsaB-VdQfwPI0" type="hidden"><!--防止跨越提交-->
+            <div class="form-horizontal cms-bootstrap">
+                <!--显示错误验证信息-->
+                <div class="form-group">
+                    <label class="editing-form-label-cell control-label col-md-2 col-xs-4 col-sm-4" for="Fn_Amount">兑换金额</label>
+                    <div class="editing-form-value-cell col-md-10 col-xs-8 col-sm-8">
+                        <input class="text-box single-line" data-val="true" data-val-number="The field 兑换金额 must be a number." data-val-range="兑换金额必须大于1！" data-val-range-max="2147483647" data-val-range-min="1" data-val-regex="请填正整数！" data-val-regex-pattern="^[1-9]\d*$" data-val-required="兑换金额必填项！" id="Fn_Amount" name="Fn_Amount" value="" type="number">
+                        <span class="field-validation-valid" data-valmsg-for="Fn_Amount" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="editing-form-label-cell control-label col-md-2 col-xs-4 col-sm-4" for="Fc_Remark">说明</label>
+                    <div class="editing-form-value-cell col-md-10 col-xs-8 col-sm-8">
+                        <textarea class="form-control" cols="20" id="Fc_Remark" name="Fc_Remark" rows="2"></textarea>
+                        <span class="field-validation-valid" data-valmsg-for="Fc_Remark" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="editing-form-label-cell control-label col-md-2 col-xs-4 col-sm-4" for="fc_TwoPassword">安全密码</label>
+                    <div class="editing-form-value-cell col-md-10 col-xs-8 col-sm-8">
+                        <input class="form-control" data-val="true" data-val-required="安全密码必填项！" id="fc_TwoPassword" name="fc_TwoPassword" type="password" maxlength="8">
+                        <span class="field-validation-valid" data-valmsg-for="fc_TwoPassword" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+
+
+                <div class="form-group redbutton">
+                    <div class="form-group-submit col-md-10">
+                        <input value="提交信息" id="save" class="btn btn-default" type="submit">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="__PUBLIC__/js/jquery-1.10.2.js"></script>
+    <script>window.parent.scrollTo(0,0);</script>
+    <script>
+        function confirm(){
+            var result = false;
+            if($("#Fn_Amount").val()==""){
+                $(".field-validation-valid").eq(0).html("兑换金额为必填项!");
+                return false;
+            }else if(isNaN($("#Fn_Amount").val())){
+                $(".field-validation-valid").eq(0).html("兑换金额为整数!");
+                return false;
+            }else if($("#Fn_Amount").val()<1){
+                $(".field-validation-valid").eq(0).html("兑换金额要大于1!");
+                return false;
+            }
+            if($("#fc_TwoPassword").val()==""){
+                $(".field-validation-valid").eq(2).html("安全密码为必填项!");
+                return false;
+            }else{
+                var pass = $("#fc_TwoPassword").val();
+                $.ajax({
+                    async:false,
+                    type:"post",
+                    url:"__URL__/passyanzheng",
+                    dataType: "text",
+                    data:{pass:pass},
+                    success:
+                    function(data){
+                        if(data != 1){
+                            $(".field-validation-valid").eq(2).html("安全密码不正确!请重新填写!");
+                            result=false;
+                        }else{
+                            $(".field-validation-valid").eq(2).html("");
+                            result=true;
+                        }
+                    }
+                })
+            }
+            return result;
+        }
+    </script>
+</body>
+</html>

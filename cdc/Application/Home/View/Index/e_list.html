@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="__PUBLIC__/css/jquery-confirm.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/mobilemain.css" type="text/css" rel="stylesheet">
+    <link href="__PUBLIC__/css/main.css" type="text/css" rel="stylesheet">
+
+</head>
+<body>
+
+    <div class="container body-content">
+
+        <div class="fanhuian mobileyc"><a class="ui-button fleft" href="__URL__/E_recharge">返回列表</a></div>
+        <div id="load" style="display:none;z-index:60;">正在加载请稍后....</div>
+
+        <form action="__URL__/E_money" onSubmit="return confirm();" id="form0" method="post">
+            <input name="__RequestVerificationToken" value="_1d7kR7vyM5xnMGmbjoRYjvQlRsSE10Eki4nG4CdKCmBHPzJPvDNsb-SZiZuOL3eu7KPa65AHsljzFMkWxn_xIwb4gi8e2S1wLkhMvHV2CZacNs90" type="hidden"><!--防止跨越提交-->
+            <div class="form-horizontal cms-bootstrap">
+                <!--显示错误验证信息-->
+                <div class="form-group">
+                    <label class="editing-form-label-cell control-label col-md-2 col-xs-4 col-sm-4" for="Fn_RemitAccount_ItemID">收款银行卡号</label>
+                    <div class="editing-form-value-cell col-md-10 col-xs-8 col-sm-8">
+                        <select data-val="true" data-val-number="The field 收款银行卡号 must be a number." data-val-required="收款银行卡号必填项！" id="Fn_RemitAccount_ItemID" name="Fn_RemitAccount_ItemID" class="valid">
+                            <volist name="ren" id="val">
+                            <option value="{$val.yinhangka}">{$val.name},{$val.yinhangka}</option>
+                            </volist>
+                        </select>
+                        <span class="field-validation-valid" data-valmsg-for="Fn_RemitAccount_ItemID" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="editing-form-label-cell control-label col-md-2 col-xs-4 col-sm-4" for="Fn_Amount">充值金额</label>
+                    <div class="editing-form-value-cell col-md-10 col-xs-8 col-sm-8">
+                        <input class="text-box single-line" data-val="true" data-val-number="The field 充值金额 must be a number." data-val-range="充值金额必须大于1！" data-val-range-max="2147483647" data-val-range-min="1" data-val-required="充值金额必填项！" id="Fn_Amount" name="Fn_Amount" value="" type="text">
+                        <span class="field-validation-valid" data-valmsg-for="Fn_Amount" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+<!--                <div class="form-group">
+                    <label class="editing-form-label-cell control-label col-md-2 col-xs-4 col-sm-4" for="Fdt_RemiDate">充值时间</label>
+                    <div class="editing-form-value-cell col-md-10 col-xs-8 col-sm-8">
+                        <div class="input-group date form_datetime col-md-5" id="datetimepicker" data-date-format="yyyy-mm-dd hh:ii">
+                            <input class="form-control xxcz" data-val="true" data-val-date="The field 充值时间 must be a date." data-val-required="充值时间必填项！" id="Fdt_RemiDate" name="Fdt_RemiDate" readonly="readonly" value="" type="text">
+                            <span class="input-group-addon" style="float: left; width: 40px; height: 34px;"><span class="glyphicon glyphicon-remove"></span></span>
+                            <span class="input-group-addon" style="float: left; width: 40px; height: 34px;"><span class="glyphicon glyphicon-th"></span></span>
+                        </div>
+                        <span class="field-validation-valid" data-valmsg-for="Fdt_RemiDate" data-valmsg-replace="true"></span>
+                    </div>
+                </div>-->
+                <div class="form-group">
+                    <label class="editing-form-label-cell control-label col-md-2 col-xs-4 col-sm-4" for="Fc_Remark">说明</label>
+                    <div class="editing-form-value-cell col-md-10 col-xs-8 col-sm-8">
+                        <textarea class="form-control" cols="20" id="Fc_Remark" name="Fc_Remark" rows="2"></textarea>
+                        <span class="field-validation-valid" data-valmsg-for="Fc_Remark" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="editing-form-label-cell control-label col-md-2 col-xs-4 col-sm-4" for="fc_TwoPassword">安全密码</label>
+                    <div class="editing-form-value-cell col-md-10 col-xs-8 col-sm-8">
+                        <input class="form-control" data-val="true" data-val-required="安全密码必填项！" id="fc_TwoPassword" name="fc_TwoPassword" type="password">
+                        <span class="field-validation-valid" data-valmsg-for="fc_TwoPassword" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+
+
+                <div class="form-group redbutton">
+                    <div class="form-group-submit col-md-10">
+                        <input value="提交信息" id="save" class="btn btn-default" type="submit">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="__PUBLIC__/js/jquery-1.10.2.js"></script>
+    <script>
+        function confirm(){
+            var result=false;
+            if($("#Fn_Amount").val()==""){
+                $(".field-validation-valid").eq(1).html("请输入充值金额!");
+                return false;
+            }else if(isNaN($("#Fn_Amount").val())){
+                $(".field-validation-valid").eq(1).html("请输入数字!");
+                return false;
+            }else if($("#Fn_Amount").val()<1){
+                $(".field-validation-valid").eq(1).html("充值金额必须大于1!");
+                return false;
+            }else if($("#Fn_Amount").val()>1000000){
+                $(".field-validation-valid").eq(1).html("充值金额必须小于一百万!");
+                return false;
+            }
+            if($("#fc_TwoPassword").val()==""){
+                $(".field-validation-valid").eq(3).html("请输入您的安全密码以完成修改!");
+                return false;
+            }else{
+                var value = $("#fc_TwoPassword").val();
+                $.ajax({
+                    async:false,
+                    type:"post",
+                    url:"__URL__/securityVerification",
+                    dataType: "text",
+                    data:{pass:value},
+                    success:
+                    function(data){
+                        if(data!=1){
+                            $(".field-validation-valid").eq(3).html("安全密码错误!请重新输入!");
+                            result=false;
+                        }else{
+                            result=true;
+                        }
+                    }
+                })
+            }
+            return result;
+        }
+    </script>
+    <div class="datetimepicker datetimepicker-dropdown-bottom-right dropdown-menu" style="left: 139.667px; z-index: 1010;"><div class="datetimepicker-minutes" style="display: none;"><table class=" table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><span class="glyphicon glyphicon-arrow-left"></span> </th><th colspan="5" class="switch">24 九月 2016</th><th class="next" style="visibility: visible;"><span class="glyphicon glyphicon-arrow-right"></span> </th></tr></thead><tbody><tr><td colspan="7"><span class="minute">15:00</span><span class="minute">15:01</span><span class="minute">15:02</span><span class="minute">15:03</span><span class="minute">15:04</span><span class="minute">15:05</span><span class="minute">15:06</span><span class="minute">15:07</span><span class="minute">15:08</span><span class="minute">15:09</span><span class="minute">15:10</span><span class="minute">15:11</span><span class="minute">15:12</span><span class="minute">15:13</span><span class="minute">15:14</span><span class="minute">15:15</span><span class="minute">15:16</span><span class="minute">15:17</span><span class="minute">15:18</span><span class="minute">15:19</span><span class="minute">15:20</span><span class="minute">15:21</span><span class="minute">15:22</span><span class="minute">15:23</span><span class="minute">15:24</span><span class="minute">15:25</span><span class="minute">15:26</span><span class="minute active">15:27</span><span class="minute">15:28</span><span class="minute">15:29</span><span class="minute">15:30</span><span class="minute">15:31</span><span class="minute">15:32</span><span class="minute">15:33</span><span class="minute">15:34</span><span class="minute">15:35</span><span class="minute">15:36</span><span class="minute">15:37</span><span class="minute">15:38</span><span class="minute">15:39</span><span class="minute">15:40</span><span class="minute">15:41</span><span class="minute">15:42</span><span class="minute">15:43</span><span class="minute">15:44</span><span class="minute">15:45</span><span class="minute">15:46</span><span class="minute">15:47</span><span class="minute">15:48</span><span class="minute">15:49</span><span class="minute">15:50</span><span class="minute">15:51</span><span class="minute">15:52</span><span class="minute">15:53</span><span class="minute">15:54</span><span class="minute">15:55</span><span class="minute">15:56</span><span class="minute">15:57</span><span class="minute">15:58</span><span class="minute">15:59</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">今天</th></tr></tfoot></table></div><div class="datetimepicker-hours" style="display: none;"><table class=" table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><span class="glyphicon glyphicon-arrow-left"></span> </th><th colspan="5" class="switch">24 九月 2016</th><th class="next" style="visibility: visible;"><span class="glyphicon glyphicon-arrow-right"></span> </th></tr></thead><tbody><tr><td colspan="7"><span class="hour">0:00</span><span class="hour">1:00</span><span class="hour">2:00</span><span class="hour">3:00</span><span class="hour">4:00</span><span class="hour">5:00</span><span class="hour">6:00</span><span class="hour">7:00</span><span class="hour">8:00</span><span class="hour">9:00</span><span class="hour">10:00</span><span class="hour">11:00</span><span class="hour">12:00</span><span class="hour">13:00</span><span class="hour">14:00</span><span class="hour active">15:00</span><span class="hour">16:00</span><span class="hour">17:00</span><span class="hour">18:00</span><span class="hour">19:00</span><span class="hour">20:00</span><span class="hour">21:00</span><span class="hour">22:00</span><span class="hour">23:00</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">今天</th></tr></tfoot></table></div><div class="datetimepicker-days" style="display: block;"><table class=" table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><span class="glyphicon glyphicon-arrow-left"></span> </th><th colspan="5" class="switch">九月 2016</th><th class="next" style="visibility: visible;"><span class="glyphicon glyphicon-arrow-right"></span> </th></tr><tr><th class="dow">日</th><th class="dow">一</th><th class="dow">二</th><th class="dow">三</th><th class="dow">四</th><th class="dow">五</th><th class="dow">六</th></tr></thead><tbody><tr><td class="day old">28</td><td class="day old">29</td><td class="day old">30</td><td class="day old">31</td><td class="day">1</td><td class="day">2</td><td class="day">3</td></tr><tr><td class="day">4</td><td class="day">5</td><td class="day">6</td><td class="day">7</td><td class="day">8</td><td class="day">9</td><td class="day">10</td></tr><tr><td class="day">11</td><td class="day">12</td><td class="day">13</td><td class="day">14</td><td class="day">15</td><td class="day">16</td><td class="day">17</td></tr><tr><td class="day">18</td><td class="day">19</td><td class="day">20</td><td class="day">21</td><td class="day">22</td><td class="day">23</td><td class="day active">24</td></tr><tr><td class="day">25</td><td class="day">26</td><td class="day">27</td><td class="day">28</td><td class="day">29</td><td class="day">30</td><td class="day new">1</td></tr><tr><td class="day new">2</td><td class="day new">3</td><td class="day new">4</td><td class="day new">5</td><td class="day new">6</td><td class="day new">7</td><td class="day new">8</td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">今天</th></tr></tfoot></table></div><div class="datetimepicker-months" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><span class="glyphicon glyphicon-arrow-left"></span> </th><th colspan="5" class="switch">2016</th><th class="next" style="visibility: visible;"><span class="glyphicon glyphicon-arrow-right"></span> </th></tr></thead><tbody><tr><td colspan="7"><span class="month">一月</span><span class="month">二月</span><span class="month">三月</span><span class="month">四月</span><span class="month">五月</span><span class="month">六月</span><span class="month">七月</span><span class="month">八月</span><span class="month active">九月</span><span class="month">十月</span><span class="month">十一月</span><span class="month">十二月</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">今天</th></tr></tfoot></table></div><div class="datetimepicker-years" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><span class="glyphicon glyphicon-arrow-left"></span> </th><th colspan="5" class="switch">2010-2019</th><th class="next" style="visibility: visible;"><span class="glyphicon glyphicon-arrow-right"></span> </th></tr></thead><tbody><tr><td colspan="7"><span class="year old">2009</span><span class="year">2010</span><span class="year">2011</span><span class="year">2012</span><span class="year">2013</span><span class="year">2014</span><span class="year">2015</span><span class="year active">2016</span><span class="year">2017</span><span class="year">2018</span><span class="year">2019</span><span class="year old">2020</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">今天</th></tr></tfoot></table></div></div>
+</body>
+</html>

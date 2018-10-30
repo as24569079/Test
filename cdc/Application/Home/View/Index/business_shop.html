@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>商品搜索 </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="__PUBLIC__/shopping/css/style.css">
+        <link rel="stylesheet" href="__PUBLIC__/shopping/css/chanpin.css">
+        <link rel="stylesheet" href="__PUBLIC__/shopping/css/sea.css">
+        <link rel="stylesheet" href="__PUBLIC__/shopping/css/index.css">
+        <link rel="shortcut icon" href="__PUBLIC__/images/bitbug_favicon.ico" type="image/x-icon">
+        <script type="text/javascript" src="__PUBLIC__/shopping/js/jquery-1.8.2.min.js"></script> 
+        <script type="text/javascript" src="__PUBLIC__/shopping/jq/chanpin.js"></script> 
+         <style>
+  .pages a,.pages span {
+    display:inline-block;
+    padding:2px 5px;
+    margin:0 1px;
+    
+    border:1px solid #f0f0f0;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    border-radius:3px;
+}
+.pages a,.pages li {
+    display:inline-block;
+    list-style: none;
+    text-decoration:none; color:#58A0D3;
+}
+.pages a.first,.pages a.prev,.pages a.next,.pages a.end{
+    margin:0;
+}
+.pages a:hover{
+    border-color:#50A8E6;
+}
+.pages span.current{
+    background:#50A8E6;
+    color:#FFF;
+    font-weight:700;
+    border-color:#50A8E6;
+}
+        </style>
+    </head>
+    <body class="root1200">
+        <form method="post" id="form">
+        <div class="ng-toolbar">
+            <div class="ng-toolbar-con wrapper">
+                <div class="ng-toolbar-left">
+                    <a class="ng-bar-node ng-site-nav-box" href="__URL__/index">
+                        <!--<i class="ng-iconfont ng-backhome"></i>-->
+                        <span>返回官网首页</span>
+                        <i class="ng-line ng-iconfont ml10"></i>
+                    </a>
+                    <div class="ng-bar-node-box ng-site-nav-box">
+                        <a class="ng-bar-node ng-site-nav-box" href="__URL__/shop_index">
+                        <!--<i class="ng-iconfont ng-backhome"></i>-->
+                        <span>返回商城首页</span>
+                        <i class="ng-line ng-iconfont ml10"></i>
+                    </a>
+                    </div>
+                </div>
+                <div class="ng-toolbar-right">
+                    <a class="ng-bar-node username-bar-node username-bar-node-showside">
+                        <span></span>
+                        <em class="hasmsg ng-iconfont"></em>
+                    </a>
+                    <if condition='$find neq ""'>
+                    <div class="ng-bar-node-box username-handle"  id="username-node-slide">
+                        <a class="ng-bar-node username-bar-node username-bar-node-noside">
+                            <span id="usernameHtml02">{$find.real_name}</span>
+                            <em class="hasmsg ng-iconfont"></em>
+                            <em class="ng-iconfont down"></em>
+                        </a>
+                        <div class="ng-d-box ng-down-box ng-username-slide" style="display: none" id="guanli">
+                            <a class="ng-vip-union" href="__URL__/myhome" target="_blank">账号管理</a>
+                            <a class="ng-vip-union" href="__URL__/member" target="_blank">资质管理</a>
+                            <a href="__URL__/signOut">退出登录</a>
+                        </div>
+                    </div>
+                    <else/>
+                    <div class="ng-bar-node reg-bar-node" id="username-node">
+                        <a class="login" href="__URL__/login">登录</a>
+                        <a class="login reg-bbb" href="__URL__/register" target="_blank">注册</a>
+                    </div>
+                    </if>
+                    <if condition='$find neq ""'>
+<!--                    <div class="ng-bar-node-box myorder-handle">
+                        <a class="ng-bar-node ng-bar-node-fix touch-href ng-bar-node-pr5" href="__URL__/my">
+                            <span>我的订单</span>
+                            <em class="ng-iconfont down"></em>
+                        </a>
+                        <div class="ng-down-box ng-d-box myorder-child" style="display: none">
+                            <a href='__URL__/member#dingdanxiangqing'>未发货</a>
+                            <a>已发货</a>
+                        </div>
+                    </div>-->
+                    </if>
+                    <if condition='$find neq ""'>
+                    <a class="ng-bar-node ng-bar-node-mini-cart" href="__URL__/gouwuchejs">
+                        <span>购物车</span>
+                        <em class="ng-iconfont cart"></em>
+                        <span class="total-num-box">
+                            <b class="total-num J_cart_total_num" style="background:#db0638">{$gouwunum}</b>
+                            <span class="total-num-bg-box">
+                                <em></em>
+                                <i></i>
+                            </span>
+                        </span>
+                    </a>
+                        </if>
+                </div>
+                <div class="ng-minicart-slide-box"></div>
+            </div>
+        </div>
+        <!--头部内容-->
+        <div class="ng-header ng-channel-header">
+            <div class="ng-header-con">
+                <div class="wrapper">
+                    <div class="ng-logo-box">
+                        <a class="ng-logo" href="__URL__/index" target="_blank" style="width:248px;height:74px">
+                            <img src="__PUBLIC__/images/chengcuicheng.png" height="74" width="248">
+                        </a>
+                        <span class="channel-logo"></span>
+                    </div>
+                    <div class="ng-search channel-search">
+                        <form action='__URL__/business_shop' method="post">
+                        <div class="g-search">
+                            <div class="search-keyword-box" style='border-color:#db0638'>
+                                <input tabindex="0" id="sea" type="text" class="search-keyword"  value="" autocomplete="off" name='gjz'>
+                            </div>
+                            <a id="bnt_tiao2"><input class="search-btn" value="搜索" type="submit" style='background:#db0638;color:#fff'></a>
+                            <div id="snKeywordNew" class="g-search-hotwords" style='color:#000'>
+                                <volist name='category_tj' id='val'>
+                                    <a  target="_blank" href="__URL__/business_shop?category_id={$val.category_id}&id=" style='color:#999'>{$val.category_name}</a>
+                                </volist>
+                            </div>
+                            <div class="g-ac-results hide" id="sea_jilu" style="height:270px;overflow: hidden;">
+                            <ul style=''>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                            </div>
+                                                   <script>
+                            $(document).ready(function(event){
+                             $("#bnt_tiao").click(function(){
+                                    var value = $.trim($("#ssz").val());
+                                    var qb = "所有商品";
+                                    if(value != ""){
+                                        $("#bnt_tiao").attr("href","__URL__/business_shop/mc/"+value);
+                                    }else{
+                                        $("#bnt_tiao").attr("href","__URL__/business_shop/mc/"+qb);
+                                    }
+                                })
+                                var last;
+                                var i = 0;
+                                $("#sea").keyup(function(event){
+                                    last = event.timeStamp;
+                                    var value = $.trim($("#sea").val());
+                                    $("#ssz").val(value);
+//                                    setTimeout(function(){ 
+                                        if(last-event.timeStamp==0)
+                                        {
+                                          if(event.which!=40&&event.which!=8&&event.which!=32&&event.which!=38&&event.which!=39&&event.which!=37&&event.which!=13){  
+                                            $("#sea_jilu").show();
+                                            $.ajax({
+                                                type:"post",
+                                                url:"__URL__/seaajax",
+                                                dataType: "text",
+                                                data:"value="+ value,
+                                                success:
+                                                function(data){
+//                                                    alert(data);
+                                                    eval("var obj="+data);
+                                                    if(obj.length>0){
+                                                        for(var i=0;i<obj.length;i++){
+                                                            $("#sea_jilu > ul > li").eq(i).text(obj[i].item_name).attr("data-val",obj[i].item_name);
+                                                        }
+                                                    }
+                                                }
+                                            })
+                                        }
+                                    }
+//                                        },1000);
+                                    if(event.which==8){
+                                           $("#sea_jilu > ul > li").empty().removeAttr("data-val");
+                                           $("#ssz").val("");
+                                           $(".sea_jilu").hide();
+                                    } 
+                                    if(event.which==40){
+                                        var length = $("#sea_jilu > ul > li").length;
+                                        if(i<length){
+                                            $("#sea_jilu > ul > li").eq(i).attr("class","xuanzeyan").siblings().removeAttr("class");
+                                        }
+                                        i++;
+                                        if(i == length){
+                                            i=0;
+                                        }
+                                    }
+                                    if(event.which==38){
+                                        var length = $("#sea_jilu > ul > li").length;
+                                        i--;
+                                        if(i<length){
+                                            $("#sea_jilu > ul > li").eq(i).attr("class","xuanzeyan").siblings().removeAttr("class");
+                                        }
+                                        if(i == 0){
+                                            i = length;
+                                        }
+                                    }
+                                    if(event.which==13){
+                                        $("#sea").val($(".xuanzeyan").text());
+                                        $("#sea_jilu > ul > li").empty().removeAttr("data-val");
+                                        $("#sea_jilu").hide();
+                                        i=0;
+                                    }
+                                })
+                                $("#sea_jilu > ul > li").mouseover(function(){
+                                    $(this).attr("class","xuanzeyan").siblings().removeAttr("class");
+                                }).click(function(){
+                                    var val = $(this).attr("data-val");
+                                    $("#sea").val(val);
+                                    $("#ssz").val(val);
+                                    $("#sea_jilu > ul > li").empty().removeAttr("data-val");
+                                    $("#sea_jilu").hide();
+                                })
+                                $("#sea_jilu").mouseleave(function(){
+                                    $("#sea_jilu > ul > li").empty().removeAttr("data-val");
+                                    $("#sea_jilu").hide();
+                                })
+                            })
+                        </script>
+                        </div>
+                        </form>
+                    </div>
+                    <div style="float:right;margin-top: 5px;">
+                        <img src="__PUBLIC__/images/erwei.jpg" width="100" height="100">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ng-nav-bar ng-nav-bar-chanel">
+                    <div class="ng-sort">
+                        <a class="ng-all-hook" href="__URL__/shop_index">               
+                            <span>商城首页</span>
+                        </a>
+                    </div>
+                    <div class="ng-nav-index">
+                        <ul class="ng-nav">     
+                      <if condition="$getid eq 2 ">
+                   <li><a href="__URL__/business_shop/id/2" onclick="javascript:TipText(2);" style="color:yellow !important">购物商城</a></li>
+                   <else/>
+                     <li><a href="__URL__/business_shop/id/2" onclick="javascript:TipText(2);">购物商城</a></li>
+                    </if>
+                      <if condition="$getid eq 1 ">
+                   <li><a href="__URL__/business_shop/id/1" onclick="javascript:TipText(2);"  style="color:yellow !important">积分商城</a></li>
+                   <else/>
+               <li><a href="__URL__/business_shop/id/1" onclick="javascript:TipText(2);">积分商城</a></li>
+                    </if>
+                  
+                   
+                                 
+                   <!--<li><a href="__URL__/business_shop/id/3" onclick="javascript:TipText(2);">建材商城</a></li>-->
+                   <!--<li><a href="__URL__/business_shop2/id/4">年货商城</a></li>-->
+                   <input type='hidden' id='timefu' value='{$Think.get.timefu}'>
+                        </ul>
+                    </div>
+                    <div class="ng-nav-right-txtact"></div>
+                </div>
+                <div class="search-main" style="margin: 10px auto 0;">
+                    <if condition="$getid neq ''">
+                    <div class="search-path-box clearfix">
+                        <div class="search-path clearfix">
+                            
+                            <div class="dir-list l">
+           
+                                <a class="all" title="全部结果"><if condition="$getid eq 1 ">
+                                    当前商城:积分商城>
+                                    <elseif condition='$getid eq 2'/>当前商城:购物商城>
+                                    
+                                </if>
+                                    全部结果</a>
+                                <i>></i>
+                                <dl class="down">
+                                    <dt>
+                                        <a href='__URL__/business_shop?fenlei=1&id={$getid}'>全部分类</a>
+                                        <b></b>
+                                    </dt>
+                                    <dd id="leibie">
+                                    <volist name="ren" id="vel">
+                                        <volist name="vel.parent" id="va">
+                                            <a href="__URL__/business_shop?category_id={$va.category_id}&id={$getid}">{$va.category_name}</a>
+                                        </volist>
+                                    </volist>
+                                    </dd>
+                                </dl>
+                                <i>></i>
+                                <if  condition="$weizhi.category_name neq ''">
+        当前商品分类:<span style="color:red;">{$weizhi.category_name}</span>
+    </if>
+                            </div>
+                            <div class="ss-list l">
+                                <div class="ofl hidden" style="width: 539px;">
+                                    <div class="a-list" style="width: 133px;">
+                                        <span class="l" id="jieguo" style="word-break: keep-all"></span>
+                                    </div>
+                                </div>
+                                <div class="item-opt"></div>
+                            </div>
+                            <span class="r">
+                                共<strong><if condition="$shu neq ''">{$shu}<else/>0</if></strong>个结果
+                            </span>
+                        </div>
+<!--                        <a class="all-opt-btn open" id="shaixuan">收起筛选
+                            <i></i></a>-->
+                    </div>
+                    <else/>
+                      <div class="search-path-box clearfix">
+                        <div class="search-path clearfix">
+                            
+                            <div class="dir-list l">
+           
+                                 <if  condition="$weizhi.category_name neq ''">
+                                    当前商品分类:<span style="color:red;">{$weizhi.category_name}</span>
+                                </if>
+                                
+                            </div>
+                        </div>
+<!--                        <a class="all-opt-btn open" id="shaixuan">收起筛选
+                            <i></i></a>-->
+                    </div>
+                 </if>
+<!--                    <div class="search-opt">
+                        <div class="opt-list">
+                            <dl class="clearfix prive-section">
+                                <dt>价格<dt>
+                                <dd>
+                                    <div class="prive-item">
+                                        <a>0-70</a>
+                                        <a>70-150</a>
+                                        <a>150-200</a>
+                                        <a>200-400</a>
+                                        <a>400-700</a>
+                                        <a>700以上</a>
+                                    </div>
+                                    <div class="seif-select">
+                                        <input type="text" id="zuidi">
+                                        <span>-</span>
+                                        <input type="text" id="zuigao">
+                                        <a class="confirm disabled" id="queding" onclick="jishu()">确定</a>
+                                        <span id="tishi" style="color:#f70"></span>
+                                    </div>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>-->
+                    <div class="search-results clearfix mt10">
+                        <div class="results-rblock ml10 " style="float:left">
+                              <if condition="$getid neq '' ">
+                            <div class="second-filter">
+                              
+                                <div class="sort">
+                                    <if condition="$Think.session.seaxl eq '' && $Think.session.seajg eq '' ">
+                                    <a class="def cur" title="默认排序" id="mr" href='__URL__/seacookie?id={$getid}&category_id={$fenleis}'>默认</a>
+                                    <else/>
+                                        <a class="def" title="默认排序" id="mr" href='__URL__/seacookie?id={$getid}&category_id={$fenleis}'>默认</a>
+                                    </if>
+                                     <if condition="$Think.session.seaxl eq ''">
+                                    <a class="xp" title="按销量从高到低排序" id="xlss" href='__URL__/business_shop?xl=1&id={$getid}&category_id={$fenleis}'>销量</a>
+                                    <else/>
+                                    <a class="xp cur" title="按销量从高到低排序" id="xlss" href='__URL__/business_shop?xl=1&id={$getid}&category_id={$fenleis}'>销量</a>
+                                     </if>
+                                    <!--<a class="xp" title="按评价从高到低排序" id="pj">评价</a>-->
+                                    <if condition="$Think.session.seajg eq ''">
+                                        <a class="prive" title="按价格从高到低排序" href='__URL__/business_shop?jg=1&id={$getid}&category_id={$fenleis}'>价格</a>
+                                        <elseif condition="$Think.session.seajg eq 1 "/>
+                                            <a class="prive asc" title="按价格从低到高排序" href='__URL__/business_shop?jg=2&id={$getid}&category_id={$fenleis}'>价格</a>
+                                           
+                                        <else/>
+                                           <a class="prive desc" title="按价格从高到低排序" href='__URL__/business_shop?jg=1&id={$getid}&category_id={$fenleis}'>价格</a>
+                                    </if>
+                                    
+                                </div>
+                                
+                                <div class="_city" style="margin-left: 30px; height: 38px;line-height:38px;">
+                                    <!--<span class="span-address">收货地:</span>-->
+                                    <div class="cityselect">
+                                        <div class="ui-city">
+                                            <a class="ui-city-toggle">
+                                                <em class="address-placement">
+<!--                                                    <span class="pr dn">天津</span>-->
+                                                </em>
+                                                <b class="arr"></b>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+<!--                                <div class="label-screening">
+                                    <div class="condition" style="height: auto;">
+                                        <a id="stock">
+                                            <b></b>
+                                            <span>有货商品</span>
+                                        </a>
+                                        <a class="">
+                                            <b></b>
+                                            <span>海外购</span>
+                                        </a>
+                                        <a class="">
+                                            <b></b>
+                                            <span>促销</span>
+                                        </a>
+                                    </div>
+                                    <div class="little-page"></div>
+                                </div>-->
+
+                            </div>
+                                  </if>
+                            <div class="filter-results productMain clearfix" style='margin-left:100px !important;width:100% !important'>
+                                <div id='sousuos'style='width:200px;font-size:16px;margin-left:500px;margin-top: 200px'>没有找到相关搜索结果</div>
+                                <ul class="clearfix" id="zong">
+                                    <volist name="arr" id="val" class="jjj">
+                          
+                                    <li class="product subcode multi deliveryTimeFinish" data-id="{$val.xiaoliang}" data-pj="{$val.pinglun}" data-jiage="{$val.jiage}" data-mo="{$val.id}" >
+                                        <input type="hidden" value="{$val.jiage}" name="jiage[]" class="jiage">
+                                        <input type="hidden" value="{$val.leibie}" name="leibie[]">
+                                        <input type="hidden" value="{$val.shuliang}" name="shuliang[]">
+                                        <input type="hidden" value="{$val.xiaoliang}" name="xiaoliang[]">
+                                        <div class="border-out">
+                                            <div class="border-in">
+                                                <div class="wrap">
+                                                    <div class="res-img">
+                                                        <div class="img-block">
+                                                            <a class="sellPoint" target="_blank" href="__URL__/product_details/id/{$val.item_id}">
+                                                                <img class="search-loading" width="200" height="200" src="{$val.img_url}">
+                                                                <i class="exp-bg "></i>
+                                                            </a>
+                                                        </div>
+                                                        <div class="img-change">
+                                                            <a class="imgScrollBtn01_3 disabled">
+                                                                <b></b>
+                                                            </a>
+                                                            <a class="imgScrollBtn02_3">
+                                                                <b></b>
+                                                            </a>
+                                                            <div class="imgScrollList_3">
+                                                                <dl class="subCode">
+                                                                    <dd>
+                                                                        <a class="select">
+                                                                            <img width="40" height="40" src="{$val.img_url}">
+                                                                        </a>
+                                                                    </dd>
+                                                                    <volist name="val.futu" id="vel">
+                                                                        <if condition="$vel.futu_url neq '' ">
+                                                                            <dd>
+                                                                                <a class="select">
+                                                                                    <img width="40" height="40" src="{$vel.futu_url}">
+                                                                                </a>
+                                                                            </dd>
+                                                                        </if>
+                                                                    </volist>
+                                                                    
+                                                                </dl>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="res-info">
+                                                        <p class="prive-tag">
+                                                            <em class="prive price " style="font-size:12px">
+                                                                <if condition="$val.mall_id eq 1"><s>积分:{$val.ygwb}</s>　积分:{$val.sMoney}<else/><s>电子币{$val.original_price}</s>　电子币{$val.eMoney}</if></span>    
+                                                            </em>
+                                                        </p>
+                                                        <p class="sell-point">
+                                                            <a href="__URL__/product_details/item_id/{$val.item_id}" target="_blank" class="sellPoint">
+                                                                {$val.item_name}
+                                                            </a>
+                                                        </p>
+                                                        
+                                                        <p class="com-cnt">
+<!--                                                            <i>评论</i>
+                                                            <a class="num" href="__URL__/chanpin/id/{$val.id}" target="_blank">
+                                                                {$val.pinglun}
+                                                            </a>-->
+                                                            <i>销量</i>
+                                                            <a class="num">
+                                                                <if condition="$val.rale eq '' ">
+                                                                    0
+                                                                    <else/>
+                                                                    {$val.rale}
+                                                                </if>
+                                                            </a>
+<!--                                                            <a class="collect">
+                                                                收藏
+                                                                <input type="hidden" value="{$val.id}">
+                                                            </a>-->
+                                                        </p>
+                                                      
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                     
+                                    </volist>
+                                </ul>
+                            </div>
+                               <div class="pages">
+           <center>{$show}</center>
+        </div>
+                        </div>
+                      
+                        <div class="results-lblock"></div>
+                    </div>
+                </div>
+        <!--版权区-->
+<!--        <div class="ng-footer">
+            <div class="ng-ser-box">
+                <div class="ng-ser-box-con">
+                    <div class="ng-promise">
+                        <dl>
+                            <dt class="zheng">正品保障</dt>
+                            <dd>
+                                <p>
+                                    <strong>
+                                        <a>正品保障</a>
+                                    </strong>
+                                </p>
+                                <p>正品保障，提供发票</p>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt class="jisu">极速物流</dt>
+                            <dd>
+                                <p>
+                                    <strong>
+                                        <a>急速物流</a>
+                                    </strong>
+                                </p>
+                                <p>急速物流，急速送达</p>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt class="wuyou">无忧售后</dt>
+                            <dd>
+                                <p>
+                                    <strong>
+                                        <a>无忧售后</a>
+                                    </strong>
+                                </p>
+                                <p>7天无理由退换货</p>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt class="te">特色服务</dt>
+                            <dd>
+                                <p>
+                                    <strong>
+                                        <a>特色服务</a>
+                                    </strong>
+                                </p>
+                                <p>私人定制家电套餐</p>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt class="help">帮助中心</dt>
+                            <dd>
+                                <p>
+                                    <strong>
+                                        <a>帮助中心</a>
+                                    </strong>
+                                </p>
+                                <p>您的购物指南</p>
+                            </dd>
+                        </dl>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="ng-help-box">
+                        <dl>
+                            <dt>购物指南</dt>
+                            <dd>
+                                <a>导购演示</a>
+                            </dd>
+                            <dd>
+                                <a>免费注册</a>
+                            </dd>
+                            <dd>
+                                <a>会员等级</a>
+                            </dd>
+                            <dd>
+                                <a>常见问题</a>
+                            </dd>
+                            <dd>
+                                <a>品牌大全</a>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>支付方式</dt>
+                            <dd>
+                                <a>易付宝支付</a>
+                            </dd>
+                            <dd>
+                                <a>网银支付</a>
+                            </dd>
+                            <dd>
+                                <a>快捷支付</a>
+                            </dd>
+                            <dd>
+                                <a>分期付款</a>
+                            </dd>
+                            <dd>
+                                <a>货到付款</a>
+                            </dd>
+                            <dd>
+                                <a>任性付支付</a>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>物流配送</dt>
+                            <dd>
+                                <a>免运费政策</a>
+                            </dd>
+                            <dd>
+                                <a>配送服务承诺</a>
+                            </dd>
+                            <dd>
+                                <a>签收验货</a>
+                            </dd>
+                            <dd>
+                                <a>物流查询</a>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>售后服务</dt>
+                            <dd>
+                                <a>退换货政策</a>
+                            </dd>
+                            <dd>
+                                <a>退换货流程</a>
+                            </dd>
+                            <dd>
+                                <a>购买延保服务</a>
+                            </dd>
+                            <dd>
+                                <a>退款说明</a>
+                            </dd>
+                            <dd>
+                                <a>退换货申请</a>
+                            </dd>
+                            <dd>
+                                <a>维修/保养</a>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>商家服务</dt>
+                            <dd>
+                                <a>商家入驻</a>
+                            </dd>
+                            <dd>
+                                <a>培训中心</a>
+                            </dd>
+                            <dd>
+                                <a>信息公告</a>
+                            </dd>
+                            <dd>
+                                <a>广告服务</a>
+                            </dd>
+                            <dd>
+                                <a>商家帮助</a>
+                            </dd>
+                            <dd>
+                                <a>服务市场</a>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="ng-app-down">
+                        <p>扫一扫</p>
+                        <a>
+                            <img width="87" height="87" src="__PUBLIC__/image/psb.jpg">
+                        </a>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="ng-new-pro">
+                <div class="ng-new-pro-con">
+                    <div class="ng-new-pro-list">
+                        <dl>
+                            <dt>
+                                <a>
+                                    <img src="__PUBLIC__/images/f1.png">
+                                </a>
+                            </dt>
+                            <dd>
+                                <p class="ng-title">
+                                    <a>政企采购</a>
+                                </p>
+                                <p class="ng-intro">
+                                    <a>为企业用户量身定做的采购平台，优选易购全站商品，为企业采购提供专业化的一站式采购解决方案。</a>
+                                </p>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <a>
+                                    <img src="__PUBLIC__/images/f2.png">
+                                </a>
+                            </dt>
+                            <dd>
+                                <p class="ng-title">
+                                    <a>众包</a>
+                                </p>
+                                <p class="ng-intro">
+                                    <a>以全渠道包销为主要特点，整合全社会众包资源，扶持创新企业，推广创新产品。</a>
+                                </p>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="ng-serch-suning">
+                        <dl>
+                            <dt></dt>
+                            <dd>
+                                <p class="ng-title">组员</p>
+                                <p class="ng-intro">
+                                    侯鑫
+                                    王悦
+                                    袁昕
+                                    张鹏
+                                    李震
+                                    何康<br>
+                                    李围龙
+                                    孙睿泽
+                                    岳利利
+                                </p>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="footer-egg-con"></div>
+                </div>
+                <div class="footer-egg-btn"></div>
+            </div>
+            <div class="ng-s-footer">
+                <div class="ng-s-f-con">
+                    <p class="ng-url-list">
+                        <a>云商</a>
+                        <span>|</span>
+                        <a>互联</a>
+                        <span>|</span>
+                        <a>金融</a>
+                        <span>|</span>
+                        <a>易付宝</a>
+                        <span>|</span>
+                        <a>PPTV</a>
+                        <span>|</span>
+                        <a>红孩子</a>
+                        <span>|</span>
+                        <a>滨购</a>
+                        <span>|</span>
+                        <a>乐购仕</a>
+                        <span>|</span>
+                        <a>物流</a>
+                        <span>|</span>
+                        <a>美国</a>
+                        <span>|</span>
+                        <a>香港</a>
+                        <span>|</span>
+                        <a>手机</a>
+                        <span>|</span>
+                        <a>酒店</a>
+                        <span>|</span>
+                        <a>知识产权举报</a>
+                    </p>
+                    <p class="ng-url-list">
+                        <a>关于易购</a>
+                        <span>|</span>
+                        <a>联系我们</a>
+                        <span>|</span>
+                        <a>诚聘英才</a>
+                        <span>|</span>
+                        <a>供应商入驻</a>
+                        <span>|</span>
+                        <a>广告平台</a>
+                        <span>|</span>
+                        <a>联盟</a>
+                        <span>|</span>
+                        <a>招标</a>
+                        <span>|</span>
+                        <a>友情链接</a>
+                        <span>|</span>
+                        <a>法律申明</a>
+                        <span>|</span>
+                        <a>用户体验提升计划</a>
+                        <span>|</span>
+                        <a>股东会员认证</a>
+                    </p>
+                    <p class="ng-copyright">                        
+                        Copyright© 2002-2016 ，天津天软公司版权所有
+                    </p>
+                    <p class="ng-copyright ng-copyright-2">
+                        出版物经营许可证新出发苏批字第A-243号
+                    </p>
+                    <p></p>
+                    <div class="ng-authentication">
+                        <a>
+                            <img width="76" height="24" src="__PUBLIC__/images/chengxin.png">
+                        </a>
+                        <a>
+                            <img width="76" height="24" src="__PUBLIC__/images/unicom.png">
+                        </a>
+                        <a>
+                            <img width="76" height="24" src="__PUBLIC__/images/dianxin.jpg">
+                        </a>
+                        <a>
+                            <img width="76" height="24" src="__PUBLIC__/images/dianzi.png">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="ng-fix-bar"></div>
+        </div>-->
+        <!--右侧购物车-->
+        <div class="sn-sidebar" style="display: none">
+            <div class="sn-sidebar-bg"></div>
+            <div class="sn-sidebar-tabs sn-sidebar-middle-tabs">
+                <div class="sn-sidebar-tabs sn-sidebar-middle-tabs-top">
+                    <div class="sn-sidebar-tab sn-sidebar-tab-member sn-sidebar-tab-js" style="visibility: visible;">
+                        <a>
+                            <i class="tab-icon tab-icon-member"></i>
+                            <i class="tab-icon-tip"></i>
+                        </a>
+                    </div>
+                    <div class="sn-sidebar-tab sn-sidebar-tab-cart sn-sidebar-tab-js">
+                        
+                            <div class="tab-cart-tip-warp-box">
+                                <div class="tab-cart-tip-warp">
+                                    <i class="tab-icon  tab-icon-cart"></i>
+                                    <i class="tab-icon-tip tab-icon-cart-tip"></i>
+                                    <span class="tab-cart-tip">购物车</span>
+                                    <span class="tab-cart-num J_cart_total_num">0</span>
+                                </div>
+                            </div>
+                        
+                    </div>
+                    <div class="sn-sidebar-tab sn-sidebar-tab-message sn-sidebar-tab-js">
+                        <a>
+                            <i class="tab-icon tab-icon-msg"></i>
+                            <i class="tab-icon-tip"></i>
+                            <span class="tab-tip">消息</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="sn-sidebar-tabs sn-sidebar-middle-tabs-bottom">
+                    <div class="sn-sidebar-tab sn-sidebar-tab-finance sn-sidebar-tab-js">
+                        <a>
+                            <i class="tab-icon tab-icon-finance"></i>
+                            <i class="tab-icon-tip"></i>
+                            <span class="tab-tip">理财</span>
+                        </a>
+                    </div>
+                    <div class="sn-sidebar-tab sn-sidebar-tab-history sn-sidebar-tab-js">
+                        <a>
+                            <i class="tab-icon tab-icon-history"></i>
+                            <i class="tab-icon-tip"></i>
+                            <span class="tab-tip">足迹</span>
+                        </a>
+                    </div>
+                    <div class="sn-sidebar-tab sn-sidebar-tab-sign sn-sidebar-tab-js">
+                        <a>
+                            <i class="tab-icon tab-icon-sign"></i>
+                            <i class="tab-icon-tip"></i>
+                            <span class="tab-tip">签到</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="sn-sidebar-tabs sn-sidebar-bottom-tabs">
+                <div class="sn-sidebar-tab sn-sidebar-wider-tab sn-sidebar-service sn-sidebar-tab-js">
+                    <a href="__URL__/liaotian_qian" target="_blank">
+                        <i class="tab-icon tab-icon-service"></i>
+                        <i class="tab-icon-tip"></i>
+                        <span class="tab-tip tab-tip-wider">在线咨询</span>
+                    </a>
+                </div>
+                <div class="sn-sidebar-tab sn-sidebar-wider-tab sn-sidebar-feedback sn-sidebar-tab-js">
+                    <a>
+                        <i class="tab-icon tab-icon-feedback"></i>
+                        <span class="tab-tip tab-tip-wider">意见反馈</span>
+                    </a>
+                </div>
+                <div class="sn-sidebar-tab sn-sidebar-wider-tab sn-sidebar-code sn-sidebar-tab-js">
+                    <a>
+                        <i class="tab-icon-tip tab-icon-code-tip"></i>
+                        <i class="tab-icon tab-icon-code"></i>
+                        <span></span>
+                    </a>
+                </div>
+                <div class="sn-sidebar-tab sn-sidebar-wider-tab sn-sidebar-to-top sn-sidebar-tab-js">
+                    <a>
+                        <i class="tab-icon tab-icon-to-top"></i>
+                        <span class="tab-tip tab-tip-wider" id="ding">返回顶部</span>
+                    </a>
+                </div>
+            </div>
+            <div class="tab-tip-code-warp">
+                <a>
+                    <img class="tab-tip-code-warp-img" src="__PUBLIC__/images/aoyun-code-img.png">
+                </a>
+            </div>
+            <div class="sn-sidebar-member-wrap member-white">
+                <div class="ng-sidebar-head">
+                    <dl class="userinfo">
+                        <dt>
+                            <a>
+                                <img class="custHeadImg" src="__PUBLIC__/images/0000000000_01_60x60.jpg" id="zujing_img">
+                            </a>
+                            <a></a>
+                        </dt>
+                        <dd>
+                            <p class="username" id="zujing">
+                                <a>尊敬的会员</a>
+                                <i class="sep">|</i>
+                                <a class="logout" href="__URL__/tuichu">退出</a>
+                            </p>
+                            <p class="pls-login">
+                                您好，请先<a class="login" href="__URL__/login">登录</a>!
+                            </p>
+                            <p class="links">
+                                <a>会员联盟</a>
+                                <i class="sep">|</i>
+                                <a class="qiandao">签到领云钻</a>
+                            </p>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="ng-sidebar-notices">
+                    <p class="ng-sidebar-notice">
+                        <i class="member-laba"></i>
+                        <a class="torenxin">0首付低月供，任性购物快行动！点击查额。</a>
+                    </p>
+                </div>
+                <a class="ng-sidebar-close"></a>
+            </div>
+            <div class="sn-sidebar-contents">
+                <div class="sn-sidebar-content sn-sidebar-cart" style="top: 0px;z-index: 0;">
+                    <div class="ng-sidebar-cart-wrapper">
+                        <div class="ng-min-cart" style="display: none" id="myCart_wu">
+                            <div class="g-cart-no-data">
+                                <div class="g-cart-tipbox" style="display: block">
+                                    <i class="icon"></i>
+                                    <h5>不要让您的购物车空着哦，快去逛逛吧</h5>
+                                    <div class="desc">
+                                        如果您已添加过宝贝，那就赶紧登录查看吧
+                                        <a class="btn" href="__URL__/login">登录</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ng-min-cart" id="myCart">
+                            <div class="g-cart-top">
+                                <div class="g-cart-info mt10">
+                                    <input type="checkbox" id="J_cart_checked_all" checked="checked">
+                                    <p>
+                                    <span class="l">共<em class="J_cart_total_num">0</em>件,已选<em class="J_cart_checked_num">1</em>件</span>
+                                    <a>
+                                        <span class="r check-all">查看全部</span>
+                                    </a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="g-cart-list-box g-sidebar-scrollbox" id="snCartList">
+                                <dl class="g-cart-store ">
+                                    <volist name="gouwuche" id="value">
+                                    <input type="hidden" value="{$value.bianhao}" name="gouwuche[]">
+                                    <dd class="g-cart-td fisrt">
+                                        <div class="g-cart-item ">
+                                            <div class="g-cart-close">
+                                                <a class="g-cart-del-handle"></a>
+                                                <input type="hidden" value="{$value.id}" class="spid">
+                                            </div>
+                                            <div class="g-cart-checkbox l">
+                                                <input type="checkbox" class="sn-sidebar-minicart-one-goods" checked="checked" name="duoxuan[]" value="{$value.jiage}">
+                                            </div>
+                                            <div class="g-cart-td-images l">
+                                                <a href="__URL__/product_details/id/{$value.bianhao}" target="_blank">
+                                                    <img width="60" height="60" src="{$value.lujing2}">
+                                                </a>
+                                            </div>
+                                            <div class="g-cart-td-msg">
+                                                <p>
+                                                    <a href="__URL__/product_details/id/{$value.bianhao}" target="_blank">{$value.mingcheng}</a>
+                                                </p>
+                                                <div class="clearfix">
+                                                    <span class="price r">
+                                                        ¥&nbsp;<em>{$value.jiage}.00</em>
+                                                    </span>
+                                                    <div class="g-cart-cout l">
+                                                        <a class="g-cart-cout-btnl g-cart-cout-btnl-disabled" data-val="{$value.jiage}"></a>
+                                                        <input type="text" maxlength="2" value="1" class="g-cart-cout-input" name="js_gouwu[]">
+                                                        <input type="hidden" value="{$value.shuliang}" class="g_cpsl">
+                                                        <a class="g-cart-cout-btnr " data-val="{$value.jiage}"></a>
+                                                    </div>
+                                                    <div class="g-cart-cout-text l" id="number">1</div>
+                                                </div>
+                                            </div>
+                                            <div class="opacity"></div>
+                                        </div>
+                                    </dd>
+                                    </volist>
+                                </dl>
+                                <div class="no-tip">没有更多商品啦</div>
+                            </div>
+                            <div class="g-cart-bottom">
+                                <div class="g-cart-info">
+                                    <div class="l">
+                                        <p>已选<em class="J_cart_checked_num">0</em>件</p>
+                                        <p>总价：<em class="J_cart_selected_money price" id="zongjia"></em></p>
+                                        <input type="hidden" id="zongjia_i" name="zongjia">
+                                    </div>
+                                    <a class="g-cart-checkout-btn r" id="jiesuan">去购物车结算<b></b></a>
+                                </div>
+                            </div>
+                            <script>
+                                $(function(){
+                                    if($("#zong li").length >0){
+                                        $("#sousuos").hide();
+                                    }else{
+                                      $("#sousuos").show();  
+                                    }
+                                    $("#jiesuan").click(function(){
+                                        var li = $(".g_cpsl");
+                                        var num = $(".g-cart-cout-input");
+                                        var shu = 0;
+//                                        var jsgl = $("input[name='js_gouwu[]']");
+//                                        var gouwuche = $("input[name='gouwuche[]']");
+//                                        var array = {}
+//                                        var arr = {}
+//                                        for(var i=0;i<jsgl.length;i++){
+//                                             arr[i] = jsgl.eq(i).val();  
+//                                             array[i] = gouwuche.eq(i).val();  
+//                                        }
+                                        for(var i=0;i<li.length;i++){
+                                            if(num.eq(i).val()*1 > li.eq(i).val()*1){
+                                                shu = 1;
+                                            }     
+                                        }
+                                        if(shu == 1){
+                                            alert("所选商品库存不足!")
+                                        }else{
+                                            var frm = document.getElementById('form');
+                                                frm.action='__URL__/gouwuchejs';
+                                                frm.submit()
+//                                            $.ajax({
+//                                                type:"post",
+//                                                url:"__URL__/gouwucheajax",
+//                                               data: { "gouwuche": array,"js_gouwu'": arr },  
+//                                                dataType: "json",  
+//                                                traditional: true,  
+//                                                success:
+//                                                function(data){
+//                                                    if(data==123){
+//                                                    }
+//                                                }
+//                                            })
+                                        }
+                                    })
+                                    $(".g-cart-cout-btnr").click(function(){
+                                        var value = $(this).siblings(".g-cart-cout-input").val();
+                                        var sl = $(this).siblings(".g_cpsl").val();
+                                        if(value*1 >= sl*1){
+                                            alert("商品库存不足!");
+                                        }else if(value <100){
+                                            $(this).siblings("a").attr("class","g-cart-cout-btnl");
+                                            $(this).siblings(".g-cart-cout-input").val(value*1+1*1);
+                                            $(this).parent().siblings("#number").text(value*1+1*1);
+                                            $("#zongjia").text($("#zongjia").text()*1+$(this).attr("data-val")*1);
+                                            $("#zongjia_i").val($("#zongjia").text());
+                                        }
+                                    })
+                                    $(".g-cart-cout-btnl-disabled").click(function(){
+                                        var value = $(this).siblings(".g-cart-cout-input").val();
+                                        if(value == 1){
+                                            $(this).attr("class","g-cart-cout-btnl g-cart-cout-btnl-disabled");
+                                        }else if(value > 0){
+                                            $(this).siblings(".g-cart-cout-input").val(value*1-1*1);
+                                            $(this).parent().siblings("#number").text(value*1-1*1);
+                                            $("#zongjia").text($("#zongjia").text()*1-$(this).attr("data-val")*1);
+                                            $("#zongjia_i").val($("#zongjia").text());
+                                        }
+                                    })
+                                    var num = 0;
+                                    $("#J_cart_checked_all").click(function(){
+                                        var l = $("input[name='duoxuan[]']").length;
+                                        var jia = 0;
+                                        for(var i=0;i<l;i++){
+                                            if(num %2==0){
+                                                $("input[name='duoxuan[]']").eq(i).removeAttr("checked");
+                                                $(".J_cart_checked_num").text("0");
+                                                $("#zongjia").text("0");
+                                            }else{
+                                                $("input[name='duoxuan[]']").eq(i).attr("checked","checked");
+                                                $(".J_cart_checked_num").text(l);
+                                                jia +=$("input[name='duoxuan[]']").eq(i).val()*1;
+                                                $("#zongjia").text(jia+".00");
+                                            }
+                                        }
+                                        num++;
+                                    })
+                                    $(".sn-sidebar-minicart-one-goods").click(function(){
+                                        if($(this).attr("checked")!="checked"){
+                                            var jia = $("#zongjia").text()*1-$(this).val()*1;
+                                            $("#zongjia").text(jia);
+                                        }else{
+                                            var jia = $("#zongjia").text()*1+$(this).val()*1;
+                                            $("#zongjia").text(jia);
+                                        }
+                                    })
+                                    $(".g-cart-del-handle").click(function(){
+                                        var value = $(this).siblings(".spid").val();
+                                        var bianhao = $("#chuanzhi").val();
+                                        var frm = document.getElementById('form');
+                                            frm.action='__URL__/gouwuchedel3/id/'+value+'/bianhao/'+bianhao;
+                                            frm.submit();
+                                    })
+                                })
+                            </script>
+                        </div>
+                            <div class="g-cart-bottom"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sn-sidebar-content sn-sidebar-recharge"></div>
+                <div class="sn-sidebar-content sn-sidebar-activity"></div>
+                <div class="sn-sidebar-content sn-sidebar-quality"></div>
+                <div class="sn-sidebar-content sn-sidebar-member"></div>
+                <div class="sn-sidebar-content sn-sidebar-history"></div>
+                <div class="sn-sidebar-content sn-sidebar-finance"></div>
+                <div class="sn-sidebar-content sn-sidebar-servicebox"></div>
+                <div class="sn-sidebar-all-loading">
+                    <p class="loading-content">加载中...</p>
+                </div>
+            </div>
+        </form>
+        <input type="hidden" id="chuanzhi">
+                <script>
+                    $(document).ready(function(e){
+                        var shu = $("input[name='leibie[]']").length;
+                        var value = $("input[name='leibie[]']");
+                            var array = [];
+                            for(var i=0;i<value.length;i++){
+                                array[i] = value.eq(i).val() 
+                            }
+                        Array.prototype.unique3 = function(){
+                            var res = [];
+                            var json = {};
+                            for(var i = 0; i < this.length; i++){
+                                if(!json[this[i]]){
+                                    res.push(this[i]);
+                                    json[this[i]] = 1;
+                                }
+                            }
+                            return res;
+                        }
+                       var arr = array.unique3();
+                        for(var i=0;i<arr.length;i++){
+                                $("#leibie").append("<a>"+arr[i]+"</a>");
+                        }
+                        $.ajax({
+                            type:"post",
+                            url:"__URL__/mcmcmc",
+                            dataType: "text",
+                            data:null,
+                            success:
+                            function(data){
+                                eval("var obj="+data);
+                                $("#jieguo").text(obj);
+                                $("#chuanzhi").val(obj);
+                                $(".r > strong").text(shu);
+                                $("title").text(obj);
+                            }
+                            })
+                    })
+                    $(function(){
+                        $("#shaixuan").toggle(function(){
+                            $(".search-opt").slideUp("slow");
+                            $(this).attr("class","all-opt-btn close");
+                        },function(){
+                            $(".search-opt").slideDown("slow");
+                            $(this).attr("class","all-opt-btn open");
+                        })
+                        $("#jg").toggle(
+                                function(){
+                                    var arr =   $('#zong > li');
+                                    arr.sort(function(a,b){
+                                      return a.getAttribute('data-jiage') - b.getAttribute('data-jiage');
+                                    });
+                                    $('#zong').empty().append(arr);
+                                    $(this).attr("class","prive asc").attr("title","按价格从低到高排序");
+                                    $(this).siblings().removeClass("cur");
+                                },function(){
+                                    var arr =   $('#zong > li');
+                                    arr.sort(function(a,b){
+                                      return b.getAttribute('data-jiage') - a.getAttribute('data-jiage');
+                                    });
+                                    $('#zong').empty().append(arr);
+                                    $(this).attr("class","prive desc").attr("title","按价格从高到低排序");
+                                    $(this).siblings().removeClass("cur");
+                                }
+                        )
+                        $("#pj").click(function(){
+                            var arr =   $('#zong > li');
+                            arr.sort(function(a,b){
+                              return b.getAttribute('data-pj') - a.getAttribute('data-pj');
+                            });
+                            $('#zong').empty().append(arr);
+                            $(this).attr("class","xp cur");
+                            $(this).siblings().removeClass("cur");
+                            $(this).siblings().removeClass("asc");
+                            $(this).siblings().removeClass("desc");
+                        })
+                        $("#mr").click(function(){
+                            var arr =   $('#zong > li');
+                            arr.sort(function(a,b){
+                              return a.getAttribute('data-mo') - b.getAttribute('data-mo');
+                            });
+                            $('#zong').empty().append(arr);
+                            $(this).attr("class","def cur");
+                            $(this).siblings().removeClass("cur");
+                            $(this).siblings().removeClass("asc");
+                            $(this).siblings().removeClass("desc");
+                        })
+                        $("#xl").click(function(){
+                            var arr =   $('#zong > li');
+                            arr.sort(function(a,b){
+                              return b.getAttribute('data-id') - a.getAttribute('data-id');
+                            });
+                            $('#zong').empty().append(arr);
+                            $(this).attr("class","xp cur");
+                            $(this).siblings().removeClass("cur");
+                            $(this).siblings().removeClass("asc");
+                            $(this).siblings().removeClass("desc");
+                        })
+                        $("#queding").click(function(){
+                            var zuidi = $.trim($("#zuidi").val());
+                            var zuigao = $.trim($("#zuigao").val());
+                            var li = $(".deliveryTimeFinish");
+                            for(var i=0;i<li.length;i++){
+                                if(isNaN(zuidi)&&isNaN(zuigao)){
+                                    $("#tishi").text("请输入数字");
+                                }else if(zuidi !="" && zuigao !=""){
+                                    $("#tishi").text("");
+                                    if(li.eq(i).children(".jiage").val()>=zuidi*1 && li.eq(i).children(".jiage").val()<=zuigao*1){
+                                        li.eq(i).show(); 
+                                    }else{
+                                        li.eq(i).hide();
+                                    }
+                                }else{
+                                    $("#tishi").text("");
+                                    if(zuidi == ""){
+                                        if(li.eq(i).children(".jiage").val() <=zuigao*1){
+                                            li.eq(i).show(); 
+                                        }else{
+                                            li.eq(i).hide();
+                                        }
+                                    }else if(zuigao == ""){
+                                        if(li.eq(i).children(".jiage").val() >= zuidi*1){
+                                            li.eq(i).show();
+                                        }else{
+                                            li.eq(i).hide();
+                                        }
+                                    }
+                                }
+                            }
+                        })
+                        $(".seif-select > input").eq(0).keydown(function(){
+                            if($(".seif-select > input").eq(0).val()!=""){
+                                 $("#queding").attr("class","confirm on");
+                            }else{
+                                 $("#queding").attr("class","confirm disabled");
+                            }
+                        })
+                        $(".seif-select > input").eq(1).keydown(function(){
+                            if($(".seif-select > input").eq(1).val()!=""){
+                                 $("#queding").attr("class","confirm on");
+                            }else{
+                                 $("#queding").attr("class","confirm disabled");
+                            }
+                        })
+                        $(".prive-item > a").eq(0).click(function(){
+                            var value = $("input[name='jiage[]']");
+                            $(this).css("color","#F70");
+                            $(this).siblings().css("color","#333");
+                            for(var i=0;i<value.length;i++){
+                                if(value.eq(i).val()>0&&value.eq(i).val()<=70){
+                                    value.parent("li").eq(i).show();
+                                }else{
+                                    value.parent("li").eq(i).hide();
+                                }
+                            }
+                        })
+                        $(".prive-item > a").eq(1).click(function(){
+                            var value = $("input[name='jiage[]']");
+                            $(this).css("color","#F70");
+                            $(this).siblings().css("color","#333");
+                            for(var i=0;i<value.length;i++){
+                                if(value.eq(i).val()>70&&value.eq(i).val()<=150){
+                                    value.parent("li").eq(i).show();
+                                }else{
+                                    value.parent("li").eq(i).hide();
+                                }
+                            }
+                        })
+                        $(".prive-item > a").eq(2).click(function(){
+                            var value = $("input[name='jiage[]']");
+                            $(this).css("color","#F70");
+                            $(this).siblings().css("color","#333");
+                            for(var i=0;i<value.length;i++){
+                                if(value.eq(i).val()>150&&value.eq(i).val()<=200){
+                                    value.parent("li").eq(i).show();
+                                }else{
+                                    value.parent("li").eq(i).hide();
+                                }
+                            }
+                        })
+                        $(".prive-item > a").eq(3).click(function(){
+                            var value = $("input[name='jiage[]']");
+                            $(this).css("color","#F70");
+                            $(this).siblings().css("color","#333");
+                            for(var i=0;i<value.length;i++){
+                                if(value.eq(i).val()>200&&value.eq(i).val()<=400){
+                                    value.parent("li").eq(i).show();
+                                }else{
+                                    value.parent("li").eq(i).hide();
+                                }
+                            }
+                        })
+                        $(".prive-item > a").eq(4).click(function(){
+                            var value = $("input[name='jiage[]']");
+                            $(this).css("color","#F70");
+                            $(this).siblings().css("color","#333");
+                            for(var i=0;i<value.length;i++){
+                                if(value.eq(i).val()>400&&value.eq(i).val()<=700){
+                                    value.parent("li").eq(i).show();
+                                }else{
+                                    value.parent("li").eq(i).hide();
+                                }
+                            }
+                        })
+                        $(".prive-item > a").eq(5).click(function(){
+                            var value = $("input[name='jiage[]']");
+                            $(this).css("color","#F70");
+                            $(this).siblings().css("color","#333");
+                            for(var i=0;i<value.length;i++){
+                                if(value.eq(i).val()>700){
+                                    value.parent("li").eq(i).show();
+                                }else{
+                                    value.parent("li").eq(i).hide();
+                                }
+                            }
+                        })
+                        $("#stock").toggle(
+                              function(){
+                                  $(this).attr("class","select");
+                                  var value = $("input[name='shuliang[]']")
+                                for(var i=0;i<value.length;i++){
+                                    if(value.eq(i).val() > 0){
+                                        value.parent("li").eq(i).show();
+                                    }else{
+                                        value.parent("li").eq(i).hide();
+                                    }
+                                }
+                              },function(){
+                                  var value = $("input[name='shuliang[]']")
+                                  $(this).removeClass();
+                                  value.parent("li").show();
+                              }  
+                        )
+                        $(".all").click(function(){
+                            $(".prive-item > a").css("color","#333");
+                            var value = $("input[name='leibie[]']")
+                            for(var i=0;i<value.length;i++){
+                                value.parent("li").eq(i).show();
+                            }
+                        })
+                        $("#leibie > a").click(function(){
+                            var value = $("input[name='leibie[]']")
+                            for(var i=0;i<value.length;i++){
+                                if($(this).text()!= value.eq(i).val()){
+                                    value.parent("li").eq(i).hide();
+                                }else{
+                                    value.parent("li").eq(i).show();
+                                }
+                            }
+                        })
+                        $(".down").mouseover(function(){
+                            $(this).attr("class","open");
+                        }).mouseout(function(){
+                            $(this).attr("class","down");
+                        })
+                        $(".collect").click(function(){
+                            var value = $(this).children("input").val();
+                            $.ajax({
+                                    type:"post",
+                                    url:"__URL__/scajax",
+                                    dataType: "text",
+                                    data:"id="+ value,
+                                    success:
+                                    function(data){
+                                        if(data==123){
+                                            alert("收藏成功");
+                                        }
+                                    }
+                            })
+                        })
+                        $(".clearfix > li").mouseover(function(){
+                            $(this).attr("class","product subcode multi deliveryTimeFinish on");
+                        }).mouseout(function(){
+                            $(this).attr("class","product subcode multi deliveryTimeFinish");
+                        })
+                        $(".subCode > dd").live("mouseover",function(){
+                            $(this).children("a").attr("class","select").parent().siblings().children("a").removeClass("select");
+                            $(this).parent().parent().parent().siblings().children().children(".search-loading").attr("src",$(this).children().children("img").attr("src"));
+                        })
+                        $(".imgScrollBtn02_3 > b").live("click",function(){
+                            $(this).parent().siblings().children(".subCode").animate({"margin-left": '-45px'},"slow");
+                            $(this).parent().attr("class","imgScrollBtn02_3 disabled");
+                            $(this).parent().siblings("a").attr("class","imgScrollBtn01_3");
+                        })
+                        $(".imgScrollBtn01_3 > b").live("click",function(){
+                            $(this).parent().siblings().children(".subCode").animate({"margin-left": '0px'},"slow");
+                            $(this).parent().attr("class","imgScrollBtn01_3 disabled");
+                            $(this).parent().siblings("a").attr("class","imgScrollBtn02_3");
+                        })
+                    })
+                    function winshow(){
+                    openWin = window.open('__URL__/show_two','_blank','width=550,height=530,left=800,top=400,location=yes,menubar=1,status=1');
+            }
+            $(document).ready(function(e){
+                $('html').bind("selectstart", function () { return false; });
+                var jia = 0;
+                var l = $("input[name='duoxuan[]']").length;
+                $(".J_cart_checked_num").text(l);
+                for(var i=0;i<l;i++){
+                  jia +=$("input[name='duoxuan[]']").eq(i).val()*1;  
+                }
+                $("#zongjia").text(jia);
+                $("#zongjia_i").val(jia);
+                $.ajax({
+                    type:"post",
+                    url:"__URL__/cook",
+                    dataType: "text",
+                    data:null,
+                    success:
+                    function(data){
+                      eval("var obj="+data);
+                        if(data!=""){
+                            $("#username-node-slide").show();
+                            $("#username-node").hide();
+                            $("#usernameHtml02").text(obj.username);
+                            if(obj.touxiang=="null"){
+                                $(".headimg > img").attr("src","__PUBLIC__/images/0000000000_01_60x60.jpg");
+                                $("#zujing_img").attr("src","__PUBLIC__/images/0000000000_01_60x60.jpg");
+                            }else{
+                                $(".headimg > img").attr("src","/ShoppingSite/"+obj.touxiang);
+                                $("#zujing_img").attr("src","/ShoppingSite/"+obj.touxiang);
+                            }
+                            $(".mysuning-detail > .login").hide();
+                            $(".mysuning-detail > .username").css("display","block");
+                            $(".mysuning-detail > .username").text(obj.username);
+                            $(".pls-login").hide();
+                            $("#zujing").show();
+                            $("#zujing > a").eq(0).text(obj.username);
+                            $("#zujing_img").attr("src","/ShoppingSite/"+obj.touxiang);
+                            $(".desc").empty().append("按下键盘上的<i>G</i>即可快速打开/关闭购物车功能");
+                            if(obj.quanxian=="超级管理员"||obj.quanxian=="管理员"){
+                                $("#hguanli").show();
+                            }else{
+                                $("#hguanli").hide();
+                            }
+                        }
+                    }
+                })
+                var num = 0;
+                $(document).keydown(function(event){
+                    if(event.keyCode == 71){ 
+                        if(num %2==0){
+                            $(".sn-sidebar-contents").attr("class","sn-sidebar-contents sn-sidebar-contents-show");
+                            $(".sn-sidebar-contents").animate({right : '35px'},"slow"); 
+                            $(".sn-sidebar-cart").show();
+                        }else{
+                            $(".sn-sidebar-contents").attr("class","sn-sidebar-contents");
+                            $(".sn-sidebar-contents").animate({right : '-400px'},"slow"); 
+                            $(".sn-sidebar-cart").hide();
+                        }
+                    }
+                    num++;
+                }); 
+                $.ajax({
+                    type:"post",
+                    url:"__URL__/gouwuchesl",
+                    dataType: "text",
+                    data:null,
+                    success:
+                    function(data){
+                        $(".J_cart_total_num").text(data);
+                        if(data > 0){
+                            $("#myCart_wu").hide();
+                            $("#myCart").show();
+                        }else{
+                            $("#myCart_wu").show();
+                            $("#myCart").hide();
+                        }
+                    }
+                })
+            })
+//             $.ajax({
+//                            type:"post",
+//                            url:"__URL__/cookSelect",
+//                            dataType: "text",
+//                            data:null,
+//                            success:
+//                            function(data){
+//                                if(data != ""){
+//                                    eval("var obj="+data);
+//                                    var str = obj.tel.substring(0,3);
+//                                    var str2 = obj.tel.substring(7);
+//                                    $("#guanli").show();
+//                                    $("#logins").html("你好,"+obj.real_name);
+//                                   
+//                                }else{
+//                                    $("#username-node").hide();
+//                                }
+//                            }
+//                        })
+                </script>
+                <div class="sn-sidebar" style="display: block">
+            <div class="sn-sidebar-bg"></div>
+            <div class="sn-sidebar-tabs sn-sidebar-middle-tabs">
+                <div class="sn-sidebar-tabs sn-sidebar-middle-tabs-top">
+                    <div class="sn-sidebar-tab sn-sidebar-tab-member sn-sidebar-tab-js" style="visibility: visible;">
+                        <a>
+                            <i class="tab-icon tab-icon-member"></i>
+                            <i class="tab-icon-tip"></i>
+                        </a>
+                    </div>
+                     <!--<a href="__URL__/gouwuchejs" style="z-index:9999">-->
+                    <div class="sn-sidebar-tab sn-sidebar-tab-cart sn-sidebar-tab-js" id="go">
+                       
+                            <div class="tab-cart-tip-warp-box" >
+                                <div class="tab-cart-tip-warp">
+                                    
+                                    <i class="tab-icon  tab-icon-cart"></i>
+                                    <i class="tab-icon-tip tab-icon-cart-tip"></i>
+                                    <span class="tab-cart-tip" id="gwc">购物车</span>
+                                    <span class="tab-cart-num J_cart_total_num">{$gouwunum}</span>
+                                </div>
+                            </div>
+                        <!--</a>-->
+                    </div>
+                     </a>
+                    <div class="sn-sidebar-tab sn-sidebar-tab-message sn-sidebar-tab-js">
+                        <a href="__URL__/mail" target="blank">
+                            <i class="tab-icon tab-icon-msg"></i>
+                            <i class="tab-icon-tip"></i>
+                            <span class="tab-tip">消息</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="sn-sidebar-tabs sn-sidebar-middle-tabs-bottom">
+                </div>
+            </div>
+            <div class="sn-sidebar-tabs sn-sidebar-bottom-tabs">
+                
+                <div class="sn-sidebar-tab sn-sidebar-wider-tab sn-sidebar-to-top sn-sidebar-tab-js" id="ding">
+                    <a>
+                        <i class="tab-icon tab-icon-to-top"></i>
+                        <span class="tab-tip tab-tip-wider" >返回顶部</span>
+                    </a>
+                </div>
+            </div>
+            <div class="tab-tip-code-warp">
+                <a>
+                    <img class="tab-tip-code-warp-img" src="__PUBLIC__/images/aoyun-code-img.png">
+                </a>
+            </div>
+            <div class="sn-sidebar-member-wrap member-white">
+                <div class="ng-sidebar-head">
+                    <dl class="userinfo">
+                        <dt>
+                            <a>
+                                <if condition='$find.head_portrait neq ""'>
+                                    <img class="custHeadImg" src="{$find.head_portrait}" id="zujing_img">
+                                    <else/>
+                                    <img class="custHeadImg" src="__PUBLIC__/images/1.jpg" id="zujing_img">
+                                </if>
+                                
+                            </a>
+                            <a></a>
+                        </dt>
+                        <dd>
+                             <input type="hidden" value="{$find.real_name}" id="mingzi">
+                        <if condition="$find.real_name neq ''">
+                            <p class="username" style='display:block'>
+                                <a href='__URL__/member'>尊敬的会员,{$find.real_name}</a>
+                                <i class="sep">|</i>
+                                <a class="logout" href="__URL__/signOut">退出</a>
+                            </p>
+                            <else/>
+                            <p class="pls-login">
+                                您好，请先<a class="login" href="__URL__/login">登录</a>!
+                            </p>
+                        </if>
+                            <p class="links">
+                                <a>会员联盟</a>
+                                <i class="sep">|</i>
+                                <a>诚兑城</a>
+                            </p>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="ng-sidebar-notices">
+                    <p class="ng-sidebar-notice">
+                        <i class="member-laba"></i>
+                        <a class="torenxin"></a>
+                    </p>
+                </div>
+                <a class="ng-sidebar-close"></a>
+            </div>
+                <div class="sn-sidebar-content sn-sidebar-recharge"></div>
+                <div class="sn-sidebar-content sn-sidebar-activity"></div>
+                <div class="sn-sidebar-content sn-sidebar-quality"></div>
+                <div class="sn-sidebar-content sn-sidebar-member"></div>
+                <div class="sn-sidebar-content sn-sidebar-history"></div>
+                <div class="sn-sidebar-content sn-sidebar-finance"></div>
+                <div class="sn-sidebar-content sn-sidebar-servicebox"></div>
+                <div class="sn-sidebar-all-loading">
+                    <p class="loading-content">加载中...</p>
+                </div>
+                <script>
+                    $(function(){
+                        $("#go").click(function(){
+                            window.location.href='__URL__/gouwuchejs'
+                        })
+                         $("#gwc").click(function(){
+                           if($("#mingzi").val() == ''){
+                                window.location.href="__URL__/login";
+                           }else{
+                                window.location.href="__URL__/gouwuchejs";
+                           }
+                        })
+                    })
+                </script>
+            </div>
+    </body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link href="__PUBLIC__/css/goods.css" rel="stylesheet" />
+    <link href="__PUBLIC__/css/on.css" rel="stylesheet" />
+    <link href="__PUBLIC__/css/fbox.css" rel="stylesheet" />
+    <link href="__PUBLIC__/css/main1.css" rel="stylesheet" />
+    <link href="__PUBLIC__/css/boot.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+    <form method="post" id="form" action="__URL__/addfenlei" onsubmit="return check()">
+    <div id="maincontentlwj">
+        <div class="smallcont" style="display: block;">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%" height="36px" style="overflow:hidden">
+                <tbody>
+                    <tr style='height:150px;'>
+                        <td width="180px" valign="top" style="padding-top:4px;">
+                            商品大类:<input type="text" name="mingzi" id="names">
+                            购物商城条码:<input type="text" name="mingzi2" id="names1">
+                            积分商城条码:<input type="text" name="mingzi6" id="names2"><br><br>
+                            <label class="control-label" for="gRemark" id="labelRemark" style='cursor: pointer;position: relative'><input type='button' value='上传图片' id='shangchuan'></label>
+                                <input class="span8 pull-left" id="gRemark" name="files" placeholder="" type='file' style='display: none'> 
+                                <div id='xianshi' style='position: absolute;left:100px;top:40px;'></div>
+                                <input type="submit" value="新增" style='width:150px;float:right'><br><br>
+                                <input type="submit" value="上传图片" style='width:150px;float:right' form='form2' id="sccs">
+                            <!--<span class="btn btn-primary" id="add_class" data-open="off"><i class="icon-plus icon-white"></i> 提交</span>-->
+                            <!--<span class="btn btn-info showSortInput" style="margin-left: 10px;">排序</span>-->
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td width="300" valign="top" colspan="2" style="color: #999; font-size: 12px;">
+                            <font color="red">*</font> 点击分类名，可以查看该分类的子分类
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table id="sk_flxx" cellpadding="0" cellspacing="0" border="0" style="width: 100%;" class="sk_bcg">
+                <tbody>
+                    <foreach name="fenlei" item="val" key="k">
+                    <tr>
+                        <td width="50px">
+                           <div class="sk_jias" title="新增小分类" onclick="" style="*margin-top:0;"></div>
+                        </td>
+                        <td width="100px">
+                            <div class=" MaxClass">
+                                <div class="minc ClassContent" style="padding-right:23px">
+                                    <span name="class_maxc"  class="ClassTitle" title="{$val.category_name}" data-id="{$val.category_id}"><a href='__URL__/fenlei2/id/{$val.category_id}'>{$val.category_name}</a>
+                                     <input value="{$val.category_name}" name="text"  data-id="{$val.category_id}" style="width:100px;padding:0" type="text">
+                                     
+                                    </span>
+                                   
+                                    <!--<span class="ClassCount" title="该分类当前有0种商品"></span>-->        
+                                </div>
+                                <!--<div class="edit-ico maxedit  updateIco upt" style="" title="编辑此大分类"></div>-->
+                                <div class="mcdel updateIco del" style="" title="删除此大分类"></div>
+                            </div>
+                        </td><!--
+-->                     <td >
+                            <!--<a href="">-->
+                                <div class="minc MicClass">
+                                    
+                                    <foreach name="val.aa" item="vae">
+                                        <input type="text" value="{$vae}" name="aa[]" style="width:50px;padding:0">
+                                        <!--<input type="text" value="{$vae['bb']}" name="bb[]" >-->
+                                    </foreach>
+                                     <foreach name="val.bb" item="vae">
+                                        <input type="hidden" value="{$vae}" name="bb[]" style="width:50px;padding:0">
+                                        <!--<input type="text" value="{$vae['bb']}" name="bb[]" >-->
+                                    </foreach>
+                                    <if condition="$val.dalei_px neq 0">
+                                        当前排序:<input type="text" style="width:50px" value="{$val.dalei_px}">
+                                        <else/>
+                                        当前排序:<input type="text" style="width:50px">
+                                    </if>
+                                    推荐商品条码:<input type="text" style="width:100px" class="tuijians" value="{$val.bar1}"><span>{$val.tj1}</span>　<input type="text" style="width:100px" class="tuijians" value="{$val.bar2}"><span>{$val.tj2}</span>
+                                    <input type="button" value="提交" style="margin-right:50px" class="tijiao">
+                                    
+                                          <span name="class_name" id="text2205834" data-id='{$val.1}'>{$val.0}</span>     
+                                </div>
+                            
+                            <!--</a>-->
+                        </td>
+                        <td>
+                            <div>
+                                              <form method="post" action="__URL__/save_fltu" enctype="multipart/form-data" id="form2" >  
+                                               <img src="{$val.category_url}" width="150" height="60" class="imgs">
+                                            <input type='button' value='替换' class='shangchuan'>
+                                            <input class="span8 pull-left" id="gRemark{$k}" name="files{$k}" placeholder="" type='file' style='display: none' form='form2'>  
+                                            <input type='hidden' name='ycid[]' value='{$val.category_id}'form='form2'>
+                                            </form>  
+                                          </div>
+                        </td>
+                        <!--<td><a href="__URL__/save_categui/id/{$val.category_id}">编辑大类规则</a></td>-->
+                    </tr>
+                    </foreach>
+                </tbody>
+            </table>
+            <table id="lala" class="sk_bcg" width="100%">
+            </table>
+            <div class='fena'>
+                {$show}
+            </div>
+             </form>
+            <script>
+                $(function(){
+                    $(".tuijians").keyup(function(){
+                        var zhi = $(this).val();
+                        var th = $(this);
+                        $.post("__URL__/fenlei_tjs",{"zhi":zhi},function(data){
+                            if(data){
+                                th.next().html(data);
+                            }else{    
+                                th.next().html("没有找到相关商品");
+                            }
+                        })
+                    })
+                    $("#shangchuan").click(function(){
+                          var obj = document.getElementById("gRemark") ; 
+                            obj.outerHTML=obj.outerHTML; 
+                        $("#gRemark").click();
+                        var sc = $(".srcc");
+                        for(var i=0;i<sc.length;i++){
+                            sc.eq(i).detach();
+                        }
+                        $("#gRemark").change(function(){
+                           $("#xianshi").append("<img class='srcc' src='"+getObjectURL(this.files[0])+"' width='100' height='100'>");
+                        })
+
+                    })
+                     $(".shangchuan").click(function(){
+                        var th = $(this);
+                        var id = th.next().attr("id");
+                          var obj = document.getElementById(id) ; 
+                            obj.outerHTML=obj.outerHTML; 
+                        $("#"+id).click();
+                        $("#"+id).change(function(){
+                           th.prev().attr("src",getObjectURL(this.files[0]));
+                        })
+
+                    })
+                    $(".sk_jias").click(function(){
+                        var id = $(this).parent("td").siblings("td").find(".ClassTitle").attr("data-id");
+                        $(this).parent("td").siblings("td").children(".MicClass").append("<input type='text' name='fenlei' style='width:60px'><input type='hidden' name='fenlei_id' value='"+id+"'>")
+                    })
+                    $(".upt").click(function(){
+                        var value = $(this).siblings(".ClassContent").children(".ClassTitle").text();
+                        var id = $(this).siblings(".ClassContent").children(".ClassTitle").attr("data-id");
+                        $(this).siblings(".ClassContent").html("<input type='text' value='"+value+"' style='width:70px' name='upt'><input type='hidden' value='"+id+"' name='upt_id'>")
+                    })
+                    $(".del").click(function(){
+                        var id = $(this).siblings(".ClassContent").children(".ClassTitle").attr("data-id");
+                        var frm = document.getElementById('form');
+                            frm.action='__URL__/addfenlei/id/'+id;
+                            frm.submit()
+                    })
+                    $("#add_class").click(function(){
+                        if($(this).attr("data-open")=="off"){
+                            $("#lala").append("\n\
+                            <tr><td width='100%'><input type='text' placeholder='按回车保存' id='addClass' name='addclass'></td></tr>")
+                            $(this).attr("data-open","on");
+                        }
+                    })
+                    $("#addClass").live("blur",function(){
+                        if($(this).val()==""){
+                            $("#lala > tr").detach();
+                            $("#add_class").attr("data-open","off");
+                        }
+                    })
+                    $(".tijiao").click(function(){
+                        var tj1 = $(this).prev().prev().val();
+                        var tj2 = $(this).prev().prev().prev().prev().val();
+                        var px = $(this).prev().prev().prev().prev().prev().val();
+                        var id = $(this).prev().prev().prev().prev().prev().prev().val();
+                        var id2 = $(this).prev().prev().prev().prev().prev().prev().prev().val()
+                        var zhi = $(this).prev().prev().prev().prev().prev().prev().prev().prev().val();
+                        var zhi2 = $(this).prev().prev().prev().prev().prev().prev().prev().prev().prev().val();
+                        var name = $(this).parent().parent().prev().find("input").val();
+                        $.post("__URL__/save_lei",{"id":id,"id2":id2,"zhi":zhi,"zhi2":zhi2,"name":name,"px":px,"tj1":tj1,"tj2":tj2},function(data){
+                            if(data==1){
+                                alert("修改成功");
+                                location.reload();
+                            }
+                        })
+                    })
+                })
+                function check(){
+                     if($("#names").val() == ''){
+                        alert("请输入类名");
+                        return false;
+                    }
+                    if($("#names1").val().length !== 5){
+                         alert("请输入五位条码");
+                        return false;
+                    }
+                    if($("#gRemark").val() == ''){
+                        alert("请上传图片");
+                        return false;
+                    }       
+                }
+                //图片上传路径更换
+    function getObjectURL(file) {
+            var url = null ;
+            if (window.createObjectURL!=undefined) { 
+              url = window.createObjectURL(file) ;
+            } else if (window.URL!=undefined) {
+              url = window.URL.createObjectURL(file) ;
+            } else if (window.webkitURL!=undefined) {
+              url = window.webkitURL.createObjectURL(file) ;
+            }
+             return url ;
+    }
+            </script>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="__PUBLIC__/css/tongji.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script src="__PUBLIC__/js/bianse.js"></script>
+</head>
+<body>
+    <div>
+        <form method="post" id="form" action="__URL__/tixianguanli_t">
+        <span>提现管理</span>
+        <input type="text" class="search" name="sea">
+        <input type="submit" value="搜索" class="search_sub">
+        <!--<input type="button" value="用户提现额度清零" id="lingdu" class="search_sub" style="width:200px">-->
+        <a href="__URL__/tixianguanli"> <input type="button" value="返回"  style="width: 200px;height: 40px"></a>
+       
+        
+    
+        <table id="tixianjilu" border="0" cellspacing="0" >
+            <tr>
+                <td>序号</td>
+                <td>用户名</td>
+                <td>姓名</td>
+                <td>提取金额</td>
+                <td>手续费</td>
+                <td>实际提取金额</td>
+                <td>银行卡卡号</td>
+                <td>提款银行</td>
+                <td>支行名称</td>
+                <td>提现时间</td>
+            </tr>
+            <volist name='jilu' id='value' key="k2">
+            <tr class="neirong">
+                <td>{:(I('get.p'))?((I('get.p')-1)*12+$k2):($k2)}</td>
+                <td>{$value.user}</td>
+                <td>{$value.real_name}</td>
+                <td>{$value.money}</td>
+                <td>{$value.shouxu}</td>
+                <td>{$value.shiji}</td>
+                <td>{$value.yinhangka}</td>
+                <td>{$value.y_name}</td>
+                <td>{$value.zhihang}</td>
+                <td>{$value.time}</td>
+            </tr>
+            </volist>
+        </table>
+        <div class="fena"  id="show2">{$show2}</div>
+        <script>
+            $(document).ready(function(){
+                $("#jilu").click(function(){
+                    $("#neirong").hide();
+                    $("#show1").hide();
+                    $("#show2").show();
+                    $("#tixianjilu").show();
+                    $(this).hide();
+                    $("#fanhui").show();
+                })
+                $("#fanhui").click(function(){
+                    $("#neirong").show();
+                    $("#show1").show();
+                    $("#show2").hide();
+                    $("#tixianjilu").hide();
+                    $(this).hide();
+                    $("#jilu").show();
+                })
+                $("#lingdu").click(function(){
+                    if(confirm('确定吗？')){
+                        var frm = document.getElementById('form');
+                            frm.action='__URL__/qingling';
+                            frm.submit();
+                    }
+                })
+            })
+//            $(document).ready(function(){
+//                var tr = $(".neirong");
+//                for(var i=0;i<tr.length;i++){
+//                    $(".neirong").eq(i).children("td").eq(0).html(i+1);
+//                }
+//            })
+            function shenhe(id,tel,shiji,sx){
+                if(confirm('确定通过审核吗？')){
+                    var frm = document.getElementById('form');
+                        frm.action='__URL__/tx_shenhe/id/'+id+'/tel/'+tel+'/shiji/'+shiji+'/sx/'+sx;
+                        frm.submit();
+                }else{
+
+                }
+            }
+        </script>
+    </div>
+    </form>
+</body>
+</html>

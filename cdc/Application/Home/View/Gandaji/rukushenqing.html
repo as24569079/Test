@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="__PUBLIC__/css/tongji.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script src="__PUBLIC__/js/bianse.js"></script>
+    <script src="__PUBLIC__/js/jquery.table2excel.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/boot.css"/>
+</head>
+<body>
+
+    <form method="post" id='form'>
+    <div>
+      
+         <div style="margin-bottom: 10px">
+            <br>
+            
+           
+                请选择旗舰店:<select  name="qijd" style="margin-bottom: 0px">
+                    
+                    <option value="ad">请选择</option></if>
+                    <volist name="qd" id="val">
+                       
+                        <option value="{$val.shop_id}">{$val.shop_name}</option>
+                    </volist>
+                            </select>　
+                           
+                             所属商城:<select name="sc" style="width:100px">
+                                <option value="sc">请选择</option>
+                                <volist name="shangcheng" id="val">
+                                    <option value="{$val.mall_id}">{$val.mall_name}</option>
+                                </volist>   
+                            </select>
+                            请输入商品名称:<input type="text" name="item_name" id="item_name" style="margin-bottom: 0px;width:150px" >
+                            请输入条形码:<input type="text" name="bar_code" id="bar_code" style="margin-bottom: 0px;width:210px"><br><br>
+                　　<input type="button" value="搜索" id="sousuo">　　<input type="button" value="显示全部" id="qb">　　
+            
+            </div>
+       
+        <div id="table">
+<!--            <div style="background:orange; width:100px; float:left;text-align:center; border-radius:5px"><a href="__URL__/addgongying">新增供应商</a></div>-->
+            <div style="width:400px; float:right; background:#eae1e1; border-radius:5px; text-align:center">
+            </div>
+            <table id="neirong" cellspacing='0'>
+                <tr class="neirong ">
+                    <td>序号</td>
+                    <td>商品名称</td>
+                    <td>商品条码</td>
+                    <td>动作</td>
+                    <!--<td>商品图片</td>-->
+                    <!--<td>商品类别</td>-->
+<!--                    <td>库存</td>
+                    <td>售出</td>-->
+                    <td>数量</td>
+                    <td>旗舰店</td>
+                    <td>申请时间</td>
+                    <!--<td>实际数量</td>-->
+                    <!--<td>-->   
+                    <td>所属商城</td>
+                    <td>申请人</td>
+                    <td>状态</td>
+                    <!--<td>退回原因</td>-->
+                   
+                </tr>
+                <volist name='arr' id='val' key="k">
+                <tr class="neirong trr">
+                    <td>{$val.xuhao}</td>
+                     <td>{$val.item_name}</td>
+                     <td>{$val.bar_code}</td>
+                     <td>入库</td>
+                    <!--<td><img src="{$val.img_url}"></td>-->
+                    <!--<td>{$val.category_name}</td>-->
+                    <!--<td>{$val.mall_name}</td>-->
+                    <td>{$val.inventory_new}</td>
+                    <td>{$val.qijiand}</td>
+                    <!--<td>{$val[inventory]-$val[number]}</td>-->
+                    <td>{$val.sqtime}</td>
+                    
+                    <!--<td>{$val.inventory_use}</td>-->
+                    <td>{$val.scname}</td>
+                    <td>{$val.sqren}</td>
+                    <td>
+                <if condition="$val.shenhe eq 1">
+                    已通过
+                    <elseif condition="$val.shenhe eq 0"/>
+                    审批中
+                    <else/>
+                    已退回,退回原因:{$val.beizhu}
+                </if>
+                    </td>
+                   
+                </tr>
+                </volist>
+            </table>
+           <div class="fena" id="fen">
+            {$show}
+        </div>
+           
+        </div>
+
+    </div>
+    </form>
+     <div style="width: 550px; height:150px; position: absolute; z-index: 10000; display: block; overflow: hidden; top: 300px; left: 150px; border:1px  solid red; background:#FFF;display: block; border-radius: 5px;display: none" id="liulan_pay">
+         <form id="tform">
+                <input type="hidden" name="inventory_id" id="inventory_ids">
+          	<div style="margin:40px 20px">
+                    <div> 
+                <span><span style="color:red">&nbsp;&nbsp;&nbsp;&nbsp;*</span>请输入退货原因：</span>
+                <textarea maxlength="40" value="" id="liulan_mima" name="yuanyin"></textarea><span id="liulan_shibai"></span>
+                 <br><br>
+                    　　　　<input type="button" style="width:200px; height:20px;" value="退回" id="liulan_z" onclick="return confirm('确认退回?');">
+                    <input type="button" value="x" style="left: 500px;top: 20px; position: absolute; " id="liulan_no">
+                    
+                </div>                  
+            </div>
+             </form>
+          </div>
+    <script>
+        $(function(){  
+            $("#sousuo").click(function(){
+                 $(".ssre").remove();
+                 $(".trr ").remove();
+                var qjd = $("[name='qijd'] option:selected").val();
+                var item_name = $("#item_name").val();
+                var bar_code = $("#bar_code").val();
+                var sc = $("[name='sc'] option:selected").val();
+                 $.post("__URL__/seac_caigou",{"qjd":qjd,"name":item_name,"code":bar_code,"sc":sc},function(data){
+//                     $("#table").hide();
+                     if (data) {
+                    eval("var obj ="+data);
+                    $("#fen").hide();
+//                    $("#sstable").show();
+                     for(var i =0; i<obj.length;i++){
+                        
+                         
+                         var html = '';
+                             html  += '<tr class="neirong ssre">';
+                             html += '<td>'+(i*1+1)+'</td>';
+                             html += '<td>'+obj[i].name+'</td>';
+                             html += '<td>'+obj[i].code+'</td>';
+                             html += '<td>入库</td>';
+                             html += '<td>'+obj[i].inventory_new+'</td>';
+                             html += '<td>'+obj[i].qjdname+'</td>';
+                             html += '<td>'+obj[i].created_date+'</td>';
+//                             html += '<td>'+obj[i].sy_num+'</td>';
+                             html += '<td>'+obj[i].scname+'</td>';
+                             html += '<td>'+obj[i].inventory_use+'</td>';
+                            
+                              if(obj[i].shenhe ==0){
+                                html += '<td> <input type="button" value="通过" data-id="{$val.inventory_id}" class="tongguo btn btn-primary" '+'onclick="return confirm(确认申请通过?);">'+
+                    '<input type="button" value="退回" data-id="{$val.inventory_id}" class="tuihui btn btn-danger" ></td>'
+                            }else if(obj[i].shenhe ==1){
+                                html += '<td>已通过</td>'
+                            } else{
+                                 html += '<td>已退回,退回原因:'+obj[i].beizhu+'</td>'
+                            }
+//                             html += '<td>'++'</td>';
+                             html += '</tr>';
+                           
+                             $("#neirong").append(html);
+//                             $("#seach").append(html);
+                            
+                     }
+                     
+//                        $("#table").hide();
+//                       $("#sstable").show();
+                   } else {
+                       alert("没有找到相关的商品");
+                   } 
+                 });
+                
+            });
+            $("#qb").click(function(){ 
+                $("[name='qijd']").val('ad');
+                $("#item_name").val('');
+                $("#bar_code").val('');
+//                $("#sstable").hide();
+                $("#fen").show();
+                window.location.href="__URL__/rukushenqing";
+               
+            })
+            $(".tuihui").click(function(){
+                $("#liulan_pay").show();
+                var ids = $(this).attr("data-id");
+                $("#inventory_ids").val(ids);
+            })
+             $("#liulan_no").click(function(){
+                      $("#liulan_pay").hide();
+                      $("#liulan_mima").val('');
+            })
+        })
+    </script>
+   
+        <script>
+           $(function() {
+               $(".tongguo").click(function() {
+                   var inventory_id = $(this).attr("data-id");
+                   $.post("__URL__/rkcg",{"inventory_id":inventory_id},function(data){
+                       if(data==1){
+                           alert("审核通过");
+                           location.reload();
+                       } else{
+                           alert("系统繁忙");
+                       }
+                   })
+               })
+               $("#liulan_z").click(function(){
+                   if($("#liulan_mima").val() == ''){
+                       alert("请输入退回原因");
+                   }else{
+                       $.post("__URL__/tuihuis",$("#tform").serialize(),function(data){
+                           if(data ==1){
+                               alert("退回成功");
+                               location.reload();
+                           }else{
+                               alert("系统忙，请稍后");
+                           }
+                       })
+                   }
+               })
+           })
+        </script>
+</body>
+</html>

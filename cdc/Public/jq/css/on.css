@@ -1,0 +1,42 @@
+﻿.onoroff{
+  cursor:pointer;
+}
+.onoroff_on{
+  width:50px;
+  height:20px;
+  background:url(kg.png);
+  background-position:-4px 0;
+  position:relative;
+  
+}
+.onoroff_off{
+  width:50px;
+  height:20px;
+  background:url(kg.png);
+  background-position:-62px 0;
+  position:relative;
+  
+}
+.slide_on{
+  width:23px;
+  height:15px;
+  background:url(kg.png);
+  background-position:-118px -4px;
+  position:absolute;
+  left:23px;
+  top:4px;
+
+  
+}
+
+.slide_off{
+  width:23px;
+  height:15px;
+  background:url(kg.png);
+  background-position:-118px -4px;
+  position:absolute;
+  left:5px;
+  top:4px;
+
+  
+}

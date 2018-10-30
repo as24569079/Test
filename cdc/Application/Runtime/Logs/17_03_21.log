@@ -1,0 +1,100 @@
+[ 2017-03-21T16:41:18+08:00 ] ::1 /3.2.0/
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.031133s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.301628s ]
+SQL: SHOW COLUMNS FROM `new` [ RunTime:0.101427s ]
+SQL: SHOW COLUMNS FROM `phone_banner` [ RunTime:0.036795s ]
+SQL: SELECT * FROM `new` WHERE ( status=0 ) ORDER BY new_id desc LIMIT 5   [ RunTime:0.111570s ]
+SQL: SELECT * FROM `phone_banner` WHERE ( status=0 ) ORDER BY banner_id desc  [ RunTime:0.002304s ]
+SQL: SELECT * FROM `phone_banner` WHERE ( status=2 )  [ RunTime:0.000315s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.000175s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000293s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.206440s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.206588s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.018329s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.018471s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.014136s ]
+INFO: [ app_end ] --END-- [ RunTime:0.014285s ]
+
+[ 2017-03-21T16:41:18+08:00 ] ::1 /3.2.0/index.php/Home/Index/footer.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000685s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001275s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.000239s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000497s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.044601s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.044950s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.004091s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.004336s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.001161s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001376s ]
+
+[ 2017-03-21T16:41:19+08:00 ] ::1 /3.2.0/index.php/Home/Index/cookSelect
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001144s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002205s ]
+SQL: SHOW COLUMNS FROM `uaccount` [ RunTime:0.111587s ]
+SQL: SELECT * FROM `uaccount`  [ RunTime:0.682332s ]
+NOTIC: [8] Undefined index: LoginName E:\wamp\www\3.2.0\Application\Home\Controller\IndexController.class.php 第 630 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.001783s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001980s ]
+
+[ 2017-03-21T16:44:05+08:00 ] ::1 /3.2.0/
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000932s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001684s ]
+SQL: SHOW COLUMNS FROM `new` [ RunTime:0.006091s ]
+SQL: SHOW COLUMNS FROM `phone_banner` [ RunTime:0.007319s ]
+SQL: SELECT * FROM `new` WHERE ( status=0 ) ORDER BY new_id desc LIMIT 5   [ RunTime:0.001019s ]
+SQL: SELECT * FROM `phone_banner` WHERE ( status=0 ) ORDER BY banner_id desc  [ RunTime:0.000553s ]
+SQL: SELECT * FROM `phone_banner` WHERE ( status=2 )  [ RunTime:0.000482s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.000288s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000506s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.023941s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.024203s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000894s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001058s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000971s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001116s ]
+
+[ 2017-03-21T16:44:05+08:00 ] ::1 /3.2.0/index.php/Home/Index/footer.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.001609s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002892s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplace [ RunTime:0.000250s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000799s ]
+INFO: Run Behavior\ParseTemplate [ RunTime:0.024986s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.025247s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCache [ RunTime:0.000839s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001050s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.001882s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002167s ]
+
+[ 2017-03-21T16:44:05+08:00 ] ::1 /3.2.0/index.php/Home/Index/cookSelect
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.002247s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003294s ]
+SQL: SHOW COLUMNS FROM `uaccount` [ RunTime:0.010716s ]
+SQL: SELECT * FROM `uaccount`  [ RunTime:0.022030s ]
+NOTIC: [8] Undefined index: LoginName E:\wamp\www\3.2.0\Application\Home\Controller\IndexController.class.php 第 630 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.001494s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001738s ]
+

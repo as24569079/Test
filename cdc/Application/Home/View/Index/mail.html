@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>我的消息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.2.min.js"></script> 
+        <link rel="shortcut icon" href="__PUBLIC__/image/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="__PUBLIC__/css/xiaoxi.css">
+        <link rel="stylesheet" href="__PUBLIC__/css/index.css">
+        <!--<link rel="stylesheet" href="__PUBLIC__/css/reset-min.css">-->
+        <link rel="stylesheet" href="__PUBLIC__/css/safepc.css">
+        <!--<link rel="stylesheet" href="__PUBLIC__/css/ms-style.css">-->
+        <script type="text/javascript" src="__PUBLIC__/jq/chanpin.js"></script> 
+        <link href="__PUBLIC__/css/page.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="msg-main"  style="background: rgb(245, 245, 245)">
+            <div class="msg-tab-wrap">
+                <ul class="msg-tab clearfix">
+                    <li class="on">
+                        <a class="tab-item" id="weiduxiaoxi" href="__URL__/mail">未读消息&nbsp;&nbsp;({$wdcount})</a>
+                        <i class="png24"></i> 
+                    </li>
+                    <li>
+                        <a class="tab-item" id="yiduxiaoxi" href="__URL__/mail2">已读消息&nbsp;&nbsp;({$ydcount})</a>
+                        <i class="png24"></i>
+                    </li>
+                </ul>
+            </div> 
+                <div class="msg-list-all" id="xiaoxidiv">
+                    <ul class="msg-list" id="titles">
+                        <li>
+                            <form method="post" id="form" action="__URL__/mail_page">
+                                <input type="date" name="date" style="with:140px;height:20px;margin-top:15px" value="{$value}">
+                                <input type="submit" value="查询"> 
+                                <a href="__URL__/mail_page/qb/1" style="color:#000">
+                                    <input type="button" value="显示全部">
+                                </a>
+                            </form>   
+                        </li>
+                        <volist name="row" id="val">
+                            <li style='margin: 20px;'>
+                                 <div style='width:100%;height:30px'>
+                                    <div style='width:200px;float:left'>
+                                     <a onclick="mail_xq('{$val.mail_id}')"> {$val.title}</a>
+                                    </div>
+                                   <div style='width:auto;float:left'> {$val.time}&nbsp;&nbsp;</div>
+                                    <div style='width:auto;float:left'>
+                                    <a href='__URL__/mail_delete/id/{$val.mail_id}' onClick="return confirm('确定删除?');">删除</a>
+                                    </div>
+                                 </div>
+                            </li>
+                        </volist>
+                        <li>
+                            <div class="fena">{$show}</div>
+                        </li>
+                    </ul>
+                </div>
+            <div class="msg-list-loading empty" style="display:none" id="tishi">
+                <div class="loading-empty png24"></div>
+                <p class="loading-text">嗷~您暂时没有消息哟~</p>
+            </div>
+            <div class="msg-list-all" id="xiaoxi_nei">
+                <ul class="msg-list" id="weidu">
+<!--                    <volist name="xiaoxi" id="val">
+                        <li class="msg-item clearfix">
+                            <input type="hidden" value="{$val.biaoti}" name="leixing[]">
+                            <div class="avatar avatar-promote-sale png24"></div>
+                            <div class="container">
+                                <div class="category-title clearfix">
+                                    <h4 class="biaoti" id="{$val.id}" style="cursor: pointer" alt="{$val.user}">
+                                        {$val.biaoti}
+                                        <i class="png24"></i>
+                                    </h4>
+                                    <span class="time">{$val.time}</span>
+                                </div>
+                                <div class="msg-content clearfix">
+                                    <div class="msg-outer clearfix">
+                                        <div class="system-info clearfix">
+                                            <p style="max-height:54px;over-flow:hidden;">555555555555</p>
+                                            <a>
+                                                <img src="{$val.tupian}">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="del" alt="{$val.user}">
+                                        <input type="hidden" value="{$val.id}">
+                                    </div>   
+                                </div>
+                                <i class="arrow"></i>
+                            </div>
+                        </li>
+                    </volist>-->
+                </ul>
+            </div>
+            <div class="msg-view-more">
+                &nbsp;
+            </div>
+        </div>
+        <script>
+            $(document).ready(function(e){
+               if ($("#titles li").length >2) {
+                   $("#tishi").attr("style","display:none");
+               } else {
+                    $("#tishi").attr("style","display:block");
+               }
+            })
+            function mail_xq(id) {
+               $("#titles").attr("style","display:none");
+               $.post('mail_xq',{id:id},function(data) {
+                eval ("var obj=" + data);
+                var html  = "";
+                    html += "<div style='width:100%;margin:5%;line-height:20px'>";
+                    html += "<div style='height:50px;'>";
+                    html += "<div style='width:30%;text-align:center;float:left'>";
+                    html += obj.title;
+                    html += "</div>";
+                    html += "<div style='width:30%;text-align:center;float:left'>发布时间:&nbsp;&nbsp;";
+                    html += obj.time;
+                    html += "</div>";
+                    html += "<div style='width:30%;text-align:center;float:left'>";
+                    html += "<a href=>返回</a>";
+                    html += "</div>";
+                    html += "</div>";
+                    html += "<div style='width:100%'>";
+                    html += obj.content;
+                    html += "</div>";
+                    html += "</div>";
+                $("#xiaoxidiv").append(html);
+               })
+            }
+        </script>
+    </body>
+</html>

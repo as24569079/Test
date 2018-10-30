@@ -1,0 +1,197 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>已发放奖励</title>
+
+    <link href="__PUBLIC__/css/jquery-confirm.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+
+    <link href="__PUBLIC__/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/mobilemain.css" type="text/css" rel="stylesheet">
+    <link href="__PUBLIC__/css/main.css" type="text/css" rel="stylesheet">
+    <link href="__PUBLIC__/css/tongji.css" type="text/css" rel="stylesheet">
+
+</head>
+<body>
+<form id="form" method="post" action="__URL__/tongji_ri">
+    <div class="container body-content">
+        <!--<a href="__URL__/quanbu"><input type="button" value="返回上一页" style="margin: 10px"></a>-->
+        <!--<input type="submit" value="生成统计表" style="margin: 10px" id="sheng">-->
+        <!--<select id="sel" style="width: 150px;height:30px;" name="sel">-->
+            <!--<volist name="time" id="val">-->
+            <!--<option>{$val.zhuangtai}</option>-->
+            <!--</volist>-->
+        <!--</select>-->
+        <!--<input type="button" value="删除此天记录" id="del">-->
+      <!--<input type="button" value="初始化数据" id="chushi">-->
+<!--      <span> 子账户是:{$Think.get.zizhanghu}   </span>    <span style="margin-left: 20px;"> 本月发放奖励:<span  style="color: red; font-weight: bold;">￥{$ren[0][amount]}  </span></span>  -->
+        <table class="table" id="neirong">
+            <tbody>
+                <tr class="fir-tr">
+                    <th>序号</th>
+                    <!--<th>用户名</th>-->
+                    <th>子账户</th>
+                    <!--<th></th>-->
+                    <th>电子币</th>
+                    <th>积分</th>
+                    <th>管理费</th>
+                    <th>本月奖励</th>
+                    <th>统计时间</th>
+                    <th>营销等级</th>
+                    <th>附加奖励</th>
+                    <th>发放时间</th>
+                    <!--<th>发放状态</th>-->
+                    <th>操作</th>
+                </tr>
+            <volist name="ren" id="val" key="k">
+                <tr style="text-align: center" class="neirong">
+                    <td>{:(I('get.p'))?((I('get.p')-1)*12+$k):($k)}</td>
+                    <td>{$val.real_name}{$val.zizhanghu}</td>
+                    <!--<td>{$val.amount}</td>-->
+                    <td>{$val.emoney}</td>
+                    <td>{$val.smoney}</td>
+                   
+                    <td>{$val.guanlifei}</td>     
+                    <td>{$val.reward_use}</td>
+                    <td>{$val.tongji_date}</td>
+                    <td><if condition='$val.dengji egt 9'>营销专家<else />营销顾问</if></td>
+                    <td>{$val.reward_fafang}</td>
+                    <td>{$val.distribute_time}</td>
+                    <!--<td>-->
+                    <!--</td>-->
+                    <!--<td><input type="hidden" value="{$val.status}" class="xunhuan"></td>onclick="fafang('{$val.id}','{$val.name}')"-->
+                    <td><if condition="$val.status eq 1">已发放<else /><a href="__URL__/zjiangli?distribute_id={$val.distribute_id}"><input type="button" value="发放" class="fafang" ></a></if></td>
+                </tr>
+            </volist>
+            </tbody>
+        </table>
+        <div class="fena">
+            {$show}
+        </div>
+        <div class="pagination-container page_new">
+            <!--<div class="pagination-container"><ul class="pagination"><li class="disabled PagedList-skipToPrevious"><a rel="prev">«</a></li><li class="active"><a>1</a></li><li class="disabled PagedList-skipToNext"><a rel="next">»</a></li></ul></div>-->
+        </div>
+    </div>
+</form>
+    <script src="__PUBLIC__/js/jquery-1.10.2.js"></script>
+<script>window.parent.scrollTo(0, 0);</script>
+<!--<script>
+    window.onload = function (){
+           var table = document.getElementById ('neirong');
+           var tbody = table.tBodies[0];
+           var rows = tbody.rows;
+           var cells = rows[0].cells;
+           for(var j = 0; j < cells.length; j++){
+               cells[j].onclick = function (){
+                   var asc = this.asc = !!this.asc ? -this.asc:-1;
+                   var array = [];
+                   array.index = this.cellIndex;
+                   for( var i = 1; i < rows.length; i++){
+                       array.push(rows[i]);
+                   }
+                   array.sort(function (a,b){
+                       if(array.index==0||array.index==2||array.index==3||array.index==4){
+                            var n1 = parseInt(a.cells[array.index].firstChild.nodeValue);
+                            var n2 = parseInt(b.cells[array.index].firstChild.nodeValue);
+                        }else{
+                            var n1 = a.cells[array.index].firstChild.nodeValue;
+                            var n2 = b.cells[array.index].firstChild.nodeValue;
+                        }
+                       if (n1 > n2){
+                           return asc;
+                       }
+                       else if (n1 < n2){
+                           return -asc;
+                       }else if(n1 === n2){
+                           return 0;
+                       }
+                   });
+                   for( var i = 0; i < array.length; i++){
+                       tbody.appendChild (array[i]);
+                   }
+               }
+           }
+    }
+    $(document).ready(function(){
+        var xun = $(".xunhuan");
+         for(var i=0;i<xun.length;i++){
+             if(xun.eq(i).val()==0){
+                 xun.parent("td").eq(i).append("未发放");
+             }else if(xun.eq(i).val()==1){
+                 xun.parent("td").eq(i).append("已发放");
+             }
+         }
+        $("#del").click(function(){
+            if(confirm('确定删除此天的记录吗？')){
+                if($("#sel").val()!=""){
+                    var frm = document.getElementById('form');
+                        frm.action='__URL__/deltongji/';
+                        frm.submit();
+                }else{
+                    alert("请选择日期!");
+                }
+            }
+        })
+        $("#sel").change(function(){
+            var value = $(this).val();
+            $.ajax({
+                type:"post",
+                url:"__URL__/sel_op2",
+                dataType: "text",
+                data:{val:value},
+                success:
+                function(data){
+                    if(data!=""){
+                        eval("var obj="+data);
+                        $(".neirong").detach();
+                        for(var i=0;i<obj.length;i++){
+                            if(obj[i].status==0){
+                                obj[i].status="未发放";
+                            }else if(obj[i].status==1){
+                                obj[i].status="已发放";
+                            }
+                           $(".table").append("<tr class='neirong' style='text-align:center'>\n\
+                            <td>"+(i+1)+"</td><td>"+obj[i].user+','+obj[i].name+"</td>\n\
+                            <td>"+obj[i].yeji+"</td><td>"+obj[i].yingyee+"</td><td>"+obj[i].jiangli+"</td><td>"+obj[i].time+"</td><td>"+obj[i].status+"</td><td><input type='button' value='发放' onclick=fafang('"+obj[i].id+"','"+obj[i].name+"')></td></tr>") 
+                        }
+                    }
+                }
+            })
+        })
+    })
+</script>
+<script>
+        function fafang(id,tel){
+            if(confirm('确定发放奖励吗？')){
+            $.ajax({
+                type:"post",
+                url:"__URL__/status_sel",
+                dataType: "text",
+                data:{id:id},
+                success:
+                function(data){
+                    if(data==1){
+                        alert("请勿重复发放奖励!");
+                    }else{
+                        var frm = document.getElementById('form');
+                            frm.action='__URL__/zjiangli/id/'+id+'/tel/'+tel;
+                            frm.submit();
+                    }
+                }
+            })
+            }
+        }
+        $(function(){
+            $("#chushi").click(function(){
+                if(confirm('确定初始化吗？')){
+                    var frm = document.getElementById('form');
+                        frm.action='__URL__/xiuxiu';
+                        frm.submit();
+                }
+            })
+        })
+</script>-->
+</body>
+</html>

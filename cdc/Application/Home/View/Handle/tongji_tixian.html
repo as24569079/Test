@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="__PUBLIC__/css/tongji_xin.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script src="__PUBLIC__/js/bianse.js"></script>
+    <script src="__PUBLIC__/js/jquery.table2excel.js"></script>
+    <link href="__PUBLIC__/css2/bootstrap.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/css2/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="all" href="__PUBLIC__/css2/daterangepicker-bs3.css" />
+</head>
+<body>
+        <input type="button" value="导出表" class="btn btn-primary" id="daochu" style="width:100px">
+        <table id="biao" border="0" cellspacing="0">
+            <tr>
+                <td colspan="6">
+                    诚兑城月度提现统计(<span id='time'>{$time}</span>)
+                </td>
+            </tr>
+            <tr>
+                <td>申请人数</td>
+                <td>总金额</td>
+                <td>提现人数</td>
+                <td>金额</td>
+                <td>未提人数</td>
+                <td>金额</td>
+            </tr>
+            <tr class="neirong">
+                <td>{$zong_count}</td>
+                <td>{$zong}</td>
+                <td>{$tixian_count}</td>
+                <td>{$tixian_zong}</td>
+                <td>{$weiti_count}</td>
+                <td>{$weiti_zong}</td>
+            </tr>
+        </table>
+    <script>
+        $(function(){
+            var myDate = new Date();    
+            $("#daochu").click(function(){
+                $("#biao").table2excel({
+                        exclude: ".noExl",
+                        name: "Excel Document Name",
+                        filename: "诚兑城月度提现统计("+myDate.toLocaleDateString()+")",
+                });
+            });
+        })
+    </script>
+</body>
+</html>
+

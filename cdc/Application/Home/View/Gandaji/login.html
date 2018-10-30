@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>诚兑城商城后台登录</title>
+<meta name="author" content="DeathGhost" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/login/css/style.css" tppabs="css/style.css" />
+<style>
+body{height:100%;background:#16a085;overflow:hidden;}
+canvas{z-index:-1;position:absolute;}
+</style>
+<script src="__PUBLIC__/login/js/jquery.js"></script>
+<script src="__PUBLIC__/login/js/verificationNumbers.js" tppabs="js/verificationNumbers.js"></script>
+<script src="__PUBLIC__/login/js/Particleground.js" tppabs="js/Particleground.js"></script>
+<script>
+$(document).ready(function() {
+  //粒子背景特效
+  $('body').particleground({
+    dotColor: '#5cbdaa',
+    lineColor: '#5cbdaa'
+  });
+  //验证码
+  createCode();
+  //测试提交，对接程序删除即可
+  $(".submit_btn").click(function(){
+	  location.href="javascrpt:;"/*tpa=http://***index.html*/;
+	  });
+});
+</script>
+</head>
+<body>
+                <form class="form-vertical login-form" action="login_yanzheng" method="post" id="form" onSubmit="return confirm();">
+
+<dl class="admin_login">
+ <dt>
+  <strong>诚兑城商城管理系统</strong>
+  <em>Management System</em>
+ </dt>
+  <dd>&nbsp;</dd>
+ <dd class="user_icon">
+  <input type="text" placeholder="账号" class="login_txtbx" name="username"/>
+ </dd>
+ <dd>&nbsp;</dd>
+ <dd class="pwd_icon">
+  <input type="password" placeholder="密码" class="login_txtbx" name="password"/>
+ </dd>
+  <dd>&nbsp;</dd>
+ <dd>
+  <input type="submit" value="立即登陆" class="submit_btn"/>
+ </dd>
+ <dd>
+  <p></p>
+  <p></p>
+ </dd>
+</dl>
+                </form>
+    <script>
+         function confirm(){
+            var result=false;
+            if($("input[name='username']").val()==""){
+                alert("请输入账号用户名!");
+                return false;
+            }
+            if($("input[name='password']").val()==""){
+                alert("请输入登录密码!");
+                return false;
+            }else{
+                var username = $("input[name='username']").val();
+                var password = $("input[name='password']").val();
+                $.ajax({
+                    async:false,
+                    type:"post",
+                    url:"__URL__/loginVerificationAjax",
+                    dataType: "text",
+                    data:{user:username,pass:password},
+                    success:
+                    function(data){
+                        if(data == 0){
+                            alert("账号密码错误！请重新输入！");
+                            result=false;
+                        }else if(data == 1){
+                            result=true;
+                        }
+                    }
+                })
+            }
+            return result;
+        }
+    </script>
+</body>
+</html>

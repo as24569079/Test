@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="__PUBLIC__/css/tongji.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script src="__PUBLIC__/js/bianse.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/boot.css"/>
+    <script src="__PUBLIC__/js/jquery.table2excel.js"></script>
+</head>
+<body>
+    <div style="width:100%;float:none" id="divBig">
+        <div style="margin-bottom: 10px">
+            <br>
+            <form action="__URL__/diaojia_cookie" method="post">
+<!--                请输入选择商城:<select  name="mall_id" style="margin-bottom: 0px">
+                    <if condition="$Think.cookie.mall_ids neq ''">
+                       <option value="{$Think.cookie.mall_id}">{$Think.cookie.mall_names}</option><else />
+                    <option value="0">请选择</option></if>
+                    <volist name="item" id="val">
+                       
+                        <option value="{$val.mall_id}">{$val.mall_name}</option>
+                    </volist>
+                            </select>　　-->
+              请选择时间:<input type="date" name="times" id="times" style="margin-bottom: 0px;width:150px" value="{$Think.cookie.time_dj}">-<input type="date" name="timess" id="timess" style="margin-bottom: 0px;width:150px" value="{$Think.cookie.times_dj}">
+              请选择商城:<select name="xx">
+                   <if condition="$Think.cookie.dj_sc neq ''">
+                       <option value="{$Think.cookie.dj_sc}">{$Think.cookie.dj_scname}</option><else />
+                    <option value="xz">请选择</option></if>
+                    <volist name="mall" id="val">
+                        <if condition='$Think.cookie.dj_sc eq $val.mall_id'>
+                        <else/>
+                        <option value="{$val.mall_id}">{$val.mall_name}</option>
+                        </if>
+                    </volist>
+                 
+              </select>
+                　　<input type="submit" value="搜索" class="btn btn-primary">　　<a href="__URL__/dj_cookiess"><input type="button" value="显示全部" class="btn btn-primary"></a>　　<input type='button' id='daochus' value="导出Exale" class="btn btn-primary">
+            </form>
+            </div>
+        
+            <table id="neirong" cellspacing='0'>
+                  <thead>
+                <tr class="neirong">
+                    <td>序号</td>
+                    <td>商品名称</td>
+                    <td>商品条码</td>
+                    <td>所属商城</td>
+                    <td>电子币（原价）</td>
+                    <td>电子币（现价）</td>
+                    <td>积分（原价）</td>
+                    <td>积分（现价）</td>
+                    <td>供应商价格</td>
+                    <td>调价时间</td>
+                    <td>操作人</td>
+                </tr>
+                <volist name='arr' id='val' key="k">
+                    <!--<if condition="$val.item_name neq undefined">-->
+                <tr class="neirong">
+                    <td>{$val.xuhao}</td>
+                    <td>{$val.item_name}</td>
+                    <td>{$val.bar_code}</td>
+                    <!--<td>{$val.category_name}</td>-->
+                    <td>{$val.mall_name}</td>
+                    <td>{$val.emony_y}</td>
+                    <td>{$val.emony_x}</td>
+                    <td>{$val.smony_y}</td>
+                    <td>{$val.smony_x}</td>
+                    <td>{$val.gh_money}</td>
+                    <td>{$val.time}</td>
+                    <td>{$val.user}</td>
+                   
+                </tr>
+                    <!--</if>-->
+                </volist>
+            </thead>
+            </table>
+            <div class="fena">
+            {$show}
+            </div>
+        </div>
+    <div style='display:none'>
+                    <table id="daochu" cellspacing='0'>
+               
+                <tr class="neirong">
+                    <td>序号</td>
+                    <td>商品名称</td>
+                    <td>商品条码</td>
+                    <td>所属商城</td>
+                    <td>电子币（原价）</td>
+                    <td>电子币（现价）</td>
+                    <td>积分（原价）</td>
+                    <td>积分（现价）</td>
+                    <td>供应商价格</td>
+                    <td>调价时间</td>
+                    <td>操作人</td>
+                </tr>
+                <volist name='arrs' id='val' key="k">
+                <tr class="neirong">
+                    <tr class="neirong">
+                    <td>{$val.xuhao}</td>
+                    <td>{$val.item_name}</td>
+                    <td>{$val.bar_code}</td>
+                    <!--<td>{$val.category_name}</td>-->
+                    <td>{$val.mall_name}</td>
+                    <td>{$val.emony_y}</td>
+                    <td>{$val.emony_x}</td>
+                    <td>{$val.smony_y}</td>
+                    <td>{$val.smony_x}</td>
+                    <td>{$val.gh_money}</td>
+                    <td>{$val.time}</td>
+                    <td>{$val.user}</td>
+                   
+                </tr>
+                </volist>
+         
+            </table>
+    </div>
+</body>
+ <script>
+    var divBig = document.getElementById("divBig");
+    window.parent.iframe.style.minHeight = divBig.scrollHeight+"px";
+</script>
+<script>
+   
+    $(document).ready(function () {
+         var myDate = new Date();    
+			$("#daochus").click(function(){
+				$("#daochu").table2excel({
+					exclude: ".noExl",
+					name: "Excel Document Name",
+					filename: myDate.toLocaleDateString(),
+//					exclude_img: true,
+//					exclude_links: true,
+//					exclude_inputs: true
+				});
+			});
+    })
+    
+    
+    </script>
+</html>

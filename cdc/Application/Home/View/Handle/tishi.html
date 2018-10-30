@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>提示页面</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div style="margin: auto">
+            <h3>无权访问此页面!</h3>
+            <span class="tishi2">系统<span id="number">10</span>秒后自动返回首页,您也可以</span><a href="__URL__/login" class="link">点击这里</a><span class="tishi2">返回!</span>
+        </div>
+        <script>
+                    var num=10; 
+                    function daoji(){
+                        num--;
+                        document.getElementById("number").innerHTML=num;
+                        if(num==0){
+                            window.location.href="__URL__/login"; 
+                        }
+                    }
+                    setInterval(daoji,1000);
+        </script>
+    </body>
+</html>

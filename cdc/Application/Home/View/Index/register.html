@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>欢迎注册</title>
+    <link href="__PUBLIC__/css/jquery-confirm.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/mobilemain.css" type="text/css" rel="stylesheet"> 
+    <link href="__PUBLIC__/css/main.css" type="text/css" rel="stylesheet"> 
+    <link rel="shortcut icon" href="__PUBLIC__/images/bitbug_favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="container body-content">
+<style>
+    #regist .label, .thickbox-form .label {
+        font-weight: 400;
+        font-size: 15px;
+    }
+</style>
+    <!--电脑端-->
+    <link href="__PUBLIC__/css/zhuce.css" rel="stylesheet">
+    <div id="load" style="display:none;z-index:60;">正在加载请稍后....</div>
+    <form id="form0" method="post" onSubmit="return confirm();" action="__URL__/registerSuccess"><input name="__RequestVerificationToken" type="hidden" value="YFSJCWIVuXg9MOmJSFOSvfv2kxkUWihmsu1s8G-yVKY6mmhc5y5JIkZd4zbAirlJzpMseQanilzww5MTLXdF8preKgwwtsEDyOwtmw2"><!--防止跨越提交-->
+        <!--头部-->
+        <div class="all">    
+           <div class="w" id="logo">
+             <a href="__URL__/index"><img src="__PUBLIC__/images/chengcuicheng.png" height="74"></a>
+            <span style="float:right;margin:30px 25px 0 0;"><a href="__URL__/login" class="flk13">登录</a></span>
+           </div>
+        </div>
+        <!--头部 end-->
+        <div class="w" id="regist">
+            <div class="mc">
+                <div class="form">
+                    <div class="form-horizontal">
+                        <!--显示错误验证信息-->
+<!--                        <div class="item" id="select-username">
+                            <label class="label" for="UserName">用户名</label>
+                            <div class="fl item-ifo">
+                                <div class="o-intelligent-regName">
+                                    <input id="username" name="username" readonly="true" type="text" value="" class="valid" style="width: 37%">
+                                    <input type="button" id="changeusername" value="更换用户名" style="width:34%">
+                                </div>
+                            </div>
+                        </div>-->
+                        <div class="item" id="select-regName">
+                            <label class="label" for="UserName">手机号码</label>
+                            <div class="fl item-ifo">
+                                <div class="o-intelligent-regName">
+                                    <input id="UserName" name="fc_Phone" type="text" value="" style="width: 37%" maxlength="11"><input type="button" id="changeUserName" value="获取验证码" style="width:34%">
+                                    <input type="hidden" id="dxyz" value="false"><input type="hidden" id="yzmyz">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rong"> <span class="field-validation-valid" data-valmsg-for="UserName" data-valmsg-replace="true"></span></div>
+                        <div class="item" id="dphone" style="display:none">
+                            <label class="label" for="fc_YZM">短信验证码</label>
+                            <div class="fl item-ifo">
+                                <input class="text-box single-line" id="fc_YZM" name="fc_YZM" type="text" value="" maxlength="4">
+                            </div>
+                        </div>
+                       <div class="rong"><span class="field-validation-valid" data-valmsg-for="fc_Phone" data-valmsg-replace="true"></span></div>
+                        <div class="item" id="select-realName">
+                            <label class="label" for="FullName">姓名</label>
+                            <div class="fl item-ifo">
+                                <div class="o-intelligent-regName">
+                                    <input class="text-box single-line" id="FullName" name="FullName" type="text" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rong"> <span class="field-validation-valid" data-valmsg-for="FullName" data-valmsg-replace="true"></span></div>  
+                        <div class="item" id="select-CodeID">
+                            <label class="label" for="CodeID">身份证号码</label>
+                            <div class="fl item-ifo">
+                                <div class="o-intelligent-regName">
+                                    <input class="text-box single-line" id="CodeID" name="CodeID" type="text" value="" maxlength="18" data-status="on">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rong"> <span class="field-validation-valid" data-valmsg-for="FullName" data-valmsg-replace="true"></span></div>  
+                        <div class="item" id="pswd">
+                            <label class="label" for="UserPassword">登录密码</label>
+                            <div class="fl item-ifo">
+                                <input data-val="true" id="UserPassword" name="UserPassword" type="password" maxlength="32">
+                            </div>
+                        </div>
+                        <div class="rong"> <span class="field-validation-valid" data-valmsg-for="UserPassword" data-valmsg-replace="true"></span></div>    
+                        <div class="item" id="pswd2">
+                            <label class="label" for="UserPassword1">确认登录密码</label>
+                            <div class="fl item-ifo">
+                                <input id="UserPassword1" name="UserPassword1" type="password" maxlength="32">
+                            </div>
+                        </div>
+                        <div class="rong"><span class="field-validation-valid" data-valmsg-for="UserPassword1" data-valmsg-replace="true"></span></div>    
+                        <div class="item" id="anquan">
+                            <label class="label" for="fc_TwoPassword">安全密码</label>
+                            <div class="fl item-ifo">
+                                <input id="fc_TwoPassword" name="fc_TwoPassword" type="password" maxlength="8">
+                            </div>
+                        </div>
+                        <div class="rong"> <span class="field-validation-valid" data-valmsg-for="fc_TwoPassword" data-valmsg-replace="true"></span></div>    
+
+                        <div class="item" id="anquan2">
+                            <label class="label" for="fc_TwoPassword1">确认安全密码</label>
+                            <div class="fl item-ifo">
+                                <input id="fc_TwoPassword1" name="fc_TwoPassword1" type="password" maxlength="8">
+                            </div>
+                        </div>
+                       <div class="rong"><span class="field-validation-valid" data-valmsg-for="fc_TwoPassword1" data-valmsg-replace="true"></span></div>   
+
+                        <div class="item" style="border:none;">
+                            <label class="label hid" for="IsAgreeTerm">同意注册协议</label>
+                            <div class="f2 item-ifo">
+                                <input checked="checked" id="IsAgreeTerm" name="IsAgreeTerm" type="checkbox" value="true"><input name="IsAgreeTerm" type="hidden" value="false"> 我已阅读并同意<a href="__URL__/xieyi" target="_blank" class="blue">《诚兑城服务协议》</a>
+                            </div>
+                        </div>
+                        <div class="rong" id="xieyi"> <span class="field-validation-valid" data-valmsg-for="IsAgreeTerm" data-valmsg-replace="true"></span></div>   
+                        <div class="item" style="border:none;">
+                            <input type="submit" value="注册" id="save" class="btn-img btn-regist" style="background:#0088cc">
+                        </div>
+                    </div>
+                </div>
+                      <div class="phone">
+                        <img src="__PUBLIC__/images/zhuce.png">
+                        <a href="__URL__/index"><div class="website website1"><img src="__PUBLIC__/images/gw.png">诚兑城官网</div></a>
+                        <a href=""><div class="website"><img src="__PUBLIC__/images/sc.png">诚兑城商城</div></a>
+                      </div>
+              
+            </div>
+        </div><!--
+        <!--底部-->
+        <div class="footpc" style="width:100%;text-align:center;">
+            <div class="footer_infor">
+                <!--<p class="footer_infor_txt" style="text-align: center;"><span style="font-size:14px;"><em>&nbsp;</em> 备案编号：</span></p>-->
+                <p style="text-align: center;">
+                    <span style="font-size:14px;">
+                        <!--<span style="color: rgb(153, 153, 153);">全国统一加盟热线：</span><br>-->
+                        <!--<span style="color: rgb(153, 153, 153);">Copyright © All Rights Reserved. 2005-2016</span>-->
+                    </span>
+                </p>
+
+                <div style="text-align: center;">&nbsp;</div>
+            </div>
+        </div>
+        <!--底部 end-->
+</form>
+    </div>
+    <div style='width:100%;height:2000px;position: absolute;background: #000;top:0;left:0;opacity: 0.3;display:none' id='dang'></div>
+    <div style='position: absolute;top:50%;left:30%;background: #FFF;width:330px;height:100px;padding:10px;display:none' id='captcha-container'>
+        <input type='text' name='verify' id='tuwen' placeholder="请输入右侧验证码" maxlength="4">
+        <IMG onclick="this.src=this.src+'?'+Math.random()" src="__URL__/selfverify" > <br>
+        <input type='button' value='提交' id='yan_sub'>&nbsp;&nbsp;&nbsp;&nbsp;<input type='button' value='取消' id='quxiao'> 
+    </div>
+    <script src="__PUBLIC__/js/jquery-1.10.2.js"></script>
+<!--    <script src="__PUBLIC__/js/bootstrap.js"></script>
+<!---->    <script src="__PUBLIC__/js/register.js"></script>
+<!--    <script src="__PUBLIC__/js/jquery-confirm.min.js"></script>
+    <script src="__PUBLIC__/js/jquery.validate.js"></script>
+    <script src="__PUBLIC__/js/jquery.validate.unobtrusive.js"></script>
+    <script src="__PUBLIC__/js/jquery.unobtrusive-ajax.js"></script>
+    <script src="__PUBLIC__/js/bootstrap-datetimepicker.js"></script>
+    <script src="__PUBLIC__/js/bootstrap-datetimepicker.zh-CN.js"></script>-->
+<script>window.parent.scrollTo(0,0);</script>
+    
+
+    <script type="text/javascript">
+        $(function(){
+            var captcha_img = $('#captcha-container').find('img')  
+            var verifyimg = captcha_img.attr("src");  
+            captcha_img.attr('title', '点击刷新');  
+            captcha_img.click(function(){  
+                if( verifyimg.indexOf('?')>0){  
+                    $(this).attr("src", verifyimg+'&random='+Math.random());  
+                }else{  
+                    $(this).attr("src", verifyimg.replace(/\?.*$/,'')+'?'+Math.random());  
+                }  
+            });  
+        })
+      function confirm(){
+          var result;
+        if($("#UserName").val()==""){
+            $(".field-validation-valid").eq(0).text("手机为必填项!"); 
+            $("#select-regName").css("border","1px solid red");
+            return false;
+        }else if(isNaN($("#UserName").val())){
+            $(".field-validation-valid").eq(0).text("手机号码只能为数字!");
+            $("#select-regName").css("border","1px solid red");
+            return false;
+        }else if($("#UserName").val().length<11){
+            $(".field-validation-valid").eq(0).text("请输入正确的11位手机号码!");
+            $("#select-regName").css("border","1px solid red");
+            return false;
+        }
+        if($("#fc_YZM").val()==""){
+            $(".field-validation-valid").eq(1).text("验证码为必填项!");
+            $("#dphone").css("border","1px solid red");
+            return false;
+        }else if(isNaN($("#fc_YZM").val())){
+            $(".field-validation-valid").eq(1).text("验证码只能为数字!");
+            $("#dphone").css("border","1px solid red");
+            return false;
+        }else if($("#fc_YZM").val()!=$("#yzmyz").val()){
+            $(".field-validation-valid").eq(1).text("验证码不正确或已过期!请重新输入!");
+            $("#dphone").css("border","1px solid red");
+            return false;
+        }
+        var pattern = /^[\u4e00-\u9fa5]+$/;
+         var reg=/^[1-9]{1}[0-9]{14}$|^[1-9]{1}[0-9]{16}([0-9]|[xX])$/;  //正则身份证
+        if($("#FullName").val()==""){
+            $(".field-validation-valid").eq(2).text("姓名为必填项!");
+            $("#select-realName").css("border","1px solid red");
+            return false;
+        }
+        if(!pattern.test($("#FullName").val())){
+            $(".field-validation-valid").eq(2).text("请输入您的真实姓名!");
+            $("#select-realName").css("border","1px solid red");
+            return false;
+        }
+            if (!reg.test($("#CodeID").val())) {
+                $(".field-validation-valid").eq(3).text("请输入您的正确身份证");
+                $("#select-CodeID").css("border","1px solid red");
+                return false;
+            } else { 
+                 if ($("#CodeID").attr("data-status") == "on") {
+                    $.ajax({
+                        async:false,
+                        type:"post",
+                        url:"CodeId",
+                        dataType: "text",
+                        data:{CodeID:$("#CodeID").val(),FullName:$("#FullName").val(),phone:$("#UserName").val()},
+                        success:
+                        function(data){
+                           if (data == 1) {         //后端验证身份证格式
+                                 $(".field-validation-valid").eq(3).text("身份证格式不正确");
+                                 $("#select-CodeID").css("border","1px solid red");
+                                result = false;
+                           }else if(data == 123){
+                               $(".field-validation-valid").eq(3).text("您验证的身份证次数过多,请更换手机号重试");
+                                 $("#select-CodeID").css("border","1px solid red");
+                           }else {
+                                var s = data.substring(0,data.length-1); //返回json格式数据多个1
+                                eval("var obj=" + s);   
+                                var codeResult = obj.result.isok;      //验证身份证号码和人名是否匹配
+                                if (codeResult == true) {
+                                    $(".field-validation-valid").eq(3).text('');
+//                                    $("#CodeID").parent(".input-container").attr("class","input-container");
+                                    $("#CodeID").attr("data-status","off");
+                                } else {
+                                    $(".field-validation-valid").eq(3).text("身份证与姓名不符");
+                                    $("#select-CodeID").css("border","1px solid red");
+                                }
+                           }
+                        }
+                    });
+                }
+            }
+             if ($("#CodeID").attr("data-status") == "on") {
+                 return false;
+             }  
+        if($("#UserPassword").val()==""){
+            $(".field-validation-valid").eq(3).text("登录密码为必填项!"); 
+            $("#pswd").css("border","1px solid red");
+            return false;
+        }else if($("#UserPassword").val().length<6){
+            $(".field-validation-valid").eq(3).text("请输入6-32位的登录密码!"); 
+            $("#pswd").css("border","1px solid red");
+            return false;
+        }else if(!/^([a-z]|[A-Z]|[0-9])*$/.test($("#UserPassword").val())){
+            $(".field-validation-valid").eq(3).text("登录密码不能包含特殊符号!"); 
+            $("#pswd").css("border","1px solid red");
+            return false;
+        }else if($("#fc_TwoPassword").val()!=""){
+            if($("#UserPassword").val()==$("#fc_TwoPassword").val()){
+                $(".field-validation-valid").eq(3).text("登录密码不能与安全密码相同!"); 
+                $("#pswd").css("border","1px solid red");
+                return false;
+            }
+        }else if($("#UserPassword").val()!=""){
+            if($("#UserPassword").val()==$("#fc_TwoPassword").val()){
+                $(".field-validation-valid").eq(3).text("登录密码不能与安全密码相同!"); 
+                $("#anquan").css("border","1px solid red");
+                return false;
+            }
+        }
+        if($("#UserPassword").val()!=""){
+            if($("#UserPassword1").val()==""){
+                $(".field-validation-valid").eq(4).text("请再次输入登录密码!"); 
+                $("#pswd2").css("border","1px solid red");
+                return false;
+            }else if($("#UserPassword1").val()!=$("#UserPassword").val()){
+                $(".field-validation-valid").eq(4).text("两次输入的登录密码不相同!请再次输入!"); 
+                $("#pswd2").css("border","1px solid red");
+                return false;
+            }
+        }
+        if($("#fc_TwoPassword").val()==""){
+            $(".field-validation-valid").eq(5).text("安全密码为必填项!"); 
+            $("#anquan").css("border","1px solid red");
+            return false;
+        }else if($("#fc_TwoPassword").val().length<6){
+            $(".field-validation-valid").eq(5).text("请输入6-8位的安全密码!"); 
+            $("#anquan").css("border","1px solid red");
+            return false;
+        }else if(!/^([a-z]|[A-Z]|[0-9])*$/.test($("#fc_TwoPassword").val())){
+            $(".field-validation-valid").eq(5).text("安全密码不能包含特殊符号!"); 
+            $("#anquan").css("border","1px solid red");
+            return false;
+        }
+        if($("#fc_TwoPassword").val()!=""){
+            if($("#fc_TwoPassword1").val()==""){
+                $(".field-validation-valid").eq(6).text("请再次输入安全密码!"); 
+                $("#anquan2").css("border","1px solid red");
+                return false;
+            }else if($("#fc_TwoPassword").val()!=$("#fc_TwoPassword1").val()){
+                $(".field-validation-valid").eq(6).text("两次输入的安全密码不相同!请再次输入!"); 
+                $("#anquan2").css("border","1px solid red");
+                return false;
+            }
+        }
+        if($("#IsAgreeTerm").is(":checked")){
+            $("#IsAgreeTerm").val("true");
+            $("#xieyi > span").text("");
+        }else{
+            $("#IsAgreeTerm").val("false");
+            $("#xieyi > span").text("您必须同意协议，才能注册！");
+            return false;
+        }
+        if($("#CodeID").val()==""){
+            $(".field-validation-valid").eq(3).text("身份证号码为必填项!"); 
+            $("#select-CodeID").css("border","1px solid red");
+            return false;
+        }else if($("#CodeID").val().length!=15&&$("#CodeID").val().length!=18){
+            $(".field-validation-valid").eq(3).text("身份证长度不符合!请输入15或18位身份证号码!"); 
+            $("#select-CodeID").css("border","1px solid red");
+            return false;
+        }
+//        else if(isNaN($("#CodeID").val())){
+//            $(".field-validation-valid").eq(3).text("请输入数字!"); 
+//            $("#select-CodeID").css("border","1px solid red");
+//            return false;
+//        }
+    }
+    </script>
+</body></html>

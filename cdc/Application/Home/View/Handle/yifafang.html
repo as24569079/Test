@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="__PUBLIC__/css/tongji.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script src="__PUBLIC__/js/bianse.js"></script>
+</head>
+<body>
+    <form method="post" id="form" action="__URL__/yifafang">
+    <div>
+        <span>已发放奖励</span>
+        <input type="text" class="search" name="sea" id="sea">
+        <input type="button" value="搜索" class="search_sub" id="sub">
+        <table id="neirong" border="0" cellspacing="0">
+            <tr>
+                <td>序号</td>
+                <td>推荐人</td>
+                <td>受邀人</td>
+                <!--<td>子账户</td>-->
+                <td>签约资质</td>
+                <td>推荐奖励</td>
+                <!--<td>审核状态</td>-->
+                <td>发放时间</td>
+                <!--<td>操作</td>-->
+            </tr>
+            <volist name="ren" id="val" key="k">
+            <tr class="neirong">
+                <td>{:(I('get.p'))?((I('get.p')-1)*12+$k):($k)}</td>
+                <td>{$val.real_name},{$val.jiedian}</td>
+                <td>{$val.real_name2},{$val.zizhanghu}</td>
+<!--                <td>{$val.jiedian}</td>-->
+                <td><if condition="$val.zizhi eq 2900">3200<elseif condition="$val.zizhi eq 29000"/>32000<elseif condition="$val.zizhi eq 290000"/>320000<else/>{$val.zizhi}</if></td>
+                <td>{$val.jiangli}</td>
+                <!--<td>已发放</td>-->
+                <td>{$val.issue_date}</td>
+                <!--<td><input type="button" value="发放" onclick="zz('{$val.id}','{$val.jiangli}','{$val.tuijian}')"></td></td>-->
+            </tr>
+            </volist>
+        </table>
+        <div class="fena">
+            {$show}
+        </div>
+    </div>
+    </form>
+    <script>
+        function zz(id,jiang,tui){
+            if(confirm('确定发放奖励吗？')){
+                    var frm = document.getElementById('form');
+                        frm.action='__URL__/jianglifafang/id/'+id+'/jiang/'+jiang+'/tui/'+tui;
+                        frm.submit();
+                }else{
+
+            }
+        }
+        $(document).ready(function(){
+        
+            $("#sub").click(function(){
+                if($("#sea").val()!=""){
+                    window.location.href='__URL__/yifafang/tel/'+$("#sea").val();
+                }
+            })
+        })
+    </script>
+</body>
+</html>

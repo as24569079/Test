@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html><head>
+       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>资质查询</title>
+    <link rel="stylesheet" href="__PUBLIC__/css2/bootstrap.min.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/css2/jquery.jOrgChart.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/css2/custom.css"/>
+    <link href="__PUBLIC__/css2/prettify.css" type="text/css" rel="stylesheet" /> 
+    <!-- jQuery includes -->
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>    
+  </head>
+
+  <body>        
+    
+      <div id="chart" class="orgChart">
+          <center>
+              <input type='text' placeholder="请输入要查询的子账户" id='tel'>
+              <input type='button' value='查询' id='sel' style='width:100px;'>
+          </center>
+      </div>
+      <script>
+          $(function(){
+              $("#sel").click(function(){
+                  if($("#tel").val()!=""){
+                      window.location.href='tree/tel/'+$("#tel").val();
+                  }
+              })
+          })
+      </script>
+</body>
+</html>

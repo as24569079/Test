@@ -1,0 +1,77 @@
+﻿
+.w-border{
+    border: 1px solid #e5e5e5;margin: 15px auto;}
+.sp_type_nav {
+    padding: 30px 20px 20px 30px;
+    font-size: 0;
+    height: 230px;
+}
+.sp_type_nav .right_img {
+    float: right;
+    padding-left: 20px;
+    border-left: 1px dashed #e5e5e5;
+    margin-top: -10px;
+}
+.sp_type_nav .right_img img {
+    width: 200px;
+    height: 240px;
+}
+  .sp_type_nav .type_sections {
+    display: inline-block;
+    width: 925px;
+}
+  .sp_type_nav .type_section.first, .sp_type_nav .type_section.second {
+    margin-bottom: 30px;
+}
+.sp_type_nav .type_section {
+    float: left;
+    width: 435px;
+    height: 96px;
+    overflow: hidden;
+    margin-right: 25px;
+}
+  .sp_type_nav .type_section dt {
+    height: 18px;
+    line-height: 18px;
+    overflow: hidden;
+    font-family: Microsoft Yahei;
+    font-size: 16px;
+    color: #333;
+}
+  .sp_type_nav .type_section dd {
+    margin-top: 10px;
+    vertical-align: top;
+    height: 68px;
+    overflow: hidden;
+    width: 50%;
+    float: left;
+}
+  .sp_type_nav .type_section dd .cat_img {
+    float: left;
+    height: 66px;
+    border: 1px solid #f2f2f2;
+    background: #fff;
+    padding: 0;
+    margin: 0;
+}
+.sp_type_nav .type_section dd a {
+    display: inline-block;
+    height: 12px;
+    line-height: 11px;
+    padding: 4px 6px;
+    color: #333;
+    overflow: hidden;
+    font-size: 12px;
+    margin: 0 7px;
+}
+  .sp_type_nav .type_section dd ul li {
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+    margin-top: 6px;
+}
+  .sp_type_nav .type_section dd .cat_img img {
+    width: 66px;
+    height: 66px;
+}
+.sp_type_nav .right_img img{border: 1px #d7c6a9 solid;}

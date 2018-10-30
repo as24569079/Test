@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<span style="font-family:Microsoft YaHei;font-size:12px;"><script type="text/javascript" src="__PUBLIC__/js/LodopFuncs.js"></script>  
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+                    <!--<script type="text/javascript" src="__PUBLIC__/js/LodopFuncs.js"></script>-->  
+<style>
+    .fena >div{
+    text-align: center;height: 30px;
+    line-height: 30px;
+}
+.fena >div> span{
+    width: 50px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+}
+.fena >div> a{
+    width: 50px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+    text-decoration: none;
+}
+.fena >div> li{
+    list-style: none;
+    width: 200px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+    text-decoration: none;
+}
+.fena >div> a:hover{
+    text-decoration: none;
+}
+div{ width:auto}
+.paixu{ width:193px; height:30px; float:left; text-align:center; border:1px solid #CCC;line-height: 30px}
+.zhuangtai{ width:400px; height:30px;}
+.xinxi{ width:1190px; float:left; background:#E1E1E1; }
+.span{ float:right; width:200px}
+.span2{ margin-left:40px}
+.span3{ float:right; width:200px}
+.span4{ float:right; width:200px}
+.xq{ width:1200px; height:50px; float:left; background:#74D5F1;text-align: center}
+table{font-size: 12px; text-align: center;width:70%}
+table tr{margin: 5px;}
+</style>
+</head>
+
+<body>
+    <!--<div>-->
+    	
+            <!--<div class="paixu"><span>未处理</span></div>-->
+<!--            <div class="paixu"><span>配送中</span></div>-->
+            <!--<div class="paixu"><span>已完成</span></div>-->
+            <!--<div class="paixu"><span>删除/退款</span></div>-->
+<!--            <div class="paixu"><span>所有订单</span></div>-->
+<!--            <div class="paixu" style='width: 350px'><span style='display: block;'>旗舰店   <select id="select" name="qjd">
+                   <if condition="$Think.cookie.shop_name neq ''"><option value ="{$Think.cookie.shop_id}">{$Think.cookie.shop_name}</option>  <else /></if>
+                    <volist name="shop_id" id="val">
+                  <option value ="{$val.shop_id}">{$val.shop_name}</option>
+                    </volist>
+                </select></span>
+            </div>-->
+<!--          <a href="__URL__/orderlist_s?orderlistpay_type=1">
+              <div> <if condition="$Think.cookie.type eq '1'"><div class="paixu"style='color:green;border-bottom: 5px greenyellow solid'><span>线上</span></div>
+                  <else /><div class="paixu"><span>线上</span>
+             </div> </if></a>
+            <a href="__URL__/orderlist_s?orderlistpay_type=2"><if condition="$Think.cookie.type eq '2'"><div class="paixu"style='color:green;border-bottom: 5px greenyellow solid'><span>线下</span></div><else /><div class="paixu"><span>线下</span></div></if></a>
+            <a href="__URL__/orderlist_s?orderlist_status=2"><if condition="$Think.cookie.status eq '2'"><div class="paixu"style='color:green;border-bottom: 5px greenyellow solid'><span>未发货</span></div><else /><div class="paixu"><span>未发货</span></div> </if></a>
+            <a href="__URL__/orderlist_s?orderlist_status=3"><if condition="$Think.cookie.status eq '3'"><div class="paixu"style='color:green;border-bottom: 5px greenyellow solid'><span>已发货</span></div><else /><div class="paixu"><span>已发货</span></div> </if></a>-->
+            
+        <!--</div>-->
+        
+<!--        <div style=" float:left;">
+            <div class="paixu" style="width:500px;margin-top: 10px">
+            	<span>旗舰店：</span>
+                <select>
+                    <volist name="shop_id" id="val">
+                  <option value ="{$val.shop_id}">{$val.shop_name}</option>
+                    </volist>
+                </select>
+            </div>-->
+            
+        <!--</div>-->
+         <div  style='width:100%'>
+                <form method="post" action="__URL__/hetong_cookie">
+                    手机号:<input type="text" style="margin-bottom: 0px;width:150px" name="tel" value="{$Think.cookie.user_id_tel}"> <input type="submit" value="搜索"> <a href="__URL__/qing_ht"><input type="button" value="显示全部" id="quanbu"></a>
+                            </form>
+            </div>
+        <div style="display:none;" id="wushu"><img src="__PUBLIC__/images/zanwushuju.png" style=" vertical-align: bottom"></div>
+        <volist name="arr" id="val"> 
+            
+        <div style="width:auto; min-height:60px; float:left;" class='position{$val.order_id} stupid' data-order_id='{$val.order_id}'  data-flag="0">
+                <div class="xinxi" style="display:block; margin-top:10px">
+                    <span style="display:block; margin-top:10px">
+                        订单编号：<span><a href="__URL__/hetong/id/{$val.order_id}">{$val.order_no}</a>　下单时间：{$val.create_date}　姓名：{$val.real_name}　电话：{$val.tel}
+                            收货地址：<span><if condition="$val.type eq '2'">线下下单<else />{$val.address_name}</if></span>
+                           </span>
+                        <!--<span class="span">电子币：<span>{$val.emenoy}</span><span>元</span></span>-->
+                            
+                    </span>
+                    
+                </div>
+        </div>
+        </volist>
+        <if condition="$heji eq 1" >
+            <div style="width:100%">合计:{$qian}</div>
+        </if>         
+        </div>
+            <div class="fena"  style="float:left">{$show}</div>
+            
+          <div  id="form1" style="display:none;">
+                         
+        </div>      
+      
+         
+            
+            
+            
+            
+            
+            
+<script>
+
+	$(document).ready(function () {
+             if($(".stupid").length <= 0) {
+                 $("#wushu").show();
+             }else{
+                 $("#wushu").hide();
+             }
+            $("#select").change(function(){
+                window.location.href="orderlist_s?shop_id="+$("#select").val();
+//            alert();
+            })
+            
+
+                
+                
+                 
+    })
+</script>
+</body>
+<!--    <script>
+        function PrintArticle() {
+                var pc = document.getElementById("<%=PrintContent.ClientID%>");
+                var pw = window.open('', '', 'width=500,height=400');
+                    pw.document.write('<html>');
+                    pw.document.write('<head>');
+                    pw.document.write('<title>打印小票</title>');
+                    pw.document.write('</head>');
+                    pw.document.write('<div>　****XXXXXXX*****</div>');
+                    pw.document.write('<body>');
+                    pw.document.write(pc.innerHTML);
+                    pw.document.write('</body>');
+                    pw.document.write('</html>');
+                    pw.document.close();
+//                setTimeout(function () {
+                    pw.print();
+//                }, 500);
+                return false;
+            }
+        </script>-->
+<script>
+function sub(){
+        if($("#express").val()==""){
+            $("#express_no").text(" 请输入快递名称！")
+            return false;
+        }
+        if($("#number").val()==""){
+            $("#item_stop").text(" 请输入快递号！")
+            return false;
+        }
+        if(isNaN($("#number").val())){
+             $("#item_stop").text(" 请输入正确格式！")
+             return false;
+      
+        }
+    }
+    $(document).ready(function () {
+        $(".wifahuo").click(function(){
+             $("#address_people").fadeIn(1000);
+             $("#item_id").val($(this).attr("data-item_id"));
+    
+             $("#order_id").val($(this).attr("data-id"));
+             $("#order_type").val($(this).attr("data-type"));
+        
+             $("#flag_id").val($("[name='qjd'] option:selected ").val())
+            
+        })
+        $("#address_d").click(function(){
+             $("#address_people").fadeOut(1000);
+            
+        })
+        
+        
+    })
+    
+    </script>
+</html>

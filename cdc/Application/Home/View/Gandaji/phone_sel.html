@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title></title>
+  <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+  <link href="__PUBLIC__/m-cdc/css/style.css" rel="stylesheet" type="text/css" />
+ </head>
+ <body class="body_page">
+  <!--顶部开始-->
+  <div id="top">
+   <div style="margin-bottom:55px;">
+    <div id="toolbar">
+     <div class="fixed-green">
+      <a class="ui-title">预览页面</a>
+      <a class="ui-btn-back" ></a>
+      <a class="ui-btn-home"></a>
+     </div>
+    </div>
+    <div id="overlay"></div>
+    <div id="window">
+     <ul class="windowlist">
+      <li><a href="index"><span>网站首页</span></a></li>
+      <li><a href="about"><span>关于我们</span></a></li>
+      <li><a href="myhome"><span>个人中心</span></a></li>
+      <li><a href="shop_index"><span>购物商城</span></a></li>
+      <li><a href="news"><span>新闻中心</span></a></li>
+      <li><a href="case"><span>招商加盟</span></a></li>
+      <li><a href="product"><span>诚聘英才</span></a></li>
+      <li><a href="__URL__/signOut"><span>退出登录</span></a></li>
+      <div class="clear"></div>
+     </ul>
+    </div>
+   </div>
+   <!--频道导航 结束-->
+  </div>
+  <!--顶部结束-->
+  <div id="content">
+      <center>{$find.news_title}</center>
+   <div class="single">
+       {$find.news_content}
+  </div>
+  <!--页脚开始-->
+  <div id="footer">
+   <!-- 微信分享导引 开始-->
+   <div id="guide" onclick="closeGuide()">
+    <img src="images/guide.png" />
+   </div>
+   <!-- 微信分享导引 结束-->
+   <!--快捷按钮 开始-->
+   <div class="plug-div">
+    <div class="plug-phone">
+     <div class="plug-menu themeStyle">
+      <span class="close"></span>
+     </div>
+     <div class="themeStyle plug-btn plug-btn1 close">
+      <a ><span style="background-image: url(__PUBLIC__/m-cdc/ky_img/home.png);"></span></a>
+     </div>
+     <div class="themeStyle plug-btn plug-btn2 close">
+      <a ><span style="background-image: url(__PUBLIC__/m-cdc/ky_img/tel.png);"></span></a>
+     </div>
+     <div class="themeStyle plug-btn plug-btn3 close">
+         <!--<a href="About.html">-->
+      <a ><span style="background-image: url(__PUBLIC__/m-cdc/ky_img/aboutus.png);"></span></a>
+     </div>
+     <div class="themeStyle plug-btn plug-btn4 close">
+      <a><span style="background-image: url(__PUBLIC__/m-cdc/ky_img/guestbook.png);"></span></a>
+     </div>
+     <div class="plug-btn plug-btn5 close"></div>
+    </div>
+   </div>
+   <!--快捷按钮 结束-->
+   <div>
+    <ul class="wxlist">
+     <a href="#top"><li>
+       <div class="GoTop">
+        <img src="__PUBLIC__/images/top.png" />回顶部
+       </div></li></a>
+    </ul>
+   </div> 
+   <div class="copyright">
+     咨询热线:4006-116-226<br>备案号:津ICP备16004932号-2
+   </div>
+  </div>
+  <!--页脚结束-->
+ </body>
+</html>

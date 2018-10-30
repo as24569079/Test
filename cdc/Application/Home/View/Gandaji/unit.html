@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="__PUBLIC__/css/tongji.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script src="__PUBLIC__/js/bianse.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/boot.css"/>
+</head>
+<body>
+
+    <div>
+        <div>
+<!--            <div style="background:orange; width:100px; float:left;text-align:center; border-radius:5px"><a href="__URL__/addgongying">新增供应商</a></div>-->
+<br>
+                <form action="__URL__/unit_add" method="post" onsubmit="return sub()"> 
+                <input type="text" name="unit_name" style="margin-bottom: 0px;" id="unit_name"> <input type="submit" value="新增单位">            
+                </form>
+            <div style="width:400px; float:right; background:#eae1e1; border-radius:5px; text-align:center">
+            </div>
+            <table id="neirong" cellspacing='0'>
+                <tr class="neirong">
+                    <td>序号</td>
+                    <td>品牌名称</td>
+                    <td>操作</td>
+                </tr>
+                <volist name='arr' id='val' key="k">
+                <tr class="neirong">
+                    <td>{:(I('get.p'))?((I('get.p')-1)*10+$k):($k)}</td>
+                    <td>{$val.unit_name}</td>
+                    <td><a href="__URL__/unit_delete?unit_id={$val.unit_id}"><input type="button" value="删除" class="btn btn-danger"></td>                   
+                </tr>
+                </volist>
+            </table>
+            <div class="fena">
+            {$show}
+            </div>
+   
+        </div>
+    </div>
+ <script>
+        function sub(){
+         if($("#unit_name").val()==""){
+             alert("请输入单位");
+             return false;
+         }   
+        }
+        </script>
+</body>
+
+</html>

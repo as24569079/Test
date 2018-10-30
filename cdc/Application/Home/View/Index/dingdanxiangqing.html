@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/xiangqing.css">
+        <link href="__PUBLIC__/css/tongji.css" rel="stylesheet" />
+        <style>
+            table tr td {
+                margin:0px;
+            }
+        </style>
+    </head>
+    
+    <body>
+    <table>
+        
+               
+        <tr class="kb"></tr>
+        <!--<tr><td class="time" colspan="6"></td></tr>-->
+       
+             <volist name="dd" id="val" key="k">
+                
+                 <if condition="$val.order_no neq ''">
+                     
+                     <tr style="margin:15px">
+                         <td>订单号:{$val.order_no}</td>
+                         <td >时间:{$val.time}</td>
+                         <td >电子币:{$val.emenoy} 积分:{$val.smenoy}</td>
+                         <td >总计:{$val.total_price}</td>
+                     <if condition="$val.tuihuo eq ''">
+                         
+                        <td><input type='button' value="取消订单" class='qxdd' data-id='{$val.order_id}'></td>
+               
+                            <elseif condition='$val.tuihuo eq 6'/>
+                            <td>取消订单成功</td>   
+                     </if>
+                         <td>
+                     </if>
+                     </tr>
+                 </if>
+        <tr > 
+       
+            <td>商品名字:{$val.item_name}</td>
+            <td>数量:{$val.quantity}</td>
+            <td>单价:
+            <if condition='$val.mall_id eq 1'>
+            积分:{$val.gouwu}
+            <elseif condition='$val.mall_id eq 2 '/>
+            电子币:{$val.dianzi}
+            <elseif condition='$val.mall_id eq 4'/>
+             电子币:{$val.dianzi} +   积分:{$val.gouwu}
+        </if>
+            </td>
+     
+      
+        </tr>
+                 </div>
+        </volist>
+        
+    </table>
+        <div class="fena">
+            {$show}
+        </div>
+    </body>
+    <script>
+        $(function(){
+            $(".qxdd").click(function(){
+                 if(confirm('确认取消订单')){
+                     var id = $(this).attr("data-id");
+                    $.post("__URL__/qx_dingding",{id:id},function(data){
+                   
+                         if(data == 1){
+                             alert("取消订单成功");
+                             location.reload();
+                         }else{
+                             alert("系统忙，请稍后");
+                         }
+                     })
+                 }
+            })
+           
+        })
+    </script>
+</html>

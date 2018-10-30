@@ -1,0 +1,1720 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><volist name="chanpin" id="val">{$val.mingcheng}</volist></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="__PUBLIC__/css/style.css">
+        <link rel="stylesheet" href="__PUBLIC__/css/chanpin.css">
+        <link rel="shortcut icon" href="__PUBLIC__/image/favicon.ico" type="image/x-icon">
+        <script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.2.min.js"></script> 
+        <!--<script type="text/javascript" src="__PUBLIC__/js/jquery-1.4.2.min.js"></script>-->
+    </head>
+    <body onkeydown="run()">
+        <form method="post" id="form">
+        <div class="hidde_fangda">
+            <div class="hidde_fangda_top">
+                <div class="fangda_top_left">&nbsp;&nbsp;&nbsp;&nbsp;<span class="chanpin_mc">查看大图</span></div>
+                <div class="fangda_top_right"><span class="cha">×</span></div>
+            </div>
+            <div class="hidde_fangda_bot">
+                <div class="fangda_bot_left">
+                    <div class="fangda_bot_left_top">
+                        <span class="tupian_shu">1</span><span class="tupian_yu">/5</span>
+                    </div>
+                    <div class="fangda_bot_left_bot_left"></div>
+                    <div class="fangda_bot_left_bot_right"></div>
+                    <div class="fangda_bot_left_bot">
+                        <volist name="chanpin" id="val">
+                        <img src="{$val.lujing2}" id="fangda_tupian" width="600" height="600">
+                        </volist>
+                    </div>
+                </div>
+                <div class="fangda_bot_right">
+                    <ul class="tupian">
+                        <li class="active"><img src="{$val.lujing2}" data-bigimg="{$val.lujing2}" data-shu="1"></li>
+                        <li><img src="{$val.lujing3}" data-bigimg="{$val.lujing3}" data-shu="2"></li>
+                        <li><img src="{$val.lujing4}" data-bigimg="{$val.lujing4}" data-shu="3"></li>
+                        <li><img src="{$val.lujing5}" data-bigimg="{$val.lujing5}" data-shu="4"></li>
+                        <li><img src="{$val.lujing6}" data-bigimg="{$val.lujing6}" data-shu="5"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="chanpin_dang"></div>
+        <div class="toolbar" id="toolbar">
+                <div class="toolbar_left"></div>
+                <div class="toolbar_right">
+                    <div class="toolbar_right_left" id="toolbar_right_left"><span class="daohang"><a href="__URL__/index" class="link">返回首页</a></span></div>
+                    <div class="toolbar_right_right"><a href="#.html" class="link"><span class="font">商家入驻</span></a></div>
+                </div>
+                <div class="toolbar_one"></div>
+                <div class="toolbar_login">
+                    <div class="toolbar_login_one" id="login_name">
+                        <div class="toolbar_login_one_left">
+                            <a href="__URL__/chanpin_dldl/id/{$val.id}" class="link">登录</a>
+                        </div>
+                        <div class="toolbar_login_one_right">
+                            <a href="__URL__/dl/id/{$val.id}" class="link" target="_blank">注册</a>
+                        </div>
+                    </div>
+                    <div id="login_xian" class="toolbar_login_one" style="display:none">
+                        <div id="loginS">
+                            <a href="#" id="login_user" class="link"></a>
+                        </div>
+                    </div>
+                    <div class="login_show" style="display:none" id="login_show">
+                        <a href="__URL__/fudong" class="link" target="_blank">账号管理</a><br>
+                        <a href="__URL__/chanpin_tuichu/id/{$val.id}" class="link">退出登录</a>
+                    </div>
+                    <script>
+                        document.getElementById("loginS").onmouseover=function(){
+                            document.getElementById("login_show").style.display='block';
+                        }
+                        document.getElementById("loginS").onmouseout=function(){
+                            document.getElementById("login_show").style.display='none';
+                        }
+                        document.getElementById("login_show").onmouseover=function(){
+                            document.getElementById("login_show").style.display='block';
+                        }
+                        document.getElementById("login_show").onmouseout=function(){
+                            document.getElementById("login_show").style.display='none';
+                        }
+                        function req(){
+                                if(window.XMLHttpRequest){
+                                    var request = new XMLHttpRequest();
+                                } else {
+                                    var request = new ActiveXObject('Microsoft.XMLHTTP');
+                                }
+                                return request;
+                        }
+                        function cook(){
+                             var ajax = req();
+                                    ajax.open("post","__URL__/cook",true);
+                                    ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                                    ajax.send(null);
+                                    ajax.onreadystatechange=function(){
+                                        if(ajax.readyState==4 && ajax.status == 200){
+                                            var data = ajax.responseText;
+                                            if(data==123){
+                                                document.getElementById("login_name").style.display='none';
+                                                document.getElementById("login_xian").style.display='block';
+                                                document.getElementById("mydd").href='__URL__/fudong';
+                                                document.getElementById("gun_xian_a").style.display='block';
+                                                document.getElementById("gun_yin_a").style.display='none';
+                                            }else{
+                                                document.getElementById("gun_yin_a").style.display='block';
+                                                document.getElementById("gun_xian_a").style.display='none';
+                                            }
+                                        }
+                                    }
+                        }      
+                        setInterval(cook,100);
+                        function user(){
+                             var ajax = req();
+                                    ajax.open("post","__URL__/cook2",true);
+                                    ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                                    ajax.send(null);
+                                    ajax.onreadystatechange=function(){
+                                        if(ajax.readyState==4 && ajax.status == 200){
+                                            var data = ajax.responseText;
+                                            document.getElementById("login_user").innerHTML=data;
+                                        }
+                                    }      
+                        }
+                        setInterval(user,100);
+                         var Number =0;
+                    function run(){
+                      var x = event.keyCode;
+                        if(x == '71'){
+                            gun_login.style.display='none';
+                            Img_login.style.background='rgb(56,56,56)';
+                            Gun_img1.src='__PUBLIC__/image/login_one.png';
+                                if(Number %2==0){
+                                    gouwu.style.display='block';
+                                    Img_gouwu.style.background='rgb(255,170,0)';
+                                    Gun_img2.src='__PUBLIC__/image/gouwu_two.png';
+                                    font1.style.color='#000';
+                                    font2.style.color='#000';
+                                    font3.style.color='#000';
+                                    Img_gouwu.onmouseover=function(){}
+                                    Img_gouwu.onmouseout=function(){}
+                                }else{
+                                    gouwu.style.display='none';
+                                    Img_gouwu.style.background='rgb(56,56,56)';
+                                    Gun_img2.src='__PUBLIC__/image/gouwu_one.png';
+                                    font1.style.color='#fff';
+                                    font2.style.color='#fff';
+                                    font3.style.color='#fff';
+                                    Img_gouwu.onmouseover=function(){
+                                        Img_gouwu.style.background='rgb(255,170,0)';
+                                        Gun_img2.src='__PUBLIC__/image/gouwu_two.png';
+                                        font1.style.color='#000';
+                                        font2.style.color='#000';
+                                        font3.style.color='#000';
+                                    }
+                                    Img_gouwu.onmouseout=function(){
+                                        Img_gouwu.style.background='rgb(56,56,56)';
+                                        Gun_img2.src='__PUBLIC__/image/gouwu_one.png';
+                                        font1.style.color='#fff';
+                                        font2.style.color='#fff';
+                                        font3.style.color='#fff';
+                                    }
+                                }
+                        }
+                         Number ++;
+                    }
+                    </script>
+                    <div class="toolbar_login_two" ><a href="#.html" class="link" id="mydd">我的订单</a></div>
+                    <div class="toolbar_login_two_none" id="toolbar_login_two_none" style="display:none">
+                        <div class="ding_one"><a href="#.html" class="link">待支付</a></div>
+                        <div class="ding_one"><a href="#.html" class="link">待收货</a></div>
+                        <div class="ding_one"><a href="#.html" class="link">待评价</a></div>
+                    </div>
+                    <script>
+                        var Ding = document.getElementById('toolbar_login_two_none');
+                        var Bding = document.getElementById('toolbar_login_two');
+                        function ding(){
+                            Ding.style.display='block';
+                            Bding.className='toolbar_login_two_bian';
+                        }
+                        Ding.onmouseover=function(){
+                            Ding.style.display='block';
+                            Bding.className='toolbar_login_two_bian';
+                        }
+                        Ding.onmouseout=function(){
+                            Ding.style.display='none';
+                            Bdiv.className="toolbar_right_left";
+                             Bding.className='toolbar_login_two';
+                        }
+                    </script>
+                    <div class="toolbar_login_three"><a href="__URL__/fudong" class="link"><span class="font">我的信息</span></a></div>
+                    <div class="toolbar_login_four"><a href="__URL__/gouwuchejs" class="link" target="_blank"><span class="font">购物车</span></a></div>
+                    <div class="toolbar_login_five"><a href="#.html" class="link"><span class="font">手机端</span></a></div>
+                    <div class="toolbar_login_six"><a href="#.html" class="link"><span class="font">支付宝</span></a></div>
+                    <div class="toolbar_login_seven"><a href="#.html" class="link"><span class="font">政企采购</span></a></div>
+                    <div class="toolbar_login_right"><a href="#.html" class="link"><span class="font">使用手册</span></a></div>
+                </div>
+                <div class="toolbar_two" id="quanxian" style="display:none">
+                    <div class="toolbar_login_right"><a href="__URL__/system.html" class="link" target="_blank"><span class="font">后台管理</span></a></div>
+                </div>
+                <script>
+                    function user(){
+                             var ajax = req();
+                                    ajax.open("post","__URL__/quanxian",true);
+                                    ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                                    ajax.send(null);
+                                    ajax.onreadystatechange=function(){
+                                        if(ajax.readyState==4 && ajax.status == 200){
+                                            var data = ajax.responseText;
+                                            if(data==123){
+                                                document.getElementById("quanxian").style.display='block';
+                                            } else{
+                                                document.getElementById("quanxian").style.display='none';
+                                            }
+                                        }
+                                    }      
+                        }
+                        setInterval(user,100);      
+                </script>
+            </div>
+         <div class="gun">
+                <div class="gun_one"></div>
+                <div class="gun_two">
+                    <div class="img_login" id="img_login"><img src="__PUBLIC__/image/login_one.png" id="gun_img1"></div>
+                    <div class="gun_ge"></div>
+                    <div class="img_gouwu" id="img_gouwu">
+                        <img src="__PUBLIC__/image/gouwu_one.png" id="gun_img2">
+                        <span class="gouwu_font" id="font1">购</span><br>
+                        <span class="gouwu_font" id="font2">物</span><br>
+                        <span class="gouwu_font" id="font3">车</span><br>
+                        <span class="gouwu_font" id="font4">0</span>
+                    </div>
+                </div>
+                <div class="gun_three"></div>
+                <div class="gun_four">
+                    <div class='img_zixun' id='img_zixun'>
+                        <img src='__PUBLIC__/image/zixun_one.png' id='gun_img3'>
+                    </div>
+                    <div class='gun_zixun' id='gun_zixun'>
+                            <a href='#.html' class='zixun' onclick="winshow()">在线咨询</a>
+                    </div>
+                    <div class='four_ge'></div>
+                    <div class='img_fankui' id='img_fankui'>
+                        <img src='__PUBLIC__/image/fankui_one.png' id='gun_img4'>
+                    </div>
+                    <div class='gun_fankui' id='gun_fankui'>
+                            <a href='#.html' class='zixun'>意见反馈</a>
+                    </div>
+                    <div class='four_ge'></div>
+                    <div class='img_erwei' id='img_erwei'>
+                        <img src='__PUBLIC__/image/erwei_one.png' id='gun_img5'>
+                    </div>
+                    <div class='gun_erwei' id='gun_erwei'>
+                            <a href='#.html'><img src='__PUBLIC__/image/phoneerwei.jpg'></a>
+                    </div>
+                    <div class='four_ge'></div>
+                    <div class='img_ding' id='img_ding'>
+                        <img src='__PUBLIC__/image/ding_one.png' id='gun_img6'>         
+                    </div>
+                    <div class='gun_ding' id='gun_ding'>
+                            <a href='#div' class='zixun'>返回顶部</a>
+                    </div>
+                </div>
+            </div>
+            <div class="gouwu" id="gouwu">
+                <div class="yigouwu">
+                    <div class="gouwu_1"></div>
+                    <div class="gouwu_2">
+                        <img src="__PUBLIC__/image/goutishi.png"><br><br>
+                        <span class='tishi'>不要让您的购物车空着哦，快去逛逛吧</span><br><br>
+                        <span class='tishi'>按下键盘上的G即可快速打开/关闭购物车功能</span>
+                    </div>
+                    <div class="gouwu_3"></div>
+                </div>
+                <div class="ergouwu" id="ergouwu">
+                    <div class="ergouwu_top">
+                        <input type="checkbox" name="duoxuan[]" checked="checked" id='duoxuan'>
+                        <span>共<span class='wujian'></span>件</span>,已选<span class='xuanzhong'></span>件
+                        <input type='button' value='删除' class='gouwu_del' onclick="gouwudel('{$val.id}')">
+                    </div>
+                    <div class="ergouwu_mid" id="ergouwu_mid">
+                    </div>
+                    <script>
+                        function gouwudel(id){
+                            var id = id;
+                            var frm = document.getElementById('form');
+                                frm.action='__URL__/gouwudel/id/'+id;
+                                frm.submit();
+                        }
+                    </script>
+                    <div class="ergouwu_bot">
+                        已选<span class='xuanzhong'></span>件
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type='button' name='gouwuche_sub' value='去购物车结算' class='jiesuan2' onclick="gouwujs()">
+                        <input type="hidden" id="panduan">
+                    </div>
+                </div>
+            </div>
+            <div class="gun_login" id="gun_xian">
+                <div id="gun_yin_a">
+                    &nbsp;&nbsp;&nbsp;<img src="__PUBLIC__/image/login_logo.jpg">
+                    <span>您好，请先</span><a href='__URL__/chanpin_dldl/id/{$val.id}' class="link_login">登录</a><span>!</span>
+                </div>
+                <div id="gun_xian_a">
+                &nbsp;&nbsp;&nbsp;<img src="__PUBLIC__/image/login_logo.jpg">
+                <span>您好,尊敬的<span id="yonghuming"></span></span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="__URL__/my" class="link" target="_blank">账号管理</a>
+                <a href="__URL__/chanpin_tuichu/id/{$val.id}" class="link">退出登录</a>
+                </div>
+            </div>
+            <script>
+                var boxid = document.getElementsByName("gouwuche[]");
+                function gouwujs(){
+                            var frm = document.getElementById('form');
+                                frm.action='__URL__/gouwuchejs';
+                                frm.submit();          
+                }
+                var strCookie = document.cookie;
+                var Gun_img1 = document.getElementById("gun_img1");
+                var Gun_img2 = document.getElementById("gun_img2");
+                var Gun_img3 = document.getElementById("gun_img3");
+                var Gun_img4 = document.getElementById("gun_img4");
+                var Gun_img5 = document.getElementById("gun_img5");
+                var Gun_img6 = document.getElementById("gun_img6");
+                var Img_login = document.getElementById("img_login");
+                var Img_gouwu = document.getElementById("img_gouwu");
+                var img_fankui = document.getElementById("img_fankui");
+                var font1 = document.getElementById("font1");
+                var font2 = document.getElementById("font2");
+                var font3 = document.getElementById("font3");
+                var gouwu = document.getElementById("gouwu");
+                var gun_login = document.getElementById("gun_login");
+                var img_zixun = document.getElementById("img_zixun");
+                var img_erwei = document.getElementById("img_erwei");
+                var img_ding = document.getElementById("img_ding");      
+                var gun_zixun = document.getElementById("gun_zixun");
+                var gun_fankui = document.getElementById("gun_fankui");
+                var gun_erwei = document.getElementById("gun_erwei");
+                var gun_ding = document.getElementById("gun_ding");
+                var clickNumber =0;
+                function user(){
+                             var ajax = req();
+                                    ajax.open("post","__URL__/cook2",true);
+                                    ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                                    ajax.send(null);
+                                    ajax.onreadystatechange=function(){
+                                        if(ajax.readyState==4 && ajax.status == 200){
+                                            var data = ajax.responseText;
+                                            document.getElementById("yonghuming").innerHTML=data;
+                                        }
+                                    }      
+                }
+                    setInterval(user,100);
+                    $(document).ready(function(e){
+                         $("#img_ding").mouseenter(function(){
+                             $("#gun_img6").attr("src","__PUBLIC__/image/ding_two.png");
+                             $("#img_ding").css("background","rgb(255,170,0)");
+                             $("#gun_ding").show("slow");
+                         }).mouseleave(function(){
+                             $("#gun_img6").attr("src","__PUBLIC__/image/ding_one.png");
+                             $("#img_ding").css("background","rgb(56,56,56)");
+                             $("#gun_ding").hide();
+                         })
+                         $("#gun_ding").mouseenter(function(){
+                             $("#gun_img6").attr("src","__PUBLIC__/image/ding_two.png");
+                             $("#img_ding").css("background","rgb(255,170,0)");
+                             $("#gun_ding").show();
+                         }).mouseleave(function(){
+                             $("#gun_img6").attr("src","__PUBLIC__/image/ding_one.png");
+                             $("#img_ding").css("background","rgb(56,56,56)");
+                             $("#gun_ding").hide("slow");
+                             
+                         })
+                         $("#img_erwei").mouseenter(function(){
+                             $("#gun_img5").attr("src","__PUBLIC__/image/erwei_two.png");
+                             $("#img_erwei").css("background","rgb(255,170,0)");
+                             $("#gun_erwei").show("slow");
+                         }).mouseleave(function(){
+                             $("#gun_img5").attr("src","__PUBLIC__/image/erwei_one.png");
+                             $("#img_erwei").css("background","rgb(56,56,56)");
+                             $("#gun_erwei").hide();
+                         })
+                         $("#gun_erwei").mouseenter(function(){
+                             $("#gun_img5").attr("src","__PUBLIC__/image/erwei_two.png");
+                             $("#img_erwei").css("background","rgb(255,170,0)");
+                             $("#gun_erwei").show();
+                         }).mouseleave(function(){
+                             $("#gun_img5").attr("src","__PUBLIC__/image/erwei_one.png");
+                             $("#img_erwei").css("background","rgb(56,56,56)");
+                             $("#gun_erwei").hide("slow");
+                         })
+                         $("#img_fankui").mouseenter(function(){
+                             $("#gun_img4").attr("src","__PUBLIC__/image/fankui_two.png");
+                             $("#img_fankui").css("background","rgb(255,170,0)");
+                             $("#gun_fankui").show("slow");
+                         }).mouseleave(function(){
+                             $("#gun_img4").attr("src","__PUBLIC__/image/fankui_one.png");
+                             $("#img_fankui").css("background","rgb(56,56,56)");
+                             $("#gun_fankui").hide();
+                         })
+                         $("#gun_fankui").mouseenter(function(){
+                             $("#gun_img4").attr("src","__PUBLIC__/image/fankui_two.png");
+                             $("#img_fankui").css("background","rgb(255,170,0)");
+                             $("#gun_fankui").show();
+                         }).mouseleave(function(){
+                             $("#gun_img4").attr("src","__PUBLIC__/image/fankui_one.png");
+                             $("#img_fankui").css("background","rgb(56,56,56)");
+                             $("#gun_fankui").hide("slow");
+                         })
+                         $("#img_zixun").mouseenter(function(){
+                             $("#gun_img3").attr("src","__PUBLIC__/image/zixun_two.png");
+                             $("#img_zixun").css("background","rgb(255,170,0)");
+                             $("#gun_zixun").show("slow");
+                         }).mouseleave(function(){
+                             $("#gun_img3").attr("src","__PUBLIC__/image/zixun_one.png");
+                             $("#img_zixun").css("background","rgb(56,56,56)");
+                             $("#gun_zixun").hide();
+                         })
+                         $("#gun_zixun").mouseenter(function(){
+                             $("#gun_img3").attr("src","__PUBLIC__/image/zixun_two.png");
+                             $("#img_zixun").css("background","rgb(255,170,0)");
+                             $("#gun_zixun").show();
+                         }).mouseleave(function(){
+                             $("#gun_img3").attr("src","__PUBLIC__/image/zixun_one.png");
+                             $("#img_zixun").css("background","rgb(56,56,56)");
+                             $("#gun_zixun").hide("slow");
+                         })
+                         $("#img_login").mouseenter(function(){
+                             $("#img_login").css("background","rgb(255,170,0)");
+                             $("#gun_img1").attr("src","__PUBLIC__/image/login_two.png");
+                         }).mouseleave(function(){
+                             $("#img_login").css("background","rgb(56,56,56)");
+                             $("#gun_img1").attr("src","__PUBLIC__/image/login_one.png");
+                         })
+                     })
+                    Img_login.onclick=function(){
+                        if(clickNumber %2==0){
+                            $(document).ready(function(e){
+                                $("#gun_login").show("slow");
+                                $("#gun_xian").show("slow");
+                            })
+                            Img_login.style.background='rgb(255,170,0)';
+                            Gun_img1.src='__PUBLIC__/image/login_two.png';
+                            Img_login.onmouseover=function(){}
+                            Img_login.onmouseout=function(){};
+                        }else{
+                            $(document).ready(function(e){
+                                $("#gun_login").hide("slow");
+                                $("#gun_xian").hide("slow");
+                            })
+                            Img_login.style.background='rgb(56,56,56)';
+                            Gun_img1.src='__PUBLIC__/image/login_one.png';
+                            Img_login.onmouseover=function(){
+                                Img_login.style.background='rgb(255,170,0)';
+                                Gun_img1.src='__PUBLIC__/image/login_two.png';
+                            }
+                            Img_login.onmouseout=function(){
+                                Img_login.style.background='rgb(56,56,56)';
+                                Gun_img1.src='__PUBLIC__/image/login_one.png';
+                            }
+                        }
+                        clickNumber ++;
+                    }
+                    Img_gouwu.onclick=function(){
+                        if(clickNumber %2==0){
+                            var ajax = req();
+                            ajax.open("post","__URL__/fangrugouwu",true);
+                            ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                            ajax.send(null);
+                            ajax.onreadystatechange=function(){
+                                if(ajax.readyState==4 && ajax.status == 200){
+                                    var data = ajax.responseText;
+                                    eval("var obj="+data);
+                                    for(var i=0;i<obj.length;i++){
+                                        var Div = document.createElement("div");
+                                        var div1 = document.createElement("div");
+                                        var div2 = document.createElement("div");
+                                        var div3 = document.createElement("div");
+                                        var div4 = document.createElement("div");
+                                        var div5 = document.createElement("div");
+                                        var div6 = document.createElement("div");
+                                        var div7 = document.createElement("div");
+                                        var div8 = document.createElement("div");
+                                        var div9 = document.createElement("div");
+                                        var div10 = document.createElement("div");
+                                        var div11 = document.createElement("div");
+                                        var div12 = document.createElement("div");
+                                        var div13 = document.createElement("div");
+                                        var div14 = document.createElement("div");
+                                        var div15 = document.createElement("div");
+                                        var input = document.createElement("input");
+                                        var input2 = document.createElement("input");
+                                        var a = document.createElement("a");
+                                        var img = document.createElement("img");
+                                        Div.setAttribute("id","div" + i);
+                                        input.setAttribute("name","gouwuche[]");
+                                        input.setAttribute("type","checkbox");
+                                        input.setAttribute("value",obj[i][0].id);
+                                        input.setAttribute("checked","checked");
+                                        a.setAttribute("id","a" + i);
+                                        input.setAttribute("float","left");
+                                        img.setAttribute("width","64");
+                                        img.setAttribute("height","64");
+                                        img.setAttribute("id","img" + i);
+                                        img.setAttribute("float","left");
+                                        img.setAttribute("alt",obj[i][0].shuliang);
+                                        img.setAttribute("class","gouwu_tutu");
+                                        Div.setAttribute("class","gou");
+                                        div1.setAttribute("class","gou_top");
+                                        div1.setAttribute("id","div1" + i);
+                                        div2.setAttribute("class","gou_bot");
+                                        div3.setAttribute("class","gou_bot_left");
+                                        div4.setAttribute("class","gou_bot_right");
+                                        div5.setAttribute("class","gou_bot_left_top");
+                                        div6.setAttribute("class","gou_bot_left_bot");
+                                        div7.setAttribute("class","gou_bot_right_top");
+                                        div7.setAttribute("id","div2" + i);
+                                        div8.setAttribute("class","gou_bot_right_bot");
+                                        div9.setAttribute("class","gou_bot_right_bot_left");
+                                        div10.setAttribute("class","gou_bot_right_bot_right");
+                                        div10.setAttribute("alt",obj[i][0].jiage);
+                                        div10.setAttribute("id","div3" + i);
+                                        div11.setAttribute("class","gou_bot_right_bot_left_top");
+                                        div12.setAttribute("class","gou_bot_right_bot_left_bot");
+                                        div13.setAttribute("class","gouwu_jian");
+                                        div14.setAttribute("class","gouwu_jia");
+                                        div15.setAttribute("class","gou_bot_right_bot_left_mid");
+                                        input2.setAttribute("type","text");
+                                        input2.setAttribute("class","gouwu_shu_a");
+                                        input2.setAttribute("name","js_gouwu[]");
+                                        input2.setAttribute("value","1");
+                                        var inputdiv = document.getElementById("ergouwu_mid");
+                                        inputdiv.appendChild(Div);
+                                        Div.appendChild(div1);
+                                        Div.appendChild(div2);
+                                        div2.appendChild(div3);
+                                        div2.appendChild(div4);
+                                        div3.appendChild(div5);
+                                        div3.appendChild(div6);
+                                        div6.appendChild(input);
+                                        div6.appendChild(img);
+                                        div4.appendChild(div7);
+                                        div4.appendChild(div8);
+                                        div8.appendChild(div9);
+                                        div8.appendChild(div10);
+                                        div9.appendChild(div11);
+                                        div9.appendChild(div12);
+                                        div12.appendChild(div13);
+                                        div12.appendChild(div15);
+                                        div12.appendChild(div14);
+                                        div15.appendChild(input2);
+                                         $(document).ready(function(e){
+                                             $("#img" + i).wrap("<a target='_blank' href=chanpin/id/"+obj[i][0].id+"></a>");
+                                             $("#div3" + i).text(obj[i][0].jiage);
+                                             $("#div2" + i).wrap("<a target='_blank' class='biaoti_ti' href=chanpin/id/"+obj[i][0].id+"></a>");
+                                             $("#div2" + i).text(obj[i][0].mingcheng);
+                                             $(".gou_bot").mouseover(function(){
+                                                $(this).find(".gouwu_jian").text("-");
+                                                $(this).find(".gouwu_jia").text("+");
+                                                $(this).find(".gouwu_jian").css("cursor","pointer");
+                                                $(this).find(".gouwu_jia").css("cursor","pointer");
+                                                $(this).find(".gouwu_shu_a").css("border","1px solid #ccc");
+                                             }).mouseout(function(){
+                                                $(this).find(".gouwu_jian").text("");
+                                                $(this).find(".gouwu_jia").text("");
+                                                $(this).find(".gouwu_shu_a").css("border","0px");
+                                             })
+                                             
+                                         })
+                                        document.getElementById("div1" + i).innerHTML= "￥" + obj[i][0].jiage + ".00";
+                                        document.getElementById("img" + i).src="/ShoppingSite/" + obj[i][0].lujing;
+                                    }
+                                    var shuzi = 1;
+                                             $(".gouwu_jia").click(function(){
+                                                var shuzi2 = $(this).parent().parent().parent().find(".gou_bot_right_bot_right").attr("alt");
+                                                var shuzi3 = $(this).parent().parent().parent().find(".gou_bot_right_bot_right").text();
+                                                var alt = $(this).parent().parent().parent().parent().parent().find(".gouwu_tutu").attr("alt");
+                                                var value = $(this).siblings().find(".gouwu_shu_a").val();
+                                                if($(this).siblings().find(".gouwu_shu_a").val()*1 < alt*1 ){
+                                                    $(this).siblings().find(".gouwu_shu_a").val(value*1+1*1);
+                                                    $(this).parent().parent().parent().find(".gou_bot_right_bot_right").text(shuzi2*1 + shuzi3*1);
+                                                }else{
+                                                    alert("您所选的商品库存不够!");
+                                                }
+                                             })
+                                             $(".gouwu_jian").click(function(){
+                                                var n = 1;
+                                                var shuzi2 = $(this).parent().parent().parent().find(".gou_bot_right_bot_right").attr("alt");
+                                                var shuzi3 = $(this).parent().parent().parent().find(".gou_bot_right_bot_right").text();
+                                                if($(this).siblings().find(".gouwu_shu_a").val()>0){
+                                                    $(this).siblings().find(".gouwu_shu_a").val($(this).siblings().find(".gouwu_shu_a").val()*1  - n*1);
+                                                    $(this).parent().parent().parent().find(".gou_bot_right_bot_right").text(shuzi3*1 - shuzi2*1);
+                                                }
+                                            })
+                                            $(".gouwu_shu_a").blur(function(){
+                                                var shuzi2 = $(this).parent().parent().parent().parent().find(".gou_bot_right_bot_right").attr("alt");
+                                                var alt = $(this).parent().parent().parent().parent().parent().parent().find(".gouwu_tutu").attr("alt");
+                                                var value = $(this).parent().find(".gouwu_shu_a").val();
+                                                if(value*1 <= alt*1&& value>0){
+                                                    $(this).parent().parent().parent().parent().find(".gou_bot_right_bot_right").text(value * shuzi2);
+                                                }else{
+                                                    alert("您所选的商品库存不够!");
+                                                }
+                                            })
+                                            var ckbox = document.getElementsByName("gouwuche[]");
+                                            $("input[name='duoxuan[]']").click(function(){
+                                                    for(var a=0; a<ckbox.length; a++){
+                                                         if(ckbox[a].checked){
+                                                             ckbox[a].checked="";
+                                                         } else{
+                                                             ckbox[a].checked="true";
+                                                         }
+                                                     }
+                                            })
+                                            var ckbox = document.getElementsByName("gouwuche[]");
+                                            $("input[name='gouwuche[]']").click(function(){
+                                                var val = $("input[name='gouwuche[]']:checked").length;
+                                                $(".xuanzhong").text(val);
+                                            })
+                                }
+                            }
+                            $(document).ready(function(e){
+                                $("#gouwu").show("slow");
+                            })
+                            Img_gouwu.style.background='rgb(255,170,0)';
+                            Gun_img2.src='__PUBLIC__/image/gouwu_two.png';
+                            font1.style.color='#000';
+                            font2.style.color='#000';
+                            font3.style.color='#000';
+                            Img_gouwu.onmouseover=function(){}
+                            Img_gouwu.onmouseout=function(){}
+                         }else{
+                            var ajax = req();
+                            ajax.open("post","__URL__/fangrugouwu",true);
+                            ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                            ajax.send(null);
+                            ajax.onreadystatechange=function(){
+                                if(ajax.readyState==4 && ajax.status == 200){
+                                    var data = ajax.responseText;
+                                    eval("var obj="+data);
+                                        var d1 = document.getElementById("ergouwu_mid");
+                                        for(var i=0;i<obj.length;i++){
+                                            d1.removeChild(document.getElementById("div" + i));
+                                        }
+                                }
+                            }
+                            $(document).ready(function(e){
+                                $("#gouwu").hide("slow");
+                            })
+                            Img_gouwu.style.background='rgb(56,56,56)';
+                            Gun_img2.src='__PUBLIC__/image/gouwu_one.png';
+                            font1.style.color='#fff';
+                            font2.style.color='#fff';
+                            font3.style.color='#fff';
+                            Img_gouwu.onmouseover=function(){
+                                Img_gouwu.style.background='rgb(255,170,0)';
+                                Gun_img2.src='__PUBLIC__/image/gouwu_two.png';
+                                font1.style.color='#000';
+                                font2.style.color='#000';
+                                font3.style.color='#000';
+                            }
+                            Img_gouwu.onmouseout=function(){
+                                Img_gouwu.style.background='rgb(56,56,56)';
+                                Gun_img2.src='__PUBLIC__/image/gouwu_one.png';
+                                font1.style.color='#fff';
+                                font2.style.color='#fff';
+                                font3.style.color='#fff';
+                            }
+                        
+                        }
+                             clickNumber ++;
+                    }
+                    Img_gouwu.onmouseover=function(){
+                        Img_gouwu.style.background='rgb(255,170,0)';
+                        Gun_img2.src='__PUBLIC__/image/gouwu_two.png';
+                        font1.style.color='#000';
+                        font2.style.color='#000';
+                        font3.style.color='#000';
+                    }
+                    Img_gouwu.onmouseout=function(){
+                        Img_gouwu.style.background='rgb(56,56,56)';
+                        Gun_img2.src='__PUBLIC__/image/gouwu_one.png';
+                        font1.style.color='#fff';
+                        font2.style.color='#fff';
+                        font3.style.color='#fff';
+                    }
+                    var Number =0;
+                    function run(){
+                      var x = event.keyCode;
+                        if(x == '71'){
+                            gun_login.style.display='none';
+                            Img_login.style.background='rgb(56,56,56)';
+                            Gun_img1.src='__PUBLIC__/image/login_one.png';
+                                if(Number %2==0){
+                                    var ajax = req();
+                            ajax.open("post","__URL__/fangrugouwu",true);
+                            ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                            ajax.send(null);
+                            ajax.onreadystatechange=function(){
+                                if(ajax.readyState==4 && ajax.status == 200){
+                                    var data = ajax.responseText;
+                                    eval("var obj="+data);
+                                    for(var i=0;i<obj.length;i++){
+                                        var Div = document.createElement("div");
+                                        var div1 = document.createElement("div");
+                                        var div2 = document.createElement("div");
+                                        var div3 = document.createElement("div");
+                                        var div4 = document.createElement("div");
+                                        var div5 = document.createElement("div");
+                                        var div6 = document.createElement("div");
+                                        var div7 = document.createElement("div");
+                                        var div8 = document.createElement("div");
+                                        var div9 = document.createElement("div");
+                                        var div10 = document.createElement("div");
+                                        var div11 = document.createElement("div");
+                                        var div12 = document.createElement("div");
+                                        var div13 = document.createElement("div");
+                                        var div14 = document.createElement("div");
+                                        var div15 = document.createElement("div");
+                                        var input = document.createElement("input");
+                                        var input2 = document.createElement("input");
+                                        var a = document.createElement("a");
+                                        var img = document.createElement("img");
+                                        Div.setAttribute("id","div" + i);
+                                        input.setAttribute("name","gouwuche[]");
+                                        input.setAttribute("type","checkbox");
+                                        input.setAttribute("value",obj[i][0].id);
+                                        input.setAttribute("checked","checked");
+                                        a.setAttribute("id","a" + i);
+                                        input.setAttribute("float","left");
+                                        img.setAttribute("width","64");
+                                        img.setAttribute("height","64");
+                                        img.setAttribute("id","img" + i);
+                                        img.setAttribute("float","left");
+                                        img.setAttribute("alt",obj[i][0].shuliang);
+                                        img.setAttribute("class","gouwu_tutu");
+                                        Div.setAttribute("class","gou");
+                                        div1.setAttribute("class","gou_top");
+                                        div1.setAttribute("id","div1" + i);
+                                        div2.setAttribute("class","gou_bot");
+                                        div3.setAttribute("class","gou_bot_left");
+                                        div4.setAttribute("class","gou_bot_right");
+                                        div5.setAttribute("class","gou_bot_left_top");
+                                        div6.setAttribute("class","gou_bot_left_bot");
+                                        div7.setAttribute("class","gou_bot_right_top");
+                                        div7.setAttribute("id","div2" + i);
+                                        div8.setAttribute("class","gou_bot_right_bot");
+                                        div9.setAttribute("class","gou_bot_right_bot_left");
+                                        div10.setAttribute("class","gou_bot_right_bot_right");
+                                        div10.setAttribute("alt",obj[i][0].jiage);
+                                        div10.setAttribute("id","div3" + i);
+                                        div11.setAttribute("class","gou_bot_right_bot_left_top");
+                                        div12.setAttribute("class","gou_bot_right_bot_left_bot");
+                                        div13.setAttribute("class","gouwu_jian");
+                                        div14.setAttribute("class","gouwu_jia");
+                                        div15.setAttribute("class","gou_bot_right_bot_left_mid");
+                                        input2.setAttribute("type","text");
+                                        input2.setAttribute("class","gouwu_shu_a");
+                                        input2.setAttribute("value","1");
+                                        input2.setAttribute("name","js_gouwu[]");
+                                        var inputdiv = document.getElementById("ergouwu_mid");
+                                        inputdiv.appendChild(Div);
+                                        Div.appendChild(div1);
+                                        Div.appendChild(div2);
+                                        div2.appendChild(div3);
+                                        div2.appendChild(div4);
+                                        div3.appendChild(div5);
+                                        div3.appendChild(div6);
+                                        div6.appendChild(input);
+                                        div6.appendChild(img);
+                                        div4.appendChild(div7);
+                                        div4.appendChild(div8);
+                                        div8.appendChild(div9);
+                                        div8.appendChild(div10);
+                                        div9.appendChild(div11);
+                                        div9.appendChild(div12);
+                                        div12.appendChild(div13);
+                                        div12.appendChild(div15);
+                                        div12.appendChild(div14);
+                                        div15.appendChild(input2);
+                                         $(document).ready(function(e){
+                                             $("#img" + i).wrap("<a target='_blank' href=chanpin/id/"+obj[i][0].id+"></a>");
+                                             $("#div3" + i).text(obj[i][0].jiage);
+                                             $("#div2" + i).wrap("<a target='_blank' class='biaoti_ti' href=chanpin/id/"+obj[i][0].id+"></a>");
+                                             $("#div2" + i).text(obj[i][0].mingcheng);
+                                             $(".gou_bot").mouseover(function(){
+                                                $(this).find(".gouwu_jian").text("-");
+                                                $(this).find(".gouwu_jia").text("+");
+                                                $(this).find(".gouwu_jian").css("cursor","pointer");
+                                                $(this).find(".gouwu_jia").css("cursor","pointer");
+                                                $(this).find(".gouwu_shu_a").css("border","1px solid #ccc");
+                                             }).mouseout(function(){
+                                                $(this).find(".gouwu_jian").text("");
+                                                $(this).find(".gouwu_jia").text("");
+                                                $(this).find(".gouwu_shu_a").css("border","0px");
+                                             })
+                                             
+                                         })
+                                        document.getElementById("div1" + i).innerHTML= "￥" + obj[i][0].jiage + ".00";
+                                        document.getElementById("img" + i).src="/ShoppingSite/" + obj[i][0].lujing;
+                                    }
+                                    var shuzi = 1;
+                                             $(".gouwu_jia").click(function(){
+                                                var shuzi2 = $(this).parent().parent().parent().find(".gou_bot_right_bot_right").attr("alt");
+                                                var shuzi3 = $(this).parent().parent().parent().find(".gou_bot_right_bot_right").text();
+                                                var alt = $(this).parent().parent().parent().parent().parent().find(".gouwu_tutu").attr("alt");
+                                                var value = $(this).siblings().find(".gouwu_shu_a").val();
+                                                if($(this).siblings().find(".gouwu_shu_a").val()*1 < alt*1 ){
+                                                    $(this).siblings().find(".gouwu_shu_a").val(value*1+1*1);
+                                                    $(this).parent().parent().parent().find(".gou_bot_right_bot_right").text(shuzi2*1 + shuzi3*1);
+                                                }else{
+                                                    alert("您所选的商品库存不够!");
+                                                }
+                                             })
+                                             $(".gouwu_jian").click(function(){
+                                                var n = 1;
+                                                var shuzi2 = $(this).parent().parent().parent().find(".gou_bot_right_bot_right").attr("alt");
+                                                var shuzi3 = $(this).parent().parent().parent().find(".gou_bot_right_bot_right").text();
+                                                if($(this).siblings().find(".gouwu_shu_a").val()>0){
+                                                    $(this).siblings().find(".gouwu_shu_a").val($(this).siblings().find(".gouwu_shu_a").val()*1  - n*1);
+                                                    $(this).parent().parent().parent().find(".gou_bot_right_bot_right").text(shuzi3*1 - shuzi2*1);
+                                                }
+                                            })
+                                            $(".gouwu_shu_a").blur(function(){
+                                                var shuzi2 = $(this).parent().parent().parent().parent().find(".gou_bot_right_bot_right").attr("alt");
+                                                var alt = $(this).parent().parent().parent().parent().parent().parent().find(".gouwu_tutu").attr("alt");
+                                                var value = $(this).parent().find(".gouwu_shu_a").val();
+                                                if(value*1 <= alt*1&& value>0){
+                                                    $(this).parent().parent().parent().parent().find(".gou_bot_right_bot_right").text(value * shuzi2);
+                                                }else{
+                                                    alert("您所选的商品库存不够!");
+                                                }
+                                            })
+                                            var ckbox = document.getElementsByName("gouwuche[]");
+                                            $("input[name='duoxuan[]']").click(function(){
+                                                    for(var a=0; a<ckbox.length; a++){
+                                                         if(ckbox[a].checked){
+                                                             ckbox[a].checked="";
+                                                         } else{
+                                                             ckbox[a].checked="true";
+                                                         }
+                                                     }
+                                            })
+                                            var ckbox = document.getElementsByName("gouwuche[]");
+                                            $("input[name='gouwuche[]']").click(function(){
+                                                var val = $("input[name='gouwuche[]']:checked").length;
+                                                $(".xuanzhong").text(val);
+                                            })
+                                }
+                            }
+                                    $(document).ready(function(e){
+                                        $("#gouwu").show("slow");
+                                    })
+                                    Img_gouwu.style.background='rgb(255,170,0)';
+                                    Gun_img2.src='__PUBLIC__/image/gouwu_two.png';
+                                    font1.style.color='#000';
+                                    font2.style.color='#000';
+                                    font3.style.color='#000';
+                                    Img_gouwu.onmouseover=function(){}
+                                    Img_gouwu.onmouseout=function(){}
+//                                    return False;
+                                }else{
+                                    var ajax = req();
+                            ajax.open("post","__URL__/fangrugouwu",true);
+                            ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                            ajax.send(null);
+                            ajax.onreadystatechange=function(){
+                                if(ajax.readyState==4 && ajax.status == 200){
+                                    var data = ajax.responseText;
+                                    eval("var obj="+data);
+                                        var d1 = document.getElementById("ergouwu_mid");
+                                        for(var i=0;i<obj.length;i++){
+                                            d1.removeChild(document.getElementById("div" + i));
+                                        }
+                                }
+                            }
+                                    $(document).ready(function(e){
+                                        $("#gouwu").hide("slow");
+                                    })
+                                    Img_gouwu.style.background='rgb(56,56,56)';
+                                    Gun_img2.src='__PUBLIC__/image/gouwu_one.png';
+                                    font1.style.color='#fff';
+                                    font2.style.color='#fff';
+                                    font3.style.color='#fff';
+                                    Img_gouwu.onmouseover=function(){
+                                        Img_gouwu.style.background='rgb(255,170,0)';
+                                        Gun_img2.src='__PUBLIC__/image/gouwu_two.png';
+                                        font1.style.color='#000';
+                                        font2.style.color='#000';
+                                        font3.style.color='#000';
+                                    }
+                                    Img_gouwu.onmouseout=function(){
+                                        Img_gouwu.style.background='rgb(56,56,56)';
+                                        Gun_img2.src='__PUBLIC__/image/gouwu_one.png';
+                                        font1.style.color='#fff';
+                                        font2.style.color='#fff';
+                                        font3.style.color='#fff';
+                                    }
+                                }
+                        }
+                         Number ++;
+//                         return False;
+                    }
+            </script>
+            <div class="g-header">
+                <div class="g-header__left"></div>
+                <div class="g-logo">
+                    <img src="__PUBLIC__/image/logo.png">
+                </div>
+                <div class="g-header__right"></div>
+            </div>
+            <div class="chanpin">
+                <div class="chanpin_left"></div>
+                <div class="chanpin_mid">
+                    <div class="chanpin_mid_left">
+                        <div class="chanpin_mid_left_top">
+                            <volist name="chanpin" id="val">
+                                <img src="{$val.lujing2}" width="400" height="400">
+                                <input type='hidden' value='{$val.id}' id='scbh'>
+                                <input type="hidden" value="{$val.xiaoliang}" id="xiaoliang">
+                            <div class='tooltip'></div>
+                            <div class="magnifyingShow"><img src="{$val.lujing2}"></div>
+                            </volist>
+                        </div>
+                        <div class="chanpin_mid_left_mid">
+                            <div class="chanpin_mid_left_mid_left"></div>
+                            <div class="chanpin_mid_left_mid_mid">
+                                <volist name="chanpin" id="val">
+                                <ul class="con-FangDa-ImgList">
+                                    <li class="active"><img src="{$val.lujing2}" data-bigimg="{$val.lujing2}"></li>
+                                    <li><img src="{$val.lujing3}" data-bigimg="{$val.lujing3}"></li>
+                                    <li><img src="{$val.lujing4}" data-bigimg="{$val.lujing4}"></li>
+                                    <li><img src="{$val.lujing5}" data-bigimg="{$val.lujing5}"></li>
+                                    <li><img src="{$val.lujing6}" data-bigimg="{$val.lujing6}"></li>
+                                </ul>
+                                </volist>
+                            </div>
+                            <script>
+                                 $(document).ready(function(e){
+                                        var fangda = $(".hidde_fangda");
+                                        var that = $(this),
+                                        $imgCon = that.find('.chanpin_mid_left_top');
+                                        $Img = $imgCon.find('img'),
+                                        $Drag = that.find('.tooltip');
+                                        $show = that.find('.magnifyingShow'),
+                                        $showIMg = $show.find('img'),
+                                        $ImgList = that.find('.con-FangDa-ImgList > li >img'),
+                                        $list = that.find('.tupian > li >img'),
+                                        multiple = $show.width()/$Drag.width();
+                                            $imgCon.mousemove(function(e){
+                                                $Drag.css('display','block');
+                                                $show.css('display','block');
+                                                    var iX = e.pageX - $(this).offset().left - $Drag.width()/2,
+                                                        iY = e.pageY - $(this).offset().top - $Drag.height()/2,	
+                                                        MaxX = $imgCon.width()-$Drag.width(),
+                                                        MaxY = $imgCon.height()-$Drag.height();
+                                                        iX = iX > 0 ? iX : 0;
+                                                        iX = iX < MaxX ? iX : MaxX;
+                                                        iY = iY > 0 ? iY : 0;
+                                                        iY = iY < MaxY ? iY : MaxY;	
+                                                $Drag.css({left:iX+'px',top:iY+'px'});	  
+                                                $showIMg.css({marginLeft:-multiple*iX+'px',marginTop:-multiple*iY+'px'});
+                                            });
+                                            $imgCon.mouseout(function(e){
+                                                $Drag.css('display','none');
+                                                $show.css('display','none');
+                                            });
+                                            $ImgList.click(function(){
+                                                var NowSrc = $(this).data('bigimg');
+                                                $Img.attr('src',NowSrc);
+                                                $(this).parent().addClass('active').siblings().removeClass('active');
+                                            });
+                                            $imgCon.click(function(){
+                                                fangda.fadeIn("slow");
+                                                $(".chanpin_dang").fadeIn("slow");
+                                            })
+                                            $list.click(function(){
+                                                var shu = $(this).data('shu');
+                                                var NowSrc = $(this).data('bigimg');
+                                                $("#fangda_tupian").attr('src',NowSrc);
+                                                $(this).parent().addClass('active').siblings().removeClass('active');
+                                                $(".tupian_shu").text(shu);
+                                            })
+                                            $(".cha").click(function(){
+                                                fangda.fadeOut("slow");
+                                                $(".chanpin_dang").fadeOut("slow");
+                                            })    
+                                 });
+                            </script>
+                            <div class="chanpin_mid_left_mid_right"></div>
+                        </div>
+                        <div class="chanpin_mid_left_bot">
+                            <a class='chanpinlink' id='shoucang'>收藏</a>&nbsp;&nbsp;<a class='chanpinlink'>分享</a>
+                        </div>
+                    </div>
+                    <div class="chanpin_mid_mid">
+                        <div class='chanpin_mid_mid_top'>
+                            <br>
+                            <center><span class='chanpin_mc'>{$val.mingcheng}</span></center><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class='chanpin_baoyou'>包邮</span> 
+                        </div>
+                        <div class='chanpin_mid_mid_jiage'>
+                            &nbsp;&nbsp;&nbsp;<span class='zi1'>零&nbsp;售&nbsp;价</span>
+                            <span class='ziti_jiage'>￥</span>
+                            <span class='chanpin_jiage'>{$val.jiage}.00</span>
+                            <span style="float:right;color:#fff" id="cpxl">销量:</span>
+                        </div>
+                        <div class="chanpin_mid_mid_dizhi">
+                            <div class='chanpin_mid_mid_dizhi_left'>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class='ziti_song'>送&nbsp;&nbsp;&nbsp;&nbsp;至</span>   
+                            </div>
+                            <div class='chanpin_mid_mid_dizhi_right'>
+                                <br>
+                                <div id="province">&nbsp;&nbsp;</div>
+                            </div>
+                        </div>
+                        <script type="text/javascript" src="__PUBLIC__/js/jquery.provincesCity.js"></script>
+                        <script type="text/javascript" src="__PUBLIC__/js/provincesData.js"></script>
+                        <div class='chanpin_guige'>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class='ziti_song'>颜&nbsp;&nbsp;&nbsp;&nbsp;色</span><br><br>
+                            <ul class='chanpin_yanse'>
+                                <li>黄色</li>
+                                <li>白色</li>
+                                <li>粉色</li>
+                                <li>蓝色</li>
+                                <li>红色</li>
+                            </ul>
+                        <script>
+                            $(document).ready(function(e){
+                                $("#cpxl").text("销量:"+$("#xiaoliang").val()+"件");
+                                $("#shoucang").click(function(){
+                                    var value = $("#scbh").val();
+                                     $.ajax({
+                                            type:"post",
+                                            url:"__URL__/scajax",
+                                            dataType: "text",
+                                            data:"id="+ value,
+                                            success:
+                                            function(data){
+                                                if(data==123){
+                                                    alert("收藏成功");
+                                                }
+                                            }
+                                     })
+                                })
+                                var listyan = $(".chanpin_yanse > li");
+                                listyan.click(function(){
+                                    $(this).css("border-color","rgb(255,192,1)").siblings().css('border-color',"#ccc");
+                                    $(this).css("color","rgb(255,192,1)").siblings().css('color',"#000");
+                                })
+                            })
+                        </script>
+                        </div>
+                        <div class='chanpin_shuliang'>
+                            <div class='chanpin_shuliang_left'>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class='ziti_song'>数&nbsp;&nbsp;&nbsp;&nbsp;量</span><br><br><br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class='ziti_song'>库&nbsp;&nbsp;&nbsp;&nbsp;存</span>
+                            </div>
+                            <div class='chanpin_shuliang_right'>
+                                <div class='jiajian_ge'></div>
+                                <div class='jiajian_ge'></div>
+                                <div class='jiajian_jia' onclick="jiajian_jia('{$val.shuliang}')">+</div><div class='jiajian_ge'></div>
+                                <input name='chanpin_shuliang' type='text' class='cpsl' id='txtStyle' value='1' onblur="kucun_goumai('{$val.shuliang}')"><div class='jiajian_ge'><br><br><br>
+                                        {$val.shuliang}<input type='hidden' class="kckc" value='{$val.shuliang}' id='kckc'></div>
+                                <div class='jiajian_jian'>-</div>
+                                <div id='content'></div>
+                            </div>
+                        </div>
+                        <script>
+                            $(function(){
+                               $("#province").ProvinceCity();
+                            });
+                            function jiajian_jia(sl){
+                                var sl = sl;
+                                $(document).ready(function(e){ 
+                                    if($(".cpsl").val()< sl*1){
+                                        $(".cpsl").val($(".cpsl").val()*1 + 1*1);
+                                    }else{
+                                        alert("库存不足！");
+                                    }
+                                })
+                            }
+                            function kucun_goumai(sl){
+                                var sl =sl;
+                                $(document).ready(function(e){ 
+                                    if($(".cpsl").val()<= sl*1){
+                                    }else{
+                                        alert("库存不足！");
+                                    }
+                                })
+                            }
+                            $(document).ready(function(e){  
+                                $(".jiajian_jian").click(function(){
+                                    if($(".cpsl").val() >1){
+                                        $(".cpsl").val($(".cpsl").val()*1 - 1*1);
+                                    }
+                                })
+                            })
+                        </script>
+                        <div class="chanpin_goumai">
+                            <div class="chanpin_inp">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="button" class="lijigoumai" name="lijigoumai" value="立即购买" onclick="goumai('{$val.id}','{$val.shuliang}')">
+                                <input type="button" class="gouwuche" name="gouwuche" value="放入购物车" onclick="fangru('{$val.id}')">
+                                <div class="fangru">
+                                    √已放入购物车！<input type="button" value="去结算" class="jiesuan" onclick="tiaozhuan()"><a href="__URL__/chanpin/id/{$val.id}"><input type="button" value="继续购物" class="jiesuan"></a>
+                                </div>
+                                <script>
+                                    function tiaozhuan(){
+                                        var frm = document.getElementById('form');
+                                            frm.action='__URL__/gouwuchejs';
+                                            frm.submit();
+                                    }
+                                    var kckc = document.getElementById('kckc');
+                                    function fangru(id){
+                                        var id = id;
+                                        if(kckc.value == 0){
+                                            alert("所选商品库存不足!请重新选择！")
+                                        }else{
+                                            $(document).ready(function(e){
+                                                $(".fangru").fadeIn("slow");
+                                                $(".chanpin_dang").fadeIn("slow");
+                                                $(".yigouwu").hide(); 
+                                            });
+                                            var ajax = req();
+                                            ajax.open("post","__URL__/gouwuche",true);
+                                            ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                                            ajax.send("id="+id);
+                                            ajax.onreadystatechange=function(){
+                                                if(ajax.readyState==4 && ajax.status == 200){
+                                                }
+                                            }
+                                        }   
+                                    }
+                                    function ggg(){
+                                        var ajax = req();
+                                            ajax.open("post","__URL__/gouwuche_rong",true);
+                                            ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                                            ajax.send(null);
+                                            ajax.onreadystatechange=function(){
+                                                if(ajax.readyState==4 && ajax.status == 200){
+                                                    var data = ajax.responseText;
+                                                    if (data > 0){
+                                                        $(document).ready(function(e){
+                                                            $(".yigouwu").hide(); 
+                                                            $(".ergouwu").show();
+                                                            $("#font4").text(data);
+                                                            $(".wujian").text(data);
+                                                            var val = $("input[name='gouwuche[]']:checked").length;
+                                                            $(".xuanzhong").text(val);
+                                                        })
+                                                    }
+                                                }
+                                            }
+                                    }
+                                    setInterval(ggg,100);
+                                </script>
+                            </div>
+                            <div class="chanpin_fuwu">
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class='ziti_song'>特色服务</span>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="chanpinfu">政企采购</span>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="chanpinfu">分期付款</span>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="chanpinfu">免运费</span>
+                            </div>
+                        </div>
+                        <div class="denglutishi">
+                            <img src="__PUBLIC__/image/shizi.png" id="shizi">
+                            <div class="denglutishi_top">
+                                <div class="denglutishi_top_left">
+                                    <span class="denglu_tishi">欢迎您登录会员</span>
+                                </div>
+                                <div class="denglutishi_top_right">
+                                    <span class="denglutishi_cha">×</span>
+                                </div>
+                            </div>
+                            <div class="denglutishi_bot">
+                                <div class="denglutishi_bot_top">
+                                    <div class="denglutishi_bot_top_left"></div>
+                                    <div class="denglutishi_bot_top_mid">
+                                        <div class="denglutishi_bot_top_mid_top"></div>
+                                        <div class="denglutishi_bot_top_mid_bot">
+                                            <div class="denglutishi_bot_top_mid_left"></div>
+                                            <div class="denglutishi_bot_top_mid_login">
+                                                <span class="tishi_denglu">登&nbsp;录</span>
+                                            </div>
+                                            <div class="denglutishi_bot_top_mid_ge"></div>
+                                            <div class="denglutishi_bot_top_mid_zhuce">
+                                                <span class="tishi_denglu">注&nbsp;册</span>
+                                            </div>
+                                            <div class="denglutishi_bot_top_mid_right"></div>
+                                        </div>
+                                    </div>
+                                    <div class="denglutishi_bot_top_right"></div>
+                                </div>
+                                <div class="denglutishi_bot_bot">
+                                    <center>
+                                        <br><br>
+                                        <span class="user_tishi"></span>
+                                        <input name="username" type="text" class="dengluti_user" placeholder="请输入您的用户名" id="username" autofocus="autofocus"><br><br>
+                                    <input name="password" type="password" class="dengluti_pass" placeholder="请输入您的密码" id="password"><br><span class="dengluti_tishi" id="dengluti_tishi">账号或密码输入错误!</span><br>
+                                    <input type="button" name="login_sub" class="dengluti_login" value="登&nbsp;录" onclick="login('{$val.id}')"><br><br><br>
+                                    <a href="#" class="pass_zhaohui">忘记密码?</a>
+                                    <script>
+                                        function login(id){
+                                            var user = document.getElementById("username").value;
+                                            var pass = document.getElementById('password').value;
+                                            var id = id;
+                                            var ajax = req();
+                                                ajax.open("post","__URL__/chanpin_login",true);
+                                                ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                                                ajax.send("user=" + user + "&pass=" + pass);
+                                                ajax.onreadystatechange=function(){
+                                                    if(ajax.readyState==4 && ajax.status == 200){
+                                                        var data = ajax.responseText;
+                                                        if(data == 123){
+                                                            var frm = document.getElementById('form');
+                                                                frm.action='__URL__/chanpin_login_dl/id/'+id;
+                                                                frm.submit();
+                                                        }else{
+                                                            document.getElementById('dengluti_tishi').style.display='block';
+                                                        }
+                                                    }
+                                                }
+                                        }
+                                    </script>
+                                    </center>
+                                </div>
+                                <div class="denglutishi_bot_bot_two">
+                                    <center>
+                                        <br><br>
+                                         <span class="user_tishi"></span>
+                                            <input name="zhuce_username" type="text" class="dengluti_user" placeholder="请设置您的用户名" id="zhuce_username"  autofocus="autofocus"><br><br>
+                                            <img class='ks_tu1'><span class='ks_tishi'></span><br><br>
+                                            <input name="zhuce_password" type="password" class="dengluti_pass" placeholder="请设置您的密码" id="zhuce_password"><br><br>
+                                            <img class='ks_tu2'><span class='ks_tishi2'></span><br><br>
+                                            <input type="button" name="zhuce_sub" class="dengluti_login" value="同意协议并注册" onclick="zhuce('{$val.id}')" id="zhuceval"><br><br><br>
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+                            function goumai(id,sl){
+                                var id = id;
+                                var sl =sl;
+                                var ajax = req();
+                                    ajax.open("post","__URL__/cook",true);
+                                    ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                                    ajax.send(null);
+                                    ajax.onreadystatechange=function(){
+                                        if(ajax.readyState==4 && ajax.status == 200){
+                                            var data = ajax.responseText;
+                                            if(data==123){
+                                                $(document).ready(function(e){ 
+                                                    if($(".cpsl").val()<= sl*1){
+                                                       window.location.href='__URL__/goumai/id/'+id +'/sl/' + $(".cpsl").val(); 
+                                                    }else{
+                                                        alert("库存不足！");
+                                                    }
+                                                })    
+                                            }else{
+                                                 $(document).ready(function(e){
+                                                     $(".denglutishi").fadeIn("slow");
+                                                     $(".chanpin_dang").fadeIn("slow");
+                                                 }) 
+                                            }
+                                        }
+                                    }
+                            }
+                            var user_yz = 2;
+                            var pass_yz = 2;
+                            $(document).ready(function(e){
+                                    $("#zhuce_username").blur(function(){
+                                        var userval = $("#zhuce_username").val();
+                                        userval = $.trim(userval);
+                                        $.ajax({
+                                            type:"post",
+                                            url:"__URL__/regAjax",
+                                            dataType: "text",
+                                            data:"userval="+ userval,
+                                            success:
+                                            function(data){
+                                                if(userval == ""){
+                                                    $(".ks_tishi").text("用户名不能为空!");
+                                                    $(".ks_tu1").attr("src","__PUBLIC__/image/cuo.png");
+                                                }else if(data == 123){
+                                                    $(".ks_tishi").text("用户名已存在");
+                                                    $(".ks_tu1").attr("src","__PUBLIC__/image/cuo.png");
+                                                }else if(/^([\u4e00-\u9fa5])*$/.test(userval)){
+                                                    $(".ks_tishi").text("用户名不能为中文!");
+                                                    $(".ks_tu1").attr("src","__PUBLIC__/image/cuo.png");
+                                                }else if(userval.length < 6||userval.length >12){
+                                                    $(".ks_tishi").text("用户名长度不符合!请输入6-12位英文数字组合");
+                                                    $(".ks_tu1").attr("src","__PUBLIC__/image/cuo.png");
+                                                }else{
+                                                    $(".ks_tu1").attr("src","__PUBLIC__/image/dui.png");
+                                                    $(".ks_tishi").text("");
+                                                    user_yz = 1;
+                                                }
+                                            }
+                                        })
+                                    });
+                                    $("#zhuce_password").blur(function(){
+                                        var passval = $("#zhuce_password").val();
+                                        passval = $.trim(passval);
+                                        if(passval==""){
+                                            $(".ks_tishi2").text("密码不能为空!");
+                                            $(".ks_tu2").attr("src","__PUBLIC__/image/cuo.png");
+                                        }else if(!/^([a-z]|[A-Z]|[0-9])*$/.test(passval)){
+                                            $(".ks_tishi2").text("密码不能为特殊符号");
+                                            $(".ks_tu12").attr("src","__PUBLIC__/image/cuo.png");
+                                        }else if(passval.length < 6||passval.length >12){
+                                            $(".ks_tishi2").text("密码长度符合!请输入6-12位英文数字组合");
+                                            $(".ks_tu2").attr("src","__PUBLIC__/image/cuo.png");
+                                        }else{
+                                            $(".ks_tu2").attr("src","__PUBLIC__/image/dui.png");
+                                            $(".ks_tishi2").text("");
+                                            pass_yz = 1;
+                                        }
+                                    }) 
+                            })
+                            function zhuce(id){
+                                if(user_yz == 1&&pass_yz == 1){
+                                    var id = id;
+                                    var frm = document.getElementById('form');
+                                        frm.action='__URL__/zhuce_chanpin/id/'+id;
+                                        frm.submit();
+                                }
+                            }
+                            $(document).ready(function(e){
+                                $(".denglutishi_cha").click(function(){
+                                    $(".denglutishi").fadeOut("slow");
+                                    $(".chanpin_dang").fadeOut("slow");
+                                })
+                                $(".denglutishi_bot_top_mid_login").click(function(){
+                                    $(".denglutishi_bot_bot").show();
+                                    $(".denglutishi_bot_bot_two").hide();
+                                     $(".denglutishi_bot_top_mid_login").css("color","rgb(255,153,0)");
+                                    $(".denglutishi_bot_top_mid_login").css("border-top-color","rgb(255,153,0)");
+                                    $(".denglutishi_bot_top_mid_login").css("font-weight","800");
+                                    $(".denglutishi_bot_top_mid_login").css("border-bottom","0px");
+                                    $(".denglutishi_bot_top_mid_zhuce").css("color","#000");
+                                    $(".denglutishi_bot_top_mid_zhuce").css("border-top-color","#ccc");
+                                    $(".denglutishi_bot_top_mid_zhuce").css("font-weight","400");
+                                    $(".denglutishi_bot_top_mid_zhuce").css("border-bottom","1px solid #ccc");
+                                })
+                                $(".denglutishi_bot_top_mid_zhuce").click(function(){
+                                    $("input[name='zhuce_username']").focus(); 
+                                    $(".denglutishi_bot_bot").hide();
+                                    $(".denglutishi_bot_bot_two").show();
+                                    $(".denglutishi_bot_top_mid_zhuce").css("color","rgb(255,153,0)");
+                                    $(".denglutishi_bot_top_mid_zhuce").css("border-top-color","rgb(255,153,0)");
+                                    $(".denglutishi_bot_top_mid_zhuce").css("font-weight","800");
+                                    $(".denglutishi_bot_top_mid_zhuce").css("border-bottom","0px");
+                                    $(".denglutishi_bot_top_mid_login").css("color","#000");
+                                    $(".denglutishi_bot_top_mid_login").css("border-top-color","#ccc");
+                                    $(".denglutishi_bot_top_mid_login").css("font-weight","400");
+                                    $(".denglutishi_bot_top_mid_login").css("border-bottom","1px solid #ccc");
+                                })
+                            })
+                        </script>
+                    </div>
+                    <div class="chanpin_mid_right">
+                        <div class="chanpin_mid_right_top">
+                            <span class="kanle">-----看了又看-----</span>
+                        </div>
+                        <div class="v_show">
+                            <div class="v_content">
+                                <div  class="v_content_list">
+                                    <volist name="chanpin_z" id="value">
+                                <ul>
+                                    <li>
+                                        <a href="__URL__/chanpin/id/{$value.id}" target="_blank"><img src="{$value.lujing2}" width="120" height="120"></a>
+                                        <span class="chanpinjg">￥{$value.jiage}.00</span><br>
+                                        <a href="__URL__/chanpin/id/{$value.id}" class="chanpinmc" target="_blank">{$value.mingcheng}</a>
+                                    </li>
+                                    </ul>
+                                    </volist>
+                                </div>
+                            </div>
+                            <div class="chanpin_mid_right_bot_mid"></div>
+                            <div class="chanpin_mid_right_bot_bot">
+                                <div class="change_btn">
+                                    <span class="prev" >上一页</span>
+                                    <span class="next">下一页</span>
+                                </div>
+                                <div class="highlight_tip">
+                                    &nbsp;&nbsp;&nbsp;<span class="highlight_tip_shu">1</span><span class="highlight_tip_shu2">/3</span>
+                                </div>
+                            </div>
+                                    <script type="text/javascript">
+            $(document).ready(function(e){
+               var page = 1;
+               var i = 3;
+               $(".next").click(function(){
+                  var $parent = $(this).parents(".v_show");
+                  var $v_show = $parent.find(".v_content_list");
+                  var v_width = 165;
+                  var len = $v_show.find("li").length;
+                  var page_count = Math.ceil(len / i);
+                  if(page == page_count){
+                       $v_show.animate({left : '0px'},"slow");
+                       page = 1;
+                  }else{
+                      $v_show.animate({left : '-=' + v_width},"slow");
+                      page ++;
+                  }
+                  $(".highlight_tip_shu").text(page);
+               })
+               $(".prev").click(function(){
+                  var $parent = $(this).parents(".v_show");
+                  var $v_show = $parent.find(".v_content_list");
+                  var v_width = 165;
+                  var len = $v_show.find("li").length;
+                  var page_count = Math.ceil(len / i);
+                  if(!$v_show.is(":animated")){
+                        if(page == 1){
+                            $v_show.animate({left : '-=' + v_width*(page_count-1)},"slow");
+                            page = page_count;
+                        }else{
+                            $v_show.animate({left : '+=' + v_width},"slow");
+                            page --;
+                        }
+                    }
+                    $(".highlight_tip_shu").text(page);
+               })
+            });
+        </script>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="chanpin_right"></div>
+            </div>
+            <div class="chanpin_bot_ge"></div>
+            <div class="chanpin_bot">
+                <div class="jieshao_left"></div>
+                <div class="jieshao_mid">
+                    <div class="jieshao_mid_top">
+                        <div class="jieshao_mid_top_top"></div>
+                        <div class="jieshao_mid_top_bot">
+                            <div class="jieshao_mid_top_bot_one">
+                                <span>商品详情</span>
+                            </div>
+                            <div class="jieshao_mid_top_bot_two">
+                                <span>售后保障</span>
+                            </div>
+                            <div class="jieshao_mid_top_bot_three">
+                                <span>评价<span id="geshu"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="jieshao_mid_bot">
+                        <div class="jieshao_mid_bot_top">
+                            <div class="jieshao_l"></div>
+                            <div class="jieshao_r"></div>
+                        </div>
+                        <div class="jieshao_mid_bot_bot">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <img src="{$val.lujing7}">
+                        </div> 
+                    </div>
+                    <div class="jieshao_baozhang">
+                        <div class="jieshao_mid_bot_top">
+                            <div class="jieshao_l"></div>
+                            <div class="jieshao_r"></div>
+                        </div>
+                        <div class="jieshao_mid_bot_baozhang">
+                            <div class="jieshao_mid_baozhang_left"></div>
+                            <div class="jieshao_mid_baozhang_mid">
+                                <span class="shouhoufuwu">售后服务</span><hr><br>
+                                <span class="zhengwen">本商家商品保证正品行货，严格按照国家三包政策提供售后服务，因质量问题或实物与描述不符产生的退换货服务运费由本店承担。</span><br><br><br>
+                                <span class="shouhoufuwu">退货流程</span><hr><br>
+                                <img src="__PUBLIC__/image/tuihuo.jpg"><br>
+                                <span class="shouhoufuwu">温馨提示</span><hr><br>
+                                <span class="zhengwen">亲爱的顾客，为保障您的权益，请您对配送商品查验确认合格后签收，如有问题，请及时与商家联系。如需退货，请将包装一并寄回哦。</span><br><br><br>
+                                <span class="shouhoufuwu">特别声明</span><hr><br>
+                                <span class="zhengwen">本站商品信息均来自于苏宁云台商家，其真实性、准确性和合法性由信息发布者（商家）负责。本站不提供任何保证，并不承担任何法律责任。因厂家会在没有任何提前通知的情况下更改产品包装、产地或者一些附件，本站不能确保客户收到的货物与网站图片、产地、附件说明完全一致，网站商品的功能参数仅供参考，请以实物为准。若本站没有及时更新，请您谅解！</span><br><br><br>
+                                <span class="shouhoufuwu">价格声明</span><hr><br>
+                                <span class="zhengwen">易购价：易购价为商品的销售价，是您最终决定是否购买商品的依据。
+参考价：商品展示的参考价（或划横线价），可能是品牌专柜标价、商品吊牌价或由品牌供应商提供的正品零售价（如厂商指导价、建议零售价等）或该商品在苏宁易购平台或销售商门店曾经展示过的挂牌价；由于地区、时间的差异性和市场行情波动，品牌专柜标价、商品吊牌价、销售商门店挂牌价等可能会与您购物时展示的不一致，该价格仅供您参考。
+折扣：如无特殊说明，折扣指销售商在参考价或划横线价（如品牌专柜标价、商品吊牌价、厂商指导价、厂商建议零售价、销售商门店挂牌价）等某一价格基础上计算出的优惠比例或优惠金额；如有疑问，您可在购买前联系销售商进行咨询。
+异常问题：商品促销信息以商品详情页“促销”信息为准；商品的具体售价以订单结算页价格为准；如您发现活动商品售价或促销信息有异常，建议购买前先联系销售商咨询。</span>
+                            </div>
+                            <div class="jieshao_mid_baozhang_right"></div>
+                        </div> 
+                    </div>
+                    <div class="jieshao_pingjia">
+                        <div class="jieshao_mid_bot_top">
+                            <div class="jieshao_l"></div>
+                            <div class="jieshao_r"></div>
+                        </div>
+                        <div class="jieshao_mid_bot_bot">
+                            <div class="rv-main-target">
+                                <volist name="pjxx" id="vvv">
+                                <div class="rv-target-item">
+                                    <input type="hidden" value="{$vvv.id}" name="geshu[]">
+                                    评论者:
+                                    {$vvv.user}
+                                    评价:
+                                    <span>{$vvv.pingjia}</span><br>
+                                    评论:
+                                    <span>{$vvv.pinglun}</span><br>
+                                    满意度:
+                                    <span>{$vvv.manyidu}</span>分
+                                    评价时间:
+                                    {$vvv.time}
+                                </div>
+                                </volist>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+                <script>
+                     $(document).ready(function(e){
+                         var geshu = $("input[name='geshu[]']").length;
+                         $("#geshu").text("("+geshu+")");
+                         $(".jieshao_mid_top_bot_one").click(function(){
+                             $(".chanpin_bot").height("800");
+                             $(".jieshao_mid_bot").show();
+                             $(".jieshao_baozhang").hide();
+                             $(".jieshao_pingjia").hide();
+                             $(".jieshao_mid_top_bot_one").css("border-top-color","rgb(255,153,0)");
+                             $(".jieshao_mid_top_bot_one").css("border-bottom","0px");
+                             $(".jieshao_mid_top_bot_one").css("color","rgb(255,153,0)");
+                             $(".jieshao_mid_top_bot_two").css("border-top-color","#ccc");
+                             $(".jieshao_mid_top_bot_two").css("border-bottom","1px solid #ccc");
+                             $(".jieshao_mid_top_bot_two").css("color","#000");
+                             $(".jieshao_mid_top_bot_three").css("border-top-color","#ccc");
+                             $(".jieshao_mid_top_bot_three").css("border-bottom","1px solid #ccc");
+                             $(".jieshao_mid_top_bot_three").css("color","#000");
+                         });
+                         $(".jieshao_mid_top_bot_two").click(function(){
+                             $(".chanpin_bot").height("1152");
+                             $(".jieshao_mid_bot").hide();
+                             $(".jieshao_baozhang").show();
+                             $(".jieshao_pingjia").hide();
+                             $(".jieshao_mid_top_bot_two").css("border-top-color","rgb(255,153,0)");
+                             $(".jieshao_mid_top_bot_two").css("color","rgb(255,153,0)");
+                             $(".jieshao_mid_top_bot_two").css("border-bottom","0px");
+                             $(".jieshao_mid_top_bot_one").css("border-top-color","#ccc");
+                             $(".jieshao_mid_top_bot_one").css("border-bottom","1px solid #ccc");
+                             $(".jieshao_mid_top_bot_one").css("color","#000");
+                             $(".jieshao_mid_top_bot_three").css("border-top-color","#ccc");
+                             $(".jieshao_mid_top_bot_three").css("border-bottom","1px solid #ccc");
+                             $(".jieshao_mid_top_bot_three").css("color","#000");
+                         })
+                         $(".jieshao_mid_top_bot_three").click(function(){
+                             $(".jieshao_mid_bot").hide();
+                             $(".jieshao_baozhang").hide();
+                             $(".jieshao_pingjia").show();
+                             $(".jieshao_mid_top_bot_three").css("border-top-color","rgb(255,153,0)");
+                             $(".jieshao_mid_top_bot_three").css("color","rgb(255,153,0)");
+                             $(".jieshao_mid_top_bot_three").css("border-bottom","0px");
+                             $(".jieshao_mid_top_bot_one").css("border-top-color","#ccc");
+                             $(".jieshao_mid_top_bot_one").css("border-bottom","1px solid #ccc");
+                             $(".jieshao_mid_top_bot_one").css("color","#000");
+                             $(".jieshao_mid_top_bot_two").css("border-top-color","#ccc");
+                             $(".jieshao_mid_top_bot_two").css("border-bottom","1px solid #ccc");
+                             $(".jieshao_mid_top_bot_two").css("color","#000");
+                         })
+                     })
+                </script>
+                <div class="jieshao_right"></div>
+            </div>
+            <div class='ng-ser-box'>
+                <div class='ng_left'></div>
+                <div class='ng_mid'>
+                    <div class='ng_mid_top'>
+                        <div class='ng_ge'></div>
+                        <div class='ng_nei'>
+                            <div class='ng_mid_top_box'>
+                                <img src='__PUBLIC__/image/tubiao1.png'>
+                                <span class='zi'>正品保障</span>
+                            </div>
+                            <div class='ng_mid_top_box'>
+                                <img src='__PUBLIC__/image/tubiao2.png'>
+                                <span class='zi'>急速物流</span>
+                            </div>
+                            <div class='ng_mid_top_box'>
+                                <img src='__PUBLIC__/image/tubiao3.png'>
+                                <span class='zi'>无忧售后</span>
+                            </div>
+                            <div class='ng_mid_top_box'>
+                                <img src='__PUBLIC__/image/tubiao4.png'>
+                                <span class='zi'>特色服务</span>
+                            </div>
+                            <div class='ng_mid_top_box'>
+                                <img src='__PUBLIC__/image/tubiao5.png'>
+                                <span class='zi'>帮助中心</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='ng_mid_bottom'>
+                        <div class='ng_mid_box'>
+                            <br><span class='zi2'>购物指南</span><br><br>
+                            <a href='#.html' class='link6'>导购演示</a><br>
+                            <a href='#.html' class='link6'>免费注册</a><br>
+                            <a href='#.html' class='link6'>会员等级</a><br>
+                            <a href='#.html' class='link6'>常见问题</a><br>
+                            <a href='#.html' class='link6'>品牌大全</a><br>
+                        </div>
+                        <div class='ng_mid_box'>
+                            <br><span class='zi2'>支付方式</span><br><br>
+                            <a href='#.html' class='link6'>支付宝支付</a><br>
+                            <a href='#.html' class='link6'>网银支付</a><br>
+                            <a href='#.html' class='link6'>快捷支付</a><br>
+                            <a href='#.html' class='link6'>分期付款</a><br>
+                            <a href='#.html' class='link6'>货到付款</a><br>
+                            <a href='#.html' class='link6'>任性支付</a><br>
+                        </div>
+                        <div class='ng_mid_box'>
+                            <br><span class='zi2'>物流配送</span><br><br>
+                            <a href='#.html' class='link6'>免运费政策</a><br>
+                            <a href='#.html' class='link6'>配送服务承诺</a><br>
+                            <a href='#.html' class='link6'>签收验货</a><br>
+                            <a href='#.html' class='link6'>物流查询</a><br>
+                        </div>
+                        <div class='ng_mid_box'>
+                            <br><span class='zi2'>售后服务</span><br><br>
+                            <a href='#.html' class='link6'>退换货政策</a><br>
+                            <a href='#.html' class='link6'>退换货流程</a><br>
+                            <a href='#.html' class='link6'>购买延保服务</a><br>
+                            <a href='#.html' class='link6'>退款说明</a><br>
+                            <a href='#.html' class='link6'>退换货申请</a><br>
+                            <a href='#.html' class='link6'>维修/保养</a><br>
+                        </div>
+                        <div class='ng_mid_box'>
+                            <br><span class='zi2'>商家服务</span><br><br>
+                            <a href='#.html' class='link6'>商家入驻</a><br>
+                            <a href='#.html' class='link6'>培训中心</a><br>
+                            <a href='#.html' class='link6'>信息公告</a><br>
+                            <a href='#.html' class='link6'>广告服务</a><br>
+                            <a href='#.html' class='link6'>商家帮助</a><br>
+                            <a href='#.html' class='link6'>服务市场</a><br>
+                        </div>
+                        <div class='erwei'>
+                            <br><span class='zi2'>客户端</span><br><br>
+                            <img src='__PUBLIC__/image/erweima.jpg'>
+                        </div>
+                    </div>
+                </div>
+                <div class='ng_right'></div>
+            </div>
+            <div class='new_pro'>
+                <div class="pro_left"></div>
+                <div class="pro_mid">
+                    <div class="pro_mid_left">
+                        <div class="pro_mid_left_left"><br><img src="__PUBLIC__/image/f1.png"></div>
+                        <div class="pro_mid_left_right"><br><a href='#.html' class='link8'>政企采购</a><br>
+                            <a href='#.html' class='link10'>为企业用户量身定做的采购平台，优选全站商品，为企业采购提供专业化的一站式采购解决方案。</a></div>
+                    </div>
+                    <div class="pro_mid_mid">
+                        <div class="pro_mid_left_left"><br><img src="__PUBLIC__/image/f2.png"></div>
+                        <div class="pro_mid_left_right"><br><a href='#.html' class='link8'>社会众包</a><br>
+                            <a href='#.html' class='link10'>以全渠道包销为主要特点，整合全社会众包资源，扶持创新企业，推广创新产品。</a></div>
+                    </div>
+                    <div class="pro_mid_right">
+                        <div class="pro_mid_left_left"></div>
+                        <div class="pro_mid_left_right"><br><br>
+                            <a href='#.html' class='link9'>组员:</a><br>
+                            <a href='#.html' class='link9'>侯鑫</a>
+                            <a href='#.html' class='link9'>王悦</a>
+                            <a href='#.html' class='link9'>袁昕</a>
+                            <a href='#.html' class='link9'>张鹏</a>
+                            <a href='#.html' class='link9'>李震</a>
+                            <a href='#.html' class='link9'>何康</a>
+                            <a href='#.html' class='link9'>李围龙</a>
+                            <a href='#.html' class='link9'>孙睿泽</a>
+                            <a href='#.html' class='link9'>岳利利</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pro_right"></div>
+            </div>
+            <div class='new_footer'>
+                <div class='new_footer_left'></div>
+                <div class='new_footer_mid'>
+                    <div class='new_foote_mid_one'>
+                        <a href='#.html' class='link9'>苏宁云商</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>苏宁互联</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>苏宁金融</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>易付宝</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>PPTV</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>红孩子</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>缤购</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>乐购仕</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>苏宁物流</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>苏宁美国</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>苏宁香港</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>手机苏宁</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>苏宁酒店</a>
+                    </div>
+                    <div class='new_foote_mid_two'>
+                        <a href='#.html' class='link9'>关于苏宁易购</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>联系我们</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>诚聘英才</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>供应商入驻</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>广告平台</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>苏宁联盟</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>苏宁招标</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>友情链接</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>法律申明</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>用户体验提升计划</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>股东会员认证</a>
+                    </div>
+                    <div class='new_foote_mid_three'>
+                        <span class="banquan">Copyright© 2002-2016 ，天软版权所有 ICP备10207551号-4 B1-20130131 B2-20130376 B2-20130391 出版物经营许可证新出发批字第A-243号</span>
+                    </div>
+                    <div class='new_foote_mid_four'>
+                        <img src="__PUBLIC__/image/banquan1.png">&nbsp;
+                        <img src="__PUBLIC__/image/banquan2.png">&nbsp;
+                        <img src="__PUBLIC__/image/banquan3.jpg">&nbsp;
+                        <img src="__PUBLIC__/image/banquan4.png">&nbsp;
+                    </div>
+                </div>
+                <div class='new_footer_right'></div>
+            </div>
+        </form>
+    </body>
+</html>

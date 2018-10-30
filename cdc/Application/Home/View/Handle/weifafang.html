@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="__PUBLIC__/css/tongji.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script src="__PUBLIC__/js/bianse.js"></script>
+</head>
+<body>
+    <form method="post" id="form" action="__URL__/weifafang">
+    <div>
+        <span>未发放奖励</span>
+        <input type="text" class="search" name="sea">
+        <input type="submit" value="搜索" class="search_sub">
+        <!--<input type="button" value="全选" style="margin-top: 10px;margin-left: 10px;width:100px;outline: none;border:0px;cursor: pointer;height:20px" id="all">-->
+        <!--<input type="button" value="发放" id="sub" style="margin-top: 10px;margin-left: 10px;width:100px;outline: none;border:0px;cursor: pointer;height:20px">-->
+        <table id="neirong" border="0" cellspacing="0">
+            <tr>
+                <!--<td>选择</td>-->
+                <td>序号</td>
+                <td>推荐人</td>
+                <td>受邀人</td>
+                <!--<td>子账户</td>-->
+                <td>签约资质</td>
+                <td>推荐奖励</td>
+                <!--<td>审核状态</td>-->
+                <td>签约日期</td>
+                <td>发放时间</td>
+                <!--<td>操作</td>-->
+            </tr>
+            <volist name="ren" id="val" key="k">
+            <tr class="neirong">
+                <!--<td><input type="checkbox" name="check[]" checked="checked" value="{$val.id}"></td>-->
+                <td>{:(I('get.p'))?((I('get.p')-1)*12+$k):($k)}</td>
+                <td>{$val.real_name},{$val.jiedian}</td>
+                <td>{$val.real_name2},{$val.zizhanghu}</td>
+                <td style="display: none">{$val.jiedian}<input type="hidden" value="{$val.tuijian}" name="tuijian[]"></td>
+                <td><if condition="$val.zizhi eq 2900">3200<elseif condition="$val.zizhi eq 29000"/>32000<elseif condition="$val.zizhi eq 290000"/>320000<else/>{$val.zizhi}</if></td>
+                <td>{$val.jiangli}<input type="hidden" value="{$val.jiangli}" name="jiangli[]"></td>
+                <!--<td>未发放</td>-->
+                <td>{$val.time}</td>
+                <td>{$val.issue_date}</td>
+                <!--<td><input type="text" value="" class="time_dian"></td>-->
+                <!--<td><input type="button" value="发放" onclick="zz('{$val.id}','{$val.jiangli}','{$val.tuijian}')"></td></td>-->
+            </tr>
+            </volist>
+        </table>
+        <div class="fena">
+            {$show}
+        </div>
+    </div>
+    </form>
+    <script>
+        $(document).ready(function(){
+            $("#all").click(function(){
+                var input = $("input[name='check[]']");
+                for(var i=0;i<input.length;i++){
+                    if(input.eq(i).attr("checked")=="checked"){
+                        input.eq(i).removeAttr("checked");
+                    }else{
+                        input.eq(i).attr("checked","checked");
+                    }
+                }
+            })
+            $("#sub").click(function(){
+                if(confirm('确定发放奖励吗？')){
+                    var frm = document.getElementById('form');
+                        frm.action='__URL__/arrfafang';
+                        frm.submit();
+                }
+            })
+        })
+        function zz(id,jiang,tui){
+            if(confirm('确定发放奖励吗？')){
+//                    var time = $(".time_dian").val();
+//                    alert(time);
+//                    if(time!=""){
+//                        var DATE_FORMAT = /^[0-9]{4}-[0-1]?[0-9]{1}-[0-3]?[0-9]{1}$/;
+//                                if(DATE_FORMAT.test($(".time_dian").val())){
+                                    var frm = document.getElementById('form');
+                                    frm.action='__URL__/jianglifafang/id/'+id+'/jiang/'+jiang+'/tui/'+tui;
+                                    frm.submit();
+//                                } else {
+//                                   alert("抱歉，您输入的日期格式有误，正确格式应为2012-01-01");
+////                                   return false;
+//                                }
+//                        
+//                    }
+                }else{
+            }
+        }
+    </script>
+</body>
+</html>

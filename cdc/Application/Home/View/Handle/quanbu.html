@@ -1,0 +1,198 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>团队奖统计</title>
+
+    <link href="__PUBLIC__/css/jquery-confirm.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+
+    <link href="__PUBLIC__/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/mobilemain.css" type="text/css" rel="stylesheet">
+    <link href="__PUBLIC__/css/main.css" type="text/css" rel="stylesheet">
+    <link href="__PUBLIC__/css/tongji.css" type="text/css" rel="stylesheet">
+
+</head>
+<body>
+<form id="form" method="post" action="__URL__/tongji_ri">
+    <div class="container body-content">
+        <a href="__URL__/zuotongji"><input type="button" value="返回上一页" style="margin: 10px"></a>
+        <input type="submit" value="生成统计表" style="margin: 10px" id="sheng" onclick="return confirm('确定吗？')">
+        <select id="sel" style="width: 150px;height:30px;" name="sel">
+            <volist name="time" id="val">
+            <option>{$val.zhuangtai}</option>
+            </volist>
+        </select>
+        <input type="button" value="删除此天记录" id="del">
+        <!--<input type="button" value="初始化数据" id="chushi">-->
+        <table class="table" id="neirong">
+            <tbody>
+                <tr class="fir-tr">
+                    <th>序号</th>
+                    <th>用户名</th>
+                    <th>子账户</th>
+                    <th>团队营业额</th>
+                    <th>个人业绩</th>
+                    <th>已奖励</th>
+                    <th>本次奖励</th>
+
+                    <th>统计时间</th>
+                    <!--<th>发放状态</th>-->
+                    <th>操作</th>
+                </tr>
+            <volist name="ren" id="val" key="k">
+                <tr style="text-align: center" class="neirong">
+                    <td>{:(I('get.p'))?((I('get.p')-1)*12+$k):($k)}</td>
+                    <td>{$val.user},{$val.name}</td>
+                    <td>{$val.zizhanghu}</td>
+                    <td>{$val.yingyee}</td>
+                    <td>{$val.yeji}</td>
+                    <td>{$val[reward_use]-$val[jiangli]}</td>                    
+                    <td>{$val.jiangli}</td>
+                   
+                    <td>{$val.time}</td>
+                    <!--<td><input type="hidden" value="{$val.status}" class="xunhuan"></td>onclick="fafang('{$val.id}','{$val.name}')"-->
+                    <td><a href="__URL__/quanbu_fafang?zizhanghu={$val.zizhanghu}"><input type="button" value="查看明细" class="fafang" ></td>
+                </tr>
+            </volist>
+            </tbody>
+        </table>
+        <div class="fena">
+            {$show}
+        </div>
+        <div class="pagination-container page_new">
+            <!--<div class="pagination-container"><ul class="pagination"><li class="disabled PagedList-skipToPrevious"><a rel="prev">«</a></li><li class="active"><a>1</a></li><li class="disabled PagedList-skipToNext"><a rel="next">»</a></li></ul></div>-->
+        </div>
+    </div>
+</form>
+    <script src="__PUBLIC__/js/jquery-1.10.2.js"></script>
+<script>window.parent.scrollTo(0, 0);</script>
+<script>
+    window.onload = function (){
+           var table = document.getElementById ('neirong');
+           var tbody = table.tBodies[0];
+           var rows = tbody.rows;
+           var cells = rows[0].cells;
+           for(var j = 0; j < cells.length; j++){
+               cells[j].onclick = function (){
+                   var asc = this.asc = !!this.asc ? -this.asc:-1;
+                   var array = [];
+                   array.index = this.cellIndex;
+                   for( var i = 1; i < rows.length; i++){
+                       array.push(rows[i]);
+                   }
+                   array.sort(function (a,b){
+                       if(array.index==0||array.index==2||array.index==3||array.index==4){
+                            var n1 = parseInt(a.cells[array.index].firstChild.nodeValue);
+                            var n2 = parseInt(b.cells[array.index].firstChild.nodeValue);
+                        }else{
+                            var n1 = a.cells[array.index].firstChild.nodeValue;
+                            var n2 = b.cells[array.index].firstChild.nodeValue;
+                        }
+                       if (n1 > n2){
+                           return asc;
+                       }
+                       else if (n1 < n2){
+                           return -asc;
+                       }else if(n1 === n2){
+                           return 0;
+                       }
+                   });
+                   for( var i = 0; i < array.length; i++){
+                       tbody.appendChild (array[i]);
+                   }
+               }
+           }
+    }
+    $(document).ready(function(){
+        var xun = $(".xunhuan");
+         for(var i=0;i<xun.length;i++){
+             if(xun.eq(i).val()==0){
+                 xun.parent("td").eq(i).append("未发放");
+             }else if(xun.eq(i).val()==1){
+                 xun.parent("td").eq(i).append("已发放");
+             }
+         }
+        $("#del").click(function(){
+            if(confirm('确定删除此天的记录吗？')){
+                if($("#sel").val()!=""){
+                    var frm = document.getElementById('form');
+                        frm.action='__URL__/deltongji/';
+                        frm.submit();
+                }else{
+                    alert("请选择日期!");
+                }
+            }
+        })
+        $("#sel").change(function(){
+            var value = $(this).val();
+            $.ajax({
+                type:"post",
+                url:"__URL__/sel_op2",
+                dataType: "text",
+                data:{val:value},
+                success:
+                function(data){
+                    if(data!=""){
+                        eval("var obj="+data);
+                        $(".neirong").detach();
+                        for(var i=0;i<obj.length;i++){
+                            if(obj[i].status==0){
+                                obj[i].status="未发放";
+                            }else if(obj[i].status==1){
+                                obj[i].status="已发放";
+                            }
+                            var jj=obj[i].reward_use-obj[i].jiangli;
+                           $(".table").append("<tr class='neirong' style='text-align:center'>\n\
+                            <td>"+(i+1)+"</td><td>"+obj[i].user+','+obj[i].name+"</td>\n\
+                            <td>"+obj[i].zizhanghu+"</td><td>"+obj[i].yingyee+"</td><td>"+obj[i].yeji+"</td><td>"+jj+"</td><td>"+obj[i].jiangli+"</td><td>"+obj[i].time+"</td><td><a href=__URL__/quanbu_fafang?zizhanghu="+obj[i].zizhanghu+"><input type='button' value='查看明细' class='fafang'></td></tr>") 
+                        }
+                    }
+                }
+            })
+        })
+    })
+</script>
+<script>
+        function fafang(id,tel){
+            if(confirm('确定发放奖励吗？')){
+            $.ajax({
+                type:"post",
+                url:"__URL__/status_sel",
+                dataType: "text",
+                data:{id:id},
+                success:
+                function(data){
+                    if(data==1){
+                        alert("请勿重复发放奖励!");
+                    }else{
+                        var frm = document.getElementById('form');
+                            frm.action='__URL__/zjiangli/id/'+id+'/tel/'+tel;
+                            frm.submit();
+                    }
+                }
+            })
+            }
+        }
+        $(function(){
+            $("#chushi").click(function(){
+                if(confirm('确定初始化吗？')){
+                    var frm = document.getElementById('form');
+                        frm.action='__URL__/xiuxiu';
+                        frm.submit();
+                }
+            })
+        })
+</script>
+       <script type="text/javascript">
+   jQuery(window).load(function() {
+    jQuery("#load").fadeOut(500);
+});
+  </script>
+	<!-- END JAVASCRIPTS -->
+        <div style="position: absolute;display:block;width:100%;top:25%" id="load">
+            <center><img src='/Public/images/wait.gif' style="width:70px;height:70px"></center>
+        </div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+
+.fast-item {
+    float: left;
+    padding-top: 40px;
+    width: 64px;
+    height: 24px;
+    border-top: 1px solid #efefef;
+    border-right: 1px solid #efefef;
+    text-align: center;
+    color: #666;
+    background: url(../image/fast-sprite-icon.png) no-repeat 0 -130px;
+}
+
+.fast-item:hover{
+    background: url(../image/fast-sprite-icon.png) no-repeat 0 0;
+}
+.ticket {
+    background-position: -64px -130px;
+}
+.ticket:hover{
+    background-position: -64px 0px;
+}
+.plane-ticket {
+    background-position: -130px -130px;
+}
+.plane-ticket:hover{
+    background-position: -130px 0px;
+}
+.fast-item:nth-child(4n+4) {
+    width: 65px;
+    border-right: none 0;
+}
+.insurance {
+    background-position: -194px -130px;
+}
+.insurance:hover{
+    background-position: -194px 0px;
+}
+.game {
+    background-position: 0 -195px;
+}
+.game:hover{
+    background-position: 0 -65px;
+}
+.financial {
+    background-position: -64px -195px;
+}
+.financial:hover{
+     background-position: -64px -65px;
+}
+.tel {
+    background-position: -130px -195px;
+}
+.tel:hover{
+    background-position: -130px -65px;
+}
+.home {
+    background-position: -194px -195px;
+}
+.home:hover{
+    background-position: -194px -65px;
+}
+.carts-empty {
+    padding: 70px 0 20px 50px;
+    background: url(../image/cart-empty.png) no-repeat center 10px;
+}
+
+.unit-empty {
+    padding: 60px 0 10px 50px;
+    text-align: left;
+    color: #999;
+    font-size: 12px;
+}
+.goods-empty {
+    padding: 60px 0 20px 70px;
+    background: url(../image/goods-empty.png) no-repeat center 10px;
+}
+.unit-empty {
+    padding: 60px 0 10px 50px;
+    text-align: left;
+    color: #999;
+    font-size: 12px;
+}

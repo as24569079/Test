@@ -1,0 +1,10 @@
+.popdiv{width:347px;height:309px; overflow: hidden; background-size: 100% 100%;position:fixed;left:50%;bottom:-100%;margin-left:-170px;display:none;z-index:99999;}
+.popdiv iframe{_border:none;}
+.popdiv .title-pop{text-align:center;width:347px;height:60px;position:relative;}
+.popdiv .title-pop .close{color:#fff; cursor:pointer; width:24px; height:24px; position: absolute; top: 0px; right: 4px; line-height: 24px;  text-align: center; font-weight: bold; font-size: 18px;}
+.popdiv h2 i{display: block;float:left;margin-right:2px;width:24px;height:34px;background:#333;color:red;text-align: center;font-style:normal;line-height:34px;}
+.popdiv .body-pop{padding-top:30px; padding-left:49px; width:245px; height:170px;} 
+.popdiv .body-pop p{margin-bottom:10px;}
+.popdiv .body-pop p input{width:228px;height:38px;border-radius:3px;border:1px solid #aaa;padding-left:15px;font:14px/40px '微软雅黑';}
+.popdiv .body-pop p .name2{width:228px;height:38px;border-radius:3px;border:1px solid #aaa;padding-left:15px;font:14px/40px '微软雅黑';}
+.popdiv .body-pop p .btn_2{width:245px;height:40px;padding:0;background:#e76b09;box-shadow:0px 4px 0px rgba(0,0,0,.3);text-align: center;color:#fff;cursor:pointer;font:20px/40px '微软雅黑';} 

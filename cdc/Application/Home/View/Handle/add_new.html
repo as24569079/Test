@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>新闻新增</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="__PUBLIC__/css/bootstrap-min.css">
+        <script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.2.min.js"></script> 
+        <script type="text/javascript" src="__PUBLIC__/js/bootstrap.js"></script> 
+    </head>
+    <body>
+          <!--返回按钮开始-->
+        <div style="width:100%">
+            <div style="width:80px;float: right">
+                <a  class="btn btn-info" href="__URL__/new_list" target="main">返回</a>
+            </div>
+        </div>
+          <!--返回按钮结束-->
+          <!--新闻标题和内容的表单开始-->
+        <form method="post" action="__URL__/add_newedit" onSubmit="return confirm();">
+            <div style="width:100%">
+                <div>
+                    <label>新闻标题 <span style="color: #f58266;">&nbsp;*</span></label>
+                    <input type="text" placeholder="请输入新闻标题" id="title" name="title" style="width:50%">
+                </div><br>
+                <label>新闻内容 <span style="color: #f58266;">&nbsp;</span></label>
+                <textarea  type="text"  name="content" id="EditorId" placeholder="请输入内容"></textarea>
+            <script type="text/javascript" charset="utf-8" src="__PUBLIC__/jq/ueditor.config.js"></script>
+            <script type="text/javascript" charset="utf-8" src="__PUBLIC__/jq/ueditor.all.min.js"></script>
+            <script type="text/javascript">
+                window.UEDITOR_HOME_URL = "__PUBLIC__/admin/ueditor/";//配置路径设定为UEditor所放的位置
+                window.onload=function(){
+                window.UEDITOR_CONFIG.initialFrameHeight=300;//编辑器的高度
+                window.UEDITOR_CONFIG.initialFrameWidth=800;//编辑器的宽度
+                var editor = new UE.ui.Editor({
+                    imageUrl : '__APP__/Editor/uploadImage',
+                    fileUrl : '__APP__/Editor/uploadFile',
+                    imagePath : '',
+                    filePath : '',
+                    imageManagerUrl:'__APP__/Editor/imageManage', //图片在线管理的处理地址
+                    imageManagerPath:'__ROOT__/'
+                });
+                editor.render("EditorId");//此处的EditorId与<textarea name="content" id="EditorId">的id值对应 </textarea>
+              }
+            </script>
+            </div>
+
+            <input type='submit' value='提交' style='width: 150px' id="sub">
+         </form>
+            <!--新闻标题和内容的表单结束-->
+        <script>
+            function confirm() {
+                if ($("#title").val() == '') {
+                    alert("请输入新闻标题");
+                    return false;
+                }
+            }
+        </script>
+    </body>
+</html>
+

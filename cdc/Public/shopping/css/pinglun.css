@@ -1,0 +1,59 @@
+.cont{
+    margin: auto;
+    width: 1190px;
+    height: 500px;
+}
+.cpjs{
+    list-style: none;
+    float: left;
+    margin: 0;       
+}
+.cpjs > li{
+    margin-left: 5px;
+}
+.cpjs > li > a{
+    text-decoration: none;
+    color:#333;font-size:16px;
+}
+.cpjs > li > a:hover{
+    color:#f70;text-decoration: underline;
+}
+.cpjs > li > span{
+    color:red;font-size:20px;
+}
+.cont_pinglun{
+    width: 600px;height: 400px;
+    float: left
+}
+.cont_pinglun_tao{
+    width: 600px;height: 400px;
+    position: relative;
+}
+.pinglun_neirong{
+    width: 400px;height: 200px;
+    position: absolute;
+    top:50px;left: 200px;
+    border: 1px #eee solid;padding: 5px;
+}
+.pinglun_neirong > span{
+    font-size:15px;color:#333;
+}
+.xingxing{
+    width: 100px;height: 50px;
+    background-image: url(../image/icons2.png);
+    background-position: 0 -125px;
+    background-repeat: no-repeat;
+}
+.pinglunquyu{
+    width: 280px;height: 80px;
+    outline: none;
+}
+.pingjia{
+    width: 150px;height: 30px;
+    outline: none;background: #f70;
+    color:#fff;
+}
+*{margin:0;padding:0;list-style-type:none;}
+a,img{border:0;}
+body{font:12px/180% Arial, Helvetica, sans-serif, "新宋体";}
+p{margin:20px 0 10px 0;}

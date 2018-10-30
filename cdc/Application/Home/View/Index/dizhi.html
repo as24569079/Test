@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>地址管理</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="__PUBLIC__/shopping/js/jquery-1.8.2.min.js"></script> 
+        <script type="text/javascript" src="__PUBLIC__/shopping/js/jquery-ui.min.js"></script> 
+        <script type="text/javascript" src="__PUBLIC__/shopping/jq/chanpin.js"></script> 
+        <link rel="shortcut icon" href="__PUBLIC__/shopping/images/bitbug_favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="__PUBLIC__/shopping/css/dizhi.css">
+        <link rel="stylesheet" href="__PUBLIC__/shopping/css/my.css">
+        <link rel="stylesheet" href="__PUBLIC__/shopping/css/reset-min.css">
+        <!--<link rel="stylesheet" href="__PUBLIC__/shopping/css/mycenter.css">-->
+        <link rel="stylesheet" href="__PUBLIC__/shopping/css/ms-style.css">
+        <link rel="stylesheet" href="__PUBLIC__/shopping/css/v3.css">
+        <style>
+            .m-dialog {position: fixed;_position:absolute; top: 50px; left: 200px; z-index: 8003;}.m-dialog .container {background:rgba(0,0,0,0.2);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#30000000,endColorstr=#30000000)\9;padding:6px;}.m-dialog .title {  border-bottom: 1px solid #ccc; background: #eee; }.m-dialog .title h3 { padding:5px 0; padding-left: 10px; font-size: 14px; }.m-dialog .btn {display:block;  position: absolute; color:#999;text-decoration:none; font-family:simsun;right: 12px; top:8px;font-size:16px;font-weight:700;cursor: pointer;}.m-dialog .gt {}.m-dialog .lt { margin-left:-4px;}.m-dialog .btn:hover { color:#666;text-decoration:none; }.m-dialog .content { background:#fff;}.m-dialog-overlay .lay { display:none;}.m-dialog-overlay .close {position:absolute;top:0; left:0; width: 100%; height: 100%; opacity: 0.3; filter:Alpha(opacity=30)\9; cursor: pointer; }.m-dialog-overlay .overlay { background: black; z-index: 8002;cursor:default }.m-dialog-overlay .frame { z-index: 8001;  }
+        </style>
+    </head>
+    <body>
+        <form method="post" id="form">
+        <!--登录条-->
+        <div class="ng-toolbar">
+            <div class="ng-toolbar-con wrapper">
+                <div class="ng-toolbar-left">
+                    <a class="ng-bar-node ng-site-nav-box" href="__URL__/index">
+                        <i class="ng-iconfont ng-backhome"></i>
+                        <span>返回官网首页</span>
+                        <i class="ng-line ng-iconfont ml10"></i>
+                    </a>
+                    <div class="ng-bar-node-box ng-site-nav-box">
+                        <a class="ng-bar-node ng-site-nav-box" href="__URL__/shop_index">
+                        <i class="ng-iconfont ng-backhome"></i>
+                        <span>返回商城首页</span>
+                        <i class="ng-line ng-iconfont ml10"></i>
+                    </a>
+                    </div>
+                </div>
+                <div class="ng-toolbar-right">
+                    <a class="ng-bar-node username-bar-node username-bar-node-showside">
+                        <span></span>
+                        <em class="hasmsg ng-iconfont"></em>
+                    </a>
+                    <if condition='$find neq ""'>
+                    <div class="ng-bar-node-box username-handle"  id="username-node-slide">
+                        <a class="ng-bar-node username-bar-node username-bar-node-noside">
+                            <span id="usernameHtml02">{$find.real_name}</span>
+                            <em class="hasmsg ng-iconfont"></em>
+                            <em class="ng-iconfont down"></em>
+                        </a>
+                        <div class="ng-d-box ng-down-box ng-username-slide" style="display: none" id="guanli">
+                            <a class="ng-vip-union" href="__URL__/myhome" target="_blank">账号管理</a>
+                            <a class="ng-vip-union" href="__URL__/member" target="_blank">资质管理</a>
+                            <a href="__URL__/signOut">退出登录</a>
+                        </div>
+                    </div>
+                    <else/>
+                    <div class="ng-bar-node reg-bar-node" id="username-node">
+                        <a class="login" href="__URL__/login">登录</a>
+                        <a class="login reg-bbb" href="__URL__/register" target="_blank">注册</a>
+                    </div>
+                    </if>
+                    <if condition='$find neq ""'>
+<!--                    <div class="ng-bar-node-box myorder-handle">
+                        <a class="ng-bar-node ng-bar-node-fix touch-href ng-bar-node-pr5" href="__URL__/my">
+                            <span>我的订单</span>
+                            <em class="ng-iconfont down"></em>
+                        </a>
+                        <div class="ng-down-box ng-d-box myorder-child" style="display: none">
+                            <a href='__URL__/member#dingdanxiangqing'>未发货</a>
+                            <a>已发货</a>
+                        </div>
+                    </div>-->
+                    </if>
+                    <if condition='$find neq ""'>
+                    <a class="ng-bar-node ng-bar-node-mini-cart" href="__URL__/gouwuchejs">
+                        <span>购物车</span>
+                        <em class="ng-iconfont cart"></em>
+                        <span class="total-num-box">
+                            <b class="total-num J_cart_total_num" style="background:#db0638">{$gouwunum}</b>
+                            <span class="total-num-bg-box">
+                                <em></em>
+                                <i></i>
+                            </span>
+                        </span>
+                    </a>
+                        </if>
+                </div>
+                <div class="ng-minicart-slide-box"></div>
+            </div>
+        </div>
+        <!--头部内容-->
+        <div class="ms-header ms-header-inner ms-head-position">
+            <article class="ms-header-menu" style="background:#db0638">
+                <div class="header-menu">
+                    <div class="ms-logo">
+                        <a class="ms-head-logo" href="__URL__/shop_index" target="_blank" style="background:url(__PUBLIC__/images/zi.png);background-repeat: no-repeat;
+    background-position: center left;"></a>
+                    </div>
+                    <nav class="ms-nav">
+                        <ul>
+                            <li class="nav-manage selected">
+                                <a href="__URL__/myhome">首页</a>
+                                <i class="nav-arrow"></i>
+                            </li>
+                            <li>
+                                <a class="Myyigou_index_none_daohang1003" href="__URL__/guanli">账户管理</a>
+                                <i class="nav-arrow"></i>
+                            </li>
+                            <li class="ms-nav-msg">
+                                <a href="__URL__/xiaoxi">消息</a>
+                                <i class="nav-arrow"></i>
+                            </li>
+                        </ul>
+<!--                        <div class="ms-search">
+                            <span></span>
+                            <input type="text" id="sea">
+                            <a style=" cursor: pointer" id="bnt_tiao" target="_blank"></a>
+                        </div>-->
+                    </nav>
+                </div>
+            </article>
+            <article class="ms-useinfo"></article>
+        </div>
+        <div class='ms-center' id='ms-center'>
+            <div class='cont'>
+                <div class="cont-side">
+                    <div class="ms-side-2">
+                        <dl class="side-menu-tree">
+                            <dt>账户管理</dt>
+                            <dd>
+                                <a href="__URL__/guanli">个人信息</a>
+                            </dd>
+<!--                            <dd>
+                                <a href="__URL__/anquan" target="_blank">安全设置</a>
+                            </dd>-->
+                            <dd>
+                                <a href="__URL__/dizhi" style="color:#f70">地址管理</a>
+                            </dd>
+                        </dl>
+                        <a class="icon-up-side">
+                            <i>▲</i>
+                        </a>
+                    </div>
+                </div>
+                <div class='cont-main'>
+                    <div class='main-wrap mt20'>
+                        <div class='address'>
+                            <div class='address-def'>
+                                <h2 class='address-title'>地址管理</h2>
+                                <div class='default clearfix'>
+                                    <volist name='dizhi' id='val'>
+                                    <div class='defau-mod def-hide'>
+                                        <div class='addr-state'>
+                                            <div class='def-addr-sure'>
+                                                <div class='setdef  hover'>
+                                                    <i class='home'></i>
+                                                    <a class='cl60'><if condition="$val.status eq 1">默认地址</if></a>
+                                                </div>
+<!--                                                <div class='way compile-way delivery-btn'>
+                                                    <i class='compile'></i>
+                                                    <p>修改</p>
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                        <div class='addr-info-sure'>
+                                            <div class='addr-ne'>
+                                                <span class='name'>{$val.address_people}</span>
+                                                <span class='iphone'>{$val.address_tel}</span>
+                                            </div>
+                                            <div class='addr-hd'>
+                                                <span>{$val.address_provinces}</span>
+                                            </div>
+                                            <div class='addr-deail'>
+                                                <span class='addr-detailAddress'>{$val.address_details}</span>
+                                            </div>
+<!--                                            <div class='hide'>
+                                                <span class='addr-phone'>{$val.beiyong}</span>
+                                            </div>-->
+                                        </div>
+                                        <em class='addr-topbg'></em>
+                                        <em class='addr-botbg'></em>
+                                    </div>
+                                    </volist>
+                                    <div class='add-addr'></div>
+                                </div>
+                            </div>
+                            <div class='addr-wap'>
+                                <div class='addr-tab'>
+                                    <ul class='addr-tab-con'>
+                                        <li class='on'>
+                                            <span>全部地址</span>
+                                        </li>
+                                        <li>
+                                            <span>配送地址</span>
+                                        </li>
+                                    </ul>
+                                    <div class='addr-count'>
+                                        <em class='notice'></em>
+                                        <span>
+                                            您已保存
+                                            <i></i>
+                                            个地址，还能增加
+                                            <i></i>
+                                            个新地址
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class='addr-matter'>
+                                    <div class='addr-matter-con clearfix'>
+                                        <volist name='dizhi2' id='value'>
+                                            <input type='hidden' value='{$value.status}' name='mo[]'>
+                                            <div class='addr-wap-del'>
+                                                <div class='defau-mod def-hide'>
+                                                    <div class='addr-state'>
+                                                        <div class='def-addr-sure'>
+                                                            <div class='way remove-way'>
+                                                                <i class='remove'></i>
+                                                                <p>删除</p>
+                                                            </div>
+<!--                                                            <div class='way compile-way delivery-btn'>
+                                                                <i class='compile'></i>
+                                                                <p>修改</p>
+                                                            </div>-->
+                                                            <div class='way home-way'>
+                                                                <input type="hidden" value="{$value.address_id}">
+                                                                <i class='home'></i>
+                                                                <p>设为默认地址</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class='addr-info-sure'>
+                                                        <div class='addr-ne'>
+                                                            <span class='name'>{$value.address_people}</span>
+                                                            <span class='iphone'>{$value.address_tel}</span>
+                                                        </div>
+                                                        <div class='addr-hd'>
+                                                            <span>{$value.address_provinces}</span>
+                                                        </div>
+                                                        <div class='addr-deail'>
+                                                            <span class='addr-detailAddress'>{$value.address_details}</span>
+                                                        </div>
+<!--                                                        <div class='hide'>
+                                                            <span class='addr-phone'>{$value.beiyong}</span>
+                                                        </div>-->
+                                                    </div>
+                                                    <div class='hide'></div>
+                                                    <em class='addr-topbg'></em>
+                                                    <em class='addr-botbg'></em>
+                                                </div>
+                                                <div class='del-mode'>
+                                                    <a class='del' style="cursor: pointer">确认删除</a>
+                                                    <input type="hidden" value="{$value.address_id}">
+                                                    <a class='nodel' style="cursor: pointer">取消</a>
+                                                </div>
+                                            </div>
+                                        </volist>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='m-dialog' style="width: 567px; position: fixed; margin-left: 300px; margin-top: -280px; top: 50%; display: none;z-index: 1500">
+            <div class='container'>
+                <div class='title'>
+                    <h3>增加新地址</h3>
+                </div>
+                <a class='btn close' title="关闭" id='add_close'>
+                    ×
+                </a>
+                <div class='content'>
+                    <div class='pop-com'>
+                        <ul class='pop-tab'>
+                            <li class='on delivery-enter'>
+                                <span>配送地址</span>
+                            </li>
+                        </ul>
+                        <div class='pop-detail'>
+                            <div class='pop-wrapper'>
+                                <dl class='clearfix'>
+                                    <dt>
+                                        <em>*</em>
+                                        收货人：
+                                    </dt>
+                                    <dd>
+                                        <input type='text' name='user' class='addr-input l input_focus' placeholder="姓名，如：张三、Lily">
+                                        <p class='errortip ml10 hide' id='tishi'></p>
+                                    </dd>
+                                </dl>
+                                <dl class='clearfix'>
+                                    <dt>
+                                        <em>*</em>
+                                        地址：
+                                    </dt>
+                                    <dd>
+                                        <span id="province2"></span>
+                                        <input type='text' class='addr-input row l input_focus' name='dizhi' placeholder="街道名称或小区名称">
+                                        <p class='errortip w368 hide' id='tishi2'></p>
+                                    </dd>
+                                </dl>
+                                <dl class='clearfix'>
+                                    <dt>
+                                        <em>*</em>
+                                        手机号码：
+                                    </dt>
+                                    <dd>
+                                        <input type='text' name='phone' class='addr-input l input_focus' placeholder="手机号码（重要必填）" maxlength="11">
+                                        <p class='errortip ml10 hide' id='tishi3'></p>
+                                    </dd>
+                                </dl>
+                                <dl class='clearfix'>
+                                    <dt>
+                                        固定电话:&nbsp;&nbsp;
+                                    </dt>
+                                    <dd>
+                                        <input class='addr-input l input_focus' type='text' placeholder="选填" name='beiyong'>
+                                        <p class='errortip ml10 hide' id='tishi4'></p>
+                                    </dd>
+                                </dl>
+                                <dl class='clearfix'>
+                                    <dt>&nbsp;</dt>
+                                    <dd>
+                                        <label>
+                                            <input class='check' type='checkbox' name="moren" value="1">设为默认收货地址
+                                        </label>
+                                    </dd>
+                                </dl>
+                                <div class='operation clearfix'>
+                                    <a class='sure' style=' cursor: pointer' id="add-sure"></a>
+                                    <a class='cancel close' style=' cursor: pointer' id='add-close'></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="chanpin_dang" style='height:100%; width:100%; position:fixed; _position:absolute; top:0; z-index:900;
+    opacity:0.3; filter: alpha(opacity=30); background-color:black; display: none;'></div>
+        <script type="text/javascript" src="__PUBLIC__/shopping/js/city.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/shopping/js/provincesData.js"></script>
+        <script>
+            $(function(){
+                var number = 2;
+                $("#province2").city();
+                $(".del").click(function(){
+                    var id =$(this).siblings("input").val();
+                    var frm = document.getElementById('form');
+                            frm.action='__URL__/deldizhi/id/'+id;
+                            frm.submit();
+                })
+                $(".home-way").click(function(){
+                    var moren = $(this).children("input").val();
+                    var frm = document.getElementById('form');
+                            frm.action='__URL__/xiugaimoren/id/'+moren;
+                            frm.submit();
+                })
+                $("#add-close").click(function(){
+                    $(".m-dialog").fadeOut("slow");;
+                    $(".chanpin_dang").fadeOut("slow");
+                })
+                $("input[name='beiyong']").focus(function(){
+                    $(this).attr("placeholder","");
+                    $("#tishi4").hide();
+                }).blur(function(){
+                    if($(this).val()==""){
+                        $("#tishi4").hide();
+                        $("#tishi4").text("");
+                        $(this).attr("placeholder","选填");
+                    }else if($(this).val().length<7||$(this).val().length>12){
+                        $("#tishi4").show();
+                        $("#tishi4").text("请输入7-12位数字");
+                        $("#tishi4").attr("class","errortip ml10 hide");
+                        $(this).attr("placeholder","选填");
+                    }else if($(this).val()!=""&&$(this).val().length>6&&$(this).val().length<12){
+                        $("#tishi4").show();
+                        $("#tishi4").attr("class","ml10 oktip");
+                        $("#tishi4").text("");
+                    }else if(isNaN($(this).val())){
+                        $("#tishi4").show();
+                        $("#tishi4").text("请输入7-12位数字");
+                        $("#tishi4").attr("class","errortip ml10 hide");
+                        $(this).attr("placeholder","选填"); 
+                    }
+                })
+                $("input[name='phone']").focus(function(){
+                     $(this).attr("placeholder","");
+                     $("#tishi3").hide();
+                 }).blur(function(){
+                     if($(this).val()==""){
+                        $("#tishi3").show();
+                        $("#tishi3").text("手机号码不能为空");
+                        $("#tishi3").attr("class","errortip ml10 hide");
+                        $(this).attr("placeholder","手机号码（重要必填）");
+                        number = 2;
+                     }else if($(this).val().length!=11){
+                        $("#tishi3").show();
+                        $("#tishi3").text("手机号码格式不正确");
+                        $("#tishi3").attr("class","errortip ml10 hide");
+                        $(this).attr("placeholder","手机号码（重要必填）"); 
+                        number = 2;
+                     }else if(isNaN($(this).val())){
+                        $("#tishi3").show();
+                        $("#tishi3").text("手机号码格式不正确");
+                        $("#tishi3").attr("class","errortip ml10 hide");
+                        $(this).attr("placeholder","手机号码（重要必填）"); 
+                        number = 2;
+                     }else{
+                        $("#tishi3").show();
+                        $("#tishi3").attr("class","ml10 oktip");
+                        $("#tishi3").text("");
+                        number = 1;
+                     }
+                 })
+                $("input[name='name']").focus(function(){
+                    $(this).attr("placeholder","");
+                    $("#tishi").hide();
+                }).blur(function(){
+                    if($(this).val()==""){
+                        $("#tishi").show();
+                        $("#tishi").text("姓名不能为空");
+                        $("#tishi").attr("class","errortip ml10 hide");
+                        $(this).attr("placeholder","姓名，如：张三、Lily");
+                        number = 2;
+                    }else if($(this).val().length<2||$(this).val().length>12){
+                        $("#tishi").show();
+                        $("#tishi").text("请输入2-12个汉字、英文或数字");
+                        $("#tishi").attr("class","errortip ml10 hide");
+                        $(this).attr("placeholder","姓名，如：张三、Lily");
+                        number = 2;
+                    }else{
+                        $("#tishi").show();
+                        $("#tishi").attr("class","ml10 oktip");
+                        $("#tishi").text("");
+                        number = 1;
+                    }
+                })
+                $("input[name='dizhi']").focus(function(){
+                    $(this).attr("placeholder","");
+                    $("#tishi2").hide();
+                }).blur(function(){
+                    if($(this).val()==""){
+                        $("#tishi2").show();
+                        $("#tishi2").text("详细地址不能为空");
+                        $("#tishi2").attr("class","errortip ml10 hide");
+                        $(this).attr("placeholder","街道名称或小区名称");
+                        number = 2;
+                    }else{
+                        $("#tishi2").hide();
+                        $("#tishi2").text("");
+                        number = 1;
+                    }
+                })
+                $(".add-addr").click(function(){
+                    $(".m-dialog").fadeIn("slow")
+                    $(".chanpin_dang").fadeIn("slow")
+                })
+                $("#add_close").click(function(){
+                    $(".m-dialog").fadeOut("slow");;
+                    $(".chanpin_dang").fadeOut("slow");
+                })
+                $("#add-sure").click(function(){
+                    if(number == 1){
+                        var frm = document.getElementById('form');
+                            frm.action='__URL__/adddizhi2';
+                            frm.submit();
+                    }
+                })
+            });
+            $(document).ready(function(e){
+                var length = $("input[name='mo[]']").length;
+                $(".addr-count > span >i").eq(0).text(length);
+                $(".addr-count > span >i").eq(1).text(20 - length);
+            })
+            $(function(){
+                $(".def-hide").mouseover(function(){
+                    $(this).attr("class","defau-mod");
+                }).mouseout(function(){
+                    $(this).attr("class","defau-mod def-hide");
+                })
+                $(".delivery-btn").mouseover(function(){
+                    $(this).attr("class","way compile-way delivery-btn hover");
+                    $(this).children("p").show();
+                }).mouseout(function(){
+                    $(this).attr("class","way compile-way delivery-btn");
+                    $(this).children("p").hide();
+                })
+                $(".home-way").mouseover(function(){
+                    $(this).attr("class",'way home-way hover');
+                    $(this).children("p").show();
+                }).mouseout(function(){
+                    $(this).attr("class",'way home-way');
+                    $(this).children("p").hide();
+                })
+                $(".remove-way").mouseover(function(){
+                    $(this).attr("class","way remove-way hover");
+                    $(this).children("p").show();
+                }).mouseout(function(){
+                    $(this).attr("class","way remove-way");
+                    $(this).children("p").hide();
+                }).click(function(){
+                    $(this).parent().parent().parent(".defau-mod").animate({opacity : '0.2'},"fast");
+                    $(this).parent().parent().parent().siblings(".del-mode").show();
+                })
+                $(".nodel").click(function(){
+                    $(this).parent().siblings(".defau-mod").animate({opacity : '1'},"fast");
+                    $(this).parent().hide();
+                })
+                $(".add-addr").mouseover(function(){
+                    $(this).attr("class","add-addr on");
+                }).mouseout(function(){
+                    $(this).attr("class","add-addr");
+                })
+            })
+        </script>
+        <script>
+             $(function(){
+                 $(".icon-up-side").toggle(function(){
+                     $(".side-menu-tree").animate({'margin-top':'-80px'},"slow");
+                     $(this).attr("class","switch-side-menu icon-down-side");
+                 },function(){
+                     $(".side-menu-tree").animate({'margin-top':'0px'},"slow");
+                     $(this).attr("class","switch-side-menu icon-up-side");
+                 })
+                 $("#bnt_tiao").click(function(){
+                    var value = $.trim($("#sea").val());
+                    if(value != ""){
+                        $("#bnt_tiao").attr("href","__URL__/sea/mc/"+value);
+                    }
+                })
+             })
+            function winshow(){
+                    openWin = window.open('__URL__/show_two','_blank','width=550,height=530,left=800,top=400,location=yes,menubar=1,status=1');
+            }
+            $(document).ready(function(e){
+                $('html').bind("selectstart", function () { return false; });
+                var gw = $("#gouwuche > .pro-item");
+                var sc = $("#shoucang > .pro-item");
+                if(sc.length>0){
+                    $("#shoucangbox").hide();
+                    $("#shoucangbox2").show();
+                    $("#shou_shu > a > em").text(sc.length);
+                }else{
+                    $("#shoucangbox").show();
+                    $("#shoucangbox2").hide();
+                    $("#shou_shu").hide();
+                }
+                if(gw.length>0){
+                    $("#gouwubox").hide();
+                    $("#gouwubox2").show();
+                    $("#gou_shu > a > em").text(gw.length);
+                }else{
+                    $("#gouwubox").show();
+                    $("#gouwubox2").hide();
+                    $("#gou_shu").hide();
+                }
+                var zt = $(".zhuangtai");
+                for(var i=0;i<zt.length;i++){
+                    if(zt.eq(i).text()=="已发货"){
+                        $(".border-pure-btn").eq(i).show();
+                    }else{
+                        $(".border-pure-btn").eq(i).hide();
+                    }
+                }
+                $("#xianshi").click(function(){
+                    $(".secret-mod").show();
+                    $(".icon").css("opacity","0.2");
+                    $(this).hide();
+                })
+                $("#ling").click(function(){
+                    var frm = document.getElementById('form');
+                        frm.action='__URL__/yunzuan';
+                        frm.submit();
+                    $(this).hide();
+                })
+                var jia = 0;
+                var l = $("input[name='duoxuan[]']").length;
+                $(".J_cart_checked_num").text(l);
+                for(var i=0;i<l;i++){
+                  jia +=$("input[name='duoxuan[]']").eq(i).val()*1;  
+                }
+                $("#zongjia").text(jia);
+                $("#zongjia_i").val(jia);
+                $.ajax({
+                    type:"post",
+                    url:"__URL__/cook",
+                    dataType: "text",
+                    data:null,
+                    success:
+                    function(data){
+                      eval("var obj="+data);
+                        if(data!=""){
+                            $("#username-node-slide").show();
+                            $("#username-node").hide();
+                            $("#usernameHtml02").text(obj.username);
+                            if(obj.touxiang=="null"){
+                                $(".headimg > img").attr("src","__PUBLIC__/shopping/images/0000000000_01_60x60.jpg");
+                                $("#zujing_img").attr("src","__PUBLIC__/shopping/images/0000000000_01_60x60.jpg");
+                                $(".info-avatar > img").attr("src","__PUBLIC__/shopping/images/0000000000_01_60x60.jpg");
+                            }else{
+                                $(".headimg > img").attr("src","/ShoppingSite/"+obj.touxiang);
+                                $("#zujing_img").attr("src","/ShoppingSite/"+obj.touxiang);
+                                $(".info-avatar > img").attr("src","/ShoppingSite/"+obj.touxiang);
+                            }
+                            $(".mysuning-detail > .login").hide();
+                            $(".mysuning-detail > .username").css("display","block");
+                            $(".mysuning-detail > .username").text(obj.username);
+                            $("#anquan").val(obj.anquan);
+                            var fenshu = $("#anquan").val();
+                            $(".safe-bar-in").animate({width:fenshu+"%"},"slow");
+                            if(fenshu <= 40){
+                                $(".safe-text").text("低");
+                            }else if(fenshu>=60&&fenshu<80){
+                                $(".safe-text").text("中");
+                            }else if(fenshu>=80){
+                                $(".safe-text").text("高");
+                            }
+                            if(fenshu==100){
+                                $("#tisheng").hide();
+                            }else{
+                                $("#tisheng").show();
+                            }
+                            $("#username").text(obj.username);
+                            $("#zuan").text(obj.yunzuan);
+                            $("#yue").text(obj.zijin);
+                            $(".pls-login").hide();
+                            $("#zujing").show();
+                            $("#zujing > a").eq(0).text(obj.username);
+                            $("#zujing_img").attr("src","/ShoppingSite/"+obj.touxiang);
+                            $(".desc").empty().append("按下键盘上的<i>G</i>即可快速打开/关闭购物车功能");
+                            if(obj.quanxian=="超级管理员"||obj.quanxian=="管理员"){
+                                $("#hguanli").show();
+                            }else{
+                                $("#hguanli").hide();
+                            }
+                        }
+                    }
+                })
+                var num = 0;
+                $(document).keydown(function(event){
+                    if(event.keyCode == 71){ 
+                        if(num %2==0){
+                            $(".sn-sidebar-contents").attr("class","sn-sidebar-contents sn-sidebar-contents-show");
+                            $(".sn-sidebar-contents").animate({right : '35px'},"slow"); 
+                            $(".sn-sidebar-cart").show();
+                        }else{
+                            $(".sn-sidebar-contents").attr("class","sn-sidebar-contents");
+                            $(".sn-sidebar-contents").animate({right : '-400px'},"slow"); 
+                            $(".sn-sidebar-cart").hide();
+                        }
+                    }
+                    num++;
+                }); 
+                $.ajax({
+                    type:"post",
+                    url:"__URL__/gouwuchesl",
+                    dataType: "text",
+                    data:null,
+                    success:
+                    function(data){
+                        $(".J_cart_total_num").text(data);
+                        if(data > 0){
+                            $("#myCart_wu").hide();
+                            $("#myCart").show();
+                        }else{
+                            $("#myCart_wu").show();
+                            $("#myCart").hide();
+                        }
+                    }
+                })
+            })
+        </script>
+        </form>
+    </body>
+</html>

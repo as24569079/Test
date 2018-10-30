@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>个人信息</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="__PUBLIC__/shopping/js/jquery-1.8.2.min.js"></script> 
+        <script type="text/javascript" src="__PUBLIC__/shopping/js/jquery-ui.min.js"></script> 
+        <script type="text/javascript" src="__PUBLIC__/shopping/jq/chanpin.js"></script> 
+        <link rel="shortcut icon" href="__PUBLIC__/images/bitbug_favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="__PUBLIC__/shopping/css/my.css">
+        <link rel="stylesheet" href="__PUBLIC__/shopping/css/reset-min.css">
+        <link rel="stylesheet" href="__PUBLIC__/shopping/css/mycenter.css">
+        <link rel="stylesheet" href="__PUBLIC__/shopping/css/ms-style.css">
+        <link rel="stylesheet" href="__PUBLIC__/shopping/css/v3.css">
+    </head>
+    <body style="margin: 0px">
+        <form method="post" enctype="multipart/form-data" id="form">
+        <!--登录条-->
+        <div class="ng-toolbar">
+            <div class="ng-toolbar-con wrapper">
+                <div class="ng-toolbar-left">
+                    <a class="ng-bar-node ng-site-nav-box" href="__URL__/index">
+                        <i class="ng-iconfont ng-backhome"></i>
+                        <span>返回官网首页</span>
+                        <i class="ng-line ng-iconfont ml10"></i>
+                    </a>
+                    <div class="ng-bar-node-box ng-site-nav-box">
+                        <a class="ng-bar-node ng-site-nav-box" href="__URL__/shop_index">
+                        <i class="ng-iconfont ng-backhome"></i>
+                        <span>返回商城首页</span>
+                        <i class="ng-line ng-iconfont ml10"></i>
+                    </a>
+                    </div>
+                </div>
+                <div class="ng-toolbar-right">
+                    <a class="ng-bar-node username-bar-node username-bar-node-showside">
+                        <span></span>
+                        <em class="hasmsg ng-iconfont"></em>
+                    </a>
+                    <if condition='$find neq ""'>
+                    <div class="ng-bar-node-box username-handle"  id="username-node-slide">
+                        <a class="ng-bar-node username-bar-node username-bar-node-noside">
+                            <span id="usernameHtml02">{$find.real_name}</span>
+                            <em class="hasmsg ng-iconfont"></em>
+                            <em class="ng-iconfont down"></em>
+                        </a>
+                        <div class="ng-d-box ng-down-box ng-username-slide" style="display: none" id="guanli">
+                            <a class="ng-vip-union" href="__URL__/myhome" target="_blank">账号管理</a>
+                            <a class="ng-vip-union" href="__URL__/member" target="_blank">资质管理</a>
+                            <a href="__URL__/signOut">退出登录</a>
+                        </div>
+                    </div>
+                    <else/>
+                    <div class="ng-bar-node reg-bar-node" id="username-node">
+                        <a class="login" href="__URL__/login">登录</a>
+                        <a class="login reg-bbb" href="__URL__/register" target="_blank">注册</a>
+                    </div>
+                    </if>
+                    <if condition='$find neq ""'>
+<!--                    <div class="ng-bar-node-box myorder-handle">
+                        <a class="ng-bar-node ng-bar-node-fix touch-href ng-bar-node-pr5" href="__URL__/my">
+                            <span>我的订单</span>
+                            <em class="ng-iconfont down"></em>
+                        </a>
+                        <div class="ng-down-box ng-d-box myorder-child" style="display: none">
+                            <a href='__URL__/member#dingdanxiangqing'>未发货</a>
+                            <a>已发货</a>
+                        </div>
+                    </div>-->
+                    </if>
+                    <if condition='$find neq ""'>
+                    <a class="ng-bar-node ng-bar-node-mini-cart" href="__URL__/gouwuchejs">
+                        <span>购物车</span>
+                        <em class="ng-iconfont cart"></em>
+                        <span class="total-num-box">
+                            <b class="total-num J_cart_total_num" style="background:#db0638">{$gouwunum}</b>
+                            <span class="total-num-bg-box">
+                                <em></em>
+                                <i></i>
+                            </span>
+                        </span>
+                    </a>
+                        </if>
+                </div>
+                <div class="ng-minicart-slide-box"></div>
+            </div>
+        </div>
+        <!--头部内容-->
+        <div class="ms-header ms-header-inner ms-head-position">
+            <article class="ms-header-menu" style="background:#db0638">
+                <div class="header-menu">
+                    <div class="ms-logo">
+                        <a class="ms-head-logo" href="__URL__/shop_index" target="_blank" style="background:url(__PUBLIC__/images/zi.png);background-repeat: no-repeat;
+    background-position: center left;"></a>
+                    </div>
+                    <nav class="ms-nav">
+                        <ul>
+                            <li class="nav-manage selected">
+                                <a href="__URL__/myhome">首页</a>
+                                <i class="nav-arrow"></i>
+                            </li>
+                            <li>
+                                <a class="Myyigou_index_none_daohang1003" href="__URL__/guanli">账户管理</a>
+                                <i class="nav-arrow"></i>
+                            </li>
+                            <li class="ms-nav-msg">
+                                <a href="__URL__/xiaoxi">消息</a>
+                                <i class="nav-arrow"></i>
+                            </li>
+                        </ul>
+<!--                        <div class="ms-search">
+                            <span></span>
+                            <input type="text" id="sea">
+                            <a style=" cursor: pointer" id="bnt_tiao" target="_blank"></a>
+                        </div>-->
+                    </nav>
+                </div>
+            </article>
+            <article class="ms-useinfo"></article>
+        </div>
+        <div class="chanpin_dang"></div>
+        <div class="m-dialog">
+            <div class="container">
+                <a class="btn close">×</a>
+                <div class="content">
+                    <div class="edit-avatar">
+                        <div class="avatar-chooseItem">
+                            <a class="selected">自定义头像</a>
+                            <a>系统推荐头像</a>
+                            <i class="selected-line"></i>
+                        </div>
+                        <div class="avatar-chooseContent">
+                            <div class="chooseContent avatar-user-defined clearfix" id="feixi">
+                                <div class="upload-wrapper">
+                                        <div class="upload-box" style="display: none" id="yichuan">
+                                            <img style="" width="320" height="320" id="originImg">
+                                        </div>
+                                        <div class="upload-box" id="weichuan">
+                                            <a class="upload-btn">
+                                                <i></i>点击上传
+                                            </a>
+                                            <p class="upload-tip">仅支持JPG、JPEG、GIF、PNG、BMP图片文件</p>
+                                            <div class="upload-file">
+                                                <input type="file" name="file" id="file" class="file">
+                                            </div>
+                                        </div>
+                                        <p class="option-wrapper">
+                                            <a class="option-btn option-btn-save" style="background:#db0638">保存</a>
+                                            <a class="option-btn option-btn-cancel close" id="txqx">取消</a>
+                                        </p>
+                                </div>
+                                <div class="avatar-preview">
+                                    <p class="preview-tip">头像预览120*120</p>
+                                    <p class="preview-box" style="overflow: hidden">
+                                        暂无预览<img >
+                                    </p>
+                                    <div class="select-again" style="display: none">
+                                        <i></i>
+                                        重新选择
+                                        <div class="upload-file reupload-file">
+                                                <input type="file" class="file" name="cx_file" id="cx_file">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chooseContent avatar-system clearfix hide" id="xitong">
+                                <div class="avatar-system-container">
+                                    <p class="avatar-system-list">
+                                        <a>
+                                            <img width="60" height="60" src="__PUBLIC__/shopping/xitong/11.jpg" alt='__PUBLIC__/shopping/xitong/11.jpg'>
+                                        </a>
+                                        <a>
+                                            <img width="60" height="60" src="__PUBLIC__/shopping/xitong/12.jpg" alt='__PUBLIC__/shopping/xitong/12.jpg'>
+                                        </a>
+                                        <a>
+                                            <img width="60" height="60" src="__PUBLIC__/shopping/xitong/13.jpg" alt='__PUBLIC__/shopping/xitong/13.jpg'>
+                                        </a>
+                                        <a>
+                                            <img width="60" height="60" src="__PUBLIC__/shopping/xitong/14.jpg" alt='__PUBLIC__/shopping/xitong/14.jpg'>
+                                        </a>
+                                        <a>
+                                            <img width="60" height="60" src="__PUBLIC__/shopping/xitong/15.jpg" alt='__PUBLIC__/shopping/xitong/15.jpg'>
+                                        </a>
+                                        <a>
+                                            <img width="60" height="60" src="__PUBLIC__/shopping/xitong/16.jpg" alt='__PUBLIC__/shopping/xitong/16.jpg'>
+                                        </a>
+                                        <a>
+                                            <img width="60" height="60" src="__PUBLIC__/shopping/xitong/17.jpg" alt='__PUBLIC__/shopping/xitong/17.jpg'>
+                                        </a>
+                                        <a>
+                                            <img width="60" height="60" src="__PUBLIC__/shopping/xitong/18.jpg" alt='__PUBLIC__/shopping/xitong/18.jpg'>
+                                        </a>
+                                        <a>
+                                            <img width="60" height="60" src="__PUBLIC__/shopping/xitong/19.jpg" alt='__PUBLIC__/shopping/xitong/19.jpg'>
+                                        </a>
+                                        <a>
+                                            <img width="60" height="60" src="__PUBLIC__/shopping/xitong/20.jpg" alt='__PUBLIC__/shopping/xitong/20.jpg'>
+                                        </a>
+                                    </p>
+                                    <p class="option-wrapper">
+                                        <a class="option-btn option-btn-save" id="xtbc" style="background:#db0638;border-color:#db0638">保存</a>
+                                        <a class="option-btn option-btn-cancel close">取消</a>
+                                        <span class="option-tip"></span>
+                                    </p>
+                                    <div class="click" style="display: none;">
+                                        <i></i>
+                                    </div>
+                                </div>
+                                <div class="avatar-preview">
+                                    <p class="preview-tip">头像预览120*120</p>
+                                    <p class="preview-box">
+                                        <img width="120" height="120" id="xiyulan">
+                                        <input name="xttj" id="xttj" type="hidden">
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                               
+        <script type="text/javascript">
+            $(function() {
+                $("#xtbc").click(function(){
+                    var id = $("#xttj").val();
+                    if($("#xttj").val()!=""){
+                        var frm = document.getElementById('form');
+                            frm.action='__URL__/xttx';
+                            frm.submit();
+                    }
+                })
+                $(".avatar-system-list > a >img").click(function(){
+                    var left = $(this).position().left;
+                    var top = $(this).position().top;
+                    $(".click").show();
+                    $(".click").animate({"left" : left+'px'},"fast");
+                    $(".click").animate({"top" : top+'px'},"fast");
+                    $("#xiyulan").attr("src",$(this).attr("src"));
+                    $("#xttj").val($(this).attr("alt"));
+                })
+                $(".avatar-system-list > a ").mouseover(function(){
+                    $(this).css("border","1px solid #f70");
+                }).mouseout(function(){
+                    $(this).css("border","1px solid #dfdfdf");
+                })
+                $(".avatar-chooseItem > a").eq(1).click(function(){
+                    $(this).attr("class","selected").siblings("a").removeClass("selected");
+                    $(".selected-line").animate({"left" : '101px'},"slow");
+                    $("#xitong").fadeTo("slow",1);
+                    $("#feixi").hide();
+                });
+                $(".avatar-chooseItem > a").eq(0).click(function(){
+                    $(this).attr("class","selected").siblings("a").removeClass("selected");
+                    $(".selected-line").animate({"left" : '0px'},"slow");
+                    $("#xitong").hide();
+                    $("#feixi").fadeTo("slow",1);
+                })
+                $(".icon-up-side > i").toggle(
+                        function(){
+                            $(".ms-side-2").animate({"margin-top" : '-80px'},"slow");
+                            $(".icon-up-side > i").text("▼");
+                        },function(){
+                            $(".ms-side-2").animate({"margin-top" : '0px'},"slow");
+                            $(".icon-up-side > i").text("▲");
+                        }
+                    )
+                $("#txqx").click(function(){
+                    $(".m-dialog").fadeOut("slow");
+                    $(".chanpin_dang").fadeOut("slow");
+                })
+                $(".option-btn-save").click(function(){
+                    if($("#file").val()!=""||$("#cx_file").val()!=""){
+                        var frm = document.getElementById('form');
+                            frm.action='__URL__/touxiangsc';
+                            frm.submit();
+                    }
+                })
+               $( "#tuodong" ).draggable({containment: "#yichuan", scroll: false,
+                start: function() {
+                    
+                },
+                drag: function() {
+                },
+                stop: function() {
+//                    var left = $('#tuodong').position().left;
+//                    var top = $('#tuodong').position().top;
+//                    var bottom = $('#tuodong').position().bottom;
+//                    $(".upload-box").append("")
+//                    var left = $('#tuodong').offset().left- $("#tuodong").width()/2;
+//                    $(".imgareaselect-outer").eq(0).width(left);
+//                    $(".imgareaselect-outer").eq(1).height(top);
+//                    $(".imgareaselect-outer").eq(2).height(320-top-202);
+//                    $(".imgareaselect-outer").eq(3).width(320-left-202);
+//                    var width = $("#yichuan").width();
+//                    var height = $("#yichuan").height();
+//                    shu = width - $("#tuodong").width();
+//                        $("#yulan").css({marginLeft:-left+'px',marginTop:-top+'px'});
+                }
+             });
+                var flag = false;
+                var time;
+//                $("#tuodong").mousedown(function(e){
+//                        time = setInterval(function(e){
+//                        flag = true;
+////                        alert(left);
+////                        $("#yulan").css({marginLeft:-multiple*iX+'px',marginTop:-multiple*iY+'px'});
+//                        },1000); 
+//                    $("#tuodong").mouseup(function(e){
+//                        if (!flag) {
+//                        clearTimeout(time);
+//                        setTimeout(function()
+//                        { CheckUp(); }, 20);
+//                    }
+//                    })
+//                })
+                $("#file").on("change",function(){
+                    $("#yichuan").show();
+                    $("#weichuan").hide();
+                    $(".select-again").show();
+                    $(".preview-box").text("");
+                    var objUrl = getObjectURL(this.files[0]) ; 
+                    if (objUrl) {
+                       $("#originImg").attr("src", objUrl) ;
+                       $("#tuodong").show();
+                       var width = $("#tuodong").width();
+                       var height = $("#tuodong").height();
+                       $(".preview-box").append("<img style='width: 120px; height: 120px;' id='yulan'>");
+                       var lujing = $("#originImg").attr("src");
+                       $(".preview-box > img").attr("src",lujing);
+                    }
+                });
+                $("#cx_file").on("change",function(){
+                    $(".select-again").show();
+                    $(".preview-box").text("");
+                    var objUrl = getObjectURL(this.files[0]) ; 
+                    if (objUrl) {
+                       $("#originImg").attr("src", objUrl) ;
+                       $(".preview-box").append("<img style='width: 120px; height: 120px;' id='yulan'>");
+                       var lujing = $("#originImg").attr("src");
+                       $(".preview-box > img").attr("src",lujing);
+                    }
+                });
+            });
+        function getObjectURL(file) {
+            var url = null ;
+            if (window.createObjectURL!=undefined) { 
+              url = window.createObjectURL(file) ;
+            } else if (window.URL!=undefined) {
+              url = window.URL.createObjectURL(file) ;
+            } else if (window.webkitURL!=undefined) {
+              url = window.webkitURL.createObjectURL(file) ;
+            }
+             return url ;
+        }
+             $(document).ready(function(e){
+                $("#bjtx").click(function(){
+                    $(".m-dialog").fadeIn("slow");
+                    $(".chanpin_dang").fadeIn("slow");
+                })
+                $(".close").click(function(){
+                    $(".m-dialog").fadeOut("slow");
+                    $(".chanpin_dang").fadeOut("slow");
+                })
+            })
+        </script>
+        <div class="personal-member">
+            <div class="cont">
+                <div class="cont-side" style='z-index: 1'>
+                    <div class="ms-side-2">
+                        <dl class="side-menu-tree">
+                            <dt>账户管理</dt>
+                            <dd>
+                                <a href="__URL__/guanli" style="color:#f70">个人信息</a>
+                            </dd>
+<!--                            <dd>
+                                <a href="__URL__/anquan" target="_blank">安全设置</a>
+                            </dd>-->
+                            <dd>
+                                <a href="__URL__/dizhi">地址管理</a>
+                            </dd>
+                        </dl>
+                        <a class="icon-up-side">
+                            <i>▲</i>
+                        </a>
+                    </div>
+                </div>
+                <div class="cont-main">
+                    <div class="main-wrap mt15">
+                        <h3>
+                            <strong>个人信息</strong>
+                       </h3>
+                        <div class="user-profile clearfix">
+                            <div class="user-profile-wrap">
+                                <div class="profile-avatar">
+                                    <if condition='$find.head_portrait neq ""'>
+                                    <img src="{$find.head_portrait}" width="131" height="131">
+                                    <else/>
+                                    <img class="custHeadImg" src="__PUBLIC__/images/1.jpg" width="131" height="131">
+                                    </if>
+                                    <a id="bjtx">编辑头像</a>
+                                    <div class="edit_bg"></div>
+                                </div>
+                                <!--<a class="vip vip-new"></a>-->
+                            </div>
+                            <div class="profile-info">
+                                <div class="control-group clearfix ">
+                                    <div class="controls lh26">
+                                    </div>
+                                    <div class="error-place l"></div>
+                                </div>
+<!--                                <p class="profile-member">
+                                    <a href="__URL__/anquan" class="profile-link" target="_blank">立即查看</a>
+                                    账户安全状态
+                                </p>-->
+                            </div>
+                        </div>
+                        <div class="form-list tab-switch personal-wrap-show">
+                                <div class="control-group clearfix">
+                                    <label class="control-label">
+                                        <em>*</em>
+                                        真实姓名：
+                                    </label>
+                                    <div class="controls lh26">
+                                        &nbsp;&nbsp;<span>{$find.real_name}</span>
+                                    </div>
+                                    <div class="error-place"></div>
+                                </div>
+                                <div class="control-group clearfix">
+                                    <label class="control-label">
+                                        <em>*</em>
+                                        性别：
+                                    </label>
+                                    <div class="controls">
+                                        <if condition='$find.sex eq 0'>
+                                            <label class="sex-label">
+                                            <input type="radio" name="sex"  value="1">
+                                            <span>男</span>
+                                            </label>
+                                            <label class="sex-label">
+                                                <input type="radio" name="sex" value="0" checked="checked">
+                                                <span>女</span>
+                                            </label>
+                                            <else/>
+                                            <label class="sex-label">
+                                            <input type="radio" name="sex"  value="1" checked="checked">
+                                            <span>男</span>
+                                            </label>
+                                            <label class="sex-label">
+                                                <input type="radio" name="sex" value="0">
+                                                <span>女</span>
+                                            </label>
+                                        </if>
+                                        
+                                    </div>
+                                </div>
+                                <div class="control-group clearfix">
+                                    <label class="control-label">
+                                        <em></em>
+                                        手机：
+                                    </label>
+                                    <div class="controls lh26">
+                                        
+                                        <if condition="$find.change_tel eq ''">
+                                        <a id="xiugai">立即绑定</a>
+                                        
+                                        <else/>
+                                        <span id="phone">{$find.change_tel}</span>
+                                        &nbsp;&nbsp;<input type="text" name="phone" class="text" style="display: none" value="{$find.change_tel}">
+                                        <input type="hidden" name="tjphone" id="tjphone" value="{$find.change_tel}">
+                                        </if>
+                                    </div>
+                                    <div class="error-place"></div>
+                                </div>
+                                <div class="control-group clearfix">
+                                    <label class="control-label">
+                                        <em></em>
+                                        邮箱：
+                                    </label>
+                                     <div class="controls lh26">
+                                        <if condition="$find.email eq ''">
+                                        <a id="bangding">立即绑定</a>
+                                        &nbsp;&nbsp;<input type="text" name="email" class="text" style="display: none" value='{$find.email}'>
+                                        <else/>
+                                        <span id="email">{$find.email}</span>
+                                         <input type="text" name="email" class="text" style="display: none" value='{$find.email}'>
+                                         <input type="hidden" name="tjemail" id="tjemail" value="{$find.email}">
+                                        </if>
+                                     </div>
+                                    <div class="error-place"></div>
+                                </div>
+                                <div class="control-group clearfix priority-low">
+                                    <label class="control-label">&nbsp;</label>
+                                        <div style="float:left">
+                                            <a class="ms-stand-btn1" style="background:#db0638">保存</a>
+                                        </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+             var yanzheng = 2;
+            $(document).ready(function(e){
+                $("#xiugai").click(function(){
+                    $("#phone").hide();
+                    $("#xiugai").hide();
+                    $("input[name='phone']").show();
+                    $("input[name='phone']").focus();
+//                    $("input[name='phone']").val($("#phone").text())
+                })
+                $("#bangding").click(function(){
+                    $("#bangding").hide();
+                    $("#email").hide();
+                    $("input[name='email']").show();
+                    $("input[name='email']").focus();
+//                    $("input[name='email']").val($("#email").text())
+                })
+                $("#name").focus(function(){
+                    if($(this).val()==""){
+                        $(this).parent().siblings(".error-place").text("请填写您的真实姓名");
+                    }
+                    clearInterval(Time);
+                }).blur(function(){
+                    if(!/^([\u4e00-\u9fa5])*$/.test($(this).val())){
+                        $(this).parent().siblings(".error-place").text("请输入正确的姓名");
+//                        yanzheng = 2;
+                    }else{
+                        $(this).parent().siblings(".error-place").text("");
+                        yanzheng = 1;
+                    }
+                })
+                $("#ncname").focus(function(){
+                        $(this).parent().siblings(".error-place").text("请填写2-10位的昵称");
+                        clearInterval(Time);
+                }).blur(function(){
+                    if($(this).val().length<2||$(this).val().length>10){
+                        $(this).parent().siblings(".error-place").text("昵称长度不符合,请填写2-10位的昵称");
+//                        yanzheng = 2;
+                    }else{
+                        $(this).parent().siblings(".error-place").text("");
+                        yanzheng = 1;
+                    }
+                })
+                $("input[name='phone']").focus(function(){
+                        $(this).parent().siblings(".error-place").text("请填写您的手机号码");
+                        clearInterval(Time);
+                }).blur(function(){
+                    if(isNaN($(this).val())){
+                        $(this).parent().siblings(".error-place").text("请填写正确的手机号码");
+//                        yanzheng = 2;
+                    }else if($(this).val().length!=11){
+                        $(this).parent().siblings(".error-place").text("请填写11位手机号码");
+//                        yanzheng = 2;
+                    }else{
+                        $(this).parent().siblings(".error-place").text("");
+                        $("#phone").show();
+                        $("#xiugai").show();
+                        $("#phone").text($(this).val());
+                        $("input[name='phone']").hide();
+                        $("#tjphone").val($(this).val());
+                        yanzheng = 1;
+                    }
+                })
+                 $("input[name='email']").focus(function(){
+                     $(this).parent().siblings(".error-place").text("请填写您的邮箱地址");
+                     clearInterval(Time);
+                 }).blur(function(){
+                     if($(this).val().indexOf("@")>=0&&$(this).val().indexOf(".com")>=0){
+                        $(this).parent().siblings(".error-place").text("");
+                        $("#email").show();
+                        $("#bangding").show();
+                        $("#email").text($(this).val());
+                        $("input[name='email']").hide();
+                        $("#tjemail").val($(this).val());
+                        yanzheng = 1;
+                     }else{
+                        $(this).parent().siblings(".error-place").text("请填写正确的邮箱地址");
+                        yanzheng = 2;
+                     }
+                 })
+                 $(".ms-stand-btn1").click(function(){
+//                     if(yanzheng == 2){
+//                     }else{
+                         var frm = document.getElementById('form');
+                            frm.action='__URL__/upt_register';
+                            frm.submit();
+//                     }
+                 })
+            })
+
+//                $(document).ready(function(e){
+//                     $.ajax({
+//                                type:"post",
+//                                url:"__URL__/guanliAjax",
+//                                dataType: "text",
+//                                data:null,
+//                                success:
+//                                function(data){
+//                                    eval("var obj="+data);
+//                                    $("#name").val(obj.name);
+//                                    $("#ncname").val(obj.ncname);
+//                                    $(".profile-avatar > img").attr("src","/ShoppingSite/"+obj.touxiang);
+//                                    $("input[name='sex']").each(function(){
+//                                        if($(this).val()==obj.sex){
+//                                            $(this).attr("checked","checked");
+//                                        }
+//                                    })
+//                                    if(obj.tel==""){
+//                                        $("#phone").text("您的账号没有手机");
+//                                        $("#xiugai").text("立即绑定");
+//                                    }else{
+//                                        $("#phone").text(obj.tel);
+//                                        $("#tjphone").val(obj.tel);
+//                                        $("#xiugai").text("修改");
+//                                    }
+//                                    if(obj.email==""){
+//                                        $("#email").text("您的账号没有绑定邮箱");
+//                                        $("#bangding").text("立即绑定");
+//                                    }else{
+//                                        $("#email").text(obj.email);
+//                                        $("#tjemail").val(obj.email);
+//                                        $("#bangding").text("修改");
+//                                    }
+//                                }
+//                            })
+//                })
+        </script>
+       <script>
+             $(function(){
+//                 $(".icon-up-side").toggle(function(){
+//                     $(".side-menu-tree").animate({'margin-top':'-700px'},"slow");
+//                     $(this).attr("class","switch-side-menu icon-down-side");
+//                 },function(){
+//                     $(".side-menu-tree").animate({'margin-top':'0px'},"slow");
+//                     $(this).attr("class","switch-side-menu icon-up-side");
+//                 })
+                 $("#bnt_tiao").click(function(){
+                    var value = $.trim($("#sea").val());
+                    if(value != ""){
+                        $("#bnt_tiao").attr("href","__URL__/sea/mc/"+value);
+                    }
+                })
+             })
+            function winshow(){
+                    openWin = window.open('__URL__/show_two','_blank','width=550,height=530,left=800,top=400,location=yes,menubar=1,status=1');
+            }
+            $(document).ready(function(e){
+                $('html').bind("selectstart", function () { return false; });
+                var gw = $("#gouwuche > .pro-item");
+                var sc = $("#shoucang > .pro-item");
+                if(sc.length>0){
+                    $("#shoucangbox").hide();
+                    $("#shoucangbox2").show();
+                    $("#shou_shu > a > em").text(sc.length);
+                }else{
+                    $("#shoucangbox").show();
+                    $("#shoucangbox2").hide();
+                    $("#shou_shu").hide();
+                }
+                if(gw.length>0){
+                    $("#gouwubox").hide();
+                    $("#gouwubox2").show();
+                    $("#gou_shu > a > em").text(gw.length);
+                }else{
+                    $("#gouwubox").show();
+                    $("#gouwubox2").hide();
+                    $("#gou_shu").hide();
+                }
+                var zt = $(".zhuangtai");
+                for(var i=0;i<zt.length;i++){
+                    if(zt.eq(i).text()=="已发货"){
+                        $(".border-pure-btn").eq(i).show();
+                    }else{
+                        $(".border-pure-btn").eq(i).hide();
+                    }
+                }
+                $("#xianshi").click(function(){
+                    $(".secret-mod").show();
+                    $(".icon").css("opacity","0.2");
+                    $(this).hide();
+                })
+                $("#ling").click(function(){
+                    var frm = document.getElementById('form');
+                        frm.action='__URL__/yunzuan';
+                        frm.submit();
+                    $(this).hide();
+                })
+                var jia = 0;
+                var l = $("input[name='duoxuan[]']").length;
+                $(".J_cart_checked_num").text(l);
+                for(var i=0;i<l;i++){
+                  jia +=$("input[name='duoxuan[]']").eq(i).val()*1;  
+                }
+                $("#zongjia").text(jia);
+                $("#zongjia_i").val(jia);
+                $.ajax({
+                    type:"post",
+                    url:"__URL__/cook",
+                    dataType: "text",
+                    data:null,
+                    success:
+                    function(data){
+                      eval("var obj="+data);
+                        if(data!=""){
+                            $("#username-node-slide").show();
+                            $("#username-node").hide();
+                            $("#usernameHtml02").text(obj.username);
+                            if(obj.touxiang=="null"){
+                                $(".headimg > img").attr("src","__PUBLIC__/shopping/images/0000000000_01_60x60.jpg");
+                                $("#zujing_img").attr("src","__PUBLIC__/shopping/images/0000000000_01_60x60.jpg");
+                                $(".info-avatar > img").attr("src","__PUBLIC__/shopping/images/0000000000_01_60x60.jpg");
+                            }else{
+                                $(".headimg > img").attr("src","/ShoppingSite/"+obj.touxiang);
+                                $("#zujing_img").attr("src","/ShoppingSite/"+obj.touxiang);
+                                $(".info-avatar > img").attr("src","/ShoppingSite/"+obj.touxiang);
+                            }
+                            $(".mysuning-detail > .login").hide();
+                            $(".mysuning-detail > .username").css("display","block");
+                            $(".mysuning-detail > .username").text(obj.username);
+                            $("#anquan").val(obj.anquan);
+                            var fenshu = $("#anquan").val();
+                            $(".safe-bar-in").animate({width:fenshu+"%"},"slow");
+                            if(fenshu <= 40){
+                                $(".safe-text").text("低");
+                            }else if(fenshu>=60&&fenshu<80){
+                                $(".safe-text").text("中");
+                            }else if(fenshu>=80){
+                                $(".safe-text").text("高");
+                            }
+                            if(fenshu==100){
+                                $("#tisheng").hide();
+                            }else{
+                                $("#tisheng").show();
+                            }
+                            $("#username").text(obj.username);
+                            $("#zuan").text(obj.yunzuan);
+                            $("#yue").text(obj.zijin);
+                            $(".pls-login").hide();
+                            $("#zujing").show();
+                            $("#zujing > a").eq(0).text(obj.username);
+                            $("#zujing_img").attr("src","/ShoppingSite/"+obj.touxiang);
+                            $(".desc").empty().append("按下键盘上的<i>G</i>即可快速打开/关闭购物车功能");
+                            if(obj.quanxian=="超级管理员"||obj.quanxian=="管理员"){
+                                $("#hguanli").show();
+                            }else{
+                                $("#hguanli").hide();
+                            }
+                        }
+                    }
+                })
+                var num = 0;
+                $(document).keydown(function(event){
+                    if(event.keyCode == 71){ 
+                        if(num %2==0){
+                            $(".sn-sidebar-contents").attr("class","sn-sidebar-contents sn-sidebar-contents-show");
+                            $(".sn-sidebar-contents").animate({right : '35px'},"slow"); 
+                            $(".sn-sidebar-cart").show();
+                        }else{
+                            $(".sn-sidebar-contents").attr("class","sn-sidebar-contents");
+                            $(".sn-sidebar-contents").animate({right : '-400px'},"slow"); 
+                            $(".sn-sidebar-cart").hide();
+                        }
+                    }
+                    num++;
+                }); 
+                $.ajax({
+                    type:"post",
+                    url:"__URL__/gouwuchesl",
+                    dataType: "text",
+                    data:null,
+                    success:
+                    function(data){
+                        $(".J_cart_total_num").text(data);
+                        if(data > 0){
+                            $("#myCart_wu").hide();
+                            $("#myCart").show();
+                        }else{
+                            $("#myCart_wu").show();
+                            $("#myCart").hide();
+                        }
+                    }
+                })
+            })
+        </script>
+    </form>   
+    </body>
+</html>

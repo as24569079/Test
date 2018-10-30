@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>我的易购</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.2.min.js"></script> 
+        <link rel="shortcut icon" href="__PUBLIC__/image/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="__PUBLIC__/css/style.css">
+        <link rel="stylesheet" href="__PUBLIC__/css/my.css">
+    </head>
+    <body  onload="AdapterIframe()">
+        <form method="post" id="form">
+        <script>
+                var AdapterIframe = function() {
+                    var iframeObj = parent.document.getElementById("iframe");
+                    iframeObj.height = iframeObj.contentWindow.document.documentElement.scrollHeight;
+                    iframeObj.width = iframeObj.contentWindow.document.documentElement.scrollWidth;
+                }
+        </script>
+            <div class='wrapper_cont'>
+                <div class='ms-side'>
+                    <div class='dt'>
+                        <i class='side-icon'></i>
+                        <a href="__URL__/gouwuchejs" target="_blank">我的购物车</a>
+                    </div>
+                    <div class='dt'>
+                        <i class='side-order'></i>
+                        订单中心
+                    </div>
+                    <div class='dd'>
+                        <ul>
+                            <li>
+                                <a href='__URL__/my' target="xianshi">我的订单</a>
+                            </li>
+                            <li>
+                                <a href=''>我的秒杀</a>
+                            </li>
+                            <li>
+                                <a href=''>我的二手</a>
+                            </li>
+                            <li>
+                                <a href="">我的试用</a>
+                            </li>
+                            <li>
+                                <a href="">我的拍卖</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class='dt'>
+                        <i class='side-my-assets'></i>
+                        我的资产
+                    </div>
+                    <div class='dd'>
+                        <ul>
+                            <li>
+                                <a href="">我的云钻</a>
+                            </li>
+                            <li>
+                                <a href="">我的金融</a>
+                            </li>
+                            <li>
+                                <a href="">我的优惠</a>
+                            </li>
+                            <li>
+                                <a href="">我的卡券</a>
+                            </li>
+                            <li>
+                                <a href="">我的任性</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class='dt'>
+                        <i class='side-attent-center'></i>
+                        关注中心
+                    </div>
+                    <div class='dd'>
+                        <ul>
+                            <li>
+                                <a href="__URL__/shoucang" target="xianshi">我的收藏</a>
+                            </li>
+                            <li>
+                                <a href="">我的足迹</a>
+                            </li>
+                            <li>
+                                <a href="__URL__/pingjia" target="xianshi">我的评价</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class='dt'>
+                        <i class='side-after-sale'></i>
+                        自助服务
+                    </div>
+                    <div class='dd'>
+                        <ul>
+                            <li>
+                                <a href="">退货换货</a>
+                            </li>
+                            <li>
+                                <a href="">意见建议</a>
+                            </li>
+                            <li>
+                                <a href="">维修保养</a>
+                            </li>
+                            <li>
+                                <a href="">修改订单</a>
+                            </li>
+                            <li>
+                                <a href="">我的咨询</a>
+                            </li>
+                            <li>
+                                <a href="">帮客预约</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class='dt'>
+                        <i class='side-spec-serv'></i>
+                        特色服务
+                    </div>
+                    <div class='dd'>
+                        <ul>
+                            <li>
+                                <a href="">我的预约</a>
+                            </li>
+                            <li>
+                                <a href=''>我的S码</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <a class='switch-side-menu'>▲</a>
+                </div>
+                <script>
+                    function req(){
+                                if(window.XMLHttpRequest){
+                                    var request = new XMLHttpRequest();
+                                } else {
+                                    var request = new ActiveXObject('Microsoft.XMLHTTP');
+                                }
+                                return request;
+                    }
+                    $(document).ready(function(e){
+                        $(".switch-side-menu").toggle(
+                            function(){
+                                $(".ms-side").animate({"margin-top" : '-710px'},"slow");
+                                $(".switch-side-menu").text("▼");
+                            },function(){
+                                $(".ms-side").animate({"margin-top" : '0px'},"slow");
+                                $(".switch-side-menu").text("▲");
+                            }
+                        )
+                    })
+                </script>
+                <div class='my-unit'>
+                    <div class='asset-info'>
+                        <div class='touxiang'>
+                            <img width='80' height='80' id="touxiang">
+                        </div>
+                    </div>
+                    <div class='info_content'>
+                        <br><br><br>
+                        <span id='myuser'></span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        账户余额:<span class='myzichan'></span>
+                        <a href="__URL__/dizhi" class="mydizhi" target="xianshi">我的收货地址</a>
+                        <br><br>
+                        我的云钻:<span style='color:#f70'>0</span>
+                    </div>
+                </div>
+                <script>
+                    function user(){
+                             var ajax = req();
+                                    ajax.open("post","__URL__/cook2",true);
+                                    ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                                    ajax.send(null);
+                                    ajax.onreadystatechange=function(){
+                                        if(ajax.readyState==4 && ajax.status == 200){
+                                            var data = ajax.responseText;
+                                            document.getElementById("myuser").innerHTML=data;
+                                        }
+                                    }      
+                    }
+                    setInterval(user,100);
+                    function touxiang(){
+                        var ajax = req();
+                                ajax.open("post","__URL__/touxiang",true);
+                                ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                                ajax.send(null);
+                                ajax.onreadystatechange=function(){
+                                    if(ajax.readyState==4 && ajax.status == 200){
+                                        var data = ajax.responseText;
+                                        eval("var obj="+data);
+                                          document.getElementById('touxiang').src= "/ShoppingSite/" + obj.touxiang;
+                                    }
+                                }
+                    }
+                    setInterval(touxiang,100);
+                    function yue(){
+                                    var ajax = req();
+                                        ajax.open("post","__URL__/yue",true);
+                                        ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                                        ajax.send(null);
+                                        ajax.onreadystatechange=function(){
+                                            if(ajax.readyState==4 && ajax.status == 200){
+                                                var data = ajax.responseText;
+                                                eval("var obj="+data);
+                                                    $(document).ready(function(e){
+                                                        $(".myzichan").text("￥"+obj.zijin+".00");
+                                                    })
+                                            }
+                                    }
+                    }
+                    setInterval(yue,100);
+                </script>
+                <div class='orderUnit'>
+                    <div class='order_top'>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我的订单
+                    </div>
+                    <volist name='dingdan' id='val'>
+                        <div class='mydingdan'>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chanpin/id/{$val.tid}" target="_blank"><img src='{$val.lujing}' width="60" height="60"></a>
+                            &nbsp;&nbsp;&nbsp;<span class="myti">数量:{$val.shuliang}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;￥{$val.jiage}.00</span>
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chanpin/id/{$val.tid}" class='mylink' target="_blank">{$val.mingcheng}</a>
+                            <div class="mydingdan_right">
+                                <span class="dingdanbh">订单编号:{$val.bianhao}</span><br>
+                                <span class="dingdanbh">订单状态:{$val.zhuangtai}</span>
+                                <input type="hidden" value="{$val.zhuangtai}" name="zhuangtai[]">
+                                <a href="__URL__/pinglun/id/{$val.id}" target="_blank"><input type="button" value="评论" class="mypingjia" style="display: none" name="bnt[]" alt="{$val.tid}"></a>
+                            </div>
+                        </div>
+                    </volist>
+                    <div class="fenye">
+                    {$show}
+                    </div>
+                    <script>
+                        var zhuangtai = document.getElementsByName("zhuangtai[]");
+                        var bnt = document.getElementsByName("bnt[]");
+                        function pingjia(){
+                                                for(var i=0;i<zhuangtai.length;i++){
+                                                    if(zhuangtai[i].value =="已发货"){
+                                                        bnt[i].style.display='block';
+                                                    }
+                                                }
+                                                
+                        }
+                        setInterval(pingjia,100);
+                        $(document).ready(function(e){
+                            var li3 = $(".mydingdan").length;
+                            if(li3==0){
+                                $(".fenye").hide();
+                            }else{
+                                $(".fenye").show();
+                            }
+                            var li = $("#shoucang > .pro-item").length;
+                            $("#shou_shu > a >em").text(li);
+                            var li2 = $("#gouwuche >.pro-item ").length;
+                            $("#gou_shu > a > em").text(li2);
+                            if(li2 == 0){
+                                $("#gouwubox").show();
+                                $("#gouwubox2").hide();
+                                $("#gou_shu").hide();
+                            }else{
+                                $("#gouwubox").hide();
+                                $("#gouwubox2").show();
+                                $("#gou_shu").show();
+                            }
+                            if(li == 0){
+                                $("#shoucangbox").show();
+                                $("#shoucangbox2").hide();
+                                $("#shou_shu").hide();
+                            }else{
+                                $("#shoucangbox").hide();
+                                $("#shoucangbox2").show();
+                                $("#shou_shu").show();
+                            }
+                        })
+                    </script>
+                </div>
+                <div class='menu-wrapper'>
+                    <h3 class="menu-manage-hd">
+                        <a class="mng-hd">
+                            <i class="manage-icon icon"></i>
+                            菜单管理
+                        </a>
+                    </h3>
+                    <div class="manage-box">
+                        <div class="manage-unit">
+                            <a class="unit-hd">我的优惠券</a>
+                            <div class="unit-bd">
+                                <div class="side-scroll-wrap">
+                                    <a class="couponScrollBtn1"></a>
+                                    <a class="couponScrollBtn2"></a>
+                                    <div class="coupon-scroll-wrap">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="unit-opts"></div>
+                        </div>
+                    </div>
+                    <div class="manage-box">
+                        <div class="manage-unit">
+                            <a class="unit-hd" href="__URL__/shoucang" target="xianshi">收藏的商品</a>
+                            <div class="unit-empty goods-empty" id="shoucangbox">
+                                <p>您还没有收藏过商品哦~ </p>
+                                <p>
+                                    赶紧去<a>首页</a>看看吧~
+                                </p>
+                            </div>
+                            <div class="unit-bd" id="shoucangbox2">
+                                <ul class="pro-list clearfix" id="shoucang">
+                                    <volist name="shoucang" id="value">
+                                        <li class="pro-item">
+                                            <a class="pro-img" target="_blank" href="__URL__/chanpin/id/{$value.bianhao}" title="{$value.mingcheng}">
+                                                <img src="{$value.lujing2}">
+                                            </a>
+                                        </li>
+                                    </volist>
+                                </ul>
+                            </div>
+                            <div class="unit-opts" id="shou_shu">
+                                <a target="xianshi" href="__URL__/shoucang">
+                                    全部商品(
+                                    <em></em>
+                                    )
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="manage-box">
+                        <div class="manage-unit">
+                            <a class="unit-hd">
+                                收藏的店铺
+                            </a>
+                            <div class="unit-empty shop-empty">
+                                <p>您还没有收藏店铺哦~ </p>
+                                <p>赶紧去<a href="__URL__/index">首页</a>看看吧~</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="manage-box">
+                        <div class="manage-unit">
+                            <a href="__URL__/gouwuchejs" target="_blank" class="unit-hd">购物车</a>
+                            <div class="unit-empty carts-empty" id="gouwubox">
+                                <p>您购物车还没任何商品哦~~</p>
+                                <p>看到喜欢的就果断放进去吧~~</p>
+                            </div>
+                            <div class="unit-bd" id="gouwubox2">
+                                <ul class="pro-list clearfix" id="gouwuche">
+                                    <volist name="gouwuche" id="v">
+                                        <li class="pro-item">
+                                            <a class="pro-img" target="_blank" href="__URL__/chanpin/id/{$v.bianhao}" title="{$v.mingcheng}">
+                                                <img src="{$v.lujing2}">
+                                            </a>
+                                            <p class="pro-other-info">
+                                                <i class="m-unit">¥</i>
+                                                {$v.jiage}.00
+                                            </p>
+                                        </li>
+                                    </volist>
+                                </ul>
+                            </div>
+                            <div class="unit-opts" id="gou_shu">
+                                <a href="__URL__/gouwuchejs" target="_blank">
+                                    查看购物车(
+                                    <em></em>
+                                    )
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="manage-box">
+                        <div class="manage-unit no-space">
+                            <span class="unit-hd">便民中心</span>
+                            <div class="unit-bd">
+                                <div class="fast-list clearfix">
+                                    <a class="fast-item phone">话费</a>
+                                    <a class="fast-item ticket">火车票</a>
+                                    <a class="fast-item plane-ticket">机票</a>
+                                    <a class="fast-item insurance">保险</a>
+                                    <a class="fast-item game">游戏</a>
+                                    <a class="fast-item financial">理财</a>
+                                    <a class="fast-item tel">固话</a>
+                                    <a class="fast-item home">水电煤</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!--            <div class='new_footer'>
+                <div class='new_footer_left'></div>
+                <div class='new_footer_mid'>
+                    <div class='new_foote_mid_one'>
+                        <a href='#.html' class='link9'>苏宁云商</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>苏宁互联</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>苏宁金融</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>易付宝</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>PPTV</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>红孩子</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>缤购</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>乐购仕</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>苏宁物流</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>苏宁美国</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>苏宁香港</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>手机苏宁</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>苏宁酒店</a>
+                    </div>
+                    <div class='new_foote_mid_two'>
+                        <a href='#.html' class='link9'>关于苏宁易购</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>联系我们</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>诚聘英才</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>供应商入驻</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>广告平台</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>苏宁联盟</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>苏宁招标</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>友情链接</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>法律申明</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>用户体验提升计划</a>&nbsp;<span class="link9">|</span>&nbsp;
+                        <a href='#.html' class='link9'>股东会员认证</a>
+                    </div>
+                    <div class='new_foote_mid_three'>
+                        <span class="banquan">Copyright© 2002-2016 ，天软版权所有 ICP备10207551号-4 B1-20130131 B2-20130376 B2-20130391 出版物经营许可证新出发批字第A-243号</span>
+                    </div>
+                    <div class='new_foote_mid_four'>
+                        <img src="__PUBLIC__/image/banquan1.png">&nbsp;
+                        <img src="__PUBLIC__/image/banquan2.png">&nbsp;
+                        <img src="__PUBLIC__/image/banquan3.jpg">&nbsp;
+                        <img src="__PUBLIC__/image/banquan4.png">&nbsp;
+                    </div>
+                </div>
+                <div class='new_footer_right'></div>
+            </div>-->
+        </form>
+    </body>
+</html>

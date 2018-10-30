@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>我的收藏</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="__PUBLIC__/shopping/js/jquery-1.8.2.min.js"></script> 
+        <link rel="shortcut icon" href="__PUBLIC__/images/bitbug_favicon.ico" type="image/x-icon">
+        <script type="text/javascript" src="__PUBLIC__/shopping/jq/chanpin.js"></script> 
+        <link rel="stylesheet" href="__PUBLIC__/shopping/css/shoucang.css">
+        <link rel="stylesheet" href="__PUBLIC__/shopping/css/reset-min.css">
+        <!--<link rel="stylesheet" href="__PUBLIC__/shopping/css/v3.css">-->
+        <link rel="stylesheet" href="__PUBLIC__/shopping/css/mycenter.css">
+        <link rel="stylesheet" href="__PUBLIC__/shopping/css/ms-style.css">
+    </head>
+    <body class="ms-body">
+        <form method="post" id='form'>
+        <!--登录条-->
+        <div class="ng-toolbar">
+            <div class="ng-toolbar-con wrapper">
+                <div class="ng-toolbar-left">
+                    <a class="ng-bar-node ng-site-nav-box" href="__URL__/index">
+                        <i class="ng-iconfont ng-backhome"></i>
+                        <span>返回官网首页</span>
+                        <i class="ng-line ng-iconfont ml10"></i>
+                    </a>
+                    <div class="ng-bar-node-box ng-site-nav-box">
+                        <a class="ng-bar-node ng-site-nav-box" href="__URL__/shop_index">
+                        <i class="ng-iconfont ng-backhome"></i>
+                        <span>返回商城首页</span>
+                        <i class="ng-line ng-iconfont ml10"></i>
+                    </a>
+                    </div>
+                </div>
+                <div class="ng-toolbar-right">
+                    <a class="ng-bar-node username-bar-node username-bar-node-showside">
+                        <span></span>
+                        <em class="hasmsg ng-iconfont"></em>
+                    </a>
+                    <if condition='$find neq ""'>
+                    <div class="ng-bar-node-box username-handle"  id="username-node-slide">
+                        <a class="ng-bar-node username-bar-node username-bar-node-noside">
+                            <span id="usernameHtml02">{$find.real_name}</span>
+                            <em class="hasmsg ng-iconfont"></em>
+                            <em class="ng-iconfont down"></em>
+                        </a>
+                        <div class="ng-d-box ng-down-box ng-username-slide" style="display: none" id="guanli">
+                            <a class="ng-vip-union" href="__URL__/myhome" target="_blank">账号管理</a>
+                            <a class="ng-vip-union" href="__URL__/member" target="_blank">资质管理</a>
+                            <a href="__URL__/signOut">退出登录</a>
+                        </div>
+                    </div>
+                    <else/>
+                    <div class="ng-bar-node reg-bar-node" id="username-node">
+                        <a class="login" href="__URL__/login">登录</a>
+                        <a class="login reg-bbb" href="__URL__/register" target="_blank">注册</a>
+                    </div>
+                    </if>
+                    <if condition='$find neq ""'>
+<!--                    <div class="ng-bar-node-box myorder-handle">
+                        <a class="ng-bar-node ng-bar-node-fix touch-href ng-bar-node-pr5" href="__URL__/my">
+                            <span>我的订单</span>
+                            <em class="ng-iconfont down"></em>
+                        </a>
+                        <div class="ng-down-box ng-d-box myorder-child" style="display: none">
+                            <a href='__URL__/member#dingdanxiangqing'>未发货</a>
+                            <a>已发货</a>
+                        </div>
+                    </div>-->
+                    </if>
+                    <if condition='$find neq ""'>
+                    <a class="ng-bar-node ng-bar-node-mini-cart" href="__URL__/gouwuchejs">
+                        <span>购物车</span>
+                        <em class="ng-iconfont cart"></em>
+                        <span class="total-num-box">
+                            <b class="total-num J_cart_total_num" style="background:#db0638">{$gouwunum}</b>
+                            <span class="total-num-bg-box">
+                                <em></em>
+                                <i></i>
+                            </span>
+                        </span>
+                    </a>
+                        </if>
+                </div>
+                <div class="ng-minicart-slide-box"></div>
+            </div>
+        </div>
+        <!--头部内容-->
+        <div class="ms-header ms-header-inner ms-head-position">
+            <article class="ms-header-menu" style="background:#db0638">
+                <div class="header-menu">
+                    <div class="ms-logo">
+                        <a class="ms-head-logo" href="__URL__/shop_index" target="_blank" style="background:url(__PUBLIC__/images/zi.png);background-repeat: no-repeat;
+    background-position: center left;"></a>
+                    </div>
+                    <nav class="ms-nav">
+                        <ul>
+                            <li class="nav-manage selected">
+                                <a href="__URL__/myhome">首页</a>
+                                <i class="nav-arrow"></i>
+                            </li>
+                            <li>
+                                <a class="Myyigou_index_none_daohang1003" href="__URL__/guanli">账户管理</a>
+                                <i class="nav-arrow"></i>
+                            </li>
+                            <li class="ms-nav-msg">
+                                <a href="__URL__/xiaoxi">消息</a>
+                                <i class="nav-arrow"></i>
+                            </li>
+                        </ul>
+<!--                        <div class="ms-search">
+                            <span></span>
+                            <input type="text" id="sea">
+                            <a style=" cursor: pointer" id="bnt_tiao" target="_blank"></a>
+                        </div>-->
+                    </nav>
+                </div>
+            </article>
+            <article class="ms-useinfo"></article>
+        </div>
+        <!--内容展示-->
+        <div class="ms-center my-favorite" id="ms-center">
+            <div class="cont">
+                <div class="cont-side">
+                    <div class="side-neck">
+                        <i></i>
+                    </div>
+                    <div class="ms-side">
+                        <article class="side-menu side-menu-off">
+                            <style type="text/css">
+
+                            .side-hot-icon{background: url(__PUBLIC__/shopping/images/hot.png) no-repeat right top;
+                                background-color: u;
+                                padding-right: 24px;
+                            }
+                            .side-opinion-icon{
+                                    padding-right: 14px;
+                                    background: url(__PUBLIC__/shopping/images/opinion.png) no-repeat right center;
+                            }
+                            .news-icon{
+                                    background: url(__PUBLIC__/shopping/images/new.png) no-repeat right top;
+                                padding-right: 24px;
+                            }
+                                    /*左侧边栏新增覆盖样式----我的易购改版兼容*/ 
+                                    .car-num-attation{font-weight: normal; font-size:12px; }
+                                    .car-num-attation em{ color:#F70;}
+                                    .side-icon{ display:inline-block; *display:inline;*zoom:1;width:14px; height:13px;vertical-align:middle; margin-left:-18px; margin-right:4px; background:url(http://res.suning.cn/project/msIndex/index/css/images/side-icon-sprite.png?v=2016081206) no-repeat 0 0 ;}
+                                    .side-menu-tree{ padding:0 20px 12px 40px}
+                                    .side-order-center{ background-position:1px -15px;}
+                                    .side-my-assets{background-position:1px -29px; _background-position:2px -28px; }
+                                    .side-attent-center{ background-position:1px -43px;_background-position:2px -42px; }
+                                    .side-spec-serv{background-position:1px -58px;}
+                                    .side-after-sale{background-position:1px -71px;}
+                                    .side-menu .dt{margin-bottom:2px;line-height: 28px;font-family: "Microsoft YaHei"; font-weight: 700;color: #333;font-size:0!important;}
+                                    .side-menu-tree .dt span,.side-menu-tree .dt a{ font-size:14px;}
+                                    .side-menu-tree span{ color:#333; font-size:14px; width:auto;*display:inline;*zoom:1; vertical-align:middle; }
+                                    .side-menu-tree a{vertical-align:middle;}
+                            </style>
+                            <div class="side-menu-tree">
+                                <div class="dt">
+                                    <i class="side-icon side-my-cart"></i>
+                                    <a href="__URL__/gouwuchejs" target="_blank">我的购物车</a>
+                                </div>
+                                <div class="dt">
+                                    <i class="side-icon side-order-center"></i>
+                                    <span>订单中心</span>
+                                </div>
+                                <div class="dd">
+                                    <ul>
+                                        <li>
+                                            <a href="__URL__/myhome">我的订单</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="dt">
+                                    <i class="side-icon side-attent-center"></i>
+                                    <span>关注中心</span>
+                                </div>
+                                <div class="dd">
+                                    <ul>
+                                        <li>
+                                            <a href="__URL__/shoucang">我的收藏</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <a class="switch-side-menu icon-up-side">
+                                <i></i>
+                            </a>
+                        </article>
+                    </div>
+                </div>
+                <div class="cont-main">
+                    <div class="main-wrap mt10">
+                        <div class="favor-switch">
+                            <ul class="favor-tab">
+                                <li class="tab-intro active">
+                                    <a href="__URL__/shoucang" target='xianshi'>商品收藏</a>
+                                </li>
+<!--                                <li class="tab-intro">
+                                    <a>店铺收藏</a>
+                                </li>-->
+                            </ul>
+                            <div class='favor-filter clearfix'>
+                            </div>
+                        </div>
+                        <div class='favor-list'>
+                            <div class='favor-list-head'></div>
+                            <div class='favor-list-tool'></div>
+                            <div class='favor-list-prod'>
+                                <div class='tab-list-prod'>
+                                    <div class='l'>
+                                        <a class='tab-btn tab-select' id="tabAll" style="">全部商品
+                                            <span></span>
+                                        </a>
+                                        <b class='tab-line' style='background: rgb(255, 255, 255);'></b>
+                                    </div>
+                                    <a class='styletab-prod prod-tablist' title="列表模式" href="__URL__/shoucang2"></a>
+                                    <a class='styletab-prod prod-tabpic-sel' title="图片模式" href="__URL__/shoucang"></a>
+                                </div>
+                                <div class='page-prodlist page-top'>
+                                    <div class='btn-listedit'>
+                                        <input type='checkbox' id='quanxuan'><label for="quanxuan">全选</label>
+                                        <a class='ico-listedit' style="cursor: pointer" id='quandel'>
+                                            <i class='icobtn-del'></i>
+                                            <span>删除</span>
+                                        </a>
+                                        <a class='ico-listedit' id='quangouwu'>
+                                            <i class='icobtn-buy icobtn-buy-pic'></i>
+                                            <span>加入购物车</span>
+                                        </a>
+                                        <a class='ico-listedit'>
+                                            <!--<i class='icobtn-add'></i>-->
+                                            <!--<span>添加标签</span>-->
+                                        </a>
+                                        <span class='msg-listedit-nosel'>请先选择商品!</span>
+                                    </div>
+                                </div>
+                                <div class='prod-piclist'>
+                                    <div class='prod-picbox'>
+                                        <volist name='shoucang' id='val'>
+                                        <div class='prod-picshow'>
+                                            <input type='checkbox' name='xuanze[]' value="{$val.shoucang_id}">
+                                            <a class='a_img' target='_blank' href="__URL__/product_details/id/{$val.item_id}">
+                                                <img src='{$val.img_url}'>
+                                            </a>
+                                            <p class='name-pic'>
+                                                <a target='_blank' href="__URL__/product_details/id/{$val.item_id}">{$val.item_name}</a>
+                                            </p>
+                                            <div class='cost-pic'>
+                                                <span class='cost-num'>
+                                                    <em><if condition="$val.eMoney gt 0">电子币<else/>积分</if></em>
+                                                    <if condition="$val.eMoney gt 0">{$val.eMoney}<else/>{$val.sMoney}</if>
+                                                    <em class='word-qi'></em>
+                                                </span>
+                                                <i class='weatherPromotion'></i>
+                                            </div>
+                                            <div class='ico-picedit'>
+                                                <!--<a class='icobtn-similar'>找相似</a>-->
+                                                <a class='icobtn-home' data-val='{$val.item_id}' title='添加购物车'></a>
+                                                <a class='icobtn-del collect_btnDel_pic' title='删除' data-val='{$val.shoucang_id}'></a>
+                                                <!--<a class='icobtn-tag' title="自定义标签"></a>-->
+                                            </div>
+                                        </div>
+                                        </volist>
+                                        <script>
+                                            $(document).ready(function(e){
+                                                var quanbu = $(".prod-picshow");
+                                                        $(".tab-select > span").text("("+quanbu.length+")")
+                                                var value = $("input[name='leibie[]']");
+                                                var array = [];
+                                                for(var i=0;i<value.length;i++){
+                                                    array[i] = value.eq(i).val() 
+                                                }
+                                                $.unique(array);  
+                                                for(var i=0;i<array.length;i++){
+                                                    $(".filter-floor1").append("<li><a>"+array[i]+"</a></li>");
+                                                }
+                                                $(".active").eq(1).text("全部分类("+array.length+")");
+                                                $(".filter-floor1 > li > a").click(function(){
+                                                    for(var i =0;i<value.length;i++){
+                                                        $(this).parent().parent().children().children("a").removeClass();
+                                                        $("#a1").removeClass();
+                                                        $(this).attr("class","active");
+                                                        if($(this).text()==value.eq(i).val()){
+                                                            value.parent(".prod-picshow").eq(i).show();
+                                                        }else{
+                                                            value.parent(".prod-picshow").eq(i).hide();
+                                                        }
+                                                    }
+                                                })
+                                                $("#a1").click(function(){
+                                                    $(this).attr("class","active");
+                                                    $(".filter-floor1 > li > a").removeClass();
+                                                    value.parent(".prod-picshow").show();
+                                                })
+                                            })
+                                            $(function(){
+                                                $(".icobtn-home").click(function(){
+                                                    var id = $(this).attr("data-val");
+                                                    $.post("__URL__/shoucang_add",{id:id},function(res){
+                                                        if(res==1){
+                                                            alert("添加购物车成功!");
+                                                            window.location.href='__URL__/shoucang';
+                                                        }else if(res==2){
+                                                            alert("此商品已存在于购物车！");
+                                                        }else{
+                                                            alert("系统忙，请稍后再试!");
+                                                        }
+                                                    },"text")
+                                                })
+                                                $(".collect_btnDel_pic").click(function(){
+                                                    var id = $(this).attr("data-val");
+                                                    if(confirm("是否删除此商品？")){
+                                                        $.post("__URL__/shoucang_del",{id:id},function(res){
+                                                            if(res==1){
+                                                                alert("删除成功!");
+                                                                window.location.href='__URL__/shoucang';
+                                                            }else{
+                                                                alert("系统忙，请稍后再试!");
+                                                            }
+                                                        },"text")
+                                                    }
+                                                })
+                                                $(".prod-picshow").mouseover(function(){
+                                                    $(this).children(".ico-picedit").show();
+                                                }).mouseout(function(){
+                                                    $(this).children(".ico-picedit").hide();
+                                                })
+                                                $("#quanxuan").click(function(){
+                                                    if($(this).is(":checked")){
+                                                        $("input[name='xuanze[]']").attr("checked","checked");
+                                                    }else{
+                                                        $("input[name='xuanze[]']").removeAttr("checked");
+                                                    }
+                                                });
+                                                $("#quandel").click(function(){
+                                                     if($("input[name='xuanze[]']").is(":checked")){
+                                                        if(confirm("是否删除选中商品？")){
+                                                            var frm = document.getElementById('form');
+                                                                frm.action='__URL__/scqs';
+                                                                frm.submit();
+                                                        }
+                                                     }
+                                                })
+                                                $("#quangouwu").click(function(){
+                                                     if($("input[name='xuanze[]']").is(":checked")){
+                                                         var frm = document.getElementById('form');
+                                                            frm.action='__URL__/qbgw';
+                                                            frm.submit();
+                                                     }
+                                                })
+                                            })
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cont-side">
+                    <div class="side-neck">
+                        <i></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+        <script>
+             $(function(){
+                 $(".icon-up-side").toggle(function(){
+                     $(".side-menu-tree").animate({'margin-top':'-170px'},"slow");
+                     $(this).attr("class","switch-side-menu icon-down-side");
+                 },function(){
+                     $(".side-menu-tree").animate({'margin-top':'0px'},"slow");
+                     $(this).attr("class","switch-side-menu icon-up-side");
+                 })
+                 $("#bnt_tiao").click(function(){
+                    var value = $.trim($("#sea").val());
+                    if(value != ""){
+                        $("#bnt_tiao").attr("href","__URL__/sea/mc/"+value);
+                    }
+                })
+             })
+            function winshow(){
+                    openWin = window.open('__URL__/show_two','_blank','width=550,height=530,left=800,top=400,location=yes,menubar=1,status=1');
+            }
+            $(document).ready(function(e){
+                $('html').bind("selectstart", function () { return false; });
+                var gw = $("#gouwuche > .pro-item");
+                var sc = $("#shoucang > .pro-item");
+                if(sc.length>0){
+                    $("#shoucangbox").hide();
+                    $("#shoucangbox2").show();
+                    $("#shou_shu > a > em").text(sc.length);
+                }else{
+                    $("#shoucangbox").show();
+                    $("#shoucangbox2").hide();
+                    $("#shou_shu").hide();
+                }
+                if(gw.length>0){
+                    $("#gouwubox").hide();
+                    $("#gouwubox2").show();
+                    $("#gou_shu > a > em").text(gw.length);
+                }else{
+                    $("#gouwubox").show();
+                    $("#gouwubox2").hide();
+                    $("#gou_shu").hide();
+                }
+                var zt = $(".zhuangtai");
+                for(var i=0;i<zt.length;i++){
+                    if(zt.eq(i).text()=="已发货"){
+                        $(".border-pure-btn").eq(i).show();
+                    }else{
+                        $(".border-pure-btn").eq(i).hide();
+                    }
+                }
+                $("#xianshi").click(function(){
+                    $(".secret-mod").show();
+                    $(".icon").css("opacity","0.2");
+                    $(this).hide();
+                })
+                $("#ling").click(function(){
+                    var frm = document.getElementById('form');
+                        frm.action='__URL__/yunzuan';
+                        frm.submit();
+                    $(this).hide();
+                })
+                var jia = 0;
+                var l = $("input[name='duoxuan[]']").length;
+                $(".J_cart_checked_num").text(l);
+                for(var i=0;i<l;i++){
+                  jia +=$("input[name='duoxuan[]']").eq(i).val()*1;  
+                }
+                $("#zongjia").text(jia);
+                $("#zongjia_i").val(jia);
+                $.ajax({
+                    type:"post",
+                    url:"__URL__/cook",
+                    dataType: "text",
+                    data:null,
+                    success:
+                    function(data){
+                      eval("var obj="+data);
+                        if(data!=""){
+                            $("#username-node-slide").show();
+                            $("#username-node").hide();
+                            $("#usernameHtml02").text(obj.username);
+                            if(obj.touxiang=="null"){
+                                $(".headimg > img").attr("src","__PUBLIC__/shopping/images/0000000000_01_60x60.jpg");
+                                $("#zujing_img").attr("src","__PUBLIC__/shopping/images/0000000000_01_60x60.jpg");
+                                $(".info-avatar > img").attr("src","__PUBLIC__/shopping/images/0000000000_01_60x60.jpg");
+                            }else{
+                                $(".headimg > img").attr("src","/ShoppingSite/"+obj.touxiang);
+                                $("#zujing_img").attr("src","/ShoppingSite/"+obj.touxiang);
+                                $(".info-avatar > img").attr("src","/ShoppingSite/"+obj.touxiang);
+                            }
+                            $(".mysuning-detail > .login").hide();
+                            $(".mysuning-detail > .username").css("display","block");
+                            $(".mysuning-detail > .username").text(obj.username);
+                            $("#anquan").val(obj.anquan);
+                            var fenshu = $("#anquan").val();
+                            $(".safe-bar-in").animate({width:fenshu+"%"},"slow");
+                            if(fenshu <= 40){
+                                $(".safe-text").text("低");
+                            }else if(fenshu>=60&&fenshu<80){
+                                $(".safe-text").text("中");
+                            }else if(fenshu>=80){
+                                $(".safe-text").text("高");
+                            }
+                            if(fenshu==100){
+                                $("#tisheng").hide();
+                            }else{
+                                $("#tisheng").show();
+                            }
+                            $("#username").text(obj.username);
+                            $("#zuan").text(obj.yunzuan);
+                            $("#yue").text(obj.zijin);
+                            $(".pls-login").hide();
+                            $("#zujing").show();
+                            $("#zujing > a").eq(0).text(obj.username);
+                            $("#zujing_img").attr("src","/ShoppingSite/"+obj.touxiang);
+                            $(".desc").empty().append("按下键盘上的<i>G</i>即可快速打开/关闭购物车功能");
+                            if(obj.quanxian=="超级管理员"||obj.quanxian=="管理员"){
+                                $("#hguanli").show();
+                            }else{
+                                $("#hguanli").hide();
+                            }
+                        }
+                    }
+                })
+                var num = 0;
+                $(document).keydown(function(event){
+                    if(event.keyCode == 71){ 
+                        if(num %2==0){
+                            $(".sn-sidebar-contents").attr("class","sn-sidebar-contents sn-sidebar-contents-show");
+                            $(".sn-sidebar-contents").animate({right : '35px'},"slow"); 
+                            $(".sn-sidebar-cart").show();
+                        }else{
+                            $(".sn-sidebar-contents").attr("class","sn-sidebar-contents");
+                            $(".sn-sidebar-contents").animate({right : '-400px'},"slow"); 
+                            $(".sn-sidebar-cart").hide();
+                        }
+                    }
+                    num++;
+                }); 
+                $.ajax({
+                    type:"post",
+                    url:"__URL__/gouwuchesl",
+                    dataType: "text",
+                    data:null,
+                    success:
+                    function(data){
+                        $(".J_cart_total_num").text(data);
+                        if(data > 0){
+                            $("#myCart_wu").hide();
+                            $("#myCart").show();
+                        }else{
+                            $("#myCart_wu").show();
+                            $("#myCart").hide();
+                        }
+                    }
+                })
+            })
+        </script>
+    </body>
+</html>

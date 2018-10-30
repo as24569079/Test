@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="__PUBLIC__/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    </head>
+    <body style="margin-left:10px">
+        <form method="post" action="__URL__/user_elist" id='form'>
+         <div class='group' style="width: 50%;float:left">
+            <div class="form-group" style="margin: 0">&nbsp;</div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">请输入客户手机号码</label>
+                <input type="text" class="form-control" id="tel" style="width:50%;" maxlength="11" name="tel" data-kai="off">
+            </div>
+            <input type='hidden' id='tel_code' value='false'>
+            <div class="form-group" id='tel_tishi' style='color:red'></div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">请输入充值金额</label>
+                <input type="text" class="form-control" id="money" style="width:50%;" name="money" data-kai="off">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">请输入充值备注</label>
+                <input type="text" class="form-control" id="beizhu" style="width:50%;" name="beizhu" data-kai="off">
+<!--                <input type="text"  id="money" style="width:50%;" name="money">-->
+            </div>
+            <input type='submit' value='充值' class='btn btn-primary' style='width:50%'>
+         </div>
+            <br><br>
+            <table class='table table-striped'>
+                <tr>
+                    <th>操作者</th>
+                    <th>客户姓名</th>
+                    <th>客户手机号</th>
+                    <th>充值金额</th>
+                    <th>操作时间</th>
+                    <th>备注</th>
+                </tr>
+                <volist name='arr' id='val'>
+                <tr>
+                    <td>{$val.mx_handle}</td>
+                    <td>{$val.real_name}</td>
+                    <td>{$val.change_tel}</td>
+                    <td>{$val.mx_money}</td>
+                    <td>{$val.mx_time}</td>
+                    <td>{$val.mx_beizhu}</td>
+                </tr>
+                </volist>
+            </table>
+            <div class='form-group'>
+                {$show}
+            </div>
+        </form>
+    <script>
+        $("#tel").blur(function(){
+            var this_val = $(this).val();
+            if(this_val==""){
+                $("#tel_tishi").html("请输入客户手机号码!");
+                $("#tel_code").val("false");
+            }else if(isNaN(this_val)){
+                $("#tel_tishi").html("请输入数字!");
+                $("#tel_code").val("false");
+            }else if(this_val.length!=11){
+                $("#tel_tishi").html("手机号码长度不正确!");
+                $("#tel_code").val("false");
+            }else{
+                $.post("elist_ajax",{tel:this_val},function(res){
+                    if(res == ""){
+                        $("#tel_tishi").html("手机号码不存在!");
+                        $("#tel_code").val("false");
+                        $("#tel_tishi").css("color","red");
+                    }else{
+                        eval("var obj = "+res);
+                        $("#tel_tishi").html("已找到用户"+obj.real_name);
+                        $("#tel_code").val("true");
+                        $("#tel_tishi").css("color","#000");
+                    }
+                },"text")
+            }
+        })
+        $("#form").submit(function(){
+            if($("#tel_code").val()=="false"){
+                alert("请输入正确的手机号码!")
+                return false;
+            }
+            if($("#money").val()==""){
+                alert("请输入充值金额!");
+                return false;
+            }else if(isNaN($("#money").val())){
+                alert("请输入数字!");
+                return false;
+            }else if($("#beizhu").val() == ''){
+                alert("请输入充值备注");
+                return false;
+            }
+        })
+    </script>
+        <script type="text/javascript">
+   jQuery(window).load(function() {
+    jQuery("#load").fadeOut(500);
+});
+  </script>
+	<!-- END JAVASCRIPTS -->
+        <div style="position: absolute;display:block;width:100%;top:25%" id="load">
+            <center><img src='/Public/images/wait.gif' style="width:70px;height:70px"></center>
+        </div>
+    </body>
+</html>

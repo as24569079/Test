@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+<!--    <link href="__PUBLIC__/css/jquery-confirm.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/mobilemain.css" type="text/css" rel="stylesheet">
+    <link href="__PUBLIC__/css/main.css" type="text/css" rel="stylesheet">-->
+     <script src="__PUBLIC__/js/jquery-1.10.2.js"></script>
+
+    <style>
+/*        #table3 tr:nth-child(3){
+            background-color: yellow;
+        }*/
+/*         .fena >div{
+    text-align: center;height: 30px;
+    line-height: 30px;
+}
+.fena >div> span{
+    width: 50px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+}
+.fena >div> a{
+    width: 50px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+    text-decoration: none;
+}
+.fena >div> li{
+    list-style: none;
+    width: 200px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+    text-decoration: none;
+}
+.fena >div> a:hover{
+    text-decoration: none;
+}
+.xq{ width:1200px; height:50px; float:left; background:#74D5F1}*/
+/*.xinxi{background: #cccccc}*/
+    .fena >div{
+    text-align: center;height: 30px;
+    line-height: 30px;
+}
+.fena >div> span{
+    width: 50px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+}
+.fena >div> a{
+    width: 50px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+    text-decoration: none;
+}
+.fena >div> li{
+    list-style: none;
+    width: 200px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+    text-decoration: none;
+}
+.fena >div> a:hover{
+    text-decoration: none;
+}
+div{ width:auto; height:100%}
+.paixu{ width:193px; height:30px; float:left; text-align:center; border:1px solid #CCC}
+.zhuangtai{ width:400px; height:30px;}
+.xinxi{ width:1190px; height:50px; float:left; background:#E1E1E1; }
+.span{ float:right; width:200px}
+.span2{ margin-left:40px}
+.span3{ float:right; width:200px}
+.span4{ float:right; width:200px}
+.xq{ width:1190px; height:30px; float:left; line-height: 30px}
+        </style>
+</head>
+<body>
+             <volist name="tongji_fafang" id="val" key="k" >
+       <div style="width:100%; min-height:50px; float:left;" class='position{$val.distribute_id} stupid' data-order_id='{$val.order_id}'  data-flag="0">
+            <div class="xinxi" style="display:block; margin-top:10px; line-height: 50px">
+                <span style="display:block; width: 1000px">结算日期：
+                <span style="width:200px">{$val.tongji_date}</span>
+                <span style="width:200px">奖励总额：{$val[emoney]+$val[smoney]+$val[guanlifei]}</span>
+                <span class="mingxi" data-time="{$val.tongji_date}" style="float:right">查看明细</span>
+                </span>
+            </div>
+<!--                <div class="xinxi">
+                    <span style="display:block; margin-top:10px">　　姓名：{$val.real_name}　　　　　　　　电话：{$val.tel}<span class="span3">积分：<span>{$val.smenoy}</span><span>元</span></span></span>
+                    
+                </div>-->
+<!--               <div class="xinxi">
+                    <span style="display:block; margin-top:10px"><span class="mingxi" data-time="{$val.tongji_date}">查看明细</span></span>
+                    
+                </div>-->
+ </div>
+<!--            <div>
+                    <div class="xq">订单详情(4件商品)</div>
+                    <div class="xq"><span>商品1(100)*2</span></div> 
+                    <div class="xq"><span>商品2(150)*2</span></div>
+                </div>   -->
+                    </volist>
+<!--                    <table class="table" id="table3">
+                        <volist name="tongji_fafang" id="val" key="k" >
+                            <tr style="background:#CCC" class="tr{$val.{$val.distribute_id}}"  >
+                            <td>结算日期</td>
+                            <td></td>
+                            <td>{$val.tongji_date}</td>
+                            <td>奖励总额：{$val[emoney]+$val[guanlifei]+$val[smoney]}</td>
+                            <td></td>
+                            <td class="mingxi" data-time="{$val.tongji_date}">查看明细</td> 
+                            </tr>
+                                                       
+                       </volist>-->
+<!---->             <!--
+                    <div class="fena">{$show}</div>-->
+  
+   
+    <script>
+$(document).ready(function() {
+   
+//    $("#a").
+    
+    
+        $(".mingxi").click(function(){
+		var gg = $(this).attr("data-time");
+		var data ={
+                    time:gg,
+                };
+//                alert();return;
+        if($(this).parent().parent().parent().data("flag")=="1")
+                 {   
+                    $(this).parent().parent().parent().find(".fuc").empty();
+                     $(this).parent().parent().parent().data("flag","0");
+                    return;
+                 }
+                 else
+                 {
+                    
+                      $(this).parent().parent().parent().data("flag","1");
+                  
+                 }
+   $(".fuc").empty();
+	$.ajax({
+		url: "bnous_ajax",
+		type: "post",
+		data: JSON.stringify(data),
+		contentType: "application/json; charset=UTF-8",
+		success: function (res) {
+//               alert(res);
+                         var b = "";
+                         eval("var zhi="+res);
+//                   alert(zhi.distribute_id);
+                        b+='<div class="fuc">';
+                        b+='<div class="xq"><span><span>序号</span><span style="margin-left:100px">本次发放金额</span><span style="margin-left:140px">管理费</span><span style="margin-left:250px">发放时间</span><span style="margin-left:150px">期数</span><span style="margin-left:170px">状态</span></span></div>';
+                        var a=1;
+                   for(var i=0;i<zhi.length;i++){
+                        b+='<div class="xq xqq"><span><span style="margin-left:12px">'+a+'</span><span style="margin-left:123px">'+zhi[i].emoney+'</span><span style="margin-left:155px">'+zhi[i].guanlifei+'</span><span style="margin-left:250px">'+zhi[i].fafang_time+'</span><span style="margin-left:167px">'+zhi[i].limit+'</span><span style="margin-left:180px">'+zhi[i].zhuangtai+'</span></span></div>';
+                        a++;
+                       }
+                      b+='</div> ';
+                      
+                    $(".position"+zhi[0].distribute_id).append(b);
+                     $(".xqq").eq(0).css("background-color","yellow"); 
+                 
+                    }   
+                    
+		});
+            });
+});
+</script>
+</body>
+</html>

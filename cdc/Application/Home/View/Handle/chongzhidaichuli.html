@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="__PUBLIC__/css/tongji.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script src="__PUBLIC__/js/bianse.js"></script>
+</head>
+<body>
+    <form method="post" id='form' action="__URL__/chongzhidaichuli">
+    <div>
+        <span>电子币充值待处理</span>
+        <input type="text" class="search" name="sea">
+        <input type="submit" value="搜索" class="search_sub">
+        <table id="neirong" border='0' cellspacing='0'>
+            <tr>
+                <td>序号</td>
+                <td>用户名</td>
+                <td>姓名</td>
+                <td>收款银行卡</td>
+                <td>充值金额</td>
+                <td>说明</td>
+                <td>充值时间</td>
+                <td>待处理</td>
+                <td>删除</td>
+            </tr>
+            <volist name='ren' id='val' key="k">
+            <tr class="neirong">
+                <td>{:(I('get.p'))?((I('get.p')-1)*12+$k):($k)}</td>
+                <td>{$val.tel}</td>
+                <td>{$val.name}</td>
+                <td>{$val.payee}</td>
+                <td>{$val.money}</td>
+                <td>{$val.beizhu}</td>
+                <td>{$val.time}</td>
+                <td><input type="button" value="通过" onclick="chong('{$val.list_id}','{$val.tel}','{$val.money}')"></td>               <td><a href="__URL__/chongzhi_detele?list_id={$val.list_id}" onclick="return confirm('确定吗？')"><input type="button" value="删除"></a></td>
+            </tr>
+            </volist>
+        </table>
+        <div class="fena">
+            {$show}
+        </div>
+        <script>
+//            $(document).ready(function(){
+//                var tr = $(".neirong");
+//                for(var i=0;i<tr.length;i++){
+//                    $(".neirong").eq(i).children("td").eq(0).html(i+1);
+//                }
+//            })
+            function chong(id,tel,money){
+                if(confirm('确定通过审核吗？')){
+                    var frm = document.getElementById('form');
+                        frm.action='__URL__/chongzhi/id/'+id+'/tel/'+tel+'/qian/'+money;
+                        frm.submit();
+                }else{
+                }
+            }
+        </script>
+    </div>
+    </form>
+</body>
+</html>

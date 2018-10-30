@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+    <link href="__PUBLIC__/css/jquery-confirm.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/mobilemain.css" type="text/css" rel="stylesheet">
+    <link href="__PUBLIC__/css/main.css" type="text/css" rel="stylesheet">
+
+    <style>
+        #table3 tr:nth-child(3){
+            background-color: yellow;
+        }
+         .fena >div{
+    text-align: center;height: 30px;
+    line-height: 30px;
+}
+.fena >div> span{
+    width: 50px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+}
+.fena >div> a{
+    width: 50px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+    text-decoration: none;
+}
+.fena >div> li{
+    list-style: none;
+    width: 200px;height: 30px;
+    background: #fff;
+    display: block;float:left;
+    margin-right: 5px;text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+    text-decoration: none;
+}
+.fena >div> a:hover{
+    text-decoration: none;
+}
+        </style>
+</head>
+<body>
+          
+                    <table class="table" >
+                            <tr class="fir-tr">
+                                <th>奖金来源</th>
+                                <th>结算时间</th>
+                                <th>推荐消费奖</th>
+                                <th>扣综合管理费</th>
+                                <th>积分</th>
+                                <th>实发奖金</th>
+                                <th>审核状态</th>
+                                <th>审核备注</th>
+                            </tr>
+                            <volist name="ding" id="val">
+                            <tr class="sec-tr">
+                                <td>{$val.real_name},{$val.jiedian}</td>
+                                <td>{$val.time}</td>
+                                <td>{$val.jiangli}</td>
+                                <td>0.00</td>
+                                <td>0.00</td>
+                                <td>{$val.jiangli}</td>
+                                <td>发奖完成</td>
+                                <td></td>
+                            </tr>
+                            </volist>
+                    </table> 
+                    <div class="fena">{$show}</div>
+  
+    <script src="__PUBLIC__/js/jquery-1.10.2.js"></script>
+   
+<script>window.parent.scrollTo(0, 0);</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+    <link href="__PUBLIC__/css/jquery-confirm.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+
+    <link href="__PUBLIC__/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/mobilemain.css" type="text/css" rel="stylesheet">
+    <link href="__PUBLIC__/css/main.css" type="text/css" rel="stylesheet">
+    <link href="__PUBLIC__/css/tongji.css" type="text/css" rel="stylesheet">
+
+</head>
+<body>
+<form id="form0" method="post" action="__URL__/shop_tongji">
+    <div class="container body-content">
+         <input type="submit" value="生成统计表" style="margin: 10px" id="sheng" onclick="return confirm('确定吗？')">
+<!--        <select id="sel" style="width: 150px;height:30px;">
+            <volist name="time" id="val">
+            <option>{$val.zhuangtai}</option>
+            </volist>
+        </select>-->
+       
+        <table class="table">
+            <tbody>
+                <tr class="fir-tr">
+                    <th>序号</th>
+                    <th>月份</th>
+                    <th>旗舰店</th>
+                    <th>营业额</th>                    
+                    <th>奖励比例</th>
+                    <th>收益</th>
+                    <th>结算时间</th>
+                    <!--<th>发放时间</th>-->
+                    <th>发放</th>
+                    <th>删除</th>
+                </tr>
+            <volist name="arr" id="val" key="k">
+                <tr style="text-align: center" class="neirong">
+                    <td>{:(I('get.p'))?((I('get.p')-1)*12+$k):($k)}</td>
+                    <td>{$val.earing_month}</a></td>
+                    <td>{$val.shop_name}</a></td>
+                    <td><if condition="$val.volume eq ''">0<else />{$val.volume}</if></td>
+                    <td>{$val.ratio}%</td>
+                    <td>{$val[volume]*$val[ratio]/100}</td>
+                    <td>{$val.created_time}</td>
+                 
+<!--                    <td>
+                        <switch name='val.status'>
+                            <case value='1'>未发放</case>
+                            <case value='2'>已发放</case>
+                        </switch>
+                    </td>-->
+                    <td><if condition="$val.status eq '1'"> <a href="__URL__/shop_send?ucredentials_user_id={$val.admin_id}&earning_id={$val.earning_id}" onclick="return confirm('确定吗？')">发放</a>  <else /> {$val.reward_time}
+                       </if>
+                    </td>
+                      <td><if condition="$val.status eq '1'"> <a href="__URL__/shop_delete?earning_id={$val.earning_id}" onclick="return confirm('确定吗？')">删除</a>  <else /></if>
+                    </td> 
+                </tr>
+            </volist>
+            </tbody>
+        </table>
+        <div class="fena">
+            {$show}
+        </div>
+        <div class="pagination-container page_new">
+            <!--<div class="pagination-container"><ul class="pagination"><li class="disabled PagedList-skipToPrevious"><a rel="prev">«</a></li><li class="active"><a>1</a></li><li class="disabled PagedList-skipToNext"><a rel="next">»</a></li></ul></div>-->
+        </div>
+    </div>
+</form>
+    <script src="__PUBLIC__/js/jquery-1.10.2.js"></script>
+    <script>
+    </script>
+<script>window.parent.scrollTo(0, 0);</script>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>发布信息管理</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="__PUBLIC__/v3/css/bootstrap.css" rel="stylesheet" />
+        <script src="__PUBLIC__/jq/jquery-2.0.3.min.js"></script>
+        <script src="__PUBLIC__/v3/js/bootstrap.js"></script>
+        <script src="__PUBLIC__/toastr-master/jquery-ui.min.js"></script>
+        <script src="__PUBLIC__/toastr-master/toastr.js"></script>
+        <link href="__PUBLIC__/toastr-master/toastr.css" type="text/css" rel="stylesheet" />
+        <style>
+            .top{
+                width:100%;padding:5px
+            }
+            a:hover{
+                text-decoration: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class='top'>
+            <button type="button" class="btn btn-info" id='add'>添加文章</button>
+        </div>
+        <div class='bottom'>
+            <table class="table table-hover" id='table'>
+                <tr>
+                    <th>
+                        序号
+                    </th>
+                    <th>
+                        标题
+                    </th>
+                    <th>
+                        模块
+                    </th>
+                    <th>
+                        上传者
+                    </th>
+                    <th>
+                        上传时间
+                    </th>
+                    <th>
+                        操作
+                    </th>
+                    <th>
+                        状态
+                    </th>
+                </tr>
+                <tbody class="sortable">
+                <volist name='arr' id='val' key='k'>
+                <tr class='tr'>
+                <input type="hidden" class='id' value='{$val.news_id}'/> 
+                    <td>
+                        {$k}
+                    </td>
+                    <td>
+                        <a href="__URL__/news_sel/id/{$val.news_id}">{$val.news_title}</a>
+                    </td>
+                    <td>
+                        <if condition='$val.news_mokuai eq 1'>
+                            企业简介
+                            <elseif condition='$val.news_mokuai eq 2'/>
+                            产品介绍
+                            <elseif condition='$val.news_mokuai eq 3'/>
+                            招商加盟
+                            <elseif condition='$val.news_mokuai eq 4'/>
+                            新闻中心
+                        </if>
+                    </td>
+                    <td>
+                        {$val.news_user}
+                    </td>
+                    <td>
+                        {$val.news_time}
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-success btn-sm upt" data-id='{$val.news_id}'>修改</button>
+                        <button type="button" class="btn btn-danger btn-sm del" data-id='{$val.news_id}'>删除</button>
+                    </td>
+                    <td>
+                        <if condition='$val.news_status eq 0'>
+                            <button type="button" class="btn btn-default btn-sm jinyong" data-id='{$val.news_id}' data-toggle="modal" data-target="#jinyong" onclick='jinyong($("#jinyongid").val($(this).attr("data-id")))'>禁用</button>
+                            <else/>
+                            <button type="button" class="btn btn-default btn-sm qiyong" data-id='{$val.news_id}'  data-toggle="modal" data-target="#qiyong" onclick='qiyong($("#qiyongid").val($(this).attr("data-id")))'>启用</button>
+                        </if>
+                    </td>
+                </tr>
+                </volist>
+                </tbody>
+            </table>
+        </div>
+        <div class="modal fade" tabindex="-1" role="dialog" id='jinyong'>
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">询问</h4>
+                </div>
+                <div class="modal-body">
+                  <p>是否禁用?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                  <button type="button" class="btn btn-primary" id='jinyong_sub'>禁用</button>
+                  <input type='hidden' id='jinyongid'>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+        <div class="modal fade" tabindex="-1" role="dialog" id='qiyong'>
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">询问</h4>
+                </div>
+                <div class="modal-body">
+                  <p>是否启用?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                  <button type="button" class="btn btn-primary" id='qiyong_sub'>启用</button>
+                  <input type='hidden' id='qiyongid'>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+        <div class="modal fade" tabindex="-1" role="dialog" id='del'>
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">询问</h4>
+                </div>
+                <div class="modal-body">
+                  <p>是否删除?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                  <button type="button" class="btn btn-primary" id='del_sub'>删除</button>
+                  <input type='hidden' id='del_id'>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+        <script>
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "positionClass": "toast-center-center",
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "2000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+              };
+            $(function(){
+                $("#add").click(function(){
+                    window.location.href='__URL__/news_add';
+                });
+                $(".upt").click(function(){
+                    window.location.href='__URL__/news_upt/id/'+$(this).attr("data-id");
+                })
+                $("#qiyong_sub").click(function(){
+                    $.post("__URL__/news_qiyong",{id:$("#qiyongid").val()},function(res){
+                        if(res==1){
+                            toastr.success('启用成功!');
+                            $('#qiyong').modal('hide');
+                            var li = $(".qiyong");
+                            for(var i=0;i<li.length;i++){
+                                if($("#qiyongid").val()==li.eq(i).attr("data-id")){
+                                    li.eq(i).removeClass("qiyong").addClass("jinyong").html("禁用").attr("data-target","#jinyong").attr("onclick","jinyong($('#jinyongid').val($(this).attr('data-id')))");
+                                }
+                            }
+                        }else{
+                            toastr.error('系统忙!请稍后重试!');
+                            $('#qiyong').modal('hide');
+                        }
+                    },"text");
+                });
+                $("#jinyong_sub").click(function(){
+                    $.post("__URL__/news_jinyong",{id:$("#jinyongid").val()},function(res){
+                        if(res==1){
+                            toastr.success('禁用成功!');
+                            $('#jinyong').modal('hide');
+                            var li = $(".jinyong");
+                            for(var i=0;i<li.length;i++){
+                                if($("#jinyongid").val()==li.eq(i).attr("data-id")){
+                                    li.eq(i).removeClass("jinyong").addClass("qiyong").html("启用").attr("data-target","#qiyong").attr("onclick","qiyong($('#qiyongid').val($(this).attr('data-id')))");;
+                                }
+                            }
+                        }else{
+                            toastr.error('系统忙!请稍后重试!');
+                            $('#jinyong').modal('hide');
+                        }
+                    },"text");
+                });
+                $(".del").click(function(){
+                    $('#del').modal('show');
+                    $("#del_id").val($(this).attr("data-id"));
+                });
+                $("#del_sub").click(function(){
+                    $.post("__URL__/news_del",{id:$("#del_id").val()},function(res){
+                        if(res==1){
+                            toastr.success('删除成功!');
+                            var li = $(".del");
+                            for(var i=0;i<li.length;i++){
+                                if($("#del_id").val()==li.eq(i).attr("data-id")){
+                                    li.eq(i).parent().parent().detach();
+                                }
+                            }
+                            $('#del').modal('hide');
+                        }else{
+                            toastr.error('系统忙!请稍后重试!');
+                            $('#del').modal('hide');
+                        }
+                    },"text");
+                });
+            });
+
+        $(function() {
+            var $list = $("#table"); 
+            $list.sortable({
+                cursor: "move",
+                items: ".tr", //只是tr可以拖动
+                opacity: 0.6, //拖动时，透明度为0.6
+                revert: true, //释放时，增加动画
+                update: function() { //更新排序之后
+                    var new_order = []; 
+                    $list.find(".id").each(function() { 
+                        new_order.push($(this).val()); 
+                     }); 
+                    $.ajax({
+                        url: '__URL__/sortarray',
+                        type: 'POST',
+                        data: {id:new_order},
+                        success: function(json) {
+                        }
+                    });
+                }
+            });
+            $(".sortable").disableSelection();
+        });
+        </script>
+    </body>
+</html>

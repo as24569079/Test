@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link href="__PUBLIC__/css/tongji.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script src="__PUBLIC__/js/bianse.js"></script>
+    <style>
+        td{
+            width:150px;
+        }
+    </style>
+</head>
+<body>
+    <form method="post" action="__URL__/user_update333" id="form">
+    <div>
+        <div>
+            <span class="zhanghao">会员信息修改</span>
+            <input type="text" class="search" name="sea">
+            <input type="submit" value="搜索" class="search_sub">
+            <table id="neirong" border="0" cellspacing="0">
+                <tr class="tou">
+                    <td>序号</td>
+                    <td>用户名</td>
+                    <td>姓名</td>
+                    <td>身份证</td>
+                    <td>操作</td>
+                </tr>
+                <!--<volist name="ren" id="val" key="k">-->
+                <!--<tr class="neirong">-->
+<!--                    <td>{:(I('get.p'))?((I('get.p')-1)*12+$k):($k)}</td>
+                    <td>{$val.tel}</td>
+                    <td>{$val.real_name}</td>
+                    <td>{$val.identity_card}</td>
+                    <td><input type="button" value="修改"></td>
+                </tr>-->
+                <!--</volist>-->
+                <tr class="neirong">
+                    <td>1</td>
+                    <td>18649004959</td>
+                    <td>侯鑫</td>
+                    <td>120102199401033513</td>
+                    <td><input type="button" value="修改" class="upt" data-val="on"></td>
+                </tr>
+            </table>
+            <div class="fena">{$show}</div>
+        </div>
+    </div>
+    </form>
+    <script>
+        $(function(){
+            $(".upt").click(function(){
+                if($(this).attr("data-val")=="on"){
+                    var name = $(this).parent().siblings().eq(2);
+                    var code = $(this).parent().siblings().eq(3);
+                    name.html("<input type='text' value='"+name.text()+"' style='width:140px'>");
+                    code.html("<input type='text' value='"+code.text()+"' style='width:140px'>");
+                    $(this).val("确定");
+                    $(this).attr("data-val","off");
+                }else{
+                    $("#form").submit();
+                }
+            })
+        })
+    </script>
+</body>
+</html>

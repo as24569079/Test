@@ -1,0 +1,328 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/icons-core.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/good.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/boot.css"/>
+<!--<link href="__PUBLIC__/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">-->
+<!--<script type="text/javascript" src="__PUBLIC__/third-party/jquery.min.js"></script>-->        
+<!--<script type="text/javascript" charset="utf-8" src="__PUBLIC__/js/umeditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/js/umeditor.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrapv2.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/dwz.min.js"></script>-->
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+<style type="text/css">
+        h1 {
+            font-family: "微软雅黑";
+            font-weight: normal;
+        }
+
+        .btn {
+            display: inline-block;
+            *display: inline;
+            padding: 4px 12px;
+            margin-bottom: 0;
+            *margin-left: .3em;
+            font-size: 14px;
+            line-height: 20px;
+            color: #333333;
+            text-align: center;
+            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+            vertical-align: middle;
+            cursor: pointer;
+            background-color: #f5f5f5;
+            *background-color: #e6e6e6;
+            background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+            background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+            background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+            background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+            background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
+            background-repeat: repeat-x;
+            border: 1px solid #cccccc;
+            *border: 0;
+            border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+            border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+            border-bottom-color: #b3b3b3;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);
+            filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+            *zoom: 1;
+            -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+            -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+            .btn:hover,
+            .btn:focus,
+            .btn:active,
+            .btn.active,
+            .btn.disabled,
+            .btn[disabled] {
+                color: #333333;
+                background-color: #e6e6e6;
+                *background-color: #d9d9d9;
+            }
+
+            .btn:active,
+            .btn.active {
+                background-color: #cccccc \9;
+            }
+
+            .btn:first-child {
+                *margin-left: 0;
+            }
+
+            .btn:hover,
+            .btn:focus {
+                color: #333333;
+                text-decoration: none;
+                background-position: 0 -15px;
+                -webkit-transition: background-position 0.1s linear;
+                -moz-transition: background-position 0.1s linear;
+                -o-transition: background-position 0.1s linear;
+                transition: background-position 0.1s linear;
+            }
+
+            .btn:focus {
+                outline: thin dotted #333;
+                outline: 5px auto -webkit-focus-ring-color;
+                outline-offset: -2px;
+            }
+
+            .btn.active,
+            .btn:active {
+                background-image: none;
+                outline: 0;
+                -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+                -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+                box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+            }
+
+            .btn.disabled,
+            .btn[disabled] {
+                cursor: default;
+                background-image: none;
+                opacity: 0.65;
+                filter: alpha(opacity=65);
+                -webkit-box-shadow: none;
+                -moz-box-shadow: none;
+                box-shadow: none;
+            }
+    </style>
+</head>
+    <form method="post" action="__URL__/addshangpin" enctype="multipart/form-data" onSubmit="return confirm();" >   
+<body>
+<div style="width: 100%;height:100%">
+	<div>
+        <label>商品名称 <span style="color: #f58266;">&nbsp;*</span></label>
+        <input type="text" placeholder="请输入商品名称" id="shangpinname" name="name">
+    </div>
+    <div>
+        <label>商品分类 <span style="color: #f58266;">&nbsp;*</span></label>
+        <select style="margin-right: 8px;" id='leibie_sel' name="fulei">
+            <option value="0">请选择</option>
+            <volist name='ren' id='val'>
+                <option value='{$val.category_id}'>{$val.category_name}</option>
+            </volist>
+        </select>
+        <select style="display: none;" id="zifenlei" name="zilei">
+        </select>
+    </div>
+    <div>
+        <label>商城选择 <span style="color: #f58266;">&nbsp;*</span></label>
+        <select style="margin-right: 8px;" id='sc_sel' name="shangcheng">
+            <option value='0'>大众商城</option>
+            <option value='1'>创业商城</option>
+        </select>
+    </div>
+    <div class="control-group singleItem" style="display: block;">
+        <label>电子币价格<span style="color: #f58266;"></span></label>
+        <input type="number" placeholder="请输入原价" id="s_yj" name="s_yuanjia"/>-<input type="number" placeholder="请输入现价" id="s_danjia" name="s_jiage"/>
+    </div>
+    <div class="control-group singleItem" style="display: block;">
+        <label>购物币价格<span style="color: #f58266;"></span></label>
+        <input type="number" placeholder="请输入原价" id="g_yj" name="g_yuanjiag"/>-<input type="number" placeholder="请输入现价" id="g_danjia" name="g_jiage"/>
+    </div>
+    <div class="control-group singleItem" style="display: block;">
+        <label>电子币积分<span style="color: #f58266;"></span></label>
+        <input type="number" placeholder="请输入赠送积分数量" id="s_jifen" name="s_jifen"/>
+    </div>
+    <div class="control-group singleItem" style="display: block;">
+        <label>购物币积分<span style="color: #f58266;"></span></label>
+        <input type="number" placeholder="请输入赠送积分数量" id="g_jifen" name="g_jifen"/>
+    </div>
+<!--    <div class="control-group singleItem" id="gCostPriceZone" style="position: relative; display: block;">
+        <label class="control-label" for="gCostPrice"><span class="helperInfoTips" rel="1、填写商品进货价，系统将自动为您计算利润。<br></span>2、升级高级版，添加店员账号，店员无法查看进货价、会员手机号。" data-hasqtip="20"></span>商品进价　</label>
+        <input class="span5 pull-left moneyFont" id="gCostPrice" maxlength="6" name="gCostPrice" onkeyup="clearNoNum(this,999999)" placeholder="¥0.00" type="text"> 
+    </div>-->
+   <div>
+       <label>库存数量　</label>
+        
+            <input style="width: 210px;" maxlength="11" placeholder="0" type="number" id="shuliang" name="shuliang">
+<!--            <div id="usuallyGoodWaringDiv">
+                <label style="width: 114px;">库存预警　</label>
+                <input style="width: 74px;" maxlength="11" name="LimitLower" onkeyup="clearNoNum(this,999999)" placeholder="库存下限" type="text">
+                <span>-</span>
+                <input id="LimitUpper" style="width: 74px;" maxlength="11" name="LimitUpper"  placeholder="库存上限" type="text">
+                </div>
+            </div>-->
+    </div>
+    <div>
+    	<label>供应商　　</label>
+        <select id="supplierName" name="gSupplier" class="span6 pull-left" style="width: 220px;">
+            <option value="0">未选择</option>
+            <volist name="gong" id="val">
+                <option value="{$val.supplier_id}">{$val.supplier_name}</option>
+            </volist>
+        </select>
+    </div>
+    <div class="control-group" style="position: relative;">
+        <label>商品规格　</label>
+        <input placeholder="" type="text" id="guige" name="guige">
+    </div>
+    <div>
+        <label>录入时间　</label>
+        <!--<div>-->
+            <input type="text" disabled="disabled" name="time" id="timeout">
+        <!--</div>-->
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="gRemark" id="labelRemark" style='cursor: pointer'><input type='button' value='上传图片' id='shangchuan'></label>
+        <div class="controls" id='xianshi'>
+            <input class="span8 pull-left" id="gRemark" name="files" placeholder="" type='file' style='display: none'>
+        </div>
+    </div>
+<textarea  type="text"  name="content" id="EditorId" placeholder="请输入内容"></textarea>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/jq/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/jq/ueditor.all.min.js"></script>
+        <script type="text/javascript">
+             window.UEDITOR_HOME_URL = "__PUBLIC__/admin/ueditor/";//配置路径设定为UEditor所放的位置
+     window.onload=function(){
+        window.UEDITOR_CONFIG.initialFrameHeight=300;//编辑器的高度
+        window.UEDITOR_CONFIG.initialFrameWidth=800;//编辑器的宽度
+        var editor = new UE.ui.Editor({
+            imageUrl : '__APP__/Editor/uploadImage',
+            fileUrl : '__APP__/Editor/uploadFile',
+            imagePath : '',
+            filePath : '',
+            imageManagerUrl:'__APP__/Editor/imageManage', //图片在线管理的处理地址
+            imageManagerPath:'__ROOT__/'
+        });
+        editor.render("EditorId");//此处的EditorId与<textarea name="content" id="EditorId">的id值对应 </textarea>
+    }
+        </script>
+
+<input type='submit' value='提交' style='width: 150px'>
+<script>
+    //图片上传路径更换
+    function getObjectURL(file) {
+            var url = null ;
+            if (window.createObjectURL!=undefined) { 
+              url = window.createObjectURL(file) ;
+            } else if (window.URL!=undefined) {
+              url = window.URL.createObjectURL(file) ;
+            } else if (window.webkitURL!=undefined) {
+              url = window.webkitURL.createObjectURL(file) ;
+            }
+             return url ;
+    }
+    $(document).ready(function(){
+            var mydate = new Date();
+            var str = "" + mydate.getFullYear() + "-";
+            str += (mydate.getMonth()+1) + "-";
+            str += mydate.getDate();
+            $("#timeout").val(str);
+        $("#shangchuan").click(function(){
+            var obj = document.getElementById('gRemark') ; 
+                obj.outerHTML=obj.outerHTML; 
+            var sc = $(".sc");
+            for(var i=0;i<sc.length;i++){
+               $(".sc").eq(i).detach(); 
+            }
+            $("#gRemark").click();
+            $("#gRemark").change(function(){
+                $("#xianshi").append("<img class='sc' src='"+getObjectURL(this.files[0])+"' style='width:150px;height:150px'>")
+                
+            })
+            
+        })
+        $("#leibie_sel").change(function(){
+            var value = $(this).val();
+            $("#zifenlei").children("option").detach();
+            if(value !=""){
+                 $.ajax({
+                    type:"post",
+                    url:"__URL__/Select",
+                    dataType: "text",
+                    data:{value:value},
+                    success:
+                    function(data){
+                        if(data!=""){
+                            eval("var obj="+data);
+                            $("#zifenlei").show();
+                            $("#zifenlei").append("<option value='0'>请选择子分类</option>");
+                            for(var i=0;i<obj.length;i++){
+                                $("#zifenlei").append("<option value='"+obj[i].category_id+"'>"+obj[i].category_name+"</option>")
+                            }
+                        }
+                    }
+                })
+            }
+        })
+    })
+    function confirm(){
+        if($("#shangpinname").val()==""){
+            alert("请输入商品名称!");
+            return false;
+        }
+        if($("#leibie_sel").val()=="0"||$("#zifenlei").val()=="0"){
+            alert("请选择类别!");
+            return false;
+        }
+        if($("#sc_sel").val()==""){
+            alert("请选择商城!");
+            return false;
+        }
+//        if($("#s_yj").val()==""){
+//            alert("请输入电子币原价!");
+//            return false;
+//        }
+//        if($("#s_danjia").val()==""){
+//            alert("请输入电子币现价!");
+//            return false;
+//        }
+//        if($("#g_yj").val()==""){
+//            alert("请输入购物币原价!");
+//            return false;
+//        }
+//        if($("#g_danjia").val()==""){
+//            alert("请输入购物币现价!");
+//            return false;
+//        }
+        if($("#danjia").val()==""){
+            alert("请输入价格!");
+            return false;
+        }
+        if($("#shuliang").val()==""){
+            alert("请输入数量!");
+            return false;
+        }
+        if($("#supplierName").val()=="0"){
+            alert("请选择供应商!");
+            return false;
+        }
+        if($("#guige").val()==""){
+            alert("请输入规格!")
+            return false;
+        }
+    }
+</script>
+</div>
+    </form>
+</body>
+</html>
